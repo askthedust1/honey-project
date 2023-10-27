@@ -19,6 +19,20 @@ productRouter.get('/', async (req, res) => {
     }
 });
 
+productRouter.get('/:id', async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id).populate({path:'category', select:['title'], model: Category});
+
+        if (!product) {
+            return res.sendStatus(404);
+        }
+
+        return res.send(product);
+    } catch {
+        return res.sendStatus(500);
+    }
+});
+
 productRouter.post('/', auth, permit("admin"), imagesUpload.single('image'), async (req, res, next) => {
     if (!req.body.title) return  res.status(400).send({ error: "Title is required!" });
     if (!req.body.price) return  res.status(400).send({ error: "Price is required!" });
