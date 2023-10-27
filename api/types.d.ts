@@ -7,3 +7,12 @@ export interface IUserApi {
     googleID?: string;
     image?: string | null;
 }
+
+export interface IProductPost {
+    category: string;
+    title: string;
+    price: string;
+    description?: string;
+    image?: string;
+}
+
