@@ -1,4 +1,3 @@
-import {Schema} from "mongoose";
 export interface IUserApi {
     email: string;
     password: string;
