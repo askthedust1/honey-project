@@ -1,10 +1,10 @@
 import {Request, Response, NextFunction} from "express";
 import {HydratedDocument} from "mongoose";
 import User from "../models/User";
-import {IUser} from "../types";
+import {IUserApi} from "../types";
 
 export interface RequestWithUser extends Request {
-  user: HydratedDocument<IUser>,
+  user: HydratedDocument<IUserApi>,
 }
 
 const auth = async (expressReq: Request, res: Response, next: NextFunction) => {

@@ -9,6 +9,16 @@ import permit from "../middleware/permit";
 
 const productRouter = express.Router();
 
+productRouter.get('/', async (req, res) => {
+    try {
+        const products = await Product.find();
+        return res.send(products);
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+});
+
 productRouter.post('/', auth, permit("admin"), imagesUpload.single('image'), async (req, res, next) => {
     if (!req.body.title) return  res.status(400).send({ error: "Title is required!" });
     if (!req.body.price) return  res.status(400).send({ error: "Price is required!" });
@@ -39,3 +49,4 @@ productRouter.post('/', auth, permit("admin"), imagesUpload.single('image'), asy
     }
 });
 
+export default productRouter;
