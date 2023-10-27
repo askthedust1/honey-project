@@ -4,6 +4,5 @@ export interface IUserApi {
     token: string;
     role: string;
     displayName: string;
-    googleID?: string;
-    image?: string | null;
+    phone: string;
 }
