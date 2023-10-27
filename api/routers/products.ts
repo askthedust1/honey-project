@@ -61,4 +61,29 @@ productRouter.post('/', auth, permit("admin"), imagesUpload.single('image'), asy
     }
 });
 
+productRouter.put('/:id', auth, imagesUpload.single('image'), permit('admin'), async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        const product = await Product.findById(id);
+
+        if (!product) {
+            return res.status(404).send('Not found!');
+        }
+
+        const updateProduct = await Product.findByIdAndUpdate(id, {
+            category: req.body.category,
+            title: req.body.title,
+            description: req.body.description,
+            image: req.file ? 'images/' + req.file.filename : null,
+            price: req.body.price,
+            amount: req.body.amount,
+        });
+
+        return res.send(updateProduct);
+    } catch (e) {
+        return res.status(500).send('error');
+    }
+});
+
 export default productRouter;
