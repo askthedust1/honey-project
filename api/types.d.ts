@@ -6,3 +6,12 @@ export interface IUserApi {
     displayName: string;
     phone: string;
 }
+
+export interface IProductPost {
+    category: string;
+    title: string;
+    price: string;
+    description?: string;
+    image?: string;
+}
+
