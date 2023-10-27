@@ -6,6 +6,8 @@ import {IProductPost} from "../types";
 import Product from "../models/Product";
 import Category from "../models/Category";
 import permit from "../middleware/permit";
+import config from "../config";
+import * as fs from "fs";
 
 const productRouter = express.Router();
 
@@ -83,6 +85,25 @@ productRouter.put('/:id', auth, imagesUpload.single('image'), permit('admin'), a
         return res.send(updateProduct);
     } catch (e) {
         return res.status(500).send('error');
+    }
+});
+
+productRouter.delete('/:id', auth, permit('admin'), async (req, res) => {
+    try {
+        const id = req.params.id;
+        const product = await Product.findById(id);
+
+        if (!product) {
+            return res.status(404).send('Not Found!');
+        }
+        await Product.findByIdAndRemove(id);
+
+        const filePath = config.publicPath + '/' + product.image;
+        fs.unlinkSync(filePath);
+
+        res.send('Deleted');
+    } catch (e) {
+        res.status(500).send('error');
     }
 });
 
