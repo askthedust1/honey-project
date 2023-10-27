@@ -1,7 +1,30 @@
 import express from "express";
 import User from "../models/User";
+import mongoose from "mongoose";
 
 const usersRouter = express.Router();
+
+usersRouter.post("/", async (req, res, next) => {
+    try {
+        const user = new User({
+            email: req.body.email,
+            password: req.body.password,
+            displayName: req.body.displayName,
+            phone: req.body.phone,
+        });
+
+        user.generateToken();
+
+        await user.save();
+        return res.send(user);
+    } catch (e) {
+        if (e instanceof mongoose.Error.ValidationError) {
+            return res.status(400).send(e);
+        }
+        return next(e);
+    }
+});
+
 
 usersRouter.delete('/sessions', async (req, res, next) => {
     try {

@@ -36,8 +36,6 @@ productRouter.get('/:id', async (req, res) => {
 productRouter.post('/', auth, permit("admin"), imagesUpload.single('image'), async (req, res, next) => {
     if (!req.body.title) return  res.status(400).send({ error: "Title is required!" });
     if (!req.body.price) return  res.status(400).send({ error: "Price is required!" });
-    const category = await Category.findOne({ _id: req.body.category })
-    if (!category) return  res.status(400).send({ error: "No such category exists!" });
 
     const productData: IProductPost = {
         category: req.body.category,
