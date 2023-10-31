@@ -33,4 +33,20 @@ collectionRouter.post('/', auth, permit("admin"), async (req, res, next) => {
   }
 });
 
+collectionRouter.delete('/:id',  auth, permit("admin"),async (req, res) => {
+  try {
+    const collectionId = req.params.id;
+    const collection = await Collection.findOne({ _id: collectionId });
+
+    if (!collection) {
+      return res.status(404).send({ error: "Not found!" });
+    }
+
+    await Collection.deleteOne({ _id: collectionId });
+    return res.send("Collection deleted");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 export default collectionRouter;
