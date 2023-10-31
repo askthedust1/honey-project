@@ -7,6 +7,23 @@ import Product from "../models/Product";
 import permit from "../middleware/permit";
 
 const transactionsRouter = express.Router();
+transactionsRouter.get('/', async (req, res) => {
+    try {
+        if (req.query.user) {
+            const transactions = await Transaction.find({ user: req.query.user })
+                .populate('user', 'displayName')
+                .populate('kits.product', 'title');
+            return res.send(transactions);
+        } else {
+            const transactions = await Transaction.find()
+                .populate('user', 'displayName')
+                .populate('kits.product', 'title');
+            return res.send(transactions);
+        }
+    } catch {
+        return res.sendStatus(500);
+    }
+});
 
 transactionsRouter.post('/', auth, async (req, res, next) => {
     const kits: IKitsMutation[] = req.body.kits;
