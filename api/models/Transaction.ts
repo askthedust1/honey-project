@@ -41,6 +41,7 @@ const TransactionSchema = new mongoose.Schema({
     status: {
         type: Boolean,
         required: true,
+        default: false,
     },
 });
 

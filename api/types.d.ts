@@ -1,3 +1,5 @@
+import transactionsRouter from "./routers/transactions";
+
 export interface IUserApi {
     email: string;
     password: string;
@@ -13,5 +15,17 @@ export interface IProductPost {
     price: string;
     description?: string;
     image?: string;
+}
+
+export interface IKits {
+    product: string;
+    amount: number;
+    price: number;
+}
+export type IKitsMutation = Omit<IKits, 'price'>;
+export interface ITransactionPost {
+    user: string;
+    totalPrice: number;
+    kits: IKits[];
 }
 
