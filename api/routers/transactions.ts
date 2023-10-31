@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import Transaction from "../models/Transaction";
 import auth, {RequestWithUser} from "../middleware/auth";
 import Product from "../models/Product";
+import permit from "../middleware/permit";
 
 const transactionsRouter = express.Router();
 
@@ -47,4 +48,25 @@ transactionsRouter.post('/', auth, async (req, res, next) => {
         next(e);
     }
 });
+
+transactionsRouter.patch('/:id/toggleStatus', auth, permit("admin"), async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        const transaction = await Transaction.findById(id);
+
+        if (!transaction) {
+            return res.status(404).send('Not found!');
+        }
+
+        await Transaction.findByIdAndUpdate(id, {
+            status: !transaction.status,
+        });
+
+        return res.send(transaction);
+    } catch (e) {
+        return res.status(500).send('error');
+    }
+});
+
 export default transactionsRouter;
