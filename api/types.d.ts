@@ -7,6 +7,7 @@ export interface IUserApi {
     role: string;
     displayName: string;
     phone: string;
+    googleID?: string;
 }
 
 export interface IProductPost {
