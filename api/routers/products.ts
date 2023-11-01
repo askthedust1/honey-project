@@ -67,12 +67,6 @@ productRouter.put('/:id', auth, imagesUpload.single('image'), permit('admin'), a
     try {
         const id = req.params.id;
 
-        const product = await Product.findById(id);
-
-        if (!product) {
-            return res.status(404).send('Not found!');
-        }
-
         const updateProduct = await Product.findByIdAndUpdate(id, {
             category: req.body.category,
             title: req.body.title,
@@ -81,6 +75,10 @@ productRouter.put('/:id', auth, imagesUpload.single('image'), permit('admin'), a
             price: req.body.price,
             amount: req.body.amount,
         });
+
+        if (!updateProduct) {
+            return res.status(404).send('Not found!');
+        }
 
         return res.send(updateProduct);
     } catch (e) {
