@@ -3,6 +3,7 @@ import Category from "../models/Category";
 import mongoose from "mongoose";
 import auth from "../middleware/auth";
 import permit from "../middleware/permit";
+import Product from "../models/Product";
 
 const categoriesRouter = express.Router();
 
@@ -67,6 +68,11 @@ categoriesRouter.delete("/:id", auth, permit("admin"), async (req, res, next) =>
             return res.status(404).send({ error: "Not found!" });
         }
 
+        const relatedProducts = await Product.find({ category: category_id });
+        if (relatedProducts.length > 0) {
+            return res.status(400).send({ error: "Cannot delete category because there are products associated with it." });
+        }
+
         await Category.deleteOne({ _id: category_id });
         return res.send("Category deleted");
     } catch (error) {
@@ -76,5 +82,6 @@ categoriesRouter.delete("/:id", auth, permit("admin"), async (req, res, next) =>
         return next(error);
     }
 });
+
 
 export default categoriesRouter;
