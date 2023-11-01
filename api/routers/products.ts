@@ -8,12 +8,26 @@ import Category from "../models/Category";
 import permit from "../middleware/permit";
 import config from "../config";
 import * as fs from "fs";
+import User from "../models/User";
 
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
     try {
-        const products = await Product.find();
+        const token = req.get('Authorization');
+        const user = await User.findOne({ token });
+
+        if (user && user.role === 'admin') {
+            const result = await Product.find();
+            return res.send(result);
+        }
+
+        if (req.query.category) {
+            const result = await Product.find({ category: req.query.category, isActive: true });
+            return res.send(result);
+        }
+
+        const products = await Product.find({ isActive: true });
         return res.send(products);
     } catch (error) {
         console.error('Error fetching products:', error);
