@@ -4,6 +4,7 @@ import User from './models/User';
 import * as crypto from 'crypto';
 import Category from "./models/Category";
 import Product from "./models/Product";
+import Transaction from "./models/Transaction";
 
 const run = async () => {
     await mongoose.connect(config.db);
@@ -13,19 +14,12 @@ const run = async () => {
         await db.dropCollection('users');
         await db.dropCollection('categories');
         await db.dropCollection('products');
+        await db.dropCollection('transactions')
     } catch (e) {
         console.log('Collection were not present');
     }
 
-    await User.create(
-        {
-            email: 'admin@gmail.com',
-            password: 'admin',
-            token: crypto.randomUUID(),
-            role: 'admin',
-            displayName: 'Administrator',
-            phone: '0555 55-55-55'
-        },
+    const [user1, user2] = await User.create(
         {
             email: 'sam@gmail.com',
             password: 'user',
@@ -33,7 +27,21 @@ const run = async () => {
             role: 'user',
             displayName: 'Sam Smith ',
             phone: '0772 77-22-77'
-        }
+        }, {
+            email: 'oleg@gmail.com',
+            password: 'oleg',
+            token: crypto.randomUUID(),
+            role: 'user',
+            displayName: 'Oleg Mongol ',
+            phone: '0552 82-78-76'
+        }, {
+            email: 'admin@gmail.com',
+            password: 'admin',
+            token: crypto.randomUUID(),
+            role: 'admin',
+            displayName: 'Administrator',
+            phone: '0555 55-55-55'
+        },
     );
 
     const [honey, herbs, driedFruits ] = await Category.create({
@@ -47,7 +55,11 @@ const run = async () => {
         description:'Сухофрукты - это фрукты, прошедшие процесс сушки, в результате которого они теряют большую часть влаги, но сохраняют свои питательные свойства. Среди популярных сухофруктов можно найти изюм, чернослив, финики, инжир, абрикосы и другие. '
     });
 
-    await Product.create({
+    const [
+        honey1, honey2, honey3, honey4,
+        herbs1, herbs2, herbs3, herbs4,
+        driedFruits1, driedFruits2,driedFruits3, driedFruits4
+    ] = await Product.create({
         title: 'Связистый мед',
         description:'Связистый мед обладает богатым ароматом и глубоким, насыщенным вкусом. Он собирается из цветущих растений на лугах и полях.',
         category: honey._id,
@@ -132,6 +144,117 @@ const run = async () => {
         amount:20,
         image: 'fixtures/driedFruits.jpg'
     });
+
+    await Transaction.create({
+        user: user1._id,
+        kits: [
+            {
+                product: honey1._id,
+                amount: 1,
+                price: honey1.price
+            }, {
+                product: honey2._id,
+                amount: 1,
+                price: honey2.price
+            }, {
+                product: driedFruits1._id,
+                amount: 1,
+                price: driedFruits1.price
+            }
+        ],
+        totalPrice: 1100
+    }, {
+        user: user1._id,
+        kits: [
+            {
+                product: herbs3._id,
+                amount: 1,
+                price: herbs3.price
+
+            }, {
+                product: honey2._id,
+                amount: 1,
+                price: honey2.price
+            }, {
+                product: driedFruits3._id,
+                amount: 1,
+                price: driedFruits3.price
+            }
+        ],
+        totalPrice:1200
+    }, {
+        user: user1._id,
+        kits: [
+            {
+                product: honey4._id,
+                amount: 3,
+                price: honey4.price
+            }
+        ],
+        totalPrice:900
+    }, {
+        user: user2._id,
+        kits: [
+            {
+                product: honey4._id,
+                amount: 1,
+                price: honey4.price
+            }, {
+                product: driedFruits2._id,
+                amount: 1,
+                price: driedFruits2.price
+            }, {
+                product: herbs3._id,
+                amount: 1,
+                price: herbs3.price
+            }
+        ],
+        totalPrice: 950
+    }, {
+        user: user2._id,
+        kits: [
+            {
+                product: honey1._id,
+                amount: 2,
+                price: honey1.price
+            }, {
+                product: driedFruits3._id,
+                amount: 2,
+                price: driedFruits3.price
+            }
+        ],
+        totalPrice:1400
+    }, {
+        user: user2._id,
+        kits: [
+            {
+                product: herbs1._id,
+                amount: 1,
+                price: herbs1.price
+            }, {
+                product: herbs2._id,
+                amount: 1,
+                price: herbs2.price
+            }, {
+                product: herbs3._id,
+                amount: 1,
+                price: herbs3.price
+            }, {
+                product: honey3._id,
+                amount: 1,
+                price: honey3.price
+            }, {
+                product: herbs4._id,
+                amount: 1,
+                price: herbs4.price
+            }, {
+                product: driedFruits4._id,
+                amount: 1,
+                price: driedFruits4.price
+            }
+        ],
+        totalPrice: 1700
+    })
 
     await db.close();
 };
