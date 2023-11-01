@@ -1,25 +1,32 @@
 import express from "express";
-import {IKits, IKitsMutation, ITransactionPost} from "../types";
 import mongoose from "mongoose";
+import {IKits, IKitsMutation, ITransactionPost} from "../types";
 import Transaction from "../models/Transaction";
-import auth, {RequestWithUser} from "../middleware/auth";
 import Product from "../models/Product";
+import auth, {RequestWithUser} from "../middleware/auth";
 import permit from "../middleware/permit";
 
 const transactionsRouter = express.Router();
-transactionsRouter.get('/', async (req, res) => {
+transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
     try {
-        if (req.query.user) {
-            const transactions = await Transaction.find({ user: req.query.user })
-                .populate('user', 'displayName')
-                .populate('kits.product', 'title');
-            return res.send(transactions);
-        } else {
-            const transactions = await Transaction.find()
-                .populate('user', 'displayName')
-                .populate('kits.product', 'title');
-            return res.send(transactions);
+        const transactions = await Transaction.find()
+            .populate('user', 'displayName')
+            .populate('kits.product', 'title');
+        return res.send(transactions);
+    } catch {
+        return res.sendStatus(500);
+    }
+});
+transactionsRouter.get('/user', auth, async (req, res) => {
+    const user = (req as RequestWithUser).user;
+    try {
+        if (!user._id) {
+            return res.status(400).send({error: 'Invalid user ID'});
         }
+        const transactions = await Transaction.find({ user: user._id })
+            .populate('user', 'displayName')
+            .populate('kits.product', 'title');
+        return res.send(transactions);
     } catch {
         return res.sendStatus(500);
     }
