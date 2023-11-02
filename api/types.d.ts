@@ -1,4 +1,3 @@
-import transactionsRouter from "./routers/transactions";
 
 export interface IUserApi {
     email: string;

@@ -37,10 +37,10 @@ transactionsRouter.post('/', auth, async (req, res, next) => {
     if (!kits.length) return  res.status(400).send({ error: "No kits!" });
 
     try {
-        let fullKits: IKits[] = [];
+        const fullKits: IKits[] = [];
         let totalPrice = 0;
 
-        for (let kit of kits) {
+        for (const kit of kits) {
             const product = await Product.findById(kit.product);
             if (!product) return res.status(400).send({ error: "One of the products is missing!" });
 
