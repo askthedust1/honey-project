@@ -1,7 +1,7 @@
-import { Schema, model, Model, HydratedDocument } from 'mongoose';
+import {Schema, model, Model, HydratedDocument} from 'mongoose';
 import bcrypt from 'bcrypt';
-import { randomUUID } from 'crypto';
-import { IUserApi } from '../types';
+import {randomUUID} from 'crypto';
+import {IUserApi} from '../types';
 
 const SALT_WORK_FACTOR = 10;
 
@@ -21,7 +21,7 @@ const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
         validate: {
             validator: async function (this: HydratedDocument<IUserApi>, valueUserName: string) {
                 if (!this.isModified('email')) return true;
-                const user = await User.findOne({ email: valueUserName });
+                const user = await User.findOne({email: valueUserName});
                 if (user) return false;
             },
             message: 'This user is already registered',
@@ -45,7 +45,10 @@ const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
         type: String,
         required: true,
     },
-    phone: String,
+    phone: {
+        type: String,
+        required: true,
+    },
     googleID: String,
 });
 
