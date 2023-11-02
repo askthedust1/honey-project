@@ -5,7 +5,8 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        'plugin:prettier/recommended',
     ],
     "overrides": [
         {
@@ -20,6 +21,7 @@ module.exports = {
             }
         }
     ],
+    "ignorePatterns": ['.eslintrc.js'],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
