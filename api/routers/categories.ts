@@ -7,7 +7,7 @@ import Product from "../models/Product";
 
 const categoriesRouter = express.Router();
 
-categoriesRouter.post('/', async (req, res, next) => {
+categoriesRouter.post('/', auth, permit("admin"), async (req, res, next) => {
 
     const categoryData = {
         title: req.body.title,
@@ -62,18 +62,18 @@ categoriesRouter.get('/', async (req, res) => {
 categoriesRouter.delete("/:id", auth, permit("admin"), async (req, res, next) => {
     try {
         const category_id = req.params.id;
-        const category = await Category.findOne({ _id: category_id });
+        const category = await Category.findOne({_id: category_id});
 
         if (!category) {
-            return res.status(404).send({ error: "Not found!" });
+            return res.status(404).send({error: "Not found!"});
         }
 
-        const relatedProducts = await Product.find({ category: category_id });
+        const relatedProducts = await Product.find({category: category_id});
         if (relatedProducts.length > 0) {
-            return res.status(400).send({ error: "Cannot delete category because there are products associated with it." });
+            return res.status(400).send({error: "Cannot delete category because there are products associated with it."});
         }
 
-        await Category.deleteOne({ _id: category_id });
+        await Category.deleteOne({_id: category_id});
         return res.send("Category deleted");
     } catch (error) {
         if (error instanceof mongoose.Error.ValidationError) {
