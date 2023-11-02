@@ -26,21 +26,15 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
-  amount: Number,
+  amount: {
+    type: Number,
+    required: true,
+  },
   isActive: {
     type: Boolean,
     required: true,
     default: true,
   },
-    amount: {
-        type: Number,
-        required: true,
-    },
-    isActive: {
-        type: Boolean,
-        required: true,
-        default: true,
-    }
 });
 
 const Product = mongoose.model('Product', ProductSchema);

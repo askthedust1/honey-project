@@ -45,44 +45,11 @@ const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
     type: String,
     required: true,
   },
-  phone: String,
+  phone: {
+    type: String,
+    required: true,
+  },
   googleID: String,
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        validate: {
-            validator: async function (this: HydratedDocument<IUserApi>, valueUserName: string) {
-                if (!this.isModified('email')) return true;
-                const user = await User.findOne({email: valueUserName});
-                if (user) return false;
-            },
-            message: 'This user is already registered',
-        },
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    role: {
-        type: String,
-        required: true,
-        default: 'user',
-        enum: ['user', 'admin'],
-    },
-    token: {
-        type: String,
-        required: true,
-    },
-    displayName: {
-        type: String,
-        required: true,
-    },
-    phone: {
-        type: String,
-        required: true,
-    },
-    googleID: String,
 });
 
 UserSchema.pre('save', async function (next) {

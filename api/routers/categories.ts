@@ -7,7 +7,7 @@ import Product from '../models/Product';
 
 const categoriesRouter = express.Router();
 
-categoriesRouter.post('/', async (req, res, next) => {
+categoriesRouter.post('/', auth, permit('admin'), async (req, res, next) => {
   const categoryData = {
     title: req.body.title,
     description: req.body.description,
