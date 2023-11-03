@@ -1,8 +1,8 @@
 import express from 'express';
-import { imagesUpload } from '../multer';
+import {imagesUpload} from '../multer';
 import auth from '../middleware/auth';
 import mongoose from 'mongoose';
-import { IProductPost } from '../types';
+import {IProductPost} from '../types';
 import Product from '../models/Product';
 import Category from '../models/Category';
 import permit from '../middleware/permit';
@@ -15,7 +15,7 @@ const productRouter = express.Router();
 productRouter.get('/', async (req, res) => {
   try {
     const token = req.get('Authorization');
-    const user = await User.findOne({ token });
+    const user = await User.findOne({token});
 
     if (user && user.role === 'admin') {
       const result = await Product.find();
@@ -23,11 +23,11 @@ productRouter.get('/', async (req, res) => {
     }
 
     if (req.query.category) {
-      const result = await Product.find({ category: req.query.category, isActive: true });
+      const result = await Product.find({category: req.query.category, isActive: true});
       return res.send(result);
     }
 
-    const products = await Product.find({ isActive: true });
+    const products = await Product.find({isActive: true});
     return res.send(products);
   } catch (error) {
     console.error('Error fetching products:', error);
@@ -59,8 +59,8 @@ productRouter.post(
   permit('admin'),
   imagesUpload.single('image'),
   async (req, res, next) => {
-    if (!req.body.title) return res.status(400).send({ error: 'Title is required!' });
-    if (!req.body.price) return res.status(400).send({ error: 'Price is required!' });
+    if (!req.body.title) return res.status(400).send({error: 'Title is required!'});
+    if (!req.body.price) return res.status(400).send({error: 'Price is required!'});
 
     const productData: IProductPost = {
       category: req.body.category,
@@ -126,6 +126,26 @@ productRouter.delete('/:id', auth, permit('admin'), async (req, res) => {
     res.send('Deleted');
   } catch (e) {
     res.status(500).send('error');
+  }
+});
+
+productRouter.patch('/:id', auth, permit('admin'), async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const product = await Product.findById(id);
+
+    if (!product) {
+      return res.status(404).send('Not found!');
+    }
+
+    await Product.findByIdAndUpdate(id, {
+      isActive: !product.isActive,
+    });
+
+    return res.send(product);
+  } catch (e) {
+    return res.status(500).send('error');
   }
 });
 
