@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import User from '../models/User';
 import mongoose from 'mongoose';
 import { OAuth2Client } from 'google-auth-library';
