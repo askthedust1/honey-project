@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import { imagesUpload } from '../multer';
 import auth from '../middleware/auth';
 import mongoose from 'mongoose';

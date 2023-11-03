@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import Category from '../models/Category';
 import mongoose from 'mongoose';
 import auth from '../middleware/auth';

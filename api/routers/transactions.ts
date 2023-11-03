@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import mongoose from 'mongoose';
 import { IKits, IKitsMutation, ITransactionPost } from '../types';
 import Transaction from '../models/Transaction';
