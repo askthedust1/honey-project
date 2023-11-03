@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import auth from '../middleware/auth';
 import permit from '../middleware/permit';
 import Collection from '../models/Collection';
