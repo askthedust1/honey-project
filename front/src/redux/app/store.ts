@@ -10,14 +10,15 @@ import {
     REGISTER,
     REHYDRATE,
 } from 'redux-persist';
+import {usersReducer} from "@/app/users/tools/usersSlice";
 const usersPersistConfig = {
-    key: 'shop:users',
+    key: 'honey:users',
     storage,
     whitelist: ['user'],
 };
 
 const rootReducer = combineReducers({
-    // users: persistReducer(usersPersistConfig, usersReducer),
+    users: persistReducer(usersPersistConfig, usersReducer),
     // products: productsReducer,
 });
 
@@ -34,3 +35,4 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export const persistor = persistStore(store);
