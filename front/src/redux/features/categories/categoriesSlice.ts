@@ -23,6 +23,7 @@ export const categoriesSlice = createSlice({
     });
     builder.addCase(fetchCategories.fulfilled, (state, {payload: categories}) => {
       state.items = categories;
+      state.loading = false;
     });
     builder.addCase(fetchCategories.rejected, (state) => {
       state.loading = false;
