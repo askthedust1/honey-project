@@ -52,3 +52,8 @@ export interface ValidationError {
 export interface GlobalError {
     error: string;
 }
+export interface ICategory {
+    _id: string;
+    title: string;
+    description?: string;
+}
