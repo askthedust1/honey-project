@@ -9,6 +9,7 @@ const reducers = {
     [usersSlice.name]: usersSlice.reducer,
     [categoriesSlice.name]: categoriesSlice.reducer,
     [productsSlice.name]: productsSlice.reducer,
+}
 
 const reducer = combineReducers(reducers);
 
