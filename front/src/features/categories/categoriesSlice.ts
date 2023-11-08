@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ICategory } from '@/types';
-import {RootState} from "@/store/store";
-import {fetchCategories} from "./categoriesThunk";
-import {HYDRATE} from "next-redux-wrapper";
+import { RootState } from '@/store/store';
+import { fetchCategories } from './categoriesThunk';
+import { HYDRATE } from 'next-redux-wrapper';
 
 interface CategoriesState {
   items: ICategory[];
@@ -12,7 +12,7 @@ interface CategoriesState {
 const initialState: CategoriesState = {
   items: [],
   loading: false,
-}
+};
 
 export const categoriesSlice = createSlice({
   name: 'categories',
@@ -26,14 +26,14 @@ export const categoriesSlice = createSlice({
     builder.addCase(fetchCategories.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(fetchCategories.fulfilled, (state, {payload: categories}) => {
+    builder.addCase(fetchCategories.fulfilled, (state, { payload: categories }) => {
       state.items = categories;
       state.loading = false;
     });
     builder.addCase(fetchCategories.rejected, (state) => {
       state.loading = false;
     });
-  }
+  },
 });
 
 export const categoriesReducer = categoriesSlice.reducer;
