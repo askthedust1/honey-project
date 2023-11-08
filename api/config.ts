@@ -8,7 +8,7 @@ const config = {
   db: 'mongodb://localhost/honey',
   google: {
     clientId: process.env.GOOGLE_CLIENT_ID,
-  },
+  }, 
 };
 
 export default config;
