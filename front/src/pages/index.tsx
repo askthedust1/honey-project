@@ -1,11 +1,18 @@
 import Products from "@/features/products/Products";
 import {wrapper} from "@/store/store";
 import {fetchProducts} from "@/features/products/productsThunk";
+import Footer from "@/components/UI/footer/Footer";
 
 const Home = () => {
   return (
     <>
-      <Products />
+        <header>
+
+        </header>
+        <main>
+            <Products />
+        </main>
+        <Footer />
     </>
   )
 }
