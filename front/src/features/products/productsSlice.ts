@@ -1,18 +1,24 @@
 import {createSlice} from '@reduxjs/toolkit';
+import { fetchProducts } from './productsThunk';
 import {IProduct} from '@/types';
 import {getProduct} from "@/features/products/productsThunk";
 import {RootState} from "@/store/store";
 import {HYDRATE} from "next-redux-wrapper";
 
 interface ProductsState {
-    oneProduct: IProduct | null,
+    items: IProduct[];
+    fetchLoading: boolean;
+    oneProduct: IProduct | null;
     fetchOneLoading: boolean;
 }
 
 const initialState: ProductsState = {
+    items: [],
     oneProduct: null,
+    fetchLoading: false,
     fetchOneLoading: false,
 };
+
 
 export const productsSlice = createSlice({
     name: 'products',
@@ -23,6 +29,16 @@ export const productsSlice = createSlice({
             // @ts-expect-error
             return action.payload.products;
         })
+       builder.addCase(fetchProducts.pending, (state) => {
+          state.fetchLoading = true;
+       });
+       builder.addCase(fetchProducts.fulfilled, (state, { payload: products }) => {
+          state.fetchLoading = false;
+          state.items = products;
+       });
+       builder.addCase(fetchProducts.rejected, (state) => {
+         state.fetchLoading = false;
+       });
 
         builder.addCase(getProduct.pending, (state) => {
             state.fetchOneLoading = true;
@@ -37,5 +53,7 @@ export const productsSlice = createSlice({
     },
 });
 
+export const selectAllProducts = (state: RootState) => state.products.items;
 export const selectOneProduct = (state: RootState) => state.products.oneProduct;
+export const selectAllProductsLoading = (state: RootState) => state.products.fetchLoading;
 export const selectFetchOneLoad = (state: RootState) => state.products.fetchOneLoading;

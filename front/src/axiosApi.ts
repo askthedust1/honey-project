@@ -1,8 +1,8 @@
-import axios from "axios";
-import {apiUrl} from "@/constants";
+import axios from 'axios';
+import { apiUrl } from '@/constants';
 
 const axiosApi = axios.create({
-    baseURL: apiUrl,
+  baseURL: apiUrl,
 });
 
 export default axiosApi;
