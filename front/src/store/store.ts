@@ -12,6 +12,7 @@ const usersPersistConfig = {
     storage,
     whitelist: ['user'],
 };
+
 const makeStore = () => {
     const isServer = typeof window === 'undefined';
 
@@ -47,5 +48,4 @@ const makeStore = () => {
 
 export type RootStore = ReturnType<typeof makeStore>;
 export type RootState = ReturnType<RootStore['getState']>;
-export type AppDispatch = ReturnType<RootStore['dispatch']>;
 export const wrapper = createWrapper<RootStore>(makeStore);
