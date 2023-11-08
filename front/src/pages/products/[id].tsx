@@ -8,14 +8,13 @@ import {selectOneProduct} from "@/features/products/productsSlice";
 const Product: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
     const product = useAppSelector(selectOneProduct);
     return (
-        product &&
-        (<div>
-            {product.title}
-        </div>)
+        product
+            ? (<div>{product.title}</div>)
+            : (<div>One product</div>)
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({params}) => {
+export const getServerSideProps = wrapper.getServerSideProps(store => async ({params}) => {
     const id = params?.id;
     if (!id || Array.isArray(id)) {
         throw new Error('Param id must be a string');

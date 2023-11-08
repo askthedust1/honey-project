@@ -24,18 +24,18 @@ export const productsSlice = createSlice({
             return action.payload.products;
         })
 
-        builder.addCase(getProduct.pending, (state: ProductsState) => {
+        builder.addCase(getProduct.pending, (state) => {
             state.fetchOneLoading = true;
         });
-        builder.addCase(getProduct.fulfilled, (state: ProductsState, action) => {
+        builder.addCase(getProduct.fulfilled, (state, {payload: product}) => {
             state.fetchOneLoading = false;
-            state.oneProduct = action.payload;
+            state.oneProduct = product;
         });
-        builder.addCase(getProduct.rejected, (state: ProductsState) => {
+        builder.addCase(getProduct.rejected, (state) => {
             state.fetchOneLoading = false;
         });
     },
 });
 
 export const selectOneProduct = (state: RootState) => state.products.oneProduct;
-export const selectFetchLoad = (state: RootState) => state.products.fetchOneLoading;
+export const selectFetchOneLoad = (state: RootState) => state.products.fetchOneLoading;
