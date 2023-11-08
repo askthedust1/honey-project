@@ -39,7 +39,7 @@ export interface ValidationError {
 }
 
 export interface GlobalError {
-  error: string;
+    error: string;
 }
 
 export interface IProduct {
