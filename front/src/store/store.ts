@@ -2,9 +2,11 @@ import {combineReducers} from "redux";
 import {configureStore} from "@reduxjs/toolkit";
 import {createWrapper} from "next-redux-wrapper";
 import {usersSlice} from "@/features/users/usersSlice";
+import {categoriesSlice} from "@/features/categories/categoriesSlice";
 
 const reducers = {
     [usersSlice.name]: usersSlice.reducer,
+    [categoriesSlice.name]: categoriesSlice.reducer,
 };
 
 const reducer = combineReducers(reducers);
