@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchProducts } from './productsThunk';
 import {IProduct} from "@/types";
 import {RootState} from "@/store/store";
+import {HYDRATE} from "next-redux-wrapper";
 
 interface ProductsState {
     items: IProduct[];
@@ -18,6 +19,10 @@ export const productsSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(HYDRATE, (state, action) => {
+            //@ts-expect-error
+            return action.payload.products;
+        })
         builder.addCase(fetchProducts.pending, (state) => {
             state.fetchLoading = true;
         });
@@ -32,6 +37,5 @@ export const productsSlice = createSlice({
     }
 });
 
-export const productsReducer = productsSlice.reducer;
 export const selectAllProducts = (state: RootState) => state.products.items;
 export const selectAllProductsLoading = (state: RootState) => state.products.fetchLoading;

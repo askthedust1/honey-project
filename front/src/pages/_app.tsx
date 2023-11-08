@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import '@/features/products/components/products.item.css';
 import type { AppProps } from 'next/app'
 import {wrapper} from "@/store/store";
 import {Provider} from "react-redux";
