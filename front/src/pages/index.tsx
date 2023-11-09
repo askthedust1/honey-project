@@ -3,12 +3,16 @@ import { wrapper } from '@/store/store';
 import { fetchProducts } from '@/features/products/productsThunk';
 import Header from '@/components/UI/header/Header';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import CategoriesList from "@/components/UI/categories/CategoriesList";
+import {fetchCategories} from "@/features/categories/categoriesThunk";
 
 const Home = () => {
   return (
     <>
       <Header />
-      <main></main>
+      <main>
+        <CategoriesList />
+      </main>
       <Footer />
     </>
   );
@@ -16,6 +20,7 @@ const Home = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   await store.dispatch(fetchProducts());
+  await store.dispatch(fetchCategories());
 
   return {
     props: {
