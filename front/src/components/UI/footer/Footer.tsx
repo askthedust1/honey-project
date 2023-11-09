@@ -8,8 +8,10 @@ import FaceBook from '@/assets/images/icon-fb.svg';
 import Twitter from '@/assets/images/icon-tw.svg';
 import Instagram from '@/assets/images/icon-in.svg';
 import YouTube from '@/assets/images/icon-yt.svg';
+import { useTranslation } from 'next-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation('common');
   return (
     <footer className={cls.footer}>
       <div className={cls.footer_inner}>
@@ -18,20 +20,20 @@ const Footer = () => {
         </Link>
 
         <div className={cls.footer_inner_box_links}>
-          <h3>Покупателям</h3>
-          <Link href={'/'}>Как сделать заказ?</Link>
-          <Link href={'/delivery'}>Доставка</Link>
-          <Link href={'/'}>Оплата</Link>
+          <h3>{t('customers')}</h3>
+          <Link href={'/'}>{t('order')}</Link>
+          <Link href={'/delivery'}>{t('delivery')}</Link>
+          <Link href={'/'}>{t('pay')}</Link>
         </div>
 
         <div className={cls.footer_inner_box_links}>
-          <h3>Компания</h3>
-          <Link href={'/about'}>О нас</Link>
-          <Link href={'/contacts'}>Контакты</Link>
+          <h3>{t('company')}</h3>
+          <Link href={'/about'}>{t('about')}</Link>
+          <Link href={'/contacts'}>{t('contacts')}</Link>
         </div>
 
         <div className={cls.footer_inner_box_links}>
-          <h3>Контакты</h3>
+          <h3>{t('contacts')}</h3>
           <span>
             <svg xmlns={Email.src} width="17" height="15" viewBox="0 0 17 15" fill="#FFB931">
               <path
@@ -53,7 +55,7 @@ const Footer = () => {
         </div>
 
         <div className={cls.footer_inner_box_links}>
-          <h3>Мы в социальных сетях</h3>
+          <h3>{t('social-net')}</h3>
           <div className={cls.footer_inner_box_links_icons}>
             <a href="#">
               <svg xmlns={FaceBook.src} width="28" height="28" viewBox="0 0 28 28" fill="#FFB931">
@@ -98,7 +100,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p className={cls.footer_reserved_text}>© 2023 All Rights Reserved.</p>
+      <p className={cls.footer_reserved_text}>{t('rights')}</p>
     </footer>
   );
 };

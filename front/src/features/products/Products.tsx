@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useAppSelector } from '@/store/hook';
 import { selectAllProducts } from '@/features/products/productsSlice';
 import ProductItem from '@/features/products/components/ProductItem';
 import { IProduct } from '@/types';
+import { useTranslation } from 'next-i18next';
 
 const Products = () => {
   const products = useAppSelector(selectAllProducts);
-
+  const { t } = useTranslation('common');
   return (
     <div>
-      Вся продукция:
+      <h2>{t('all-products')}</h2>
       <div className="cards-list">
         {products.map((el: IProduct) => (
           <ProductItem
@@ -25,4 +26,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default memo(Products);
