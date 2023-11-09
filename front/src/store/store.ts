@@ -2,10 +2,13 @@ import { createWrapper } from 'next-redux-wrapper';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import { productsSlice } from '@/features/products/productsSlice';
-import { usersSlice } from '@/features/users/usersSlice';
+import {usersSlice, UserState} from '@/features/users/usersSlice';
 import storage from 'redux-persist/lib/storage';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import {categoriesSlice} from "@/features/categories/categoriesSlice";
+import { PersistPartial } from 'redux-persist/es/persistReducer';
+
+type PersistedReducer<S> = (state: S | undefined, action: any) => S & PersistPartial;
 
 const usersPersistConfig = {
     key: 'honey:users',
@@ -19,10 +22,12 @@ const makeStore = () => {
     const reducers = {
         [productsSlice.name]: productsSlice.reducer,
         [categoriesSlice.name]: categoriesSlice.reducer,
-        [usersSlice.name]: isServer
-            ? usersSlice.reducer
-            : persistReducer(usersPersistConfig, usersSlice.reducer),
+        [usersSlice.name]: usersSlice.reducer,
     };
+
+    if (!isServer) {
+        reducers[usersSlice.name] = persistReducer(usersPersistConfig, usersSlice.reducer) as PersistedReducer<UserState>;
+    }
 
     const reducer = combineReducers(reducers);
 

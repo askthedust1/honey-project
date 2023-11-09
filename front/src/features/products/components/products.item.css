@@ -2,29 +2,60 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    color:#5A3733;
+    margin-bottom: 60px;
+}
+.all-products-title {
+    margin: 30px 0 15px 51px;
+    color:#5A3733;
+    text-transform: uppercase;
 }
 
 .card {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    min-height: 500px;
-    border: 1px solid #e2e2e2;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s;
-    margin: 20px;
-    background-color: #fcf8f0;
-}
-
-.card:hover {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-}
-
-.card img {
-    width: 100%;
+    width: 295px;
     height: auto;
+    margin: 0 0 20px;
+}
+
+.card-img-container {
+    border: 1px solid #e2e2e2;
+    border-radius: 39px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    width: 295px;
+    height: auto;
+    box-shadow: 0 4px 4px 0 #00000040;
+    transition: all 0.3s;
+    position: relative;
+    padding-top: 12px;
+}
+
+.card-img-container:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 6px 0 #00000060;
+}
+
+.cart-icon {
+    width: 55px;
+    height: 55px;
+    background-color: #FF8F31;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 8px;
+    right: 9px;
+}
+
+.cart-icon img {
+    padding: 12px 0 0 8px;
+}
+
+.card-img{
+    width: 280px;
+    height: 340px;
+    margin: 0 auto;
 }
 
 .card-content {
@@ -32,17 +63,19 @@
     flex-direction: column;
     justify-content: space-between;
     margin-top: auto;
-    height: 100%;
-    padding: 20px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .card-title {
-    font-size: 1.2rem;
+    font-size: 16px;
+    line-height: 23.48px;
     margin: 0;
 }
 
 .card-price {
-    font-size: 1.1rem;
-    color: #b83806;
+    font-size: 19px;
+    color: #FF8F31;
     margin: 0;
 }

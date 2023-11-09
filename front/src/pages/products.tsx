@@ -1,26 +1,22 @@
-import Footer from '@/components/UI/footer/Footer';
+import React from 'react';
+import ProductsAll from '@/features/products/ProductsAll';
 import { wrapper } from '@/store/store';
 import { fetchProducts } from '@/features/products/productsThunk';
-import Header from '@/components/UI/header/Header';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import CategoriesList from "@/components/UI/categories/CategoriesList";
-import {fetchCategories} from "@/features/categories/categoriesThunk";
+import Header from '@/components/UI/header/Header';
+import Footer from '@/components/UI/footer/Footer';
 
-const Home = () => {
+const Products = () => {
   return (
     <>
       <Header />
-      <main>
-        <CategoriesList />
-      </main>
+      <ProductsAll />
       <Footer />
     </>
   );
 };
-
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   await store.dispatch(fetchProducts());
-  await store.dispatch(fetchCategories());
 
   return {
     props: {
@@ -29,5 +25,4 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     },
   };
 });
-
-export default Home;
+export default Products;
