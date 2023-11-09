@@ -1,0 +1,34 @@
+.opener {
+  display: flex;
+  max-width: 1624px;
+  margin: 0 auto;
+  &_item {
+    text-transform: uppercase;
+    width: 760px;
+    padding-left: 33px;
+    &_title {
+      color: #5A3733;
+      margin-top: 195px;
+      font-size: 65px;
+      font-weight: 700;
+    }
+    &_content {
+      color: #5A3733;
+      margin-top: 86px;
+      font-size: 30px;
+      font-weight: 600;
+    }
+    &_btn {
+      color: #FFF;
+      font-size: 36px;
+      font-weight: 900;
+      margin-top: 95px;
+      padding: 33px 85px;
+      border-radius: 45px;
+      border: none;
+      background: #FF8F31;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+    }
+  }
+}

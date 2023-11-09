@@ -1,0 +1,56 @@
+.advantages {
+  background: url('./../../../assets/images/back-honney.png') no-repeat top center;
+  padding-top: 226px;
+  margin-top: 50px;
+  &_item {
+    text-align: center;
+    padding: 17px 0 64px 0;
+    background: #FDD431;
+    text-transform: uppercase;
+    &_title {
+      text-align: center;
+      color: #5A3733;
+      font-size: 55px;
+      font-weight: 900;
+      letter-spacing: 5.775px;
+    }
+    &_cards {
+      margin-top: 51px;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      &_card {
+        margin: 0 21px;
+        width: 370px;
+        color: #5A3733;
+        text-align: center;
+        font-size: 28px;
+        font-weight: 600;
+        img {
+          width: 272px;
+          height: 272px;
+          margin-bottom: 27px;
+        }
+      }
+    }
+    &_btn {
+      color: #FFF;
+      font-size: 30px;
+      font-weight: 700;
+      border-radius: 19px;
+      background: #FF8F31;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+      padding: 27px;
+      margin-top: 61px;
+      border: none;
+    }
+    span {
+      display: inline-block;
+      margin: 124px 10px 0;
+      background: #5A3733;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
