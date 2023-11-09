@@ -1,0 +1,90 @@
+$color-text: #5A3733;
+$color-card-bg: #FFFFFF;
+$color-card-border: #e2e2e2;
+$color-icon-price: #FF8F31;
+
+.list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color:$color-text;
+    margin-bottom: 60px;
+}
+.title {
+    margin: 30px 0 15px 51px;
+    color:$color-text;
+    text-transform: uppercase;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 295px;
+    height: auto;
+    margin: 0 0 20px;
+}
+
+.imgContainer {
+    border: 1px solid $color-card-border;
+    border-radius: 39px;
+    overflow: hidden;
+    background-color: $color-card-bg;
+    width: 295px;
+    height: auto;
+    box-shadow: 0 4px 4px 0 #00000040;
+    transition: all 0.3s;
+    position: relative;
+    padding-top: 12px;
+
+    .cardImg{
+        width: 280px;
+        height: 340px;
+        margin: 0 auto;
+    }
+
+}
+
+.imgContainer:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 6px 0 #00000060;
+}
+
+.cartIcon {
+    width: 55px;
+    height: 55px;
+    background-color: $color-icon-price;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 8px;
+    right: 9px;
+
+    img {
+        padding: 12px 0 0 8px;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: auto;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+
+    .title {
+        font-size: 16px;
+        line-height: 23.48px;
+        margin: 0;
+    }
+
+    .price {
+        font-size: 19px;
+        color: $color-icon-price;
+        margin: 0;
+    }
+}
+
+
+

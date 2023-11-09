@@ -4,14 +4,15 @@ import { selectAllProducts } from '@/features/products/productsSlice';
 import ProductItem from '@/features/products/components/ProductItem';
 import { IProduct } from '@/types';
 import { useTranslation } from 'next-i18next';
+import cls from './components/products.module.scss';
 
-const Products = () => {
+const ProductsAll = () => {
   const products = useAppSelector(selectAllProducts);
   const { t } = useTranslation('common');
   return (
     <div>
-      <h2>{t('all-products')}</h2>
-      <div className="cards-list">
+      <h2 className={cls.title}>{t('all-products')}</h2>
+      <div className={cls.list} >
         {products.map((el: IProduct) => (
           <ProductItem
             key={el._id}
@@ -26,4 +27,4 @@ const Products = () => {
   );
 };
 
-export default memo(Products);
+export default memo(ProductsAll);

@@ -85,7 +85,7 @@ const run = async () => {
       category: honey._id,
       price: 300,
       amount: 20,
-      image: 'fixtures/honey.png',
+      image: 'fixtures/honey.svg',
     },
     {
       title: 'Акациевый мед:',
@@ -94,7 +94,7 @@ const run = async () => {
       category: honey._id,
       price: 500,
       amount: 20,
-      image: 'fixtures/honey.png',
+      image: 'fixtures/honey.svg',
     },
     {
       title: 'Гречишный мед',
@@ -103,7 +103,7 @@ const run = async () => {
       category: honey._id,
       price: 400,
       amount: 20,
-      image: 'fixtures/honey.png',
+      image: 'fixtures/White-honey.svg',
     },
     {
       title: 'Липовый мед',
@@ -112,7 +112,7 @@ const run = async () => {
       category: honey._id,
       price: 300,
       amount: 20,
-      image: 'fixtures/honey.png',
+      image: 'fixtures/White-honey.svg',
     },
     {
       title: 'Травяной сбор для иммунитета',
@@ -121,7 +121,7 @@ const run = async () => {
       category: herbs._id,
       price: 200,
       amount: 20,
-      image: 'fixtures/herbst.jpg',
+      image: 'fixtures/herbs.svg',
     },
     {
       title: 'Сбор трав для пищеварения',
@@ -130,7 +130,7 @@ const run = async () => {
       category: herbs._id,
       price: 200,
       amount: 20,
-      image: 'fixtures/herbst.jpg',
+      image: 'fixtures/herbs.svg',
     },
     {
       title: 'Березовый сбор для очищения',
@@ -139,7 +139,7 @@ const run = async () => {
       category: herbs._id,
       price: 300,
       amount: 20,
-      image: 'fixtures/herbst.jpg',
+      image: 'fixtures/herbs.svg',
     },
     {
       title: 'Сбор трав для успокоения нервной системы',
@@ -148,7 +148,7 @@ const run = async () => {
       category: herbs._id,
       price: 300,
       amount: 20,
-      image: 'fixtures/herbst.jpg',
+      image: 'fixtures/herbs.svg',
     },
     {
       title: 'Фруктовый микс "Энергия"',
@@ -157,7 +157,7 @@ const run = async () => {
       category: driedFruits._id,
       price: 300,
       amount: 20,
-      image: 'fixtures/driedFruits.jpg',
+      image: 'fixtures/driedFruits.svg',
     },
     {
       title: 'Сухофруктовый набор "Витамины"',
@@ -166,7 +166,7 @@ const run = async () => {
       category: driedFruits._id,
       price: 350,
       amount: 20,
-      image: 'fixtures/driedFruits.jpg',
+      image: 'fixtures/driedFruits.svg',
     },
     {
       title: 'Тропический микс "Экзотика"',
@@ -175,7 +175,7 @@ const run = async () => {
       category: driedFruits._id,
       price: 400,
       amount: 20,
-      image: 'fixtures/driedFruits.jpg',
+      image: 'fixtures/driedFruits.svg',
     },
     {
       title: 'Ягодный сбор "Здоровье"',
@@ -184,7 +184,7 @@ const run = async () => {
       category: driedFruits._id,
       price: 300,
       amount: 20,
-      image: 'fixtures/driedFruits.jpg',
+      image: 'fixtures/driedFruits.svg',
     },
   );
 
