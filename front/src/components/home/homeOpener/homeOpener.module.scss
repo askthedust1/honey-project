@@ -1,5 +1,7 @@
 .opener {
   display: flex;
+  max-width: 1624px;
+  margin: 0 auto;
   &_item {
     text-transform: uppercase;
     width: 760px;

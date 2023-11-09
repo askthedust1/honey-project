@@ -1,4 +1,4 @@
-import Products from '@/features/products/Products';
+// import Products from '@/features/products/Products';
 import Footer from '@/components/UI/footer/Footer';
 import { wrapper } from '@/store/store';
 import { fetchProducts } from '@/features/products/productsThunk';
@@ -25,7 +25,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   return {
     props: {
       name: 'Products',
-      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer', 'homeOpener'])),
+      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer', 'home'])),
     },
   };
 });
