@@ -1,5 +1,3 @@
-import Footer from '@/components/UI/footer/Footer';
-import Header from '@/components/UI/header/Header';
 import HomePage from "@/components/home/HomePage";
 import CategoriesList from "@/components/UI/categories/CategoriesList";
 import { wrapper } from '@/store/store';
@@ -9,12 +7,10 @@ import {fetchCategories} from "@/features/categories/categoriesThunk";
 const Home = () => {
   return (
     <>
-      <Header />
       <main>
           <HomePage/>
         <CategoriesList />
       </main>
-      <Footer />
     </>
   );
 };
