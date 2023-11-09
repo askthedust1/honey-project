@@ -1,0 +1,14 @@
+.lang_select {
+  font-size: 16px;
+  font-weight: 700;
+  color: #5A3733;
+  border: 2px solid #5A3733;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.lang_select:focus {
+  border-color: #5A3733;
+  color: #5A3733;
+  outline: none;
+}
