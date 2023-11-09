@@ -1,18 +1,16 @@
 import Products from '@/features/products/Products';
-import Footer from '@/components/UI/footer/Footer';
 import { wrapper } from '@/store/store';
 import { fetchProducts } from '@/features/products/productsThunk';
-import Header from '@/components/UI/header/Header';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Home = () => {
   return (
     <>
-      <Header />
       <main>
-        <Products />
+        <div className="container">
+          <Products />
+        </div>
       </main>
-      <Footer />
     </>
   );
 };

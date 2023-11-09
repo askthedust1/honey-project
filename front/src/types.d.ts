@@ -39,7 +39,21 @@ export interface ValidationError {
 }
 
 export interface GlobalError {
-    error: string;
+  error: string;
+}
+
+export interface IProductView {
+  _id: string;
+  category: {
+    _id: string;
+    title: string;
+  };
+  title: string;
+  price: number;
+  description?: string;
+  image: string;
+  amount: number;
+  isActive: boolean;
 }
 
 export interface IProduct {
@@ -52,6 +66,7 @@ export interface IProduct {
   amount: number;
   isActive: boolean;
 }
+
 export interface ICategory {
   _id: string;
   title: string;
