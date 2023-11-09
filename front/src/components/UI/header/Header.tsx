@@ -6,7 +6,7 @@ import LanguageSwitcher from '@/components/UI/langSwitcher/LanguageSwitcher';
 import { useTranslation } from 'next-i18next';
 
 const Header = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('header');
   return (
     <header className={cls.header}>
       <Link href={'/'}>

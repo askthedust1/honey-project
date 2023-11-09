@@ -11,7 +11,7 @@ import YouTube from '@/assets/images/icon-yt.svg';
 import { useTranslation } from 'next-i18next';
 
 const Footer = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('footer');
   return (
     <footer className={cls.footer}>
       <div className={cls.footer_inner}>
