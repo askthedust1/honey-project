@@ -3,7 +3,7 @@ import { GlobalError, IUser, ValidationError } from '@/types';
 import { register } from './usersThunk';
 import { RootState } from '@/store/store';
 
-interface UserState {
+export interface UserState {
   user: IUser | null;
   registerLoading: boolean;
   registerError: ValidationError | null;
