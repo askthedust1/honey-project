@@ -3,6 +3,7 @@ import CategoriesList from "@/components/UI/categories/CategoriesList";
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import {fetchCategories} from "@/features/categories/categoriesThunk";
+import BenefitsOfHoney from "@/components/home/benefitsOfHoney/BenefitsOfHoney";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <main>
           <HomePage/>
         <CategoriesList />
+        <BenefitsOfHoney />
       </main>
     </>
   );
