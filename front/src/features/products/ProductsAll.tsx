@@ -12,7 +12,7 @@ const ProductsAll = () => {
   return (
     <div>
       <h2 className={cls.title}>{t('all-products')}</h2>
-      <div className={cls.list} >
+      <div className={cls.list}>
         {products.map((el: IProduct) => (
           <ProductItem
             key={el._id}

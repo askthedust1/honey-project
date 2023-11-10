@@ -12,7 +12,10 @@ const TransactionSchema = new mongoose.Schema({
       message: 'User does not exist',
     },
   },
-
+  address: {
+    type: String,
+    required: true,
+  },
   kits: [
     {
       product: {

@@ -50,7 +50,7 @@ export interface IProductView {
   };
   title: string;
   price: number;
-  description?: string;
+  description: string;
   image: string;
   amount: number;
   isActive: boolean;
@@ -61,7 +61,7 @@ export interface IProduct {
   category: string;
   title: string;
   price: number;
-  description?: string;
+  description: string;
   image: string;
   amount: number;
   isActive: boolean;
