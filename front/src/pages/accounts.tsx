@@ -9,18 +9,27 @@ const Accounts = () => {
     let currentRef = useRef<HTMLDivElement | null>(null);
     let rightSideRef = useRef<HTMLDivElement | null>(null);
 
+    if (isLoginActive) {
+        rightSideRef.current?.classList.add(acc.right);
+    }
+
     const changeState = () => {
             if (isLoginActive) {
-                rightSideRef.current?.classList.remove("right");
-                rightSideRef.current?.classList.add("left");
+                rightSideRef.current?.classList.remove(acc.right);
+                rightSideRef.current?.classList.add(acc.left);
             } else {
-                rightSideRef.current?.classList.remove("left");
-                rightSideRef.current?.classList.add("right");
+                rightSideRef.current?.classList.remove(acc.left);
+                rightSideRef.current?.classList.add(acc.right);
             }
             setIsLoginActive(!isLoginActive);
     };
 
-    const current = isLoginActive ? "Register" : "Login";
+    const current = isLoginActive ? (
+        <><p>У вас еще нет аккаунта?</p><br/><button style={{background: 'white', border: 'none', borderRadius: '10px',
+            color: 'orange', padding: '10px', fontSize: '15px'}}>Зарегистрироваться</button></>) :
+        (<div style={{paddingLeft: '10px'}}><p>У вас уже есть аккаунт?</p>
+            <br/><button style={{background: 'white', border: 'none', borderRadius: '10px',
+                color: 'orange', padding: '10px', fontSize: '15px'}}>Войти</button></div>);
     const currentActive = isLoginActive ? "login" : "register";
 
     return (
@@ -35,6 +44,7 @@ const Accounts = () => {
                     currentActive={currentActive}
                     containerRef={rightSideRef}
                     onClick={changeState}
+                    isLog={isLoginActive}
                 />
             </div>
         </div>
@@ -42,16 +52,17 @@ const Accounts = () => {
 };
 
 interface RightSideProps {
-    current: string;
+    current: string | React.JSX.Element;
     currentActive: string;
     containerRef: React.RefObject<HTMLDivElement>;
     onClick: () => void;
+    isLog: boolean;
 }
 
 const RightSide: React.FC<RightSideProps> = props => {
     return (
         <div
-            className={acc.rightSide}
+            className={props.isLog ? acc.rightSide + ' ' + acc.right : acc.rightSide + ' ' + acc.left}
             ref={props.containerRef}
             onClick={props.onClick}
         >

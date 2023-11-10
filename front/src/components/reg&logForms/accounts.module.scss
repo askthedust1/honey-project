@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 40px;
+  margin: 80px;
 }
 
 .App-logo {
@@ -50,9 +50,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background: white;
     box-shadow: 0 0 12px 2px rgba(15, 15, 15, 0.2);
-    border-radius: 4px;
+    border-radius: 10px;
     position: relative;
     z-index: 99;
     width: 100%;
@@ -65,10 +65,12 @@
     flex-direction: column;
     justify-content: center;
     height: 90%;
-    background-color: #FF8F31;
+    padding: 0 10px;
+    background-image: url("../../assets/images/honeyReg.jpg");
+    background-size: cover;
     width: 100%;
     position: absolute;
-    right: -34%;
+    right: -64%;
     border-radius: 6px;
     z-index: 1;
     transition: all 400ms ease-in-out;
@@ -76,26 +78,33 @@
     box-shadow: 0 0 12px 2px rgba(15, 15, 15, 0.281);
 
     &.right {
-      right: -40%;
-      align-items: flex-end;
-      &:hover {
-        right: -45%;
-      }
-    }
-    &.left {
-      right: 40%;
-      align-items: flex-start;
-      &:hover {
-        right: 45%;
-      }
-    }
-
-    .text {
       font-size: 21px;
       font-weight: 500;
       color: #fff;
       margin-right: 3em;
       margin-left: 3em;
+      right: -65%;
+      align-items: flex-end;
+      position: absolute;
+
+      &:hover {
+        right: -70%;
+      }
+    }
+
+    &.left {
+      font-size: 21px;
+      font-weight: 500;
+      color: #fff;
+      margin-right: 3em;
+      margin-left: 3em;
+      position: absolute;
+      right: 43%;
+      align-items: flex-start;
+
+      &:hover {
+        right: 47%;
+      }
     }
   }
 }
