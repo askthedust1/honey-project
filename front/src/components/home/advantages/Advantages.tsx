@@ -1,6 +1,10 @@
 import React from 'react';
 import cls from './advantages.module.scss';
 import {useTranslation} from "next-i18next";
+import advantages_i1 from '@/assets/images/Advan-img1.png';
+import advantages_i2 from '@/assets/images/Advan-img2.png';
+import advantages_i3 from '@/assets/images/Advan-img3.png';
+
 
 const Advantages = () => {
     const { t } = useTranslation('home');
@@ -10,7 +14,7 @@ const Advantages = () => {
                 <h3 className={cls.advantages_item_title}>{t('titleAdvantages')}</h3>
                 <div className={cls.advantages_item_cards}>
                     <div className={cls.advantages_item_cards_card}>
-                        <img alt={''}/>
+                        <img src={advantages_i1.src} alt={''}/>
                         <p>{t('AdvantagesCard1')}</p>
                     </div>
                     <div>
@@ -19,7 +23,7 @@ const Advantages = () => {
                         <span></span>
                     </div>
                     <div className={cls.advantages_item_cards_card}>
-                        <img alt={''}/>
+                        <img src={advantages_i2.src} alt={''}/>
                         <p>{t('AdvantagesCard2')}</p>
                     </div>
                     <div>
@@ -28,7 +32,7 @@ const Advantages = () => {
                         <span></span>
                     </div>
                     <div className={cls.advantages_item_cards_card}>
-                        <img alt={''}/>
+                        <img src={advantages_i3.src} alt={''}/>
                         <p>{t('AdvantagesCard3')}</p>
                     </div>
                 </div>

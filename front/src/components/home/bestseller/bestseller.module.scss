@@ -1,0 +1,55 @@
+.bestseller {
+  text-transform: uppercase;
+  background: #FCF8F5;
+  padding-bottom: 43px;
+  button {
+    border: none;
+  }
+  &_container {
+    max-width: 1624px;
+    margin: 0 auto;
+  }
+  &_btns {
+    margin: 114px 0 63px;
+    text-align: center;
+    &_btn1 {
+      border-radius: 22px;
+      background: #FF8F31;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+      padding: 10px 27px;
+      color: #FFF;
+      font-size: 40px;
+      font-weight: 600;
+      margin: 0 26px;
+    }
+    &_btn2 {
+      color: #5A3733;
+      font-size: 40px;
+      font-weight: 500;
+      margin: 0 26px;
+      background: none;
+    }
+  }
+  &_cards {
+    display: flex;
+    justify-content: space-between;
+    &_card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        color: #5A3733;
+        font-size: 24px;
+        font-weight: 700;
+        margin: 20px 0 16px;
+      }
+      span {
+        color: #FF8F31;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+    }
+  }
+
+}
