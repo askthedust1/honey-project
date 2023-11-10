@@ -3,15 +3,11 @@ import ProductsAll from '@/features/products/ProductsAll';
 import { wrapper } from '@/store/store';
 import { fetchProducts } from '@/features/products/productsThunk';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Header from '@/components/UI/header/Header';
-import Footer from '@/components/UI/footer/Footer';
 
 const Products = () => {
   return (
     <>
-      <Header />
       <ProductsAll />
-      <Footer />
     </>
   );
 };
