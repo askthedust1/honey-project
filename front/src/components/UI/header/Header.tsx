@@ -1,3 +1,4 @@
+'use static';
 import React from 'react';
 import Link from 'next/link';
 import cls from './header.module.scss';

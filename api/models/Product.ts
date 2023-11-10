@@ -21,7 +21,10 @@ const ProductSchema = new Schema({
     type: Number,
     required: true,
   },
-  description: String,
+  description: {
+    type: String,
+    required: true,
+  },
   image: {
     type: String,
     required: true,
@@ -34,6 +37,16 @@ const ProductSchema = new Schema({
     type: Boolean,
     required: true,
     default: true,
+  },
+  isHit: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  datetime: {
+    type: String,
+    required: true,
+    default: new Date().toISOString(),
   },
 });
 

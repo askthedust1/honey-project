@@ -1,3 +1,7 @@
 {
-  "all-products": "All products"
+  "all-products": "All products",
+  "som": "som",
+  "available": "Available",
+  "unavailable": "Unavailable",
+  "add-to-basket": "Add to Basket"
 }

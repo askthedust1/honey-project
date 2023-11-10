@@ -1,3 +1,7 @@
 {
-  "all-products": "Вся продукция"
+  "all-products": "Вся продукция",
+  "som": "сом",
+  "available": "В наличии",
+  "unavailable": "Нет в наличии",
+  "add-to-basket": "Добавить в корзину"
 }

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchProducts } from './productsThunk';
-import { IProduct } from '@/types';
+import { IProduct, IProductView } from '@/types';
 import { getProduct } from '@/features/products/productsThunk';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
@@ -8,7 +8,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 interface ProductsState {
   items: IProduct[];
   fetchLoading: boolean;
-  oneProduct: IProduct | null;
+  oneProduct: IProductView | null;
   fetchOneLoading: boolean;
 }
 
