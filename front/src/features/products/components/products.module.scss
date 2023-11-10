@@ -3,6 +3,12 @@ $color-card-bg: #FFFFFF;
 $color-card-border: #e2e2e2;
 $color-icon-price: #FF8F31;
 
+.container {
+    max-width: 1500px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
 .list {
     display: flex;
     justify-content: space-around;
@@ -83,6 +89,7 @@ $color-icon-price: #FF8F31;
         font-size: 19px;
         color: $color-icon-price;
         margin: 0;
+        font-weight: bold;
     }
 }
 

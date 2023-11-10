@@ -10,7 +10,7 @@ const ProductsAll = () => {
   const products = useAppSelector(selectAllProducts);
   const { t } = useTranslation('common');
   return (
-    <div>
+    <div className={cls.container}>
       <h2 className={cls.title}>{t('all-products')}</h2>
       <div className={cls.list}>
         {products.map((el: IProduct) => (

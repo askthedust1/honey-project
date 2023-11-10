@@ -4,6 +4,8 @@ import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import {fetchCategories} from "@/features/categories/categoriesThunk";
 import BenefitsOfHoney from "@/components/home/benefitsOfHoney/BenefitsOfHoney";
+import Bestseller from "@/components/home/bestseller/Bestseller";
+import React from "react";
 
 const Home = () => {
   return (
@@ -11,6 +13,7 @@ const Home = () => {
       <main>
           <HomePage/>
         <CategoriesList />
+          <Bestseller/>
         <BenefitsOfHoney />
       </main>
     </>
