@@ -1,5 +1,6 @@
 import HomePage from "@/components/home/HomePage";
 import CategoriesList from "@/components/UI/categories/CategoriesList";
+import Header from '@/components/UI/header/Header';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import {fetchCategories} from "@/features/categories/categoriesThunk";
@@ -21,7 +22,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   return {
     props: {
       name: 'Products',
-      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer', 'home'])),
+      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),
     },
   };
 });

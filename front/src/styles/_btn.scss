@@ -1,0 +1,20 @@
+.btn-primary {
+  display: inline-block;
+  padding: 16px 34px;
+  border-radius: 12px;
+  background: $primary;
+  color: $white;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  transition: .3s;
+
+  &:hover {
+    background: $primary-hover;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

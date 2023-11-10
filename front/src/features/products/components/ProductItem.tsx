@@ -32,4 +32,3 @@ const ProductItem: React.FC<Props> = ({ _id, title, price, image }) => {
 };
 
 export default ProductItem;
-
