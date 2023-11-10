@@ -1,6 +1,6 @@
-import '@/styles/globals.css';
+import '@/styles/_globals.scss';
 import '@/styles/main.scss';
-import '@/features/products/components/products.item.css';
+import '@/features/products/components/products.module.scss';
 import type { AppProps } from 'next/app';
 import { wrapper } from '@/store/store';
 import { Provider } from 'react-redux';
