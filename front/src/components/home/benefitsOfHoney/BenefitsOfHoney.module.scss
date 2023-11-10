@@ -1,0 +1,90 @@
+.benefit {
+  min-height: 921px;
+  margin-top: 130px;
+  background-image: url("../../../assets/images/benefit-bg.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+
+  h2 {
+    text-align: center;
+    color: #5A3733;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin: 14px 0 29px;
+  }
+
+  &_inner {
+    max-width: 1585px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  &_img {
+    position: relative;
+    margin-top: -40px;
+
+    span {
+      position: absolute;
+      left: 45px;
+      top: 45px;
+
+      &:nth-child(2) {
+        transform: scale(-1, 1);
+        top: 230px;
+        left: 520px;
+
+        img {
+          width: 148.997px;
+          height: 89.165px;
+        }
+      }
+    }
+  }
+
+  &_list {
+    display: flex;
+    flex-direction: column;
+
+    &_item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      max-width: 619px;
+      margin-bottom: 35px;
+
+      span {
+        margin: 0 auto 0 0;
+      }
+
+      p {
+        position: absolute;
+        top: 16px;
+        left: 48px;
+        color: #FFF;
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        font-size: 100px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      h3 {
+        width: 350px;
+        color: #5A3733;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        margin: 0 0 10px 81px;
+      }
+
+      &:nth-child(1) p {
+        left: 55px;
+      }
+    }
+  }
+}
