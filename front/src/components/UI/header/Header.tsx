@@ -31,6 +31,9 @@ const Header = () => {
             <li className={cls.menu_item}>
               <Link href={'/contacts'}>{t('contacts')}</Link>
             </li>
+            <li className={cls.menu_item}>
+              <Link href={'/accounts'}>{t('login')}</Link>
+            </li>
           </ul>
         </nav>
         <LanguageSwitcher />
