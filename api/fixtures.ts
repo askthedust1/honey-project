@@ -49,16 +49,19 @@ const run = async () => {
   const [honey, herbs, driedFruits] = await Category.create(
     {
       title: 'Мёд',
+      image: 'fixtures/honey2.jpeg',
       description:
         'Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
     },
     {
       title: 'Лечебные травы',
+      image: 'fixtures/herbs_category.svg',
       description:
         'Лечебные травы - это растения, которые используются в медицинских целях из-за своих полезных свойств и потенциальных лечебных свойств. Они часто применяются в традиционной медицине для облегчения различных здоровотворных проблем, таких как пищеварительные расстройства, воспаления, улучшение иммунитета и снятие стресса.',
     },
     {
       title: 'Сухофрукты',
+      image: 'fixtures/fruits_category.svg',
       description:
         'Сухофрукты - это фрукты, прошедшие процесс сушки, в результате которого они теряют большую часть влаги, но сохраняют свои питательные свойства. Среди популярных сухофруктов можно найти изюм, чернослив, финики, инжир, абрикосы и другие. ',
     },
@@ -191,6 +194,7 @@ const run = async () => {
   await Transaction.create(
     {
       user: user1._id,
+      address: 'проспект Чуй, 35',
       kits: [
         {
           product: honey1._id,
@@ -212,6 +216,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      address: '6 микрорайон, 5 дом, 43 квартира',
       kits: [
         {
           product: herbs3._id,
@@ -233,6 +238,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      address: 'ул. Малдыбаева 7/1',
       kits: [
         {
           product: honey4._id,
@@ -244,6 +250,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      address: 'Медерова, 35',
       kits: [
         {
           product: honey4._id,
@@ -265,6 +272,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      address: 'Ахунбаева, 23',
       kits: [
         {
           product: honey1._id,
@@ -281,6 +289,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      address: 'Логвиненко, 32',
       kits: [
         {
           product: herbs1._id,
