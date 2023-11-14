@@ -27,3 +27,8 @@ export interface ITransactionPost {
   totalPrice: number;
   kits: IKits[];
 }
+
+export interface IBannerPost {
+  description: string;
+  image?: string;
+}
