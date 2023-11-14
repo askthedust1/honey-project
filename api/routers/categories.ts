@@ -7,6 +7,18 @@ import Product from '../models/Product';
 
 const categoriesRouter = express.Router();
 
+categoriesRouter.get('/', async (req, res) => {
+  // const lang = req.headers['accept-language'];
+
+  try {
+    const categories = await Category.find();
+
+    return res.send(categories);
+  } catch (e) {
+    return res.sendStatus(500);
+  }
+});
+
 categoriesRouter.post('/', auth, permit('admin'), async (req, res, next) => {
   const categoryData = {
     title: req.body.title,
@@ -46,15 +58,6 @@ categoriesRouter.put('/:id', auth, permit('admin'), async (req, res, next) => {
       return res.status(400).send(error);
     }
     return next(error);
-  }
-});
-
-categoriesRouter.get('/', async (req, res) => {
-  try {
-    const categories = await Category.find();
-    return res.send(categories);
-  } catch (e) {
-    return res.sendStatus(500);
   }
 });
 

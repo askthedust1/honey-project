@@ -17,16 +17,16 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
   oldPrice: {
     type: Number,
     required: true,
   },
   actualPrice: {
     type: Number,
-    required: true,
-  },
-  description: {
-    type: String,
     required: true,
   },
   image: {
@@ -51,6 +51,28 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
     default: new Date().toISOString(),
+  },
+  translations: {
+    en: {
+      title: {
+        type: String,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+    },
+    kg: {
+      title: {
+        type: String,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+    },
   },
 });
 
