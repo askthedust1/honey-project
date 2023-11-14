@@ -73,3 +73,9 @@ export interface ICategory {
   description?: string;
   image: string | null;
 }
+
+export interface IBanner {
+  _id: string;
+  description: string;
+  image: string;
+}

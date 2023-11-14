@@ -6,6 +6,7 @@ import {fetchCategories} from "@/features/categories/categoriesThunk";
 import BenefitsOfHoney from "@/components/home/benefitsOfHoney/BenefitsOfHoney";
 import Bestseller from "@/components/home/bestseller/Bestseller";
 import React from "react";
+import {fetchBanners} from "@/features/banners/bannersThunk";
 
 const Home = () => {
   return (
@@ -22,6 +23,7 @@ const Home = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   await store.dispatch(fetchCategories());
+  await store.dispatch(fetchBanners());
 
   return {
     props: {

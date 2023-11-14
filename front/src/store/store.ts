@@ -7,6 +7,7 @@ import storage from 'redux-persist/lib/storage';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import {categoriesSlice} from "@/features/categories/categoriesSlice";
 import { PersistPartial } from 'redux-persist/es/persistReducer';
+import {bannersSlice} from "@/features/banners/bannersSlice";
 
 type PersistedReducer<S> = (state: S | undefined, action: any) => S & PersistPartial;
 
@@ -22,6 +23,7 @@ const makeStore = () => {
     const reducers = {
         [productsSlice.name]: productsSlice.reducer,
         [categoriesSlice.name]: categoriesSlice.reducer,
+        [bannersSlice.name]: bannersSlice.reducer,
         [usersSlice.name]: usersSlice.reducer,
     };
 

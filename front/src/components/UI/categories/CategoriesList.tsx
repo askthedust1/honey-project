@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import {useAppDispatch, useAppSelector} from "@/store/hook";
+import {useAppSelector} from "@/store/hook";
 import { selectCategories } from "@/features/categories/categoriesSlice";
 import cls from './categoriesList.module.scss';
 import CategoryItem from "@/components/UI/categories/components/CategoryItem";
@@ -7,7 +7,6 @@ import {ICategory} from "@/types";
 import Arrow from '@/assets/images/icon-arrow.svg';
 
 const CategoriesList = () => {
-  const dispatch = useAppDispatch();
   const categories = useAppSelector(selectCategories);
 
   const slideLeft = () => {
