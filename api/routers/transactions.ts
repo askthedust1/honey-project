@@ -47,7 +47,7 @@ transactionsRouter.post('/', auth, async (req, res, next) => {
       const fullKit = {
         product: kit.product,
         amount: kit.amount,
-        price: product.price,
+        price: product.actualPrice,
       };
 
       totalPrice += fullKit.price * fullKit.amount;

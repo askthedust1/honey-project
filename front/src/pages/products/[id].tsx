@@ -75,7 +75,7 @@ const Product: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> 
 
               <p className={cls.product_info_description}>{product?.description}</p>
               <h3 className={cls.product_info_price}>
-                {product?.price} {t('som')}
+                {product?.actualPrice} {t('som')}
               </h3>
 
               {product && product.amount > 0 && (

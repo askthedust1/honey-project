@@ -18,7 +18,7 @@ const ProductsAll = () => {
             key={el._id}
             _id={el._id}
             title={el.title}
-            price={el.price}
+            price={el.actualPrice}
             image={el.image}
           />
         ))}

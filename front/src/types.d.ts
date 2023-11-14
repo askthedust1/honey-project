@@ -49,22 +49,26 @@ export interface IProductView {
     title: string;
   };
   title: string;
-  price: number;
+  oldPrice: number;
+  actualPrice: number;
   description: string;
   image: string;
   amount: number;
   isActive: boolean;
+  isHit: boolean;
 }
 
 export interface IProduct {
   _id: string;
   category: string;
   title: string;
-  price: number;
+  oldPrice: number;
+  actualPrice: number;
   description: string;
   image: string;
   amount: number;
   isActive: boolean;
+  isHit: boolean;
 }
 
 export interface ICategory {
