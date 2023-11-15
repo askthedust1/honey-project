@@ -1,20 +1,20 @@
-import HomePage from "@/components/home/HomePage";
-import CategoriesList from "@/components/UI/categories/CategoriesList";
+import HomePage from '@/components/home/HomePage';
+import CategoriesList from '@/components/UI/categories/CategoriesList';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import {fetchCategories} from "@/features/categories/categoriesThunk";
-import BenefitsOfHoney from "@/components/home/benefitsOfHoney/BenefitsOfHoney";
-import Bestseller from "@/components/home/bestseller/Bestseller";
-import React from "react";
-import {fetchBanners} from "@/features/banners/bannersThunk";
+import { fetchCategories } from '@/features/categories/categoriesThunk';
+import BenefitsOfHoney from '@/components/home/benefitsOfHoney/BenefitsOfHoney';
+import Bestseller from '@/components/home/bestseller/Bestseller';
+import React from 'react';
+import { fetchBanners } from '@/features/banners/bannersThunk';
 
 const Home = () => {
   return (
     <>
       <main>
-          <HomePage/>
+        <HomePage />
         <CategoriesList />
-          <Bestseller/>
+        <Bestseller />
         <BenefitsOfHoney />
       </main>
     </>
