@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React  from 'react';
 import cls from './pagination.module.scss';
 import Link from "next/link";
 import {useAppSelector} from "@/store/hook";
@@ -12,9 +12,6 @@ const Pagination = () => {
     return (
         <div className={cls.pagination_block}>
             <div className={cls.pagination_inner}>
-
-                {/*<button className={cls.previous}>&laquo; Назад</button>*/}
-                {/*<button className={cls.next}>Вперед &raquo;</button>*/}
 
                 {currentPageState > 1 ? <Link
                     className={cls.previos}
