@@ -20,7 +20,7 @@ const Header = () => {
               <Link href={'/'}>{t('home')}</Link>
             </li>
             <li className={cls.menu_item}>
-              <Link href={'/products'}>{t('products')}</Link>
+              <Link href={'/products/page/1'}>{t('products')}</Link>
             </li>
             <li className={cls.menu_item}>
               <Link href={'/about'}>{t('about')}</Link>

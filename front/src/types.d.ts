@@ -67,6 +67,12 @@ export interface IProduct {
   isActive: boolean;
 }
 
+export interface IProductsOfPage {
+  productsOfPage: IProduct[];
+  currentPage: number;
+  totalPages: number;
+}
+
 export interface ICategory {
   _id: string;
   title: string;
