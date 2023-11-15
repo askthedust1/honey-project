@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from '../../../styles/advantages.module.scss';
+import cls from '../../../styles/_advantages.module.scss';
 import {useTranslation} from "next-i18next";
 import advantages_i1 from '@/assets/images/Advan-img1.png';
 import advantages_i2 from '@/assets/images/Advan-img2.png';
