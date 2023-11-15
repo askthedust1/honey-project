@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { GlobalError, IUser, ValidationError } from '@/types';
-import {login, register} from './usersThunk';
+import { login, register } from './usersThunk';
 import { RootState } from '@/store/store';
 
 export interface UserState {
@@ -23,9 +23,9 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-      unsetUser: (state) => {
-          state.user = null;
-      },
+    unsetUser: (state) => {
+      state.user = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -45,20 +45,20 @@ export const usersSlice = createSlice({
       });
 
     builder
-        .addCase(login.pending, (state) => {
-          state.loginLoading = true;
-          state.loginError = null;
-        })
+      .addCase(login.pending, (state) => {
+        state.loginLoading = true;
+        state.loginError = null;
+      })
 
-        .addCase(login.fulfilled, (state, { payload: userResponse }) => {
-          state.loginLoading = false;
-          state.user = userResponse;
-        })
+      .addCase(login.fulfilled, (state, { payload: userResponse }) => {
+        state.loginLoading = false;
+        state.user = userResponse;
+      })
 
-        .addCase(login.rejected, (state, { payload: error }) => {
-          state.loginLoading = false;
-          state.loginError = error || null;
-        });
+      .addCase(login.rejected, (state, { payload: error }) => {
+        state.loginLoading = false;
+        state.loginError = error || null;
+      });
   },
 });
 
