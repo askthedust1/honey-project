@@ -5,8 +5,13 @@ import cls from './header.module.scss';
 import logo from '@/assets/images/logo.svg';
 import LanguageSwitcher from '@/components/UI/langSwitcher/LanguageSwitcher';
 import { useTranslation } from 'next-i18next';
+import { useAppSelector } from '@/store/hook';
+import {selectUser} from "@/features/users/usersSlice";
+import UserNav from "@/components/UI/header/UserNav";
+import AnonymousNav from "@/components/UI/header/AnonymousNav";
 
 const Header = () => {
+  const user = useAppSelector(selectUser);
   const { t } = useTranslation('header');
   return (
     <header className={cls.header}>
@@ -31,9 +36,9 @@ const Header = () => {
             <li className={cls.menu_item}>
               <Link href={'/contacts'}>{t('contacts')}</Link>
             </li>
-            <li className={cls.menu_item}>
-              <Link href={'/accounts'}>{t('login')}</Link>
-            </li>
+            {
+              user ? <UserNav/> : <AnonymousNav/>
+            }
           </ul>
         </nav>
         <LanguageSwitcher />
