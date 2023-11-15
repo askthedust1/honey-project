@@ -4,6 +4,9 @@
   text-transform: uppercase;
   background: #FCF8F5;
   padding-bottom: 43px;
+  @include mix.xxl {
+    padding-bottom: 0;
+  }
   button {
     border: none;
   }

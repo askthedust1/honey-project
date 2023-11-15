@@ -16,6 +16,12 @@
   }
 }
 
+@mixin lm {
+  @media screen and (max-width:850px) {
+    @content;
+  }
+}
+
 @mixin lg {
   @media screen and (max-width:960px) {
     @content;

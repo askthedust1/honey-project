@@ -1,0 +1,296 @@
+@use 'mixin' as mix;
+
+.benefit {
+  min-height: 921px;
+  margin-top: 130px;
+  margin-bottom: -70px;
+  background: url("../assets/images/benefit-bg.png") no-repeat bottom 130px center;
+  background-size: contain;
+  @include mix.lg {
+    margin-bottom: -170px;
+  }
+  @include mix.lm {
+    background: url("../assets/images/benefit-bg.png") no-repeat bottom;
+    margin-bottom: -2px;
+  }
+  @include mix.xs {
+    background: url("../assets/images/benefit-bg.png") no-repeat bottom -108px center;
+    margin-bottom: -63px;
+  }
+
+  h2 {
+    text-align: center;
+    color: #5A3733;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin: 14px 0 29px;
+    @include mix.xl {
+      font-size: 44px;
+    }
+    @include mix.lm {
+      font-size: 38px;
+      margin: 14px 0 8px;
+    }
+    @include mix.sm {
+      font-size: 30px;
+    }
+    @include mix.xs {
+      font-size: 24px;
+    }
+  }
+
+  &_inner {
+    max-width: 1585px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    @include mix.lm {
+      flex-wrap: wrap;
+      flex-direction: column-reverse;
+    }
+  }
+
+  &_img {
+    position: relative;
+    margin-top: -40px;
+    @include mix.xl {
+      width: auto;
+      margin-top: 38px;
+    }
+
+    &_main {
+      @include mix.xl {
+        width: 100%;
+      }
+    }
+
+    .firstBee {
+      @include mix.lg {
+        width: 130px;
+      }
+      @include mix.lm {
+        width: 165px;
+      }
+      @include mix.sm {
+        width: 140px;
+      }
+      @include mix.xs {
+        width: 112px;
+      }
+    }
+
+    span {
+      position: absolute;
+      left: 45px;
+      top: 45px;
+      @include mix.xl {
+        left: -7px;
+        top: 17px;
+      }
+      @include mix.md {
+        top: 100px;
+      }
+
+      &:nth-child(2) {
+        transform: scale(-1, 1);
+        top: 230px;
+        left: 520px;
+        @include mix.xl {
+          top: -57px;
+          left: 387px;
+        }
+        @include mix.lg {
+          top: -40px;
+          left: 263px;
+        }
+        @include mix.lm {
+          top: 137px;
+          left: 572px;
+        }
+        @include mix.md {
+          top: -82px;
+          left: 377px;
+        }
+        @include mix.sm {
+          top: -46px;
+          left: 235px;
+        }
+
+        img {
+          width: 148.997px;
+          height: 89.165px;
+          @include mix.lg {
+            width: 106px;
+          }
+          @include mix.lm {
+            width: 145px;
+          }
+          @include mix.sm {
+            width: 122px;
+          }
+          @include mix.xs {
+            width: 97px;
+          }
+        }
+      }
+    }
+  }
+  &_list {
+    display: flex;
+    flex-direction: column;
+    @include mix.xxl {
+      margin: 58px 40px 0 0;
+    }
+    @include mix.xl {
+      margin: 58px 0 0;
+    }
+    @include mix.lg {
+      margin: 88px 0 0;
+    }
+    @include mix.lm {
+      margin: 51px 0 0 50px;
+    }
+    @include mix.md {
+      margin: 51px 0 0 20px;
+    }
+    @include mix.xs {
+      margin: 51px 0 0 30px;
+    }
+
+    &_item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      max-width: 619px;
+      margin-bottom: 35px;
+      @include mix.lm {
+        justify-content: unset;
+        max-width: 100%;
+        margin-bottom: 25px;
+        margin-right: 20px;
+      }
+
+      span {
+        margin: 0 auto 0 0;
+        @include mix.lm {
+          margin: 0;
+        }
+
+        img {
+          @include mix.xxl {
+            width: 116px;
+          }
+          @include mix.xl {
+            width: 93px;
+          }
+          @include mix.lg {
+            width: 63px;
+          }
+          @include mix.lm {
+            width: 93px;
+          }
+          @include mix.xs {
+            width: 75px;
+          }
+        }
+      }
+
+      p {
+        position: absolute;
+        top: 16px;
+        left: 48px;
+        color: #FFF;
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        font-size: 100px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        @include mix.xxl {
+          font-size: 80px;
+          left: 37px;
+        }
+        @include mix.xl {
+          font-size: 66px;
+          left: 29px;
+        }
+        @include mix.lg {
+          font-size: 45px;
+          left: 20px;
+        }
+        @include mix.lm {
+          font-size: 62px;
+          left: 28px;
+        }
+        @include mix.xs {
+          font-size: 48px;
+        }
+      }
+
+      h3 {
+        width: 350px;
+        color: #5A3733;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        margin: 0 0 10px 81px;
+        @include mix.xxl {
+          margin: 0 40px 10px 19px;
+          font-size: 27px;
+        }
+        @include mix.xl {
+          margin: 0 0 0 19px;
+        }
+        @include mix.lg {
+          font-size: 21px;
+        }
+        @include mix.lm {
+          font-size: 28px;
+          margin: 0 0 0 50px;
+          width: 100%;
+        }
+        @include mix.sm {
+          font-size: 22px;
+          margin: 0 0 0 20px;
+        }
+        @include mix.xs {
+          font-size: 19px;
+        }
+      }
+
+      &:nth-child(1) p {
+        left: 55px;
+        @include mix.xxl {
+          left: 45px;
+        }
+        @include mix.xl {
+          left: 35px;
+        }
+        @include mix.lg {
+          font-size: 45px;
+          top: 10px;
+          left: 26px;
+        }
+        @include mix.lm {
+          font-size: 62px;
+          left: 34px;
+        }
+        @include mix.xs {
+          font-size: 50px;
+          left: 29px;
+        }
+      }
+
+      &:nth-child(2) p {
+        top: 9px;
+      }
+
+      &:nth-child(3) p {
+        top: 8px;
+      }
+    }
+  }
+}
