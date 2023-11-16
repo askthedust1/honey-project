@@ -10,6 +10,7 @@ import jica from '@/assets/images/partners/jica.png';
 import jia from '@/assets/images/partners/jia.png';
 import plata_kg from '@/assets/images/partners/plata_kg.png';
 import usaid from '@/assets/images/partners/usaid.png';
+
 const About = () => {
   return (
     <div className={cls.about}>
@@ -18,7 +19,7 @@ const About = () => {
         <div className={cls.row}>
           <div className={cls.col_50}>
             <div className={cls.about_media}>
-              <img src={about1.src} className={cls.about_media_wrapper} alt={'About1'} />
+              <img src={about1.src} alt={'About1'} />
             </div>
           </div>
           <div className={cls.col_50}>
@@ -193,7 +194,7 @@ const About = () => {
           </div>
           <div className={cls.col_50}>
             <div className={cls.about_media}>
-              <img src={about2.src} className={cls.about_media_wrapper} alt={'About2'} />
+              <img src={about2.src} alt={'About2'} />
             </div>
           </div>
         </div>
@@ -201,7 +202,11 @@ const About = () => {
           <h3 className={cls.about_advantages_title}>Partners</h3>
           <div className={cls.about_partners_row}>
             <div className={cls.about_partners_media}>
-              <img src={european_bank.src} className={cls.about_partners_media_img} alt={'About2'} />
+              <img
+                src={european_bank.src}
+                className={cls.about_partners_media_img}
+                alt={'About2'}
+              />
             </div>
             <div className={cls.about_partners_media}>
               <img src={german.src} className={cls.about_partners_media_img} alt={'About2'} />

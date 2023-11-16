@@ -4,6 +4,10 @@
 .about {
   padding: 20px 0 50px;
 
+  @include sm {
+    padding: 20px 0;
+  }
+
   .container {
     max-width: 1170px;
     padding: 0 15px;
@@ -13,6 +17,12 @@
   &_title {
     text-transform: uppercase;
     margin-bottom: 20px;
+
+    @include sm {
+      text-align: center;
+      font-size: 35px;
+      margin-bottom: 5px;
+    }
   }
 
   &_second_title {
@@ -20,6 +30,10 @@
     color: $text-color;
     font-size: 30px;
     text-align: center;
+
+    @include sm {
+      font-size: 27px;
+    }
   }
 
   &_svg_wrap {
@@ -71,8 +85,15 @@
     padding: 0 30px 0;
 
     @include lg {
-      padding: 0 15px 0;
-      margin-left: 10px;
+      padding: 50px 15px;
+    }
+
+    @include md {
+      text-align: center;
+    }
+
+    @include sm {
+      padding: 20px 15px;
     }
   }
 
@@ -81,6 +102,10 @@
     border-radius: 20px;
     padding: 25px 20px;
     margin: 60px 0;
+
+    @include lg {
+      margin: 10px 0;
+    }
 
     &_title {
       text-align: center;
@@ -91,7 +116,6 @@
 
     &_row {
       display: flex;
-      //align-items: center;
       justify-content: center;
 
       @include lg {
@@ -128,6 +152,10 @@
   &_partners {
     padding: 50px 0 30px;
 
+    @include sm {
+      padding: 40px 0 10px;
+    }
+
     &_row {
       display: flex;
       align-items: center;
@@ -137,6 +165,11 @@
     &_media {
       width: 33.333%;
       text-align: center;
+
+      @include md {
+        width: 50%;
+      }
+
       &_img {
         display: inline-block;
         object-fit: contain;
