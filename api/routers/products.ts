@@ -24,14 +24,22 @@ productRouter.get('/', async (req, res) => {
         }
 
         let page = 1;
-        const perPage = 2;
+        const perPage = 4;
+        const totalProducts = await Product.countDocuments();
+        const totalPages = Math.ceil(totalProducts / perPage);
+
         if (req.query.page) {
             page = parseInt(req.query.page as string);
 
-            const products = await Product.find().populate("category", "title description")
+            const products = await Product.find({isActive: true}).populate("category", "title description")
                 .skip((page - 1) * perPage)
                 .limit(perPage);
-            return res.send(products);
+            const productsWithPages = {
+                productsOfPage: products,
+                currentPage: page,
+                totalPages
+            }
+            return res.send(productsWithPages);
         }
 
         if (req.query.category) {
@@ -39,8 +47,6 @@ productRouter.get('/', async (req, res) => {
             return res.send(result);
         }
 
-        const products = await Product.find({isActive: true});
-        return res.send(products);
     } catch (error) {
         console.error('Error fetching products:', error);
         return res.status(500).send('Internal Server Error');
