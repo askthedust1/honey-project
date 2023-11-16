@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from './advantages.module.scss';
+import cls from '../../../styles/_advantages.module.scss';
 import {useTranslation} from "next-i18next";
 import advantages_i1 from '@/assets/images/Advan-img1.png';
 import advantages_i2 from '@/assets/images/Advan-img2.png';
@@ -17,7 +17,7 @@ const Advantages = () => {
                         <img src={advantages_i1.src} alt={''}/>
                         <p>{t('AdvantagesCard1')}</p>
                     </div>
-                    <div>
+                    <div className={cls.points}>
                         <span></span>
                         <span></span>
                         <span></span>
@@ -26,7 +26,7 @@ const Advantages = () => {
                         <img src={advantages_i2.src} alt={''}/>
                         <p>{t('AdvantagesCard2')}</p>
                     </div>
-                    <div>
+                    <div  className={cls.points}>
                         <span></span>
                         <span></span>
                         <span></span>

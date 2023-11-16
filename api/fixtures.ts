@@ -5,6 +5,7 @@ import * as crypto from 'crypto';
 import Category from './models/Category';
 import Product from './models/Product';
 import Transaction from './models/Transaction';
+import Banner from "./models/Banner";
 
 const run = async () => {
   await mongoose.connect(config.db);
@@ -15,6 +16,7 @@ const run = async () => {
     await db.dropCollection('categories');
     await db.dropCollection('products');
     await db.dropCollection('transactions');
+    await db.dropCollection('banners');
   } catch (e) {
     console.log('Collection were not present');
   }
@@ -361,6 +363,17 @@ const run = async () => {
       totalPrice: 1700,
     },
   );
+
+  await Banner.create(
+      {
+        image: 'fixtures/landing.png',
+        description: 'landing1'
+      },
+      {
+        image: 'fixtures/landing2.png',
+        description: 'landing2'
+      },
+  )
 
   await db.close();
 };

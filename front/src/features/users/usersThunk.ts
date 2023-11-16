@@ -9,6 +9,7 @@ import {
 } from '@/types';
 import axiosApi from '@/axiosApi';
 import { isAxiosError } from 'axios';
+import { unsetUser } from './usersSlice';
 
 export const register = createAsyncThunk<
   RegisterResponse,
@@ -42,3 +43,9 @@ export const login = createAsyncThunk<IUser, LoginMutation, { rejectValue: Globa
     }
   },
 );
+
+export const logout = createAsyncThunk('users/logout', async (_, { dispatch }) => {
+  await axiosApi.delete('/users/sessions');
+
+  dispatch(unsetUser());
+});

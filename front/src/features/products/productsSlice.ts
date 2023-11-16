@@ -7,6 +7,8 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 interface ProductsState {
   items: IProduct[];
+  totalPages: number;
+  currentPage: number;
   fetchLoading: boolean;
   oneProduct: IProductView | null;
   fetchOneLoading: boolean;
@@ -14,6 +16,8 @@ interface ProductsState {
 
 const initialState: ProductsState = {
   items: [],
+  totalPages: 1,
+  currentPage: 1,
   oneProduct: null,
   fetchLoading: false,
   fetchOneLoading: false,
@@ -33,7 +37,9 @@ export const productsSlice = createSlice({
     });
     builder.addCase(fetchProducts.fulfilled, (state, { payload: products }) => {
       state.fetchLoading = false;
-      state.items = products;
+      state.items = products.productsOfPage;
+      state.totalPages = products.totalPages;
+      state.currentPage = products.currentPage;
     });
     builder.addCase(fetchProducts.rejected, (state) => {
       state.fetchLoading = false;
@@ -53,6 +59,8 @@ export const productsSlice = createSlice({
 });
 
 export const selectAllProducts = (state: RootState) => state.products.items;
+export const selectTotalPages = (state: RootState) => state.products.totalPages;
+export const selectCurrentPage = (state: RootState) => state.products.currentPage;
 export const selectOneProduct = (state: RootState) => state.products.oneProduct;
 export const selectAllProductsLoading = (state: RootState) => state.products.fetchLoading;
 export const selectFetchOneLoad = (state: RootState) => state.products.fetchOneLoading;

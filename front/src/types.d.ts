@@ -71,9 +71,21 @@ export interface IProduct {
   isHit: boolean;
 }
 
+export interface IProductsOfPage {
+  productsOfPage: IProduct[];
+  currentPage: number;
+  totalPages: number;
+}
+
 export interface ICategory {
   _id: string;
   title: string;
   description?: string;
   image: string | null;
+}
+
+export interface IBanner {
+  _id: string;
+  description: string;
+  image: string;
 }
