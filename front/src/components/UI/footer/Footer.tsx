@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import cls from './footer.module.scss';
+import cls from '../../../styles/_footer.module.scss';
 import Logo from '@/assets/images/footer-logo.png';
 import Email from '@/assets/images/icon-email.svg';
 import Phone from '@/assets/images/icon-phone.svg';
