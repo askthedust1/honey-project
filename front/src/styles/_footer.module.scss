@@ -1,3 +1,5 @@
+@use 'mixin' as mix;
+
 .footer {
   background-color: #5A3733;
   padding-bottom: 36px;
@@ -10,17 +12,52 @@
     justify-content: space-between;
     padding: 36px 26px 15px;
     border-bottom: 1px solid #F5F5F580;
+    @include mix.sm {
+      padding: 36px 0 15px;
+    }
 
     &_logo {
       width: 180px;
       height: 72px;
       flex-shrink: 0;
       cursor: pointer;
+      @include mix.md {
+        width: 40%;
+      }
+      @include mix.sm {
+        width: 54%;
+        margin: 0 auto 20px;
+      }
+      @include mix.xs {
+        width: 74%;
+      }
+      img {
+        @include mix.md {
+          width: auto;
+        }
+      }
     }
 
     &_box_links {
       display: flex;
       flex-direction: column;
+      &:nth-child(5) {
+        @include mix.xl {
+          margin: 0 56px 10px auto;
+        }
+        @include mix.md {
+          margin: 0 5px 10px;
+        }
+        @include mix.sm {
+          margin: 0 41px 10px;
+        }
+      }
+      @include mix.xl {
+        margin: 0 5px 10px;
+      }
+      @include mix.sm {
+        margin: 0 41px 10px;
+      }
 
       h3 {
         color: #FFB931;
@@ -29,6 +66,15 @@
         font-style: normal;
         font-weight: 700;
         line-height: normal;
+        @include mix.lg {
+          font-size: 25px;
+        }
+        @include mix.lm {
+          font-size: 21px;
+        }
+        @include mix.md {
+          font-size: 18px;
+        }
       }
 
       a {
@@ -41,6 +87,15 @@
         line-height: normal;
         cursor: pointer;
         transition: 0.2s;
+        @include mix.lg {
+          font-size: 18px;
+        }
+        @include mix.lm {
+          font-size: 17px;
+        }
+        @include mix.md {
+          font-size: 15px;
+        }
       }
 
       a:hover {
@@ -57,10 +112,11 @@
         line-height: normal;
         cursor: pointer;
         transition: 0.2s;
-
         padding-left: 27px;
         position: relative;
-
+        @include mix.md {
+          font-size: 15px;
+        }
         svg {
           position: absolute;
           left: 0;
@@ -86,6 +142,12 @@
 
           svg {
             margin: auto 0;
+            width: 50px;
+            height: 50px;
+            @include mix.md {
+              width: auto;
+              height: auto;
+            }
           }
         }
 
