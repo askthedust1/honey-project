@@ -1,3 +1,7 @@
+$circle-size: 70px;
+$inner-circle-size: 50px;
+$inner-circle-color: white;
+
 .pagination_block{
   display: flex;
   justify-content: center;
@@ -8,44 +12,74 @@
     display: flex;
     justify-content: space-between;
     width: 480px;
+    align-items: center;
     align-self: center;
 
-    Link {
-      display: block;
-      padding: 15px 30px;
-      height: 50px;
-      width: 160px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-      font-size: 18px;
+    .circle_transparent {
+      width: $circle-size;
+      height: $circle-size;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5em;
+      color: transparent;
+    }
 
+    .span_text {
+      font-size: 74px;
+    }
 
-      &.previous {
-        background-color: #FF8F31;
-        color: #fff;
+    .previous, .next{
+      display: inline-block;
+      margin-bottom: 5px;
+      color: white;
+      font-weight: bold;
+      font-size: 74px;
+      line-height: 55px;
+      text-align: center;
+
+      width: $circle-size;
+      height: $circle-size;
+      background-color: #FF8F31;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+
         &:hover {
           background-color: #FFB931;
         }
-        &:active {
-          border: 2px solid #5A3733;
-          background-color: transparent;
-          color: #5A3733;
-        }
-      }
+          &:active {
+            background-color: #cc7227;
+            color: white;
+          }
+    }
 
-      &.next {
-        background-color: #FF8F31;
-        color: #fff;
-        &:hover {
-          background-color: #FFB931;
-        }
-        &:active {
-          border: 2px solid #5A3733;
-          background-color: transparent;
-          color: #5A3733;
-        }
+    .span_text {
+      color: transparent;
+    }
+
+
+    .circle {
+      width: 110px;
+      height: 110px;
+      background-color: #FF8F31;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 40px;
+      font-weight: bold;
+      color: $inner-circle-color;
+
+      .inner-circle {
+        width: $inner-circle-size;
+        height: $inner-circle-size;
+        background-color: #e74c3c;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
