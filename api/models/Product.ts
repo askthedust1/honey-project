@@ -52,28 +52,28 @@ const ProductSchema = new Schema({
     required: true,
     default: new Date().toISOString(),
   },
-  translations: {
-    en: {
-      title: {
-        type: String,
-        required: true,
-      },
-      description: {
-        type: String,
-        required: true,
-      },
-    },
-    kg: {
-      title: {
-        type: String,
-        required: true,
-      },
-      description: {
-        type: String,
-        required: true,
-      },
-    },
-  },
+  // translations: {
+  //   en: {
+  //     title: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     description: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //   },
+  //   kg: {
+  //     title: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     description: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //   },
+  // },
 });
 
 const Product = mongoose.model('Product', ProductSchema);

@@ -8,12 +8,34 @@ import Product from '../models/Product';
 const categoriesRouter = express.Router();
 
 categoriesRouter.get('/', async (req, res) => {
-  // const lang = req.headers['accept-language'];
+  const lang = req.headers['accept-language'];
 
   try {
-    const categories = await Category.find();
+    const categories = await Category.aggregate([
+      // { $addFields: { translations: { $objectToArray: '$translations' } } },
+      // { $addFields: { lang: '$translations.k' } },
+      { $unwind: '$translations' },
+      // { $addFields: {
+      //   content: `$translations.${lang}`
+      // }
+      // },
+      // { replaceRoot: {} },
+      // {$addFields:{"quarters.name": "$name"}},
+      // {$replaceRoot:{newRoot:"$quarters"}}
+    ]);
 
-    return res.send(categories);
+    const result = await categories;
+
+    // categories
+    //     .then((result) => {
+    //       // new Category(result).save();
+    //       console.log(result);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+
+    return res.send(result);
   } catch (e) {
     return res.sendStatus(500);
   }
@@ -47,8 +69,8 @@ categoriesRouter.put('/:id', auth, permit('admin'), async (req, res, next) => {
       return res.status(404).send({ error: 'Not found!' });
     }
 
-    category.title = req.body.title || category.title;
-    category.description = req.body.description || category.description;
+    // category.title = req.body.title || category.title;
+    // category.description = req.body.description || category.description;
 
     await category.save();
 
