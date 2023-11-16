@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from './bestseller.module.scss'
+import cls from '../../../styles/_bestseller.module.scss'
 import best_i1 from '@/assets/images/best-img1.png'
 import best_i2 from '@/assets/images/best-img2.png'
 import best_i3 from '@/assets/images/best-img3.png'

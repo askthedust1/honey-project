@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from './BenefitsOfHoney.module.scss';
+import cls from '../../../styles/_benefitsOfHoney.module.scss';
 import BenefitImg from '../../../assets/images/benefit-img.svg';
 import Honeybee from '../../../assets/images/benefit-honeybee.svg';
 import Hexagon from '../../../assets/images/benefit-hexagon.png';
@@ -15,17 +15,16 @@ const BenefitsOfHoney = () => {
 
       <div className={cls.benefit_inner}>
         <div className={cls.benefit_img}>
-          <img src={BenefitImg.src} alt="Photo"/>
+          <img className={cls.benefit_img_main} src={BenefitImg.src} alt="Photo"/>
           <span>
             <img src={Honeybee.src} alt="Honeybee"/>
           </span>
           <span>
-            <img src={Honeybee.src} alt="Honeybee"/>
+            <img className={cls.firstBee} src={Honeybee.src} alt="Honeybee"/>
           </span>
         </div>
 
         <div className={cls.benefit_list}>
-
           <div className={cls.benefit_list_item}>
             <span>
               <img src={Hexagon.src} alt="Hexagon"/>
