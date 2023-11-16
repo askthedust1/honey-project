@@ -1,6 +1,14 @@
+@use 'mixin' as mix;
+
 .categories {
   background-color: #5A3733;
   padding-top: 51px;
+  @include mix.xxl {
+    padding-top: 41px;
+  }
+  @include mix.xl {
+    padding-top: 30px;
+  }
 
   &_inner {
     max-width: 1585px;
@@ -9,6 +17,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    @include mix.md {
+      padding: 0 4px;
+    }
   }
 
   &_list {
@@ -21,6 +32,12 @@
     white-space: nowrap;
     scroll-behavior: smooth;
     position: relative;
+    @include mix.xxl {
+      gap: 0.5rem;
+    }
+    @include mix.sm {
+      gap: 1.3rem;
+    }
   }
 
   &_list::-webkit-scrollbar {
@@ -37,13 +54,51 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 5px 2px 24px;
+  @include mix.xxl {
+    width: 280px;
+  }
+  @include mix.xl {
+    width: 248px;
+  }
+  @include mix.lg {
+    width: 205px;
+  }
+  @include mix.md {
+    width: 140px;
+  }
+  @include mix.sm {
+    width: 100%;
+    margin: 5px 0 24px;
+  }
 
   img {
     width: 312px;
-    height: 312px;;
+    height: 312px;
     border: 7px solid #FFB931;
     border-radius: 50%;
     transition: 0.2s;
+    object-fit: cover;
+    @include mix.xxl {
+      width: 280px;
+      height: 280px;
+    }
+    @include mix.xl {
+      width: 248px;
+      height: 248px;
+    }
+    @include mix.lg {
+      width: 187px;
+      height: 187px;
+    }
+    @include mix.md {
+      width: 130px;
+      height: 130px;
+      border: 5px solid #FFB931;
+    }
+    @include mix.sm {
+      width: auto;
+      height: auto;
+    }
   }
 
   p {
@@ -56,6 +111,20 @@
     line-height: normal;
     margin: 20px 0 0;
     transition: 0.2s;
+    @include mix.xl {
+      font-size: 22px;
+    }
+    @include mix.lg {
+      font-size: 20px;
+    }
+    @include mix.md {
+      font-size: 18px;
+      margin: 9px 0 0;
+    }
+    @include mix.sm {
+      font-size: 24px;
+      margin: 15px 0 0;
+    }
   }
 
   &:hover img {
@@ -78,6 +147,24 @@
   padding: 0 14px;
   transition: 0.2s;
   display: flex;
+  @include mix.xxl {
+    margin: auto 0;
+    width: 53px;
+    height: 53px;
+  }
+  @include mix.xl {
+    margin: 84px 3px auto;
+    width: 46px;
+    height: 46px;
+  }
+  @include mix.md {
+    margin: 52px 3px auto;
+    width: 44px;
+    height: 44px;
+  }
+  @include mix.sm {
+    margin: auto 10px;
+  }
 
   &:hover {
     background-color: rgba(217, 217, 217, 0.75);

@@ -4,5 +4,6 @@
   "about": "About us",
   "delivery": "Delivery",
   "contacts": "Contacts",
-  "login": "LogIn"
+  "login": "LogIn",
+  "logout": "Log Out"
 }

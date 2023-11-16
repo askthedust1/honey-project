@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from "@/components/UI/categories/categoriesList.module.scss";
+import cls from "@/styles/_categoriesList.module.scss";
 import IMG from "@/assets/images/logo.svg";
 import Link from "next/link";
 import {apiUrl} from "@/constants";
@@ -11,7 +11,7 @@ interface Props {
   image: string | null;
 }
 
-const CategoryItem:React.FC<Props> = ({ _id, title, description, image }) => {
+const CategoryItem:React.FC<Props> = ({ _id, title, image }) => {
   let categoryImage = IMG.src;
 
   if (image) {
