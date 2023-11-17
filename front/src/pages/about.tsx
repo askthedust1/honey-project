@@ -10,12 +10,14 @@ import jica from '@/assets/images/partners/jica.png';
 import jia from '@/assets/images/partners/jia.png';
 import plata_kg from '@/assets/images/partners/plata_kg.png';
 import usaid from '@/assets/images/partners/usaid.png';
+import { useTranslation } from 'next-i18next';
 
 const About = () => {
+  const { t } = useTranslation('common');
   return (
     <div className={cls.about}>
       <div className={cls.container}>
-        <h1 className={cls.about_title}>About us</h1>
+        <h1 className={cls.about_title}>{t('about')}</h1>
         <div className={cls.row}>
           <div className={cls.col_50}>
             <div className={cls.about_media}>
@@ -51,7 +53,7 @@ const About = () => {
           </div>
         </div>
         <div className={cls.about_advantages}>
-          <h2 className={cls.about_advantages_title}>Why choose us?</h2>
+          <h2 className={cls.about_advantages_title}>{t('about-why')}</h2>
           <div className={cls.about_advantages_row}>
             <div className={cls.about_advantages_col}>
               <div className={cls.about_advantages_card}>
@@ -233,7 +235,7 @@ const About = () => {
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer'])),
+      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),
     },
   };
 });

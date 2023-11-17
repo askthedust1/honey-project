@@ -41,7 +41,7 @@ const Footer = () => {
                 fill="white"
               />
             </svg>
-            infokyrgyzstanhoney@gmail.com
+            <a href="mailto:infokyrgyzstanhoney@gmail.com">infokyrgyzstanhoney@gmail.com</a>
           </span>
           <span>
             <svg xmlns={Phone.src} width="15" height="15" viewBox="0 0 15 15" fill="#FFB931">
@@ -50,7 +50,7 @@ const Footer = () => {
                 fill="white"
               />
             </svg>
-            +996 700 505 405
+            <a href="tel:+996700505405">+996 700 505 405</a>
           </span>
         </div>
 
