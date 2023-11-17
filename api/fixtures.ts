@@ -337,6 +337,10 @@ const run = async () => {
         image: 'fixtures/landing2.png',
         description: 'landing2'
       },
+      {
+        image: 'fixtures/landing3.png',
+        description: 'landing3'
+      },
   )
 
   await db.close();

@@ -12,17 +12,6 @@ const Document: React.FC<Props> = ({ __NEXT_DATA__ }) => {
   return (
     <Html lang={currentLocale}>
       <Head />
-        <link
-            rel="stylesheet"
-            type="text/css"
-            charSet="UTF-8"
-            href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-        />
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-        />
       <body>
         <Main />
         <NextScript />
