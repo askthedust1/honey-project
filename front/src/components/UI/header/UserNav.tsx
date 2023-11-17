@@ -1,7 +1,7 @@
 import React from 'react';
 import {useAppDispatch} from "@/store/hook";
 import {logout} from "@/features/users/usersThunk";
-import cls from "@/components/UI/header/header.module.scss";
+import cls from '../../../styles/_header.module.scss';
 import {useTranslation} from "next-i18next";
 
 
