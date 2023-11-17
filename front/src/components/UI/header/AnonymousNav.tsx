@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from "@/components/UI/header/header.module.scss";
+import cls from '../../../styles/_header.module.scss';
 import Link from "next/link";
 import {useTranslation} from "next-i18next";
 
