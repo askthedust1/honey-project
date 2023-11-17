@@ -53,6 +53,11 @@
       color: $text-color;
     }
 
+    &_svg_wrap {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
     &_marker {
       display: inline-flex;
       align-items: center;
