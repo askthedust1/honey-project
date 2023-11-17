@@ -23,7 +23,7 @@ const Delivery = () => {
 export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer'])),
+      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),
     },
   };
 });
