@@ -25,22 +25,15 @@ const CategorySchema = new mongoose.Schema({
 
 const Category = mongoose.model('Category', CategorySchema);
 
-const aggregate = Category.aggregate([
-  { $addFields: { translations: { $objectToArray: '$translations' } } },
-  { $unwind: '$translations' },
-  { $addFields: { lang: '$translations.k' } },
-  { $addFields: { content: '$translations.v' } },
-  // {$addFields:{"quarters.name": "$name"}},
-  // {$replaceRoot:{newRoot:"$quarters"}}
-]);
-
-aggregate
-  .then((result) => {
-    // new Category(result).save();
-    // console.log(result);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+export const pipelineCategory = (lang: string) => [
+  {
+    $project: {
+      image: '$image',
+      lang: lang,
+      title: `$translations.${lang}.title`,
+      description: `$translations.${lang}.description`,
+    },
+  },
+];
 
 export default Category;

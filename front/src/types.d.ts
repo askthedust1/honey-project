@@ -81,7 +81,22 @@ export interface ICategory {
   _id: string;
   title: string;
   description?: string;
-  image: string | null;
+  image: string | '';
+}
+
+export interface ICategoryPost {
+  _id: string;
+  image: string | '';
+  translations: {
+    en: {
+      title: string;
+      description: string;
+    };
+    ru: {
+      title: string;
+      description: string;
+    };
+  };
 }
 
 export interface IBanner {

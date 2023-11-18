@@ -1,39 +1,19 @@
 import * as express from 'express';
-import Category from '../models/Category';
+import Category, { pipelineCategory } from '../models/Category';
 import mongoose from 'mongoose';
 import auth from '../middleware/auth';
 import permit from '../middleware/permit';
 import Product from '../models/Product';
+import { imagesUpload } from '../multer';
 
 const categoriesRouter = express.Router();
 
 categoriesRouter.get('/', async (req, res) => {
-  const lang = req.headers['accept-language'];
+  const lang = req.headers['accept-language'] || 'ru';
 
   try {
-    const categories = await Category.aggregate([
-      // { $addFields: { translations: { $objectToArray: '$translations' } } },
-      // { $addFields: { lang: '$translations.k' } },
-      { $unwind: '$translations' },
-      // { $addFields: {
-      //   content: `$translations.${lang}`
-      // }
-      // },
-      // { replaceRoot: {} },
-      // {$addFields:{"quarters.name": "$name"}},
-      // {$replaceRoot:{newRoot:"$quarters"}}
-    ]);
-
+    const categories = await Category.aggregate(pipelineCategory(lang));
     const result = await categories;
-
-    // categories
-    //     .then((result) => {
-    //       // new Category(result).save();
-    //       console.log(result);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
 
     return res.send(result);
   } catch (e) {
@@ -41,47 +21,59 @@ categoriesRouter.get('/', async (req, res) => {
   }
 });
 
-categoriesRouter.post('/', auth, permit('admin'), async (req, res, next) => {
-  const categoryData = {
-    title: req.body.title,
-    description: req.body.description,
-  };
+categoriesRouter.post(
+  '/',
+  auth,
+  permit('admin'),
+  imagesUpload.single('image'),
+  async (req, res, next) => {
+    const categoryData = {
+      translations: req.body.translations,
+      image: req.file ? req.file.filename : '',
+    };
 
-  const category = new Category(categoryData);
+    const category = new Category(categoryData);
 
-  try {
-    await category.save();
-    res.send(category);
-  } catch (e) {
-    if (e instanceof mongoose.Error.ValidationError) {
-      return res.status(400).send(e);
+    try {
+      await category.save();
+      res.send(category);
+    } catch (e) {
+      if (e instanceof mongoose.Error.ValidationError) {
+        return res.status(400).send(e);
+      }
+      next(e);
     }
-    next(e);
-  }
-});
+  },
+);
 
-categoriesRouter.put('/:id', auth, permit('admin'), async (req, res, next) => {
-  try {
-    const categoryId = req.params.id;
-    const category = await Category.findById(categoryId);
+categoriesRouter.put(
+  '/:id',
+  auth,
+  permit('admin'),
+  imagesUpload.single('image'),
+  async (req, res, next) => {
+    try {
+      const categoryId = req.params.id;
+      const category = await Category.findById(categoryId);
 
-    if (!category) {
-      return res.status(404).send({ error: 'Not found!' });
+      if (!category) {
+        return res.status(404).send({ error: 'Not found!' });
+      }
+
+      category.translations = req.body.translations || category.translations;
+      category.image = req.file ? req.file.filename : category.image;
+
+      await category.save();
+
+      return res.send(category);
+    } catch (error) {
+      if (error instanceof mongoose.Error.ValidationError) {
+        return res.status(400).send(error);
+      }
+      return next(error);
     }
-
-    // category.title = req.body.title || category.title;
-    // category.description = req.body.description || category.description;
-
-    await category.save();
-
-    return res.send(category);
-  } catch (error) {
-    if (error instanceof mongoose.Error.ValidationError) {
-      return res.status(400).send(error);
-    }
-    return next(error);
-  }
-});
+  },
+);
 
 categoriesRouter.delete('/:id', auth, permit('admin'), async (req, res, next) => {
   try {

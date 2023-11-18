@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
-import { ICategory } from '@/types';
+import { ICategory, ICategoryPost } from '@/types';
 
 export const fetchCategories = createAsyncThunk<ICategory[]>(
   'categories/fetchCategories',
@@ -9,3 +9,20 @@ export const fetchCategories = createAsyncThunk<ICategory[]>(
     return response.data;
   },
 );
+
+// export const createCategory = createAsyncThunk(
+//   'categories/create',
+//   async (mutationCategory: ICategoryPost) => {
+//     const formData = new FormData();
+//     const keys = Object.keys(mutationCategory) as (keyof ICategoryPost)[];
+//
+//     keys.forEach((key) => {
+//       const value = mutationCategory[key];
+//
+//       if (value !== null) {
+//         formData.append(key, value);
+//       }
+//     });
+//     await axiosApi.post('/categories', formData);
+//   },
+// );

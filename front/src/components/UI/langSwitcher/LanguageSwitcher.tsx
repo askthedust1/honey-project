@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import cls from './langSelect.module.scss';
+import axiosApi from '@/axiosApi';
 
 const LanguageSwitcher = () => {
   const router = useRouter();
@@ -15,6 +16,7 @@ const LanguageSwitcher = () => {
     const { pathname, asPath, query } = router;
     router.push({ pathname, query }, asPath, { locale: lang });
     i18n.changeLanguage(lang);
+    axiosApi.defaults.headers.common['Accept-Language'] = lang;
     setCurrentLang(lang);
   };
 
