@@ -31,11 +31,9 @@ const ImageSlider: React.FC<Props> = ({ images }) => {
     appendDots: (dots: React.ReactNode[]) => {
       return (
         <div>
-          <ul>
-            {dots.map((item, index) => {
-              return <li key={index}>{item !== null && item !== undefined ? item : null}</li>;
-            })}
-          </ul>
+          {dots.map((item, index) => {
+            return <div key={index}>{item !== null && item !== undefined ? item : null}</div>;
+          })}
         </div>
       );
     },

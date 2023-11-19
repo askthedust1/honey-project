@@ -82,7 +82,7 @@ const Header = () => {
               {t('contacts')}
             </Link>
           </li>
-          {/*<li className={cls.menu__item}>{user ? <UserNav /> : <AnonymousNav />}</li>*/}
+          {user ? <UserNav /> : <AnonymousNav />}
           <li className={cls.multilingualTwo}>
             <LanguageSwitcher />
           </li>

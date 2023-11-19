@@ -27,7 +27,7 @@
     padding: 10px 0 0 0;
 }
 
-.dots li {
+.dots div {
     list-style: none;
     cursor: pointer;
     display: inline-block;
@@ -46,12 +46,12 @@
     border-radius: 7.5px;
 }
 
-.dots li .slick-active button {
+.dots div .slick-active button {
     background-color: rgb(0, 0, 0);
 }
 
-.dots li button:hover,
-.dots li button:focus {
+.dots div button:hover,
+.dots div button:focus {
     background: rgba(247, 34, 34, 0.8);
     outline: 0;
 }
