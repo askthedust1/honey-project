@@ -16,8 +16,8 @@ const LanguageSwitcher = () => {
     const { pathname, asPath, query } = router;
     router.push({ pathname, query }, asPath, { locale: lang });
     i18n.changeLanguage(lang);
-    axiosApi.defaults.headers.common['Accept-Language'] = lang;
     setCurrentLang(lang);
+    axiosApi.defaults.headers.common['accept-language'] = lang;
   };
 
   return (

@@ -10,6 +10,7 @@ const categoriesRouter = express.Router();
 
 categoriesRouter.get('/', async (req, res) => {
   const lang = req.headers['accept-language'] || 'ru';
+  console.log(lang);
 
   try {
     const categories = await Category.aggregate(pipelineCategory(lang));

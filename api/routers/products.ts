@@ -53,6 +53,8 @@ productRouter.get('/', async (req, res) => {
 });
 
 productRouter.get('/:id', async (req, res) => {
+  const lang = req.headers['accept-language'] || 'ru';
+  console.log(444, lang);
   try {
     const token = req.get('Authorization');
     const user = await User.findOne({ token });
