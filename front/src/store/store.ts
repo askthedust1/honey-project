@@ -7,11 +7,18 @@ import storage from 'redux-persist/lib/storage';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import { categoriesSlice } from '@/features/categories/categoriesSlice';
 import { bannersSlice } from '@/features/banners/bannersSlice';
+import { cartSlice } from '@/features/cart/cartSlice';
 
 const usersPersistConfig = {
   key: 'honey:users',
   storage,
   whitelist: ['user'],
+};
+
+const cartPersistConfig = {
+  key: 'honey:cart',
+  storage,
+  whitelist: ['cart'],
 };
 
 const makeStore = () => {
@@ -21,6 +28,7 @@ const makeStore = () => {
     [productsSlice.name]: productsSlice.reducer,
     [categoriesSlice.name]: categoriesSlice.reducer,
     [bannersSlice.name]: bannersSlice.reducer,
+    [cartSlice.name]: persistReducer(cartPersistConfig, cartSlice.reducer) as Reducer,
     [usersSlice.name]: isServer
       ? usersSlice.reducer
       : (persistReducer(usersPersistConfig, usersSlice.reducer) as Reducer),

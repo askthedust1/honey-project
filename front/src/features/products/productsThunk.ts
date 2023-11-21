@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
-import { IProductsOfPage, IProductView } from '@/types';
+import { IProductsOfPage, IProductView , IQueryObjectCategory} from '@/types';
 
 export const fetchProducts = createAsyncThunk<IProductsOfPage, string>(
   'products/fetchAll',
@@ -9,6 +9,14 @@ export const fetchProducts = createAsyncThunk<IProductsOfPage, string>(
     return productsResponse.data;
   },
 );
+
+export const fetchProductsByCategory = createAsyncThunk<IProductsOfPage, IQueryObjectCategory>(
+  'products/fetchByCategory',
+  async (query) => {
+    const productsResponse = await axiosApi.get<IProductsOfPage>(`/products?categoryId=${query.categoryId}&categoryPage=${query.categoryPage}`);
+
+    return productsResponse.data;
+  });
 
 // export const fetchProducts = createAsyncThunk<IProduct[]>('products/fetchAll', async () => {
 //   const productsResponse = await axiosApi.get<IProduct[]>('/products');

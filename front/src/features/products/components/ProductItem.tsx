@@ -3,28 +3,33 @@ import { apiUrl } from '@/constants';
 import Cart from '@/assets/images/cart.svg';
 import Link from 'next/link';
 import cls from './products.module.scss';
+import { useAppDispatch } from '@/store/hook';
+import { IProduct } from '@/types';
+import { addProduct } from '@/features/cart/cartSlice';
 
 interface Props {
-  _id: string;
-  title: string;
-  price: number;
-  image: string;
+  product: IProduct;
 }
 
-const ProductItem: React.FC<Props> = ({ _id, title, price, image }) => {
-  const picture = apiUrl + '/' + image;
+const ProductItem: React.FC<Props> = ({ product }) => {
+  const dispatch = useAppDispatch();
+  const addToCart = () => {
+    dispatch(addProduct(product));
+  };
+
+  const picture = apiUrl + '/' + product.image;
   return (
-    <Link href={'/products/' + _id}>
+    <Link href={'/products/' + product._id}>
       <div className={cls.card}>
-        <div className={cls.imgContainer}>
+        <div onClick={addToCart} className={cls.imgContainer}>
           <div className={cls.cartIcon}>
             <img src={Cart.src} alt="cart" />
           </div>
-          <img className={cls.cardImg} src={picture} alt={title} />
+          <img className={cls.cardImg} src={picture} alt={product.title} />
         </div>
         <div className={cls.content}>
-          <h3 className={cls.title}>{title}</h3>
-          <p className={cls.price}>{price} сом</p>
+          <h3 className={cls.title}>{product.title}</h3>
+          <p className={cls.price}>{product.price} сом</p>
         </div>
       </div>
     </Link>

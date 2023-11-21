@@ -42,14 +42,35 @@ productRouter.get('/', async (req, res) => {
       return res.send(productsWithPages);
     }
 
-    if (req.query.category) {
-      const result = await Product.find({ category: req.query.category, isActive: true });
-      return res.send(result);
+        if (req.query.categoryId && req.query.categoryPage) {
+            const categoryPerPage = 1;
+            let pageCategory = 1;
+
+            pageCategory = +req.query.categoryPage;
+
+            const products = await Product
+              .find({category: req.query.categoryId as string, isActive: true})
+              .populate("category", "title description")
+              .skip((pageCategory - 1) * categoryPerPage)
+              .limit(categoryPerPage);
+
+            const productsTotal = await Product.find({category: req.query.categoryId as string, isActive: true}).countDocuments();
+
+            const totalPages = Math.ceil(productsTotal / categoryPerPage);
+
+            const productsWithPages = {
+                productsOfPage: products,
+                currentPage: pageCategory,
+                totalPages
+            }
+
+            return res.send(productsWithPages);
+        }
+
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        return res.status(500).send('Internal Server Error');
     }
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    return res.status(500).send('Internal Server Error');
-  }
 });
 
 productRouter.get('/:id', async (req, res) => {

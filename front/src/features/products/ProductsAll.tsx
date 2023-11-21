@@ -14,13 +14,7 @@ const ProductsAll = () => {
       <h2 className={cls.title}>{t('all-products')}</h2>
       <div className={cls.list}>
         {products.map((el: IProduct) => (
-          <ProductItem
-            key={el._id}
-            _id={el._id}
-            title={el.title}
-            price={el.actualPrice}
-            image={el.image}
-          />
+          <ProductItem key={el._id} product={el} />
         ))}
       </div>
     </div>

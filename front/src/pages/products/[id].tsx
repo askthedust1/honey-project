@@ -1,6 +1,6 @@
 import React from 'react';
 import { InferGetServerSidePropsType, NextPage } from 'next';
-import { useAppSelector } from '@/store/hook';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { wrapper } from '@/store/store';
 import { getProduct } from '@/features/products/productsThunk';
 import { selectOneProduct } from '@/features/products/productsSlice';
@@ -8,10 +8,17 @@ import { apiUrl } from '@/constants';
 import cls from './product.module.scss';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import { addProduct } from '@/features/cart/cartSlice';
 
 const Product: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
   const product = useAppSelector(selectOneProduct);
   const { t } = useTranslation('common');
+  const dispatch = useAppDispatch();
+  const addToCart = () => {
+    if (product) {
+      dispatch(addProduct(product));
+    }
+  };
 
   const availableClass =
     product && product.amount > 0
@@ -79,7 +86,7 @@ const Product: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> 
               </h3>
 
               {product && product.amount > 0 && (
-                <div className={cls.product_btns}>
+                <div onClick={addToCart} className={cls.product_btns}>
                   <button type="button" className="btn-primary">
                     {t('add-to-basket')}
                   </button>
