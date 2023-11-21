@@ -42,9 +42,26 @@ productRouter.get('/', async (req, res) => {
             return res.send(productsWithPages);
         }
 
-        if (req.query.category) {
-            const result = await Product.find({category: req.query.category, isActive: true});
-            return res.send(result);
+        if (req.query.categoryId && req.query.categoryPage) {
+            page = +req.query.categoryPage;
+
+            const products = await Product
+              .find({category: req.query.categoryId as string, isActive: true})
+              .populate("category", "title description")
+              .skip((page - 1) * perPage)
+              .limit(perPage);
+
+            const productsTotal = await Product.find({category: req.query.categoryId as string}).countDocuments();
+
+            const totalPages = Math.ceil(productsTotal / perPage);
+
+            const productsWithPages = {
+                productsOfPage: products,
+                currentPage: page,
+                totalPages
+            }
+
+            return res.send(productsWithPages);
         }
 
     } catch (error) {

@@ -85,3 +85,8 @@ export interface IBanner {
   description: string;
   image: string;
 }
+
+export interface IQueryObjectCategory {
+  categoryId: string;
+  categoryPage: string;
+}

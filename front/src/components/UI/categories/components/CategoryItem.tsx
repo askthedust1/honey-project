@@ -19,7 +19,14 @@ const CategoryItem:React.FC<Props> = ({ _id, title, description, image }) => {
   }
 
   return (
-    <Link key={_id} href={`/products`} className={cls.category_item}>
+    <Link
+      key={_id}
+      href={{
+        pathname: 'category/page/path',
+        query: { id: _id, page: '1' },
+      }}
+      className={cls.category_item}
+    >
       <img className={cls.category_img} src={categoryImage} alt="product"/>
       <p className={cls.category_title}>{title}</p>
     </Link>
