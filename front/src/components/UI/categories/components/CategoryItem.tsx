@@ -23,7 +23,7 @@ const CategoryItem:React.FC<Props> = ({ _id, title, image }) => {
       key={_id}
       href={{
         pathname: 'category/page/path',
-        query: { id: _id, page: '1' },
+        query: { cId: _id, cPage: '1' },
       }}
       className={cls.category_item}
     >
