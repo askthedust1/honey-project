@@ -15,7 +15,7 @@ const ProductPage = () => {
   return (
     <>
       <ProductsAll />
-      {totalPagesState > 0 ? <Pagination /> : <></>}
+      {totalPagesState > 0 ? <Pagination productsActive={true} categoriesActive={false}/> : <></>}
     </>
   );
 };

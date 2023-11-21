@@ -43,21 +43,24 @@ productRouter.get('/', async (req, res) => {
         }
 
         if (req.query.categoryId && req.query.categoryPage) {
-            page = +req.query.categoryPage;
+            const categoryPerPage = 1;
+            let pageCategory = 1;
+
+            pageCategory = +req.query.categoryPage;
 
             const products = await Product
               .find({category: req.query.categoryId as string, isActive: true})
               .populate("category", "title description")
-              .skip((page - 1) * perPage)
-              .limit(perPage);
+              .skip((pageCategory - 1) * categoryPerPage)
+              .limit(categoryPerPage);
 
-            const productsTotal = await Product.find({category: req.query.categoryId as string}).countDocuments();
+            const productsTotal = await Product.find({category: req.query.categoryId as string, isActive: true}).countDocuments();
 
-            const totalPages = Math.ceil(productsTotal / perPage);
+            const totalPages = Math.ceil(productsTotal / categoryPerPage);
 
             const productsWithPages = {
                 productsOfPage: products,
-                currentPage: page,
+                currentPage: pageCategory,
                 totalPages
             }
 

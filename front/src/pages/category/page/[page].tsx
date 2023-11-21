@@ -6,18 +6,26 @@ import {useAppSelector} from "@/store/hook";
 import {selectTotalPages} from "@/features/products/productsSlice";
 import {IQueryObjectCategory} from "@/types";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import {useRouter} from "next/router";
+import Pagination from "@/components/UI/pagination/Pagination";
 
 const ProductByCategoryPage = () => {
+  const router = useRouter();
+
+  const totalPagesState = useAppSelector(selectTotalPages);
+  console.log(totalPagesState);
+
   return (
     <>
-      <ProductsAll/>
+      <ProductsAll />
+      {totalPagesState > 0 ? <Pagination productsActive={false} categoriesActive={true} idCategory={router.query.cId}/> : <></>}
     </>
   );
 };
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
-  const idOfCategory = context.query.id as string;
-  const pageNumber = context.query.page as string;
+  const idOfCategory = context.query.cId as string;
+  const pageNumber = context.query.cPage as string;
 
   const { locale } = context;
 
