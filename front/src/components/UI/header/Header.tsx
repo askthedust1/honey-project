@@ -46,7 +46,7 @@ const Header = () => {
           <div className={cls.contact}>
             <a href="tel:+99655555555">+996 555 55 55 55</a>
           </div>
-          <Link href={'/basket'} className={cls.basket}>
+          <Link href={'/cart'} className={cls.basket}>
             <span className={cls.basket_item}>0</span>
           </Link>
         </div>

@@ -90,3 +90,8 @@ export interface IQueryObjectCategory {
   categoryId: string;
   categoryPage: string;
 }
+
+export interface ICart {
+  product: IProduct | IProductView;
+  amount: number;
+}
