@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchProducts } from './productsThunk';
+import {createSlice} from '@reduxjs/toolkit';
+import {fetchProducts, fetchProductsByCategory} from './productsThunk';
 import { IProduct, IProductView } from '@/types';
 import { getProduct } from '@/features/products/productsThunk';
 import { RootState } from '@/store/store';
@@ -42,6 +42,19 @@ export const productsSlice = createSlice({
       state.currentPage = products.currentPage;
     });
     builder.addCase(fetchProducts.rejected, (state) => {
+      state.fetchLoading = false;
+    });
+
+    builder.addCase(fetchProductsByCategory.pending, (state) => {
+      state.fetchLoading = true;
+    });
+    builder.addCase(fetchProductsByCategory.fulfilled, (state, { payload: products }) => {
+      state.fetchLoading = false;
+      state.items = products.productsOfPage;
+      state.totalPages = products.totalPages;
+      state.currentPage = products.currentPage;
+    });
+    builder.addCase(fetchProductsByCategory.rejected, (state) => {
       state.fetchLoading = false;
     });
 
