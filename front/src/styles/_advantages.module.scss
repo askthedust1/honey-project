@@ -34,7 +34,7 @@
       margin: 51px 5px 0;
       display: flex;
       justify-content: center;
-      align-items: start;
+      align-items: flex-start;
       @include mix.sm {
         flex-wrap: wrap;
         margin: 35px 0 0;
