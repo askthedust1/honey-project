@@ -1,0 +1,62 @@
+@use 'mixin' as mix;
+
+$color-link: #5A3733;
+$color-title: #FF8F31;
+
+.sideBar {
+  min-width: 230px;
+  margin: 0 auto 0 0;
+
+  @include mix.md2 {
+    margin: 0 auto;
+    padding-bottom: 30px;
+    border-bottom: 2px solid $color-title;
+  }
+
+  &_title {
+    margin: 20px 0 0;
+    color: $color-title;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+
+    @include mix.md2 {
+      text-align: center;
+    }
+
+    @include mix.xs {
+      font-size: 26px;
+      text-transform: uppercase;
+    }
+  }
+
+  &_list {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      margin: 22px 0 0;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      color: $color-link;
+      display: inline-block;
+      white-space: normal;
+      transition: 0.2s;
+
+      &:hover {
+        color: $color-title;
+      }
+
+      @include mix.md2 {
+        text-align: center;
+      }
+
+      @include mix.xs {
+        font-size: 24px;
+      }
+    }
+  }
+}

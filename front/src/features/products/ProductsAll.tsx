@@ -4,18 +4,23 @@ import { selectAllProducts } from '@/features/products/productsSlice';
 import ProductItem from '@/features/products/components/ProductItem';
 import { IProduct } from '@/types';
 import { useTranslation } from 'next-i18next';
-import cls from './components/products.module.scss';
+import cls from '../../styles/products.module.scss';
+import SideBar from "@/components/UI/sideBar/SideBar";
 
 const ProductsAll = () => {
   const products = useAppSelector(selectAllProducts);
   const { t } = useTranslation('common');
+
   return (
     <div className={cls.container}>
-      <h2 className={cls.title}>{t('all-products')}</h2>
-      <div className={cls.list}>
-        {products.map((el: IProduct) => (
-          <ProductItem key={el._id} product={el} />
-        ))}
+      <SideBar/>
+      <div>
+        <h2 className={cls.title}>{t('all-products')}</h2>
+        <div className={cls.list}>
+          {products.map((el: IProduct) => (
+            <ProductItem key={el._id} product={el} />
+          ))}
+        </div>
       </div>
     </div>
   );
