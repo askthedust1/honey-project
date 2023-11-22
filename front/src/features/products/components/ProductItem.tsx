@@ -29,7 +29,7 @@ const ProductItem: React.FC<Props> = ({ product }) => {
         </div>
         <div className={cls.content}>
           <h3 className={cls.title}>{product.title}</h3>
-          <p className={cls.price}>{product.price} сом</p>
+          <p className={cls.price}>{product.actualPrice} сом</p>
         </div>
       </div>
     </Link>

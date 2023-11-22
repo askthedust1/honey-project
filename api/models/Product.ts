@@ -13,14 +13,6 @@ const ProductSchema = new Schema({
       message: 'Category does not exist',
     },
   },
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
   oldPrice: {
     type: Number,
     required: true,
@@ -52,29 +44,57 @@ const ProductSchema = new Schema({
     required: true,
     default: new Date().toISOString(),
   },
-  // translations: {
-  //   en: {
-  //     title: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     description: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //   },
-  //   kg: {
-  //     title: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     description: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //   },
-  // },
+  translations: {
+    ru: {
+      title: {
+        type: String,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+    },
+    en: {
+      title: {
+        type: String,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+    },
+    kg: {
+      title: {
+        type: String,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+    },
+  },
 });
 
 const Product = mongoose.model('Product', ProductSchema);
+
+export const pipelineProduct = (lang: string) => [
+  {
+    $project: {
+      category: '$category',
+      image: '$image',
+      oldPrice: '$oldPrice',
+      actualPrice: '$actualPrice',
+      amount: '$amount',
+      isActive: '$isActive',
+      isHit: '$isHit',
+      datetime: '$datetime',
+      lang: lang,
+      title: `$translations.${lang}.title`,
+      description: `$translations.${lang}.description`,
+    },
+  },
+];
 export default Product;

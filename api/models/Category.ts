@@ -20,6 +20,13 @@ const CategorySchema = new mongoose.Schema({
       },
       description: String,
     },
+    kg: {
+      title: {
+        type: String,
+        required: true,
+      },
+      description: String,
+    },
   },
 });
 

@@ -3,7 +3,7 @@ import { imagesUpload } from '../multer';
 import auth from '../middleware/auth';
 import mongoose from 'mongoose';
 import { IProductPost } from '../types';
-import Product from '../models/Product';
+import Product, { pipelineProduct } from '../models/Product';
 import Category from '../models/Category';
 import permit from '../middleware/permit';
 import config from '../config';
@@ -13,12 +13,16 @@ import User from '../models/User';
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
+  const lang = req.headers['accept-language'] || 'ru';
+
   try {
     const token = req.get('Authorization');
     const user = await User.findOne({ token });
 
     if (user && user.role === 'admin') {
-      const result = await Product.find();
+      const productsResult = await Product.aggregate(pipelineProduct(lang));
+      const result = await productsResult;
+
       return res.send(result);
     }
 
@@ -42,40 +46,42 @@ productRouter.get('/', async (req, res) => {
       return res.send(productsWithPages);
     }
 
-        if (req.query.categoryId && req.query.categoryPage) {
-            const categoryPerPage = 1;
-            let pageCategory = 1;
+    if (req.query.categoryId && req.query.categoryPage) {
+      const categoryPerPage = 1;
+      let pageCategory = 1;
 
-            pageCategory = +req.query.categoryPage;
+      pageCategory = +req.query.categoryPage;
 
-            const products = await Product
-              .find({category: req.query.categoryId as string, isActive: true})
-              .populate("category", "title description")
-              .skip((pageCategory - 1) * categoryPerPage)
-              .limit(categoryPerPage);
+      const products = await Product.find({
+        category: req.query.categoryId as string,
+        isActive: true,
+      })
+        .populate('category', 'title description')
+        .skip((pageCategory - 1) * categoryPerPage)
+        .limit(categoryPerPage);
 
-            const productsTotal = await Product.find({category: req.query.categoryId as string, isActive: true}).countDocuments();
+      const productsTotal = await Product.find({
+        category: req.query.categoryId as string,
+        isActive: true,
+      }).countDocuments();
 
-            const totalPages = Math.ceil(productsTotal / categoryPerPage);
+      const totalPages = Math.ceil(productsTotal / categoryPerPage);
 
-            const productsWithPages = {
-                productsOfPage: products,
-                currentPage: pageCategory,
-                totalPages
-            }
+      const productsWithPages = {
+        productsOfPage: products,
+        currentPage: pageCategory,
+        totalPages,
+      };
 
-            return res.send(productsWithPages);
-        }
-
-    } catch (error) {
-        console.error('Error fetching products:', error);
-        return res.status(500).send('Internal Server Error');
+      return res.send(productsWithPages);
     }
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return res.status(500).send('Internal Server Error');
+  }
 });
 
 productRouter.get('/:id', async (req, res) => {
-  const lang = req.headers['accept-language'] || 'ru';
-  console.log(444, lang);
   try {
     const token = req.get('Authorization');
     const user = await User.findOne({ token });
