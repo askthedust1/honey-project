@@ -4,6 +4,7 @@ import {useTranslation} from "next-i18next";
 import advantages_i1 from '@/assets/images/Advan-img1.png';
 import advantages_i2 from '@/assets/images/Advan-img2.png';
 import advantages_i3 from '@/assets/images/Advan-img3.png';
+import Link from "next/link";
 
 
 const Advantages = () => {
@@ -36,7 +37,7 @@ const Advantages = () => {
                         <p>{t('AdvantagesCard3')}</p>
                     </div>
                 </div>
-                <button className={cls.advantages_item_btn}>{t('AdvantagesBtn')}</button>
+                <Link href={'/products/page/1'} className={cls.advantages_item_btn}>{t('AdvantagesBtn')}</Link>
             </div>
         </div>
     );
