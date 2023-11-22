@@ -8,7 +8,6 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist
 import { categoriesSlice } from '@/features/categories/categoriesSlice';
 import { bannersSlice } from '@/features/banners/bannersSlice';
 import { cartSlice } from '@/features/cart/cartSlice';
-import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrapper';
 
 const usersPersistConfig = {
   key: 'honey:users',
@@ -21,20 +20,6 @@ const cartPersistConfig = {
   storage,
   whitelist: ['cart'],
 };
-
-const makeStoreCart = wrapMakeStore(() =>
-  configureStore({
-    reducer: {
-      [cartSlice.name]: cartSlice.reducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().prepend(
-        nextReduxCookieMiddleware({
-          subtrees: [`${cartSlice.name}.cart`],
-        }),
-      ),
-  }),
-);
 
 const makeStore = () => {
   const isServer = typeof window === 'undefined';
