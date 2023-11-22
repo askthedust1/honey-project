@@ -19,6 +19,7 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
   const [state, setState] = useState<RegisterMutation>({
     email: '',
     password: '',
+    passwordConfirm: '',
     displayName: '',
     phone: '',
   });
@@ -55,12 +56,12 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
       <div className={acc.content}>
         <form className={acc.form} onSubmit={submitFormHandler}>
           <div className={acc.formGroup}>
-            <label htmlFor="username">Имя</label>
+            <label htmlFor="username">Имя*</label>
             <input onChange={inputChangeHandler} type="text" name="displayName" placeholder="Имя" />
             {error && <span className={acc.error}>{getFieldError('displayName')}</span>}
           </div>
           <div className={acc.formGroup}>
-            <label htmlFor="password">Пароль</label>
+            <label htmlFor="password">Пароль*</label>
             <input
               onChange={inputChangeHandler}
               type="password"
@@ -70,12 +71,22 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
             {error && <span className={acc.error}>{getFieldError('password')}</span>}
           </div>
           <div className={acc.formGroup}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="password">Повторите пароль*</label>
+            <input
+              onChange={inputChangeHandler}
+              type="password"
+              name="passwordConfirm"
+              placeholder="Повторите пароль"
+            />
+            {error && <span className={acc.error}>{getFieldError('passwordConfirm')}</span>}
+          </div>
+          <div className={acc.formGroup}>
+            <label htmlFor="email">Email*</label>
             <input onChange={inputChangeHandler} type="text" name="email" placeholder="Email" />
             {error && <span className={acc.error}>{getFieldError('email')}</span>}
           </div>
           <div className={acc.formGroup}>
-            <label htmlFor="phone">Номер телефона</label>
+            <label htmlFor="phone">Номер телефона*</label>
             <input
               onChange={inputChangeHandler}
               type="text"
