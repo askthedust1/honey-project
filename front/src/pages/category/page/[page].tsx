@@ -18,7 +18,11 @@ const ProductByCategoryPage = () => {
     <>
       <ProductsAll />
       {totalPagesState > 0 ? (
-        <Pagination productsActive={false} categoriesActive={true} idCategory={router.query.cId} />
+        <Pagination
+          productsActive={false}
+          categoriesActive={true}
+          idCategory={router.query.cId as string}
+        />
       ) : (
         <></>
       )}

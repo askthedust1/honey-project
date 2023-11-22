@@ -3,10 +3,11 @@ import { apiUrl } from '@/constants';
 
 const axiosApi = axios.create({
   baseURL: apiUrl,
+  headers: {
+    common: {
+      'Content-Type': 'application/json',
+    },
+  },
 });
-
-export const setLangToAxios = (lang: string) => {
-  axiosApi.defaults.headers.common['accept-language'] = lang;
-};
 
 export default axiosApi;
