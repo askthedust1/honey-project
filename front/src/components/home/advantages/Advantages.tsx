@@ -39,11 +39,10 @@ const Advantages = () => {
                 </div>
                 <Link href={'/products/page/1'} className={cls.advantages_item_btn}>{t('AdvantagesBtn')}</Link>
             </div>
-
+            <div>
+                <button className={cls.advantages_item_btn}>{t('AdvantagesBtn')}</button>
+            </div>
         </div>
-        <button className={cls.advantages_item_btn}>{t('AdvantagesBtn')}</button>
-      </div>
-    </div>
   );
 };
 
