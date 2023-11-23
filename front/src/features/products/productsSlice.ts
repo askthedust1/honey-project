@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchBestsellers, fetchProducts, fetchProductsByCategory } from './productsThunk';
-import { IProduct, IProductView } from '@/types';
+import { BestsellerVariant, IProduct, IProductView } from '@/types';
 import { getProduct } from '@/features/products/productsThunk';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
@@ -14,6 +14,7 @@ interface ProductsState {
   fetchOneLoading: boolean;
   bestsellers: IProduct[];
   fetchBestsellersLoading: boolean;
+  activeBestseller: string;
 }
 
 const initialState: ProductsState = {
@@ -25,12 +26,17 @@ const initialState: ProductsState = {
   fetchOneLoading: false,
   bestsellers: [],
   fetchBestsellersLoading: false,
+  activeBestseller: 'hit',
 };
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    setActiveBestseller: (state, action) => {
+      state.activeBestseller = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(HYDRATE, (state, action) => {
       // @ts-expect-error
@@ -91,6 +97,8 @@ export const selectTotalPages = (state: RootState) => state.products.totalPages;
 export const selectCurrentPage = (state: RootState) => state.products.currentPage;
 export const selectOneProduct = (state: RootState) => state.products.oneProduct;
 export const selectBestsellers = (state: RootState) => state.products.bestsellers;
+export const selectActiveBestsellers = (state: RootState) => state.products.activeBestseller;
 export const selectAllProductsLoading = (state: RootState) => state.products.fetchLoading;
 export const selectFetchOneLoad = (state: RootState) => state.products.fetchOneLoading;
 export const selectFetchOBestLoad = (state: RootState) => state.products.fetchBestsellersLoading;
+export const { setActiveBestseller } = productsSlice.actions;

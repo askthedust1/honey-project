@@ -8,6 +8,7 @@ import Bestseller from '@/components/home/bestseller/Bestseller';
 import React from 'react';
 import { fetchBanners } from '@/features/banners/bannersThunk';
 import axiosApi from '@/axiosApi';
+import { fetchBestsellers } from '@/features/products/productsThunk';
 
 const Home = () => {
   return (
@@ -27,6 +28,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 
   await store.dispatch(fetchCategories());
   await store.dispatch(fetchBanners());
+  await store.dispatch(fetchBestsellers('hit'));
 
   return {
     props: {

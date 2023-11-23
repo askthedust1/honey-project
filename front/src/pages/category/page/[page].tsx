@@ -9,6 +9,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import Pagination from '@/components/UI/pagination/Pagination';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
+import axiosApi from '@/axiosApi';
 
 const ProductByCategoryPage = () => {
   const router = useRouter();
@@ -31,29 +32,32 @@ const ProductByCategoryPage = () => {
   );
 };
 
-// @ts-ignore
-export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
-  await store.dispatch(fetchCategories());
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ locale, query }) => {
+      axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
 
-  const idOfCategory = context.query.cId as string;
-  const pageNumber = context.query.cPage as string;
+      await store.dispatch(fetchCategories());
 
-  const { locale } = context;
-  if (idOfCategory && pageNumber) {
-    const iQueryObjectCategory: IQueryObjectCategory = {
-      categoryId: idOfCategory,
-      categoryPage: pageNumber,
-    };
+      const idOfCategory = query.cId as string;
+      const pageNumber = query.cPage as string;
 
-    await store.dispatch(fetchProductsByCategory(iQueryObjectCategory));
-  }
+      if (idOfCategory && pageNumber) {
+        const iQueryObjectCategory: IQueryObjectCategory = {
+          categoryId: idOfCategory,
+          categoryPage: pageNumber,
+        };
 
-  return {
-    props: {
-      name: 'Products',
-      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),
+        await store.dispatch(fetchProductsByCategory(iQueryObjectCategory));
+      }
+
+      return {
+        props: {
+          name: 'Products',
+          ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),
+        },
+      };
     },
-  };
-});
+);
 
 export default ProductByCategoryPage;
