@@ -5,7 +5,7 @@ import cls from '../../../styles/_header.module.scss';
 import logo from '@/assets/images/logo.svg';
 import LanguageSwitcher from '@/components/UI/langSwitcher/LanguageSwitcher';
 import { useTranslation } from 'next-i18next';
-import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { useAppSelector } from '@/store/hook';
 import { selectUser } from '@/features/users/usersSlice';
 import UserNav from '@/components/UI/header/UserNav';
 import AnonymousNav from '@/components/UI/header/AnonymousNav';
