@@ -180,7 +180,8 @@ const run = async () => {
         description:
             'Каштановый мед считается одним из самых ценных сортов, среди всех видов меда получаемых пасечниками в разных регионах России.',
         category: honey._id,
-        price: 500,
+        oldPrice: 500,
+        actualPrice: 500,
         amount: 20,
         image: 'fixtures/honey3.png',
       },
@@ -189,7 +190,8 @@ const run = async () => {
         description:
             'Цветочный мёд - продукт пчеловодства, в котором соединены пыльца и нектар с разных цветущих растений.',
         category: honey._id,
-        price: 600,
+        oldPrice: 400,
+        actualPrice: 400,
         amount: 20,
         image: 'fixtures/honey3.png',
       },
@@ -198,7 +200,8 @@ const run = async () => {
         description:
             'Насыщенный продукт, который обладает одновременно противовоспалительными, питательными и антибактериальными свойствами.',
         category: honey._id,
-        price: 700,
+        oldPrice: 300,
+        actualPrice: 300,
         amount: 20,
         image: 'fixtures/White-honey.svg',
       },
@@ -247,7 +250,8 @@ const run = async () => {
         description:
             'Ромашка аптечная это неприхотливое полевое растение семейства сложноцветных. Она широко распространена в Северной Америки и Евразии и встречается почти во всех регионах обоих полушарий, не считая тропического и субтропического поясов.',
         category: herbs._id,
-        price: 100,
+        oldPrice: 100,
+        actualPrice: 100,
         amount: 20,
         image: 'fixtures/herbs.svg',
       },
@@ -256,7 +260,8 @@ const run = async () => {
         description:
             'Эвкалипт это вечнозеленое древесное растение семейства Миртовые. Больше всего различных видов эвкалипта произрастает в Новой Зеландии, Тасмании и лесах Австралии. Некоторые его виды встречаются на Филиппинах, в Индонезии и в Новой Гвинее. В северном полушарии растет всего один вид эвкалипта – это Эвкалипт радужный.',
         category: herbs._id,
-        price: 400,
+        oldPrice: 400,
+        actualPrice: 400,
         amount: 20,
         image: 'fixtures/herbs.svg',
       },
@@ -265,7 +270,8 @@ const run = async () => {
         description:
             'Розы это не только красивые и популярные цветы с восхитительным ароматом, но и лекарственное растение.',
         category: herbs._id,
-        price: 600,
+        oldPrice: 300,
+        actualPrice: 300,
         amount: 20,
         image: 'fixtures/herbs.svg',
       },
@@ -314,7 +320,8 @@ const run = async () => {
         description:
             'Наслаждайтесь ярким и ароматным праздником вкусов с нашим фруктово-ягодным чаем "Ягодная поляна", где сочные ягоды и ароматные фрукты создают неповторимый букет удовольствия в каждом глотке.',
         category: driedFruits._id,
-        price: 500,
+        oldPrice: 500,
+        actualPrice: 500,
         amount: 10,
         image: 'fixtures/driedFruits.svg',
       },
@@ -338,7 +345,7 @@ const run = async () => {
         {
           product: honey5._id,
           amount: 1,
-          price: honey5.price,
+          price: honey5.actualPrice,
         },
         {
           product: driedFruits1._id,
@@ -365,7 +372,7 @@ const run = async () => {
         {
           product: honey6._id,
           amount: 1,
-          price: honey6.price,
+          price: honey6.actualPrice,
         },
         {
           product: driedFruits3._id,
@@ -394,7 +401,7 @@ const run = async () => {
           {
             product: driedFruits5._id,
             amount: 2,
-            price: driedFruits5.price,
+            price: driedFruits5.actualPrice,
           },
         ],
         totalPrice: 500,
@@ -406,7 +413,7 @@ const run = async () => {
           {
             product: honey7._id,
             amount: 1,
-            price: honey7.price,
+            price: honey7.actualPrice,
           },
         ],
         totalPrice: 700,
@@ -457,22 +464,22 @@ const run = async () => {
           {
             product: herbs5._id,
             amount: 1,
-            price: herbs5.price,
+            price: herbs5.actualPrice,
           },
           {
             product: herbs6._id,
             amount: 1,
-            price: herbs6.price,
+            price: herbs6.actualPrice,
           },
           {
             product: herbs7._id,
             amount: 1,
-            price: herbs7.price,
+            price: herbs7.actualPrice,
           },
           {
             product: driedFruits3._id,
             amount: 2,
-            price: driedFruits3.price,
+            price: driedFruits3.actualPrice,
           },
         ],
         totalPrice: 1400,
