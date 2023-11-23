@@ -9,6 +9,7 @@ import { useAppSelector } from '@/store/hook';
 import { selectUser } from '@/features/users/usersSlice';
 import UserNav from '@/components/UI/header/UserNav';
 import AnonymousNav from '@/components/UI/header/AnonymousNav';
+import Cart from '@/components/CartItem/Cart';
 
 const Header = () => {
   const user = useAppSelector(selectUser);
@@ -47,7 +48,8 @@ const Header = () => {
             <a href="tel:+99655555555">+996 555 55 55 55</a>
           </div>
           <Link href={'/cart'} className={cls.basket}>
-            <span className={cls.basket_item}>0</span>
+            <span className={cls.basket_item}>{<Cart />}</span>
+            {/*<Cart />*/}
           </Link>
         </div>
       </div>
