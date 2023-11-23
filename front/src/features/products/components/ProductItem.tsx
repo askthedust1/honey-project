@@ -1,6 +1,6 @@
 import React from 'react';
 import { apiUrl } from '@/constants';
-import Cart from '@/assets/images/cart.svg';
+// import Cart from '@/assets/images/cart.svg';
 import Link from 'next/link';
 import cls from '../../../styles/products.module.scss';
 import { useAppDispatch } from '@/store/hook';

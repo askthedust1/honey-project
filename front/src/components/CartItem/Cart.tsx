@@ -21,7 +21,6 @@ const Cart = () => {
   }
 
   const cartItems = useAppSelector(selectCartItems);
-  const cartItemsString = JSON.stringify(cartItems);
 
   useEffect(() => {
     // Запуск эффекта только на клиенте
