@@ -6,11 +6,10 @@ import Pagination from '@/components/UI/pagination/Pagination';
 import { useAppSelector } from '@/store/hook';
 import { selectTotalPages } from '@/features/products/productsSlice';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import {fetchCategories} from "@/features/categories/categoriesThunk";
 
 const ProductPage = () => {
-  // const currentPageState = useAppSelector(selectCurrentPage);
   const totalPagesState = useAppSelector(selectTotalPages);
-  console.log(totalPagesState);
 
   return (
     <>
@@ -20,6 +19,8 @@ const ProductPage = () => {
   );
 };
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
+  await store.dispatch(fetchCategories());
+
   const currentPage = context.params?.page;
   const { locale } = context;
 

@@ -25,6 +25,7 @@ const run = async () => {
     {
       email: 'sam@gmail.com',
       password: 'user',
+      passwordConfirm: 'user',
       token: crypto.randomUUID(),
       role: 'user',
       displayName: 'Sam Smith ',
@@ -33,6 +34,7 @@ const run = async () => {
     {
       email: 'oleg@gmail.com',
       password: 'oleg',
+      passwordConfirm: 'oleg',
       token: crypto.randomUUID(),
       role: 'user',
       displayName: 'Oleg Mongol ',
@@ -41,6 +43,7 @@ const run = async () => {
     {
       email: 'admin@gmail.com',
       password: 'admin',
+      passwordConfirm: 'admin',
       token: crypto.randomUUID(),
       role: 'admin',
       displayName: 'Administrator',

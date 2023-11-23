@@ -7,15 +7,14 @@
   background-size: contain;
   &_item {
     text-align: center;
-    padding: 17px 0 64px 0;
+    padding: 17px 0 100px 0;
     background: #FDD431;
     text-transform: uppercase;
     &_title {
       text-align: center;
       color: #5A3733;
-      font-size: 55px;
-      font-weight: 900;
-      letter-spacing: 5.775px;
+      font-size: 40px;
+      font-weight: 800;
       @include mix.xl {
         font-size: 40px;
       }
@@ -34,7 +33,7 @@
       margin: 51px 5px 0;
       display: flex;
       justify-content: center;
-      align-items: start;
+      align-items: flex-start;
       @include mix.sm {
         flex-wrap: wrap;
         margin: 35px 0 0;
@@ -43,18 +42,18 @@
         display: flex;
       }
       &_card {
-        margin: 0 21px;
+        margin: 0 21px 60px 0;
         width: 370px;
         color: #5A3733;
         text-align: center;
-        font-size: 28px;
+        font-size: 20px;
         font-weight: 600;
         @include mix.xxl {
-          margin: 0;
+          margin: 0 0 60px 0;
         }
         @include mix.xl {
           width: 300px;
-          font-size: 22px;
+          font-size: 20px;
         }
         @include mix.lg {
           width: 250px;
@@ -62,11 +61,11 @@
         }
         @include mix.md {
           font-size: 16px;
-          margin-bottom: 15px;
+          margin-bottom: 60px;
         }
         @include mix.sm {
           font-size: 19px;
-          margin-bottom: 20px;
+          margin-bottom: 60px;
         }
         img {
           width: 272px;
@@ -91,18 +90,18 @@
     }
     &_btn {
       color: #FFF;
-      font-size: 30px;
+      font-size: 20px;
       font-weight: 700;
       border-radius: 19px;
       background: #FF8F31;
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
       padding: 27px;
-      margin-top: 61px;
+      margin-top: 20px;
       border: none;
       @include mix.xl {
         font-size: 26px;
         padding: 20px;
-        margin-top: 51px;
+        margin-top: 20px;
       }
       @include mix.lg {
         font-size: 24px;

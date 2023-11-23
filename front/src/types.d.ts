@@ -1,6 +1,7 @@
 export interface RegisterMutation {
   email: string;
   password: string;
+  passwordConfirm: string;
   displayName: string;
   phone: string;
 }

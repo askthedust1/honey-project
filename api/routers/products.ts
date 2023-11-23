@@ -15,65 +15,63 @@ const productRouter = express.Router();
 productRouter.get('/', async (req, res) => {
   // const lang = req.headers['accept-language'] || 'ru';
 
-  try {
-    const token = req.get('Authorization');
-    const user = await User.findOne({ token });
+    try {
+        const token = req.get('Authorization');
+        const user = await User.findOne({token});
 
-    if (user && user.role === 'admin') {
-      const productsResult = await Product.find();
-      const result = await productsResult;
+        if (user && user.role === 'admin') {
+            const result = await Product.find();
+            return res.send(result);
+        }
 
-      return res.send(result);
-    }
+        let page = 1;
+        const perPage = 4;
+        const totalProducts = await Product.countDocuments();
+        const totalPages = Math.ceil(totalProducts / perPage);
 
-    let page = 1;
-    const perPage = 4;
-    const totalProducts = await Product.countDocuments();
-    const totalPages = Math.ceil(totalProducts / perPage);
+        if (req.query.page) {
+            page = parseInt(req.query.page as string);
 
-    if (req.query.page) {
-      page = parseInt(req.query.page as string);
+            const products = await Product.find({isActive: true}).populate("category", "title description")
+                .skip((page - 1) * perPage)
+                .limit(perPage);
+            const productsWithPages = {
+                productsOfPage: products,
+                currentPage: page,
+                totalPages
+            }
+            return res.send(productsWithPages);
+        }
 
-      const products = await Product.find({ isActive: true })
-        .populate('category', 'title description')
-        .skip((page - 1) * perPage)
-        .limit(perPage);
-      const productsWithPages = {
-        productsOfPage: products,
-        currentPage: page,
-        totalPages,
-      };
-      return res.send(productsWithPages);
-    }
+        if (req.query.categoryId && req.query.categoryPage) {
+            const categoryPerPage = 4;
+            let pageCategory = 1;
 
-    if (req.query.categoryId && req.query.categoryPage) {
-      const categoryPerPage = 1;
-      let pageCategory = 1;
+            pageCategory = +req.query.categoryPage;
 
-      pageCategory = +req.query.categoryPage;
+            const products = await Product
+              .find({category: req.query.categoryId as string, isActive: true})
+              .populate("category", "title description")
+              .skip((pageCategory - 1) * categoryPerPage)
+              .limit(categoryPerPage);
 
-      const products = await Product.find({
-        category: req.query.categoryId as string,
-        isActive: true,
-      })
-        .populate('category', 'title description')
-        .skip((pageCategory - 1) * categoryPerPage)
-        .limit(categoryPerPage);
+            const productsTotal = await Product.find({category: req.query.categoryId as string, isActive: true}).countDocuments();
 
-      const productsTotal = await Product.find({
-        category: req.query.categoryId as string,
-        isActive: true,
-      }).countDocuments();
+            const totalPages = Math.ceil(productsTotal / categoryPerPage);
 
-      const totalPages = Math.ceil(productsTotal / categoryPerPage);
+            const productsWithPages = {
+                productsOfPage: products,
+                currentPage: pageCategory,
+                totalPages
+            }
 
-      const productsWithPages = {
-        productsOfPage: products,
-        currentPage: pageCategory,
-        totalPages,
-      };
+            return res.send(productsWithPages);
+        }
 
-      return res.send(productsWithPages);
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        return res.status(500).send('Internal Server Error');
+
     }
   } catch (error) {
     console.error('Error fetching products:', error);
