@@ -19,7 +19,6 @@ const ProductByCategoryPage = () => {
   return (
     <>
       <ProductsAll />
-
       {totalPagesState > 0 ? <Pagination productsActive={false} categoriesActive={true} idCategory={String(router.query.cId)}/> : <></>}
 
     </>
