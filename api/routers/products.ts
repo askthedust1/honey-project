@@ -3,7 +3,7 @@ import { imagesUpload } from '../multer';
 import auth from '../middleware/auth';
 import mongoose from 'mongoose';
 import { IProductPost } from '../types';
-import Product, { pipelineProduct } from '../models/Product';
+import Product from '../models/Product';
 import Category from '../models/Category';
 import permit from '../middleware/permit';
 import config from '../config';
@@ -13,14 +13,14 @@ import User from '../models/User';
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
-  const lang = req.headers['accept-language'] || 'ru';
+  // const lang = req.headers['accept-language'] || 'ru';
 
   try {
     const token = req.get('Authorization');
     const user = await User.findOne({ token });
 
     if (user && user.role === 'admin') {
-      const productsResult = await Product.aggregate(pipelineProduct(lang));
+      const productsResult = await Product.find();
       const result = await productsResult;
 
       return res.send(result);

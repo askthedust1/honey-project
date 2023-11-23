@@ -44,41 +44,69 @@ const ProductSchema = new Schema({
     required: true,
     default: new Date().toISOString(),
   },
-  translations: {
-    ru: {
-      title: {
-        type: String,
-        required: true,
-      },
-      description: {
-        type: String,
-        required: true,
-      },
-    },
-    en: {
-      title: {
-        type: String,
-        required: true,
-      },
-      description: {
-        type: String,
-        required: true,
-      },
-    },
-    kg: {
-      title: {
-        type: String,
-        required: true,
-      },
-      description: {
-        type: String,
-        required: true,
-      },
-    },
+  title: {
+    type: String,
+    required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
+  // translations: {
+  //   ru: {
+  //     title: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     description: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //   },
+  //   en: {
+  //     title: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     description: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //   },
+  //   kg: {
+  //     title: {
+  //       type: String,
+  //       // required: true,
+  //     },
+  //     description: {
+  //       type: String,
+  //       // required: true,
+  //     },
+  //   },
+  // },
 });
 
 const Product = mongoose.model('Product', ProductSchema);
+
+// const Modify = Product.aggregate([
+//   {
+//     $project: {
+//       category: '$category',
+//       image: '$image',
+//       oldPrice: '$oldPrice',
+//       actualPrice: '$actualPrice',
+//       amount: '$amount',
+//       isActive: '$isActive',
+//       isHit: '$isHit',
+//       datetime: '$datetime',
+//       lang: '$translations.en',
+//       title: `$translations.en.title`,
+//       description: `$translations.en.description`,
+//     },
+//   },
+// ]);
+//
+// const ModifyProduct = Modify.map(i => new Product(i))
 
 export const pipelineProduct = (lang: string) => [
   {
