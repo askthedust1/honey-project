@@ -8,15 +8,22 @@ import { apiUrl } from '@/constants';
 import cls from './product.module.scss';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { addProduct } from '@/features/cart/cartSlice';
+import { addProduct, addToCartState } from '@/features/cart/cartSlice';
 
 const Product: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
   const product = useAppSelector(selectOneProduct);
   const { t } = useTranslation('common');
   const dispatch = useAppDispatch();
-  const addToCart = () => {
+
+  // const addToCart = () => {
+  //   if (product) {
+  //     dispatch(addProduct(product));
+  //   }
+  // };
+
+  const handleAddToCart = (productId: string) => {
     if (product) {
-      dispatch(addProduct(product));
+      dispatch(addToCartState(productId));
     }
   };
 
@@ -86,7 +93,13 @@ const Product: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> 
               </h3>
 
               {product && product.amount > 0 && (
-                <div onClick={addToCart} className={cls.product_btns}>
+                // <div onClick={addToCart} className={cls.product_btns}>
+                //   <button type="button" className="btn-primary">
+                //     {t('add-to-basket')}
+                //   </button>
+                // </div>
+
+                <div onClick={() => handleAddToCart(product?._id)} className={cls.product_btns}>
                   <button type="button" className="btn-primary">
                     {t('add-to-basket')}
                   </button>
