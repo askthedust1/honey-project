@@ -5,7 +5,7 @@ import ProductItem from '@/features/products/components/ProductItem';
 import { IProduct } from '@/types';
 import { useTranslation } from 'next-i18next';
 import cls from '../../styles/products.module.scss';
-import SideBar from "@/components/UI/sideBar/SideBar";
+import SideBar from '@/components/UI/sideBar/SideBar';
 
 const ProductsAll = () => {
   const products = useAppSelector(selectAllProducts);
@@ -13,9 +13,9 @@ const ProductsAll = () => {
 
   return (
     <div className={cls.container}>
-      <SideBar/>
+      <SideBar />
       <div>
-        <h2 className={cls.title}>{t('all-products')}</h2>
+        <h2 className={cls.title}>{t('products')}</h2>
         <div className={cls.list}>
           {products.map((el: IProduct) => (
             <ProductItem key={el._id} product={el} />

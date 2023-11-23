@@ -4,7 +4,7 @@ $color-link: #5A3733;
 $color-title: #FF8F31;
 
 .sideBar {
-  min-width: 230px;
+  min-width: 220px;
   margin: 0 auto 0 0;
 
   @include mix.md2 {
@@ -14,26 +14,30 @@ $color-title: #FF8F31;
   }
 
   &_title {
-    margin: 20px 0 0;
+    margin: 0;
     color: $color-title;
-    font-size: 25px;
+    font-size: 23px;
     font-style: normal;
     font-weight: 900;
     line-height: normal;
+    text-transform: uppercase;
 
     @include mix.md2 {
       text-align: center;
     }
 
     @include mix.xs {
-      font-size: 18px;
-      text-transform: uppercase;
+      font-size: 22px;
     }
   }
 
   &_list {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    border-right: 2px solid $color-link;
+    margin-top: 27px;
+    padding: 5px 5px 5px 0;
 
     a {
       margin: 22px 0 0;
@@ -58,5 +62,15 @@ $color-title: #FF8F31;
         font-size: 24px;
       }
     }
+
+    @include mix.md2 {
+      text-align: center;
+      border: none;
+      padding: 0;
+    }
+  }
+
+  .category_item {
+    color: rgba(90, 55, 51, 0.84);
   }
 }
