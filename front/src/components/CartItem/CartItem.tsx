@@ -21,7 +21,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
           </div>
           <div className={cls.detail}>
             <div className={cls.name}>{item.product.title}</div>
-            <div className={cls.priceOne}>{item.product.price} KGS</div>
+            <div className={cls.priceOne}>{item.product.actualPrice} KGS</div>
           </div>
           <div className={cls.quantity}>
             <input
@@ -34,7 +34,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
           </div>
 
           <div className={cls.detail}>
-            <div className={cls.price}>{item.product.price * item.amount} KGS</div>
+            <div className={cls.price}>{item.product.actualPrice * item.amount} KGS</div>
           </div>
 
           <div className={cls.remove}>

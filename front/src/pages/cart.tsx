@@ -4,6 +4,9 @@ import { selectCart } from '@/features/cart/cartSlice';
 import cls from './../styles/cart.module.scss';
 import { ICart } from '@/types';
 import CartItem from '@/components/CartItem/CartItem';
+import { wrapper } from '@/store/store';
+import axiosApi from '@/axiosApi';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Cart = () => {
   const cart = useAppSelector(selectCart);
@@ -18,7 +21,7 @@ const Cart = () => {
   return (
     <div>
       <header className={cls.container}>
-        <h1>Shopping Cart</h1>
+        <h1 className={cls.mainTitle}>Shopping Cart</h1>
 
         <ul className={cls.breadcrumb}>
           <li>Home</li>
@@ -51,4 +54,14 @@ const Cart = () => {
   );
 };
 
+export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
+  axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
+
+  return {
+    props: {
+      name: 'Products',
+      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),
+    },
+  };
+});
 export default Cart;

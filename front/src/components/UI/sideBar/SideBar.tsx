@@ -1,9 +1,9 @@
 import React from 'react';
 import cls from '../../../styles/sideBar.module.scss';
-import {useAppSelector} from "@/store/hook";
-import {selectCategories} from "@/features/categories/categoriesSlice";
-import Link from "next/link";
-import {useTranslation} from "next-i18next";
+import { useAppSelector } from '@/store/hook';
+import { selectCategories } from '@/features/categories/categoriesSlice';
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 
 const SideBar = () => {
   const categories = useAppSelector(selectCategories);
