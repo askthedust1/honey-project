@@ -144,6 +144,7 @@ const run = async () => {
       actualPrice: 300,
       amount: 20,
       image: 'fixtures/honey.svg',
+      isHit: true,
     },
     {
       title: 'Акациевый мед',
@@ -154,6 +155,7 @@ const run = async () => {
       actualPrice: 500,
       amount: 20,
       image: 'fixtures/honey.svg',
+      isHit: true,
     },
     {
       title: 'Гречишный мед',
@@ -164,6 +166,7 @@ const run = async () => {
       actualPrice: 400,
       amount: 20,
       image: 'fixtures/White-honey.svg',
+      isHit: true,
     },
     {
       title: 'Липовый мед',
@@ -234,42 +237,7 @@ const run = async () => {
       actualPrice: 300,
       amount: 20,
       image: 'fixtures/herbs.svg',
-    },
-    {
-      title: 'Березовый сбор для очищения',
-      description:
-        'Этот сбор содержит березовые почки, крапиву и зверобой, которые помогают очистить организм от токсинов, улучшить функцию почек и стимулировать мочеотделение.',
-      category: herbs._id,
-      oldPrice: 300,
-      actualPrice: 300,
-      amount: 20,
-      image: 'fixtures/herbs.svg',
       isHit: true,
-      datetime: '2023-11-21T08:47:26.895Z',
-    },
-    {
-      title: 'Березовый сбор для очищения',
-      description:
-        'Этот сбор содержит березовые почки, крапиву и зверобой, которые помогают очистить организм от токсинов, улучшить функцию почек и стимулировать мочеотделение.',
-      category: herbs._id,
-      oldPrice: 300,
-      actualPrice: 300,
-      amount: 20,
-      image: 'fixtures/herbs.svg',
-      isHit: true,
-      datetime: '2023-10-21T08:47:26.895Z',
-    },
-    {
-      title: 'Березовый сбор для очищения',
-      description:
-        'Этот сбор содержит березовые почки, крапиву и зверобой, которые помогают очистить организм от токсинов, улучшить функцию почек и стимулировать мочеотделение.',
-      category: herbs._id,
-      oldPrice: 300,
-      actualPrice: 300,
-      amount: 20,
-      image: 'fixtures/herbs.svg',
-      isHit: true,
-      datetime: '2023-05-21T08:47:26.895Z',
     },
     {
       title: 'Сбор трав для успокоения нервной системы',

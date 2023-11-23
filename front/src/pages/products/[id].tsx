@@ -5,7 +5,7 @@ import { wrapper } from '@/store/store';
 import { getProduct } from '@/features/products/productsThunk';
 import { selectOneProduct } from '@/features/products/productsSlice';
 import { apiUrl } from '@/constants';
-import cls from './product.module.scss';
+import cls from '../../styles/product.module.scss';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { addProduct, addToCartState } from '@/features/cart/cartSlice';

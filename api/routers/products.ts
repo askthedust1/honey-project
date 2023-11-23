@@ -31,7 +31,7 @@ productRouter.get('/', async (req, res) => {
     }
 
     if (filterBy && filterBy === 'new') {
-      const result = await Product.find({ isActive: true })
+      const result = await Product.find({ isActive: true, isHit: false })
         .sort({ datetime: 'descending' })
         .limit(4);
       return res.send(result);
