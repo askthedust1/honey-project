@@ -1,5 +1,7 @@
 @use 'mixin' as mix;
 
+$color-text: #5A3733;
+
 .bestseller {
   text-transform: uppercase;
   background: #FCF8F5;
@@ -60,48 +62,12 @@
       }
     }
   }
-  &_cards {
-    display: flex;
-    justify-content: space-between;
-    @include mix.xxl {
-      justify-content: space-around;
-      flex-wrap: wrap;
-    }
-    &_card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      @include mix.xxl {
-        width: 314px;
-        margin: 0 auto 25px;
-      }
-      @include mix.lg {
-        width: 250px;
-        margin: 0 auto 25px;
-      }
-      @include mix.sm {
-        width: 372px;
-        margin: 0 10px 25px;
-      }
-      img {
-        width: 100%;
-      }
-      p {
-        color: #5A3733;
-        font-size: 20px;
-        font-weight: 700;
-        margin: 20px 0 16px;
-        @include mix.xxl {
-          font-size: 20px;
-        }
-      }
-      span {
-        color: #FF8F31;
-        font-size: 20px;
-        font-weight: 700;
-      }
+}
 
-    }
-  }
-
+.list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  color: $color-text;
+  margin-bottom: 60px;
 }
