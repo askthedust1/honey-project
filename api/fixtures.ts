@@ -77,14 +77,21 @@ const run = async () => {
     honey2,
     honey3,
     honey4,
+    honey5,
+    honey6,
+    honey7,
     herbs1,
     herbs2,
     herbs3,
     herbs4,
+    herbs5,
+    herbs6,
+    herbs7,
     driedFruits1,
     driedFruits2,
     driedFruits3,
     driedFruits4,
+    driedFruits5,
   ] = await Product.create(
     {
       title: 'Связистый мед',
@@ -122,7 +129,34 @@ const run = async () => {
       amount: 20,
       image: 'fixtures/White-honey.svg',
     },
-    {
+      {
+        title: 'Каштановый мед',
+        description:
+            'Каштановый мед считается одним из самых ценных сортов, среди всех видов меда получаемых пасечниками в разных регионах России.',
+        category: honey._id,
+        price: 500,
+        amount: 20,
+        image: 'fixtures/honey3.png',
+      },
+      {
+        title: 'Цветочный мед',
+        description:
+            'Цветочный мёд - продукт пчеловодства, в котором соединены пыльца и нектар с разных цветущих растений.',
+        category: honey._id,
+        price: 600,
+        amount: 20,
+        image: 'fixtures/honey3.png',
+      },
+      {
+        title: 'Прополисный мёд',
+        description:
+            'Насыщенный продукт, который обладает одновременно противовоспалительными, питательными и антибактериальными свойствами.',
+        category: honey._id,
+        price: 700,
+        amount: 20,
+        image: 'fixtures/White-honey.svg',
+      },
+      {
       title: 'Травяной сбор для иммунитета',
       description:
         ' Этот сбор трав содержит эхинацею, шиповник и зверобой, которые способствуют укреплению иммунной системы и повышению ее защитных функций.',
@@ -158,6 +192,33 @@ const run = async () => {
       amount: 20,
       image: 'fixtures/herbs.svg',
     },
+      {
+        title: 'Ромашковый чай',
+        description:
+            'Ромашка аптечная это неприхотливое полевое растение семейства сложноцветных. Она широко распространена в Северной Америки и Евразии и встречается почти во всех регионах обоих полушарий, не считая тропического и субтропического поясов.',
+        category: herbs._id,
+        price: 100,
+        amount: 20,
+        image: 'fixtures/herbs.svg',
+      },
+      {
+        title: 'Эвкалиптовый напиток',
+        description:
+            'Эвкалипт это вечнозеленое древесное растение семейства Миртовые. Больше всего различных видов эвкалипта произрастает в Новой Зеландии, Тасмании и лесах Австралии. Некоторые его виды встречаются на Филиппинах, в Индонезии и в Новой Гвинее. В северном полушарии растет всего один вид эвкалипта – это Эвкалипт радужный.',
+        category: herbs._id,
+        price: 400,
+        amount: 20,
+        image: 'fixtures/herbs.svg',
+      },
+      {
+        title: 'Чай из лепестков роз',
+        description:
+            'Розы это не только красивые и популярные цветы с восхитительным ароматом, но и лекарственное растение.',
+        category: herbs._id,
+        price: 600,
+        amount: 20,
+        image: 'fixtures/herbs.svg',
+      },
     {
       title: 'Фруктовый микс "Энергия"',
       description:
@@ -194,6 +255,15 @@ const run = async () => {
       amount: 0,
       image: 'fixtures/driedFruits.svg',
     },
+      {
+        title: 'Чай травяной сбор фруктовый ягодный "Ягодная поляна"',
+        description:
+            'Наслаждайтесь ярким и ароматным праздником вкусов с нашим фруктово-ягодным чаем "Ягодная поляна", где сочные ягоды и ароматные фрукты создают неповторимый букет удовольствия в каждом глотке.',
+        category: driedFruits._id,
+        price: 500,
+        amount: 10,
+        image: 'fixtures/driedFruits.svg',
+      },
   );
 
   await Transaction.create(
@@ -210,6 +280,11 @@ const run = async () => {
           product: honey2._id,
           amount: 1,
           price: honey2.price,
+        },
+        {
+          product: honey5._id,
+          amount: 1,
+          price: honey5.price,
         },
         {
           product: driedFruits1._id,
@@ -234,6 +309,11 @@ const run = async () => {
           price: honey2.price,
         },
         {
+          product: honey6._id,
+          amount: 1,
+          price: honey6.price,
+        },
+        {
           product: driedFruits3._id,
           amount: 1,
           price: driedFruits3.price,
@@ -253,6 +333,30 @@ const run = async () => {
       ],
       totalPrice: 900,
     },
+      {
+        user: user1._id,
+        address: 'ул. Малдыбаева 7/1',
+        kits: [
+          {
+            product: driedFruits5._id,
+            amount: 2,
+            price: driedFruits5.price,
+          },
+        ],
+        totalPrice: 500,
+      },
+      {
+        user: user1._id,
+        address: 'ул. Малдыбаева 7/1',
+        kits: [
+          {
+            product: honey7._id,
+            amount: 1,
+            price: honey7.price,
+          },
+        ],
+        totalPrice: 700,
+      },
     {
       user: user2._id,
       address: 'Медерова, 35',
@@ -292,6 +396,33 @@ const run = async () => {
       ],
       totalPrice: 1400,
     },
+      {
+        user: user2._id,
+        address: 'Ахунбаева, 23',
+        kits: [
+          {
+            product: herbs5._id,
+            amount: 1,
+            price: herbs5.price,
+          },
+          {
+            product: herbs6._id,
+            amount: 1,
+            price: herbs6.price,
+          },
+          {
+            product: herbs7._id,
+            amount: 1,
+            price: herbs7.price,
+          },
+          {
+            product: driedFruits3._id,
+            amount: 2,
+            price: driedFruits3.price,
+          },
+        ],
+        totalPrice: 1400,
+      },
     {
       user: user2._id,
       address: 'Логвиненко, 32',
