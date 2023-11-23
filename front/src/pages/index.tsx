@@ -7,6 +7,7 @@ import BenefitsOfHoney from '@/components/home/benefitsOfHoney/BenefitsOfHoney';
 import Bestseller from '@/components/home/bestseller/Bestseller';
 import React from 'react';
 import { fetchBanners } from '@/features/banners/bannersThunk';
+import axiosApi from '@/axiosApi';
 
 const Home = () => {
   return (
@@ -22,6 +23,8 @@ const Home = () => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+  axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
+
   await store.dispatch(fetchCategories());
   await store.dispatch(fetchBanners());
 

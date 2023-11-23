@@ -17,8 +17,8 @@ collectionRouter.post('/', auth, permit('admin'), async (req, res, next) => {
       if (!product) {
         return res.status(400).send({ error: 'Product is nor found' });
       }
-      kit.price = product.price;
-      totalPrice += product.price * kit.amount;
+      kit.price = product.actualPrice;
+      totalPrice += product.actualPrice * kit.amount;
     }
 
     const newCollection = new Collection({ kits, totalPrice });

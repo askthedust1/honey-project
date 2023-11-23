@@ -50,22 +50,26 @@ export interface IProductView {
     title: string;
   };
   title: string;
-  price: number;
+  oldPrice: number;
+  actualPrice: number;
   description: string;
   image: string;
   amount: number;
   isActive: boolean;
+  isHit: boolean;
 }
 
 export interface IProduct {
   _id: string;
   category: string;
   title: string;
-  price: number;
+  oldPrice: number;
+  actualPrice: number;
   description: string;
   image: string;
   amount: number;
   isActive: boolean;
+  isHit: boolean;
 }
 
 export interface IProductsOfPage {
@@ -78,7 +82,22 @@ export interface ICategory {
   _id: string;
   title: string;
   description?: string;
-  image: string | null;
+  image: string | '';
+}
+
+export interface ICategoryPost {
+  _id: string;
+  image: string | '';
+  translations: {
+    en: {
+      title: string;
+      description: string;
+    };
+    ru: {
+      title: string;
+      description: string;
+    };
+  };
 }
 
 export interface IBanner {

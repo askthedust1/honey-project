@@ -11,7 +11,7 @@ const Cart = () => {
   const getTotalPrice = () => {
     return cart.reduce((total: number, item: ICart) => {
       const { product, amount } = item;
-      return total + product.price * amount;
+      return total + product.actualPrice * amount;
     }, 0);
   };
 

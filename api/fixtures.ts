@@ -5,7 +5,7 @@ import * as crypto from 'crypto';
 import Category from './models/Category';
 import Product from './models/Product';
 import Transaction from './models/Transaction';
-import Banner from "./models/Banner";
+import Banner from './models/Banner';
 
 const run = async () => {
   await mongoose.connect(config.db);
@@ -53,22 +53,64 @@ const run = async () => {
 
   const [honey, herbs, driedFruits] = await Category.create(
     {
-      title: 'Мёд',
       image: 'fixtures/honey2.jpeg',
-      description:
-        'Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+      translations: {
+        en: {
+          title: 'Honey',
+          description:
+            'En Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+        ru: {
+          title: 'Мед',
+          description:
+            'Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+        kg: {
+          title: 'Мед',
+          description:
+            'Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+      },
     },
     {
-      title: 'Лечебные травы',
       image: 'fixtures/herbs_category.svg',
-      description:
-        'Лечебные травы - это растения, которые используются в медицинских целях из-за своих полезных свойств и потенциальных лечебных свойств. Они часто применяются в традиционной медицине для облегчения различных здоровотворных проблем, таких как пищеварительные расстройства, воспаления, улучшение иммунитета и снятие стресса.',
+      translations: {
+        en: {
+          title: 'Herbs',
+          description:
+            'En Лечебные травы - это растения, которые используются в медицинских целях из-за своих полезных свойств и потенциальных лечебных свойств. Они часто применяются в традиционной медицине для облегчения различных здоровотворных проблем, таких как пищеварительные расстройства, воспаления, улучшение иммунитета и снятие стресса.',
+        },
+        ru: {
+          title: 'Лечебные травы',
+          description:
+            'Лечебные травы - это растения, которые используются в медицинских целях из-за своих полезных свойств и потенциальных лечебных свойств. Они часто применяются в традиционной медицине для облегчения различных здоровотворных проблем, таких как пищеварительные расстройства, воспаления, улучшение иммунитета и снятие стресса.',
+        },
+        kg: {
+          title: 'Лечебные травы',
+          description:
+            'Лечебные травы - это растения, которые используются в медицинских целях из-за своих полезных свойств и потенциальных лечебных свойств. Они часто применяются в традиционной медицине для облегчения различных здоровотворных проблем, таких как пищеварительные расстройства, воспаления, улучшение иммунитета и снятие стресса.',
+        },
+      },
     },
     {
-      title: 'Сухофрукты',
       image: 'fixtures/fruits_category.svg',
-      description:
-        'Сухофрукты - это фрукты, прошедшие процесс сушки, в результате которого они теряют большую часть влаги, но сохраняют свои питательные свойства. Среди популярных сухофруктов можно найти изюм, чернослив, финики, инжир, абрикосы и другие. ',
+      translations: {
+        en: {
+          title: 'safsafs',
+          description:
+            'En Сухофрукты - это фрукты, прошедшие процесс сушки, в результате которого они теряют большую часть влаги, но сохраняют свои питательные свойства. Среди популярных сухофруктов можно найти изюм, чернослив, финики, инжир, абрикосы и другие. ',
+        },
+        ru: {
+          title: 'Сухофрукты',
+          description:
+            'Сухофрукты - это фрукты, прошедшие процесс сушки, в результате которого они теряют большую часть влаги, но сохраняют свои питательные свойства. Среди популярных сухофруктов можно найти изюм, чернослив, финики, инжир, абрикосы и другие. ',
+        },
+        kg: {
+          title: 'Сухофрукты',
+          description:
+            'Сухофрукты - это фрукты, прошедшие процесс сушки, в результате которого они теряют большую часть влаги, но сохраняют свои питательные свойства. Среди популярных сухофруктов можно найти изюм, чернослив, финики, инжир, абрикосы и другие. ',
+        },
+      },
     },
   );
 
@@ -91,16 +133,18 @@ const run = async () => {
       description:
         'Связистый мед обладает богатым ароматом и глубоким, насыщенным вкусом. Он собирается из цветущих растений на лугах и полях.',
       category: honey._id,
-      price: 300,
+      oldPrice: 300,
+      actualPrice: 300,
       amount: 20,
       image: 'fixtures/honey.svg',
     },
     {
-      title: 'Акациевый мед:',
+      title: 'Акациевый мед',
       description:
         ' Акациевый мед обладает нежным, сладким вкусом и прозрачной текстурой. Он производится из нектара цветущего дерева акации.',
       category: honey._id,
-      price: 500,
+      oldPrice: 500,
+      actualPrice: 500,
       amount: 20,
       image: 'fixtures/honey.svg',
     },
@@ -109,7 +153,8 @@ const run = async () => {
       description:
         'Гречишный мед имеет интенсивный аромат и темно-коричневый цвет. Он производится из цветов гречихи и обладает богатым вкусом с нотами карамели.',
       category: honey._id,
-      price: 400,
+      oldPrice: 400,
+      actualPrice: 400,
       amount: 20,
       image: 'fixtures/White-honey.svg',
     },
@@ -118,7 +163,8 @@ const run = async () => {
       description:
         'Липовый мед обладает светлым оттенком и нежным, цветочным ароматом. Он собирается из цветов липы и обладает мягким, сладким вкусом.',
       category: honey._id,
-      price: 300,
+      oldPrice: 300,
+      actualPrice: 300,
       amount: 20,
       image: 'fixtures/White-honey.svg',
     },
@@ -127,7 +173,8 @@ const run = async () => {
       description:
         ' Этот сбор трав содержит эхинацею, шиповник и зверобой, которые способствуют укреплению иммунной системы и повышению ее защитных функций.',
       category: herbs._id,
-      price: 200,
+      oldPrice: 200,
+      actualPrice: 200,
       amount: 20,
       image: 'fixtures/herbs.svg',
     },
@@ -136,7 +183,8 @@ const run = async () => {
       description:
         'Этот сбор включает мяту, ромашку и фенхель, которые помогают улучшить пищеварение, снизить вздутие и уменьшить дискомфорт в желудке.',
       category: herbs._id,
-      price: 200,
+      oldPrice: 200,
+      actualPrice: 200,
       amount: 20,
       image: 'fixtures/herbs.svg',
     },
@@ -145,7 +193,8 @@ const run = async () => {
       description:
         'Этот сбор содержит березовые почки, крапиву и зверобой, которые помогают очистить организм от токсинов, улучшить функцию почек и стимулировать мочеотделение.',
       category: herbs._id,
-      price: 300,
+      oldPrice: 300,
+      actualPrice: 300,
       amount: 20,
       image: 'fixtures/herbs.svg',
     },
@@ -154,7 +203,8 @@ const run = async () => {
       description:
         'Этот сбор включает валериану, пустырник и мелиссу, которые помогают снять напряжение, улучшить сон и смягчить нервное возбуждение.',
       category: herbs._id,
-      price: 300,
+      oldPrice: 300,
+      actualPrice: 300,
       amount: 20,
       image: 'fixtures/herbs.svg',
     },
@@ -163,7 +213,8 @@ const run = async () => {
       description:
         ' Этот сбор содержит смесь из чернослива, изюма, фиников и кураги, обогащенных витаминами и минералами, которые придают энергию и восстанавливают силы.',
       category: driedFruits._id,
-      price: 300,
+      oldPrice: 300,
+      actualPrice: 300,
       amount: 20,
       image: 'fixtures/driedFruits.svg',
     },
@@ -172,7 +223,8 @@ const run = async () => {
       description:
         ' Этот набор включает в себя смесь из изюма, чернослива, кураги и вишни, богатых витаминами и антиоксидантами, которые способствуют поддержанию здоровья и укреплению иммунитета.',
       category: driedFruits._id,
-      price: 350,
+      oldPrice: 350,
+      actualPrice: 350,
       amount: 20,
       image: 'fixtures/driedFruits.svg',
     },
@@ -181,7 +233,8 @@ const run = async () => {
       description:
         'Этот микс содержит смесь из сушеного ананаса, манго, банана и кокоса, создавая экзотический вкус и богатство питательных веществ тропических фруктов.',
       category: driedFruits._id,
-      price: 400,
+      oldPrice: 400,
+      actualPrice: 400,
       amount: 20,
       image: 'fixtures/driedFruits.svg',
     },
@@ -190,7 +243,8 @@ const run = async () => {
       description:
         'Этот сбор включает в себя смесь из сушеных черники, малины, клюквы и красной смородины, обогащенных антиоксидантами, способствующими укреплению иммунной системы и поддержанию здоровья.',
       category: driedFruits._id,
-      price: 300,
+      oldPrice: 300,
+      actualPrice: 300,
       amount: 0,
       image: 'fixtures/driedFruits.svg',
     },
@@ -204,17 +258,17 @@ const run = async () => {
         {
           product: honey1._id,
           amount: 1,
-          price: honey1.price,
+          price: honey1.actualPrice,
         },
         {
           product: honey2._id,
           amount: 1,
-          price: honey2.price,
+          price: honey2.actualPrice,
         },
         {
           product: driedFruits1._id,
           amount: 1,
-          price: driedFruits1.price,
+          price: driedFruits1.actualPrice,
         },
       ],
       totalPrice: 1100,
@@ -226,17 +280,17 @@ const run = async () => {
         {
           product: herbs3._id,
           amount: 1,
-          price: herbs3.price,
+          price: herbs3.actualPrice,
         },
         {
           product: honey2._id,
           amount: 1,
-          price: honey2.price,
+          price: honey2.actualPrice,
         },
         {
           product: driedFruits3._id,
           amount: 1,
-          price: driedFruits3.price,
+          price: driedFruits3.actualPrice,
         },
       ],
       totalPrice: 1200,
@@ -248,7 +302,7 @@ const run = async () => {
         {
           product: honey4._id,
           amount: 3,
-          price: honey4.price,
+          price: honey4.actualPrice,
         },
       ],
       totalPrice: 900,
@@ -260,17 +314,17 @@ const run = async () => {
         {
           product: honey4._id,
           amount: 1,
-          price: honey4.price,
+          price: honey4.actualPrice,
         },
         {
           product: driedFruits2._id,
           amount: 1,
-          price: driedFruits2.price,
+          price: driedFruits2.actualPrice,
         },
         {
           product: herbs3._id,
           amount: 1,
-          price: herbs3.price,
+          price: herbs3.actualPrice,
         },
       ],
       totalPrice: 950,
@@ -282,12 +336,12 @@ const run = async () => {
         {
           product: honey1._id,
           amount: 2,
-          price: honey1.price,
+          price: honey1.actualPrice,
         },
         {
           product: driedFruits3._id,
           amount: 2,
-          price: driedFruits3.price,
+          price: driedFruits3.actualPrice,
         },
       ],
       totalPrice: 1400,
@@ -299,32 +353,32 @@ const run = async () => {
         {
           product: herbs1._id,
           amount: 1,
-          price: herbs1.price,
+          price: herbs1.actualPrice,
         },
         {
           product: herbs2._id,
           amount: 1,
-          price: herbs2.price,
+          price: herbs2.actualPrice,
         },
         {
           product: herbs3._id,
           amount: 1,
-          price: herbs3.price,
+          price: herbs3.actualPrice,
         },
         {
           product: honey3._id,
           amount: 1,
-          price: honey3.price,
+          price: honey3.actualPrice,
         },
         {
           product: herbs4._id,
           amount: 1,
-          price: herbs4.price,
+          price: herbs4.actualPrice,
         },
         {
           product: driedFruits4._id,
           amount: 1,
-          price: driedFruits4.price,
+          price: driedFruits4.actualPrice,
         },
       ],
       totalPrice: 1700,
@@ -332,19 +386,19 @@ const run = async () => {
   );
 
   await Banner.create(
-      {
-        image: 'fixtures/landing.png',
-        description: 'landing1'
-      },
-      {
-        image: 'fixtures/landing2.png',
-        description: 'landing2'
-      },
-      {
-        image: 'fixtures/landing3.png',
-        description: 'landing3'
-      },
-  )
+    {
+      image: 'fixtures/landing.png',
+      description: 'landing1',
+    },
+    {
+      image: 'fixtures/landing2.png',
+      description: 'landing2',
+    },
+    {
+      image: 'fixtures/landing3.png',
+      description: 'landing3',
+    },
+  );
 
   await db.close();
 };

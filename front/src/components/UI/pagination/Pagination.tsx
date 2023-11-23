@@ -1,114 +1,133 @@
 import React from 'react';
 import cls from './pagination.module.scss';
-import Link from "next/link";
-import {useAppSelector} from "@/store/hook";
-import {selectCurrentPage, selectTotalPages} from "@/features/products/productsSlice";
+import Link from 'next/link';
+import { useAppSelector } from '@/store/hook';
+import { selectCurrentPage, selectTotalPages } from '@/features/products/productsSlice';
 
 interface Props {
-    productsActive: boolean;
-    categoriesActive: boolean;
-    idCategory?: string;
+  productsActive: boolean;
+  categoriesActive: boolean;
+  idCategory?: string;
 }
 
-const Pagination:React.FC<Props> = (props) => {
-    const currentPageState = useAppSelector(selectCurrentPage);
-    const totalPageState = useAppSelector(selectTotalPages);
+const Pagination: React.FC<Props> = (props) => {
+  const currentPageState = useAppSelector(selectCurrentPage);
+  const totalPageState = useAppSelector(selectTotalPages);
 
-    const productsTsx = (
-      <>
-          {currentPageState > 1 ? <div className={cls.circle_left}><Link
-              className={cls.previous}
-              href={'/products/page/' +
-                (currentPageState > 1 ? currentPageState - 1 : currentPageState)
-                  .toString()}
-            >
-                &#8249;
-            </Link></div> :
-            <div className={cls.circle_transparent}><span className={cls.span_text}>&#8249;</span></div>
-          }
-
-
-          <div className={cls.circle}>
-              <div className="inner-circle">{currentPageState} / {totalPageState}</div>
-          </div>
-
-
-          {
-              currentPageState === totalPageState ?
-                <div className={cls.circle_transparent}>
-                    <span className={cls.span_text}>&#8250;</span>
-                </div> :
-                <div className={cls.circle_right}>
-                    <Link className={cls.next}
-                          href={'/products/page/' + (currentPageState === totalPageState ? totalPageState
-                            : currentPageState + 1).toString()}
-                    >&#8250;
-                    </Link>
-                </div>
-          }
-      </>
-    );
-
-    const categoryTsx = (
-      <>
-        {currentPageState > 1 ? <div className={cls.circle_left}><Link
+  const productsTsx = (
+    <>
+      {currentPageState > 1 ? (
+        <div className={cls.circle_left}>
+          <Link
             className={cls.previous}
             href={
-              {
-                pathname: '/category/page/path',
-                query: {
-                  cId: props.idCategory,
-                  cPage: (currentPageState > 1 ? currentPageState - 1 : currentPageState)
-                    .toString()
-                },
-              }
+              '/products/page/' +
+              (currentPageState > 1 ? currentPageState - 1 : currentPageState).toString()
             }
           >
             &#8249;
-          </Link></div> :
-          <div className={cls.circle_transparent}><span className={cls.span_text}>&#8249;</span></div>
-        }
-
-
-        <div className={cls.circle}>
-          <div className="inner-circle">{currentPageState} / {totalPageState}</div>
+          </Link>
         </div>
-
-
-        {
-          currentPageState === totalPageState ?
-            <div className={cls.circle_transparent}>
-              <span className={cls.span_text}>&#8250;</span>
-            </div> :
-            <div className={cls.circle_right}>
-              <Link className={cls.next}
-                    href={
-                      {
-                        pathname: '/category/page/path',
-                        query: {
-                          cId: props.idCategory,
-                          cPage: (currentPageState === totalPageState ? totalPageState: currentPageState + 1)
-                            .toString()
-                        },
-                      }
-                    }
-              >&#8250;
-              </Link>
-            </div>
-        }
-      </>
-    )
-
-    return (
-        <div className={cls.pagination_block}>
-            <div className={cls.pagination_inner}>
-                <div className={cls.pagination_inner}>
-                    {props.productsActive ? productsTsx : ''}
-                    {props.categoriesActive? categoryTsx: ''}
-                </div>
-            </div>
+      ) : (
+        <div className={cls.circle_transparent}>
+          <span className={cls.span_text}>&#8249;</span>
         </div>
-    );
+      )}
+
+      <div className={cls.circle}>
+        <div className="inner-circle">
+          {currentPageState} / {totalPageState}
+        </div>
+      </div>
+
+      {currentPageState === totalPageState ? (
+        <div className={cls.circle_transparent}>
+          <span className={cls.span_text}>&#8250;</span>
+        </div>
+      ) : (
+        <div className={cls.circle_right}>
+          <Link
+            className={cls.next}
+            href={
+              '/products/page/' +
+              (currentPageState === totalPageState
+                ? totalPageState
+                : currentPageState + 1
+              ).toString()
+            }
+          >
+            &#8250;
+          </Link>
+        </div>
+      )}
+    </>
+  );
+
+  const categoryTsx = (
+    <>
+      {currentPageState > 1 ? (
+        <div className={cls.circle_left}>
+          <Link
+            className={cls.previous}
+            href={{
+              pathname: '/category/page/path',
+              query: {
+                cId: props.idCategory,
+                cPage: (currentPageState > 1 ? currentPageState - 1 : currentPageState).toString(),
+              },
+            }}
+          >
+            &#8249;
+          </Link>
+        </div>
+      ) : (
+        <div className={cls.circle_transparent}>
+          <span className={cls.span_text}>&#8249;</span>
+        </div>
+      )}
+
+      <div className={cls.circle}>
+        <div className="inner-circle">
+          {currentPageState} / {totalPageState}
+        </div>
+      </div>
+
+      {currentPageState === totalPageState ? (
+        <div className={cls.circle_transparent}>
+          <span className={cls.span_text}>&#8250;</span>
+        </div>
+      ) : (
+        <div className={cls.circle_right}>
+          <Link
+            className={cls.next}
+            href={{
+              pathname: '/category/page/path',
+              query: {
+                cId: props.idCategory,
+                cPage: (currentPageState === totalPageState
+                  ? totalPageState
+                  : currentPageState + 1
+                ).toString(),
+              },
+            }}
+          >
+            &#8250;
+          </Link>
+        </div>
+      )}
+    </>
+  );
+
+  return (
+    <div className={cls.pagination_block}>
+      <div className={cls.pagination_inner}>
+        <div className={cls.pagination_inner}>
+          {props.productsActive ? productsTsx : ''}
+          {props.categoriesActive ? categoryTsx : ''}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Pagination;

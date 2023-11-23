@@ -12,9 +12,11 @@ export interface IUserApi {
 export interface IProductPost {
   category: string;
   title: string;
-  price: string;
-  description?: string;
-  image?: string;
+  oldPrice: number;
+  actualPrice: number;
+  description: string;
+  image: string;
+  amount: number;
 }
 
 export interface IKits {
