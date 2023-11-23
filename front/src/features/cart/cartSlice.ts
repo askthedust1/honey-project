@@ -4,10 +4,14 @@ import { RootState } from '@/store/store';
 
 interface CartState {
   cart: ICart[];
+  itemsCart: string[];
+  dataLoaded: boolean;
 }
 
 const initialState: CartState = {
   cart: [],
+  itemsCart: [],
+  dataLoaded: false,
 };
 
 export const cartSlice = createSlice({
@@ -31,8 +35,22 @@ export const cartSlice = createSlice({
     resetCart: (state) => {
       state.cart = [];
     },
+
+    addToCartState: (state, action: PayloadAction<string>) => {
+      state.itemsCart.push(action.payload);
+    },
+    clearCart: (state) => {
+      state.itemsCart = [];
+    },
+    setProductsDataLoaded: (state, action) => {
+      state.dataLoaded = action.payload;
+    },
   },
 });
 
 export const selectCart = (state: RootState) => state.cart.cart;
-export const { addProduct, resetCart } = cartSlice.actions;
+export const { addProduct, resetCart, addToCartState, clearCart, setProductsDataLoaded } =
+  cartSlice.actions;
+
+export const selectProductsDataLoaded = (state: RootState) => state.cart.dataLoaded;
+export const selectCartItems = (state: RootState) => state.cart.itemsCart;

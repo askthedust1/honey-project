@@ -34,7 +34,7 @@ $color-icon-price: #FF8F31;
   }
 }
 
-.card {
+.card, .btn_block, .card_block {
   display: flex;
   flex-direction: column;
   width: 295px;
@@ -80,6 +80,7 @@ $color-icon-price: #FF8F31;
     padding: 12px 0 0 8px;
   }
 }
+
 
 .content {
   display: flex;
