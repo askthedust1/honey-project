@@ -14,7 +14,7 @@ const ProductsAll = () => {
   return (
     <div className={cls.container}>
       <SideBar />
-      <div>
+      <div className={cls.box}>
         <h2 className={cls.title}>{t('products')}</h2>
         <div className={cls.list}>
           {products.map((el: IProduct) => (

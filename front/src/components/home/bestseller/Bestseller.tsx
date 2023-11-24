@@ -1,41 +1,58 @@
-import React from 'react';
-import cls from '../../../styles/_bestseller.module.scss'
-import best_i1 from '@/assets/images/best-img1.png'
-import best_i2 from '@/assets/images/best-img2.png'
-import best_i3 from '@/assets/images/best-img3.png'
-import {useTranslation} from "next-i18next";
+import React, { useEffect } from 'react';
+import cls from '../../../styles/_bestseller.module.scss';
+import { useTranslation } from 'next-i18next';
+import { IProduct } from '@/types';
+import ProductItem from '@/features/products/components/ProductItem';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import {
+  selectActiveBestsellers,
+  selectBestsellers,
+  setActiveBestseller,
+} from '@/features/products/productsSlice';
+import { fetchBestsellers } from '@/features/products/productsThunk';
 
 const Bestseller = () => {
-    const { t } = useTranslation('home');
-    return (
-        <div className={cls.bestseller}>
-            <div className={cls.bestseller_container}>
-                <div className={cls.bestseller_btns}>
-                    <button className={cls.bestseller_btns_btn1}>{t('bestsellerBtn1')}</button>
-                    <button className={cls.bestseller_btns_btn2}>{t('bestsellerBtn2')}</button>
-                </div>
+  const { t } = useTranslation('home');
+  const bestsellers = useAppSelector(selectBestsellers);
+  const activeBestseller = useAppSelector(selectActiveBestsellers);
+  const dispatch = useAppDispatch();
 
-                <div className={cls.bestseller_cards}>
-                    <div className={cls.bestseller_cards_card}>
-                        <img src={best_i1.src} alt={'product1'}/>
-                        <p>ANGEL'S GIFT THYME</p>
-                        <span>500 KGS</span>
-                    </div>
-                    <div className={cls.bestseller_cards_card}>
-                        <img src={best_i2.src} alt={'product2'}/>
-                        <p>MOUNTAIN HONEY POLYFLOR</p>
-                        <span>500 KGS</span>
-                    </div>
-                    <div className={cls.bestseller_cards_card}>
-                        <img src={best_i3.src} alt={'product3'}/>
-                        <p>WHITE HONEY SAINFOIN</p>
-                        <span>500 KGS</span>
-                    </div>
+  useEffect(() => {
+    dispatch(fetchBestsellers(activeBestseller));
+  }, [activeBestseller, dispatch]);
 
-                </div>
-            </div>
+  const switchBestseller = (query: string) => {
+    dispatch(setActiveBestseller(query));
+  };
+  return (
+    <div className={cls.bestseller}>
+      <div className={cls.bestseller_container}>
+        <div className={cls.bestseller_btns}>
+          <button
+            onClick={() => switchBestseller('hit')}
+            className={`${cls.bestseller_btn} ${
+              activeBestseller === 'hit' && cls.bestseller_btn_active
+            }`}
+          >
+            {t('bestsellerBtn1')}
+          </button>
+          <button
+            onClick={() => switchBestseller('new')}
+            className={`${cls.bestseller_btn} ${
+              activeBestseller === 'new' && cls.bestseller_btn_active
+            }`}
+          >
+            {t('bestsellerBtn2')}
+          </button>
         </div>
-    );
+        <div className={cls.list}>
+          {bestsellers.map((el: IProduct) => (
+            <ProductItem key={el._id} product={el} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Bestseller;
