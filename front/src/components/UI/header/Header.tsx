@@ -1,5 +1,5 @@
 'use static';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import cls from '../../../styles/_header.module.scss';
 import logo from '@/assets/images/logo.svg';
@@ -13,7 +13,11 @@ import Cart from '@/components/CartItem/Cart';
 
 const Header = () => {
   const user = useAppSelector(selectUser);
+  const [isShowNav, setIsShowNav] = useState<boolean>(false);
+
   const { t } = useTranslation('header');
+
+  const toggleNav = () => setIsShowNav(!isShowNav);
   return (
     <header>
       <div className={cls.header}>
@@ -53,34 +57,33 @@ const Header = () => {
           </Link>
         </div>
       </div>
-      <div className={cls.hamburger_menu}>
-        <input id={cls.menu__toggle} type="checkbox" />
-        <label className={cls.menu__btn} htmlFor={cls.menu__toggle}>
+      <div className={`${cls.hamburger_menu} ${isShowNav ? cls.hamburger_menu_show : ''}`}>
+        <button onClick={toggleNav} type={'button'} className={cls.menu__btn}>
           <span></span>
-        </label>
+        </button>
         <ul className={cls.menu__box}>
           <li>
-            <Link className={cls.menu__item} href={'/'}>
+            <Link onClick={toggleNav} className={cls.menu__item} href={'/'}>
               {t('home')}
             </Link>
           </li>
           <li>
-            <Link className={cls.menu__item} href={'/products/page/1'}>
+            <Link onClick={toggleNav} className={cls.menu__item} href={'/products/page/1'}>
               {t('products')}
             </Link>
           </li>
           <li>
-            <Link className={cls.menu__item} href={'/about'}>
+            <Link onClick={toggleNav} className={cls.menu__item} href={'/about'}>
               {t('about')}
             </Link>
           </li>
           <li>
-            <Link className={cls.menu__item} href={'/delivery'}>
+            <Link onClick={toggleNav} className={cls.menu__item} href={'/delivery'}>
               {t('delivery')}
             </Link>
           </li>
           <li>
-            <Link className={cls.menu__item} href={'/contacts'}>
+            <Link onClick={toggleNav} className={cls.menu__item} href={'/contacts'}>
               {t('contacts')}
             </Link>
           </li>
