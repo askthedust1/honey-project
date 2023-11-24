@@ -5,6 +5,7 @@ import cls from './../styles/cart.module.scss';
 import { ICart } from '@/types';
 import CartItem from '@/components/CartItem/CartItem';
 import { wrapper } from '@/store/store';
+import axiosApi from '@/axiosApi';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Cart = () => {

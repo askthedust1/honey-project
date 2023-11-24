@@ -54,7 +54,6 @@ const CartItem: React.FC<Props> = ({ item }) => {
               +
             </button>
           </div>
-
           <div className={cls.detailpr}>
             <div className={cls.price}>{item.product.actualPrice * item.amount} KGS</div>
           </div>

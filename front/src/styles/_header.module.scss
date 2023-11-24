@@ -134,28 +134,33 @@
   }
 }
 
-#menu__toggle {
-  opacity: 0;
-  &:checked ~ .menu__box {
-    visibility: visible;
-    left: 0;
-    height: auto;
-    padding: 20px 0;
-  }
-  &:checked ~ .menu__btn > span {
-    transform: rotate(45deg);
-    &::before {
-      top: 0;
-      transform: rotate(0);
+.hamburger_menu {
+  &_show {
+
+    .menu__box {
+      visibility: visible;
+      left: 0;
+      height: auto;
+      padding: 20px 0;
     }
-    &::after {
-      top: 0;
-      transform: rotate(90deg);
+    .menu__btn > span {
+      transform: rotate(45deg);
+      &::before {
+        top: 0;
+        transform: rotate(0);
+      }
+      &::after {
+        top: 0;
+        transform: rotate(90deg);
+      }
     }
   }
 }
+
 .menu__btn {
   display: none;
+  background: none;
+  border: none;
   align-items: center;
   position: absolute;
   top: 30px;
@@ -223,5 +228,3 @@
     display: block;
   }
 }
-
-

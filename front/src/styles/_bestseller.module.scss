@@ -1,4 +1,5 @@
 @use 'mixin' as mix;
+@import "variables";
 
 .bestseller {
   text-transform: uppercase;
@@ -20,88 +21,48 @@
     @include mix.lg {
       margin: 74px 0 53px;
     }
-    &_btn1 {
-      border-radius: 22px;
-      background: #FF8F31;
-      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-      padding: 10px 27px;
-      color: #FFF;
-      font-size: 35px;
-      font-weight: 600;
-      margin: 0 26px;
-      @include mix.lg {
-        padding: 8px 18px;
-        font-size: 30px;
-      }
-      @include mix.sm {
-        padding: 9px 20px;
-        font-size: 27px;
-        margin: 0 15px 0;
-      }
-      @include mix.xs {
-        font-size: 24px;
-      }
+  }
+  &_btn {
+    border-radius: 16px;
+    background: $white;
+    box-shadow: 0 4px 4px 0 rgba($black, 0.25);
+    padding: 16px 32px;
+    color: $text-color;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 20px;
+    //@include mix.lg {
+    //  padding: 8px 18px;
+    //  font-size: 30px;
+    //}
+    //@include mix.sm {
+    //  padding: 9px 20px;
+    //  font-size: 27px;
+    //  margin: 0 15px 0;
+    //}
+    //@include mix.xs {
+    //  font-size: 24px;
+    //}
+
+    &:hover {
+      background: rgba($text-color, 0.05);
     }
-    &_btn2 {
-      color: #5A3733;
-      font-size: 35px;
-      font-weight: 500;
-      margin: 0 26px;
-      background: none;
-      @include mix.lg {
-        font-size: 30px;
-      }
-      @include mix.sm {
-        font-size: 27px;
-        margin: 0;
-      }
-      @include mix.xs {
-        font-size: 24px;
+
+    &_active {
+      background: $primary;
+      color: $white;
+
+      &:hover {
+        background: $primary;
       }
     }
   }
-  &_cards {
-    display: flex;
-    justify-content: space-between;
-    @include mix.xxl {
-      justify-content: space-around;
-      flex-wrap: wrap;
-    }
-    &_card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      @include mix.xxl {
-        width: 314px;
-        margin: 0 auto 25px;
-      }
-      @include mix.lg {
-        width: 250px;
-        margin: 0 auto 25px;
-      }
-      @include mix.sm {
-        width: 372px;
-        margin: 0 10px 25px;
-      }
-      img {
-        width: 100%;
-      }
-      p {
-        color: #5A3733;
-        font-size: 20px;
-        font-weight: 700;
-        margin: 20px 0 16px;
-        @include mix.xxl {
-          font-size: 20px;
-        }
-      }
-      span {
-        color: #FF8F31;
-        font-size: 20px;
-        font-weight: 700;
-      }
+}
 
-    }
-  }
-
+.list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  color: $text-color;
+  margin-bottom: 60px;
 }
