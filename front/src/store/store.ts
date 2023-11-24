@@ -8,6 +8,7 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist
 import { categoriesSlice } from '@/features/categories/categoriesSlice';
 import { bannersSlice } from '@/features/banners/bannersSlice';
 import { cartSlice } from '@/features/cart/cartSlice';
+import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrapper';
 
 const usersPersistConfig = {
   key: 'honey:users',
@@ -15,20 +16,14 @@ const usersPersistConfig = {
   whitelist: ['user'],
 };
 
-const cartPersistConfig = {
-  key: 'honey:cart',
-  storage,
-  whitelist: ['cart'],
-};
-
-const makeStore = () => {
+const makeStore = wrapMakeStore(() => {
   const isServer = typeof window === 'undefined';
 
   const reducers = {
     [productsSlice.name]: productsSlice.reducer,
     [categoriesSlice.name]: categoriesSlice.reducer,
     [bannersSlice.name]: bannersSlice.reducer,
-    [cartSlice.name]: persistReducer(cartPersistConfig, cartSlice.reducer) as Reducer,
+    [cartSlice.name]: cartSlice.reducer,
     [usersSlice.name]: isServer
       ? usersSlice.reducer
       : (persistReducer(usersPersistConfig, usersSlice.reducer) as Reducer),
@@ -44,7 +39,11 @@ const makeStore = () => {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      });
+      }).prepend(
+        nextReduxCookieMiddleware({
+          subtrees: [`${cartSlice.name}.cart`],
+        }),
+      );
     },
   });
 
@@ -54,7 +53,7 @@ const makeStore = () => {
   }
 
   return store;
-};
+});
 
 export type RootStore = ReturnType<typeof makeStore>;
 export type RootState = ReturnType<RootStore['getState']>;

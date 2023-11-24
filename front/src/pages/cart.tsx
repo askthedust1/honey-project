@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@/store/hook';
 import { selectCart } from '@/features/cart/cartSlice';
 import cls from './../styles/cart.module.scss';
 import { ICart } from '@/types';
 import CartItem from '@/components/CartItem/CartItem';
+import { wrapper } from '@/store/store';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Cart = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const cart = useAppSelector(selectCart);
 
   const getTotalPrice = () => {
@@ -16,39 +24,52 @@ const Cart = () => {
   };
 
   return (
-    <div>
-      <header className={cls.container}>
-        <h1>Shopping Cart</h1>
+    <>
+      {isClient ? (
+        <div>
+          <section></section>
+          <div className={cls.container}>
+            <div className={cls.head}>
+              <div className={cls.headTd}></div>
+              <p className={cls.headProd}>Товар</p>
+              <p className={cls.headAmount}>Количество</p>
+              <p className={cls.headTotal}>Сумма</p>
+            </div>
 
-        <ul className={cls.breadcrumb}>
-          <li>Home</li>
-          <li>Shopping Cart</li>
-        </ul>
-      </header>
+            <section className={cls.container1}>
+              <ul className={cls.ul + ' ' + cls.products}>
+                {cart.map((prod: ICart) => (
+                  <CartItem item={prod} key={prod.product._id} />
+                ))}
+              </ul>
+            </section>
 
-      <section className={cls.container}>
-        <ul className={cls.ul + ' ' + cls.products}>
-          {cart.map((prod: ICart) => (
-            <CartItem item={prod} key={prod.product._id} />
-          ))}
-        </ul>
-      </section>
+            <section className={cls.container2}>
+              <div className={cls.summary}>
+                <div className={cls.total}>Итого: {getTotalPrice()}</div>
+              </div>
 
-      <section className={cls.container}>
-        <div className={cls.summary}>
-          <ul className={cls.ul}>
-            <li className={cls.total}>Total Price: {getTotalPrice()}</li>
-          </ul>
+              <div className={cls.checkout}>
+                <button className={cls.btn} type="button">
+                  Оформить заказ
+                </button>
+              </div>
+            </section>
+          </div>
         </div>
-
-        <div className={cls.checkout}>
-          <button className={cls.btn} type="button">
-            Check Out
-          </button>
-        </div>
-      </section>
-    </div>
+      ) : (
+        <div></div>
+      )}
+    </>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer'])),
+    },
+  };
+});
 
 export default Cart;
