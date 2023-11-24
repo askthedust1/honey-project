@@ -5,7 +5,7 @@ import Link from 'next/link';
 import cls from '../../../styles/products.module.scss';
 import { useAppDispatch } from '@/store/hook';
 import { IProduct } from '@/types';
-import { addToCartState } from '@/features/cart/cartSlice';
+import { addProduct, addToCartState } from '@/features/cart/cartSlice';
 import { useTranslation } from 'next-i18next';
 
 const ProductItem: React.FC<Props> = ({ product }) => {
@@ -13,9 +13,9 @@ const ProductItem: React.FC<Props> = ({ product }) => {
 
   const { t } = useTranslation('common');
 
-  // const addToCart = () => {
-  //   dispatch(addProduct(product));
-  // };
+  const addToCart = () => {
+    dispatch(addProduct(product));
+  };
 
   const handleAddToCart = (productId: string) => {
     dispatch(addToCartState(productId));
@@ -48,7 +48,7 @@ const ProductItem: React.FC<Props> = ({ product }) => {
       {/*</div>*/}
 
       <div className={cls.btn_block}>
-        <button onClick={() => handleAddToCart(product._id)} type="button" className="btn-primary">
+        <button onClick={addToCart} type="button" className="btn-primary">
           {t('add-to-basket')}
         </button>
       </div>

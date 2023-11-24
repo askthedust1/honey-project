@@ -10,14 +10,15 @@ import { selectUser } from '@/features/users/usersSlice';
 import UserNav from '@/components/UI/header/UserNav';
 import AnonymousNav from '@/components/UI/header/AnonymousNav';
 import Cart from '@/components/CartItem/Cart';
+import { selectCart } from '@/features/cart/cartSlice';
 
 const Header = () => {
   const user = useAppSelector(selectUser);
   const [isShowNav, setIsShowNav] = useState<boolean>(false);
-
   const { t } = useTranslation('header');
-
+  const cart = useAppSelector(selectCart);
   const toggleNav = () => setIsShowNav(!isShowNav);
+  
   return (
     <header>
       <div className={cls.header}>

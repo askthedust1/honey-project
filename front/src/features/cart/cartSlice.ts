@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ICart, IProduct, IProductView } from '@/types';
 import { RootState } from '@/store/store';
+import { HYDRATE } from 'next-redux-wrapper';
 
 interface CartState {
   cart: ICart[];
@@ -32,12 +33,22 @@ export const cartSlice = createSlice({
         });
       }
     },
+    delProduct: (state, { payload: product }: PayloadAction<string>) => {
+      const existingIndex = state.cart.findIndex((cartItem) => cartItem.product._id === product);
+
+      state.cart.splice(existingIndex, 1);
+    },
+    decreaseProduct: (state, { payload: product }: PayloadAction<string>) => {
+      const existingIndex = state.cart.findIndex((cartItem) => cartItem.product._id === product);
+
+      state.cart[existingIndex].amount--;
+    },
     resetCart: (state) => {
       state.cart = [];
     },
 
     addToCartState: (state, action: PayloadAction<string>) => {
-      state.itemsCart.push(action.payload);
+      // state.itemsCart.push(action.payload);
     },
     clearCart: (state) => {
       state.itemsCart = [];
@@ -46,11 +57,24 @@ export const cartSlice = createSlice({
       state.dataLoaded = action.payload;
     },
   },
+  extraReducers(builder) {
+    builder.addCase<typeof HYDRATE, PayloadAction<RootState, typeof HYDRATE>>(
+      HYDRATE,
+      (state, { payload }) => ({ ...state, ...payload.cart }),
+    );
+  },
 });
 
 export const selectCart = (state: RootState) => state.cart.cart;
-export const { addProduct, resetCart, addToCartState, clearCart, setProductsDataLoaded } =
-  cartSlice.actions;
+export const {
+  addProduct,
+  decreaseProduct,
+  delProduct,
+  resetCart,
+  addToCartState,
+  clearCart,
+  setProductsDataLoaded,
+} = cartSlice.actions;
 
 export const selectProductsDataLoaded = (state: RootState) => state.cart.dataLoaded;
 export const selectCartItems = (state: RootState) => state.cart.itemsCart;
