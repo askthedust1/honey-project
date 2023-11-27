@@ -50,7 +50,12 @@ const Login: React.FC<Props> = ({ containerRef }) => {
           </div>
           <div className={acc.formGroup}>
             <label htmlFor="password">Пароль</label>
-            <input onChange={inputChangeHandler} type="text" name="password" placeholder="Пароль" />
+            <input
+              onChange={inputChangeHandler}
+              type="password"
+              name="password"
+              placeholder="Пароль"
+            />
           </div>
           <div className={acc.footer}>
             <button disabled={loading} type="submit" className={acc.btn}>

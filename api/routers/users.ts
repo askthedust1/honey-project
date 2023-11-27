@@ -93,20 +93,30 @@ usersRouter.delete('/sessions', async (req, res, next) => {
 
 usersRouter.post('/sessions', async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const userCheck = await User.findOne({ email: req.body.email });
 
-    if (!user) {
+    if (!userCheck) {
       return res.status(400).send({ error: 'Неправильный логин или пароль!' });
     }
 
-    const isMatch = await user.checkPassword(req.body.password);
+    const isMatch = await userCheck.checkPassword(req.body.password);
 
     if (!isMatch) {
       return res.status(400).send({ error: 'Неправильный логин или пароль!' });
     }
 
-    user.generateToken();
-    await user.save();
+    userCheck.passwordConfirm = userCheck.password;
+    userCheck.generateToken();
+    await userCheck.save();
+
+    const user = {
+      _id: userCheck._id,
+      email: userCheck.email,
+      role: userCheck.role,
+      token: userCheck.token,
+      displayName: userCheck.displayName,
+      phone: userCheck.phone,
+    }
 
     return res.send({ message: 'Email and password correct!', user });
   } catch (e) {
