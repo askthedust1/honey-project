@@ -18,9 +18,9 @@ const Header = () => {
   const { t } = useTranslation('header');
   const cart = useAppSelector(selectCart);
   const toggleNav = () => setIsShowNav(!isShowNav);
-  
+
   return (
-    <header>
+    <header style={{ position: 'sticky', top: '0', zIndex: '100' }}>
       <div className={cls.header}>
         <Link href={'/'}>
           <img src={logo.src} alt={'Aman Kyrgyz Honey logo'} className={cls.logo} />

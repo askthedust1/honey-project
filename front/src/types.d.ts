@@ -21,7 +21,6 @@ export interface LoginMutation {
 export interface IUser {
   _id: string;
   email: string;
-  password: string;
   token: string;
   role: string;
   displayName: string;

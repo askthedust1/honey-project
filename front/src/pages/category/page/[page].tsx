@@ -10,15 +10,18 @@ import { useRouter } from 'next/router';
 import Pagination from '@/components/UI/pagination/Pagination';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import axiosApi from '@/axiosApi';
+import { selectCategories } from '@/features/categories/categoriesSlice';
 
 const ProductByCategoryPage = () => {
   const router = useRouter();
+  const categories = useAppSelector(selectCategories);
+  const category = categories.find((obj) => obj._id === router.query.cId);
 
   const totalPagesState = useAppSelector(selectTotalPages);
 
   return (
     <>
-      <ProductsAll />
+      <ProductsAll pageName={category?.title} />
       {totalPagesState > 0 ? (
         <Pagination
           productsActive={false}

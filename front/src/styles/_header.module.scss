@@ -3,15 +3,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 9px 20px;
+  padding: 9px 40px;
   max-width: 1624px;
-  margin: 0 auto;
+  margin: 10px auto 0;
   position: relative;
+  background: #FCF8F5;
+  border-radius: 0 0 20px 20px;
 }
 
 .logo {
-  width: 169px;
-  height: 68px;
+  width: 159px;
+  height: 58px;
   cursor: pointer;
   flex: 1;
 }
@@ -45,7 +47,7 @@
 
   &_item {
     cursor: pointer;
-    font-size: 20px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 700;
     position: relative;
@@ -86,7 +88,7 @@
 .contact {
   padding-left: 25px;
   color: #5A3733;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   position: relative;
   @include mix.md2 {
@@ -111,7 +113,7 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 10.5px;
+    top: 3px;
     height: 37px;
     width: 30px;
     background: url("../assets/images/basket.svg") no-repeat center;
