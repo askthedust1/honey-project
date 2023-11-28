@@ -54,6 +54,7 @@ const run = async () => {
   const [honey, herbs, driedFruits] = await Category.create(
     {
       image: 'fixtures/honey2.jpeg',
+      isActive: true,
       translations: {
         en: {
           title: 'Honey',
@@ -74,6 +75,7 @@ const run = async () => {
     },
     {
       image: 'fixtures/herbs_category.svg',
+      isActive: false,
       translations: {
         en: {
           title: 'Herbs',
@@ -94,6 +96,7 @@ const run = async () => {
     },
     {
       image: 'fixtures/fruits_category.svg',
+      isActive: false,
       translations: {
         en: {
           title: 'Dried fruits',

@@ -101,4 +101,24 @@ categoriesRouter.delete('/:id', auth, permit('admin'), async (req, res, next) =>
   }
 });
 
+categoriesRouter.patch('/:id', auth, permit('admin'), async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const category = await Category.findById(id);
+
+    if (!category) {
+      return res.status(404).send('Not found!');
+    }
+
+    await Category.findByIdAndUpdate(id, {
+      isActive: !category.isActive,
+    });
+
+    return res.send(category);
+  } catch (e) {
+    return res.status(500).send('error');
+  }
+});
+
 export default categoriesRouter;
