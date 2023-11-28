@@ -20,11 +20,11 @@ const ProductPage = () => {
   );
 };
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
-  await store.dispatch(fetchCategories());
-
   const currentPage = context.params?.page;
+
   const cookies = context.req.headers.cookie;
   const { locale } = context;
+  await store.dispatch(fetchCategories({ lang: locale }));
   const productsDataLoaded = store.getState().cart.dataLoaded;
 
   if (cookies && !productsDataLoaded) {

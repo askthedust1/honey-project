@@ -26,7 +26,7 @@ const Home = () => {
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
 
-  await store.dispatch(fetchCategories());
+  await store.dispatch(fetchCategories({ lang: locale }));
   await store.dispatch(fetchBanners());
   await store.dispatch(fetchBestsellers('hit'));
 
