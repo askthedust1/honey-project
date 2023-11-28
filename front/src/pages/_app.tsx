@@ -12,6 +12,7 @@ import Footer from '@/components/UI/footer/Footer';
 
 const App = ({ Component, ...rest }: AppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest);
+
   return (
     <Provider store={store}>
       <Header />

@@ -16,7 +16,7 @@ $color-icon-price: #FF8F31;
 }
 
 .box {
-  margin: 0 auto;
+  margin: 0 auto 0 240px;
 }
 
 .list {
@@ -27,8 +27,23 @@ $color-icon-price: #FF8F31;
   margin-bottom: 60px;
 }
 
+.content {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.titleBnr {
+  font-size: 40px;
+  color: white;
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .title {
-  margin: 30px auto 15px 40px;
+  margin: 20px auto 15px 40px;
   color: $color-text;
   text-transform: uppercase;
   @include mix.md2 {
@@ -37,26 +52,70 @@ $color-icon-price: #FF8F31;
   }
 }
 
-.card, .btn_block, .card_block {
+.bnr {
+  max-width: 1100px;
+  margin-left: 40px;
+}
+
+.card_block {
+  margin-bottom: 20px;
+  //box-shadow: 0 6px 6px 0 #00000060;
+  //border-radius: 39px;
+}
+
+.btn_block {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
   display: flex;
   flex-direction: column;
   width: 295px;
-  height: auto;
-  margin: 0 20px 20px;
+  height: 375px;
+  margin: 0 10px;
+}
+
+.card_block:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 6px 0 #00000060;
+  border-radius: 39px;
 }
 
 .btn_block {
   margin-top: auto;
+  background: $color-icon-price;
+  border-radius: 0 0 35px 35px;
+}
+
+.btn_prod {
+  display: inline-block;
+  padding: 16px 34px;
+  border-radius: 0 0 12px 12px;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  transition: .3s;
+
+  &:hover {
+    background: $color-text;
+    border-radius: 0 0 35px 35px;
+    color: white;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 .imgContainer {
-  border: 1px solid $color-card-border;
   border-radius: 39px;
   overflow: hidden;
-  background-color: $color-card-bg;
   width: 295px;
   height: auto;
-  box-shadow: 0 4px 4px 0 #00000040;
   transition: all 0.3s;
   position: relative;
   padding-top: 12px;
@@ -68,10 +127,10 @@ $color-icon-price: #FF8F31;
   }
 }
 
-.imgContainer:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 6px 0 #00000060;
-}
+//.imgContainer:hover {
+//  transform: scale(1.03);
+//  box-shadow: 0 6px 6px 0 #00000060;
+//}
 
 .cartIcon {
   width: 55px;
@@ -94,7 +153,6 @@ $color-icon-price: #FF8F31;
   flex-direction: column;
   justify-content: space-between;
   margin-top: auto;
-  padding: 10px;
   text-align: center;
   text-transform: uppercase;
 

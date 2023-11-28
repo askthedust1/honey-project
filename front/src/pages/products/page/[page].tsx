@@ -7,7 +7,7 @@ import { useAppSelector } from '@/store/hook';
 import { selectTotalPages } from '@/features/products/productsSlice';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
-import { addToCart, setProductsDataLoaded } from '@/features/cart/cartSlice';
+import { addToCartState, setProductsDataLoaded } from '@/features/cart/cartSlice';
 
 const ProductPage = () => {
   const totalPagesState = useAppSelector(selectTotalPages);
@@ -45,7 +45,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
 
         if (parsedCart && parsedCart.length > 0) {
           for (let i = 0; i < parsedCart.length; i++) {
-            store.dispatch(addToCart(parsedCart[i]));
+            store.dispatch(addToCartState(parsedCart[i]));
           }
         }
         store.dispatch(setProductsDataLoaded(true));

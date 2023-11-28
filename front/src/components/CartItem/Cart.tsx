@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
@@ -10,7 +11,7 @@ import {
   setProductsDataLoaded,
 } from '@/features/cart/cartSlice';
 
-const Cart = () => {
+const CartEl = () => {
   const dispatch = useAppDispatch();
   const userId = Cookies.get('userId') || generateUserId();
   const cartCookieKey = `cart-${userId}`;
@@ -38,7 +39,7 @@ const Cart = () => {
       }
       dispatch(setProductsDataLoaded(true));
     }
-  }, [dispatch, productsDataLoaded]);
+  }, [cartCookieKey, dispatch, productsDataLoaded]);
 
   useEffect(() => {
     // Сохранить данные корзины в куки при каждом изменении cartItems
@@ -53,4 +54,4 @@ const Cart = () => {
   return <span>{cartItems.length}</span>;
 };
 
-export default Cart;
+export default CartEl;

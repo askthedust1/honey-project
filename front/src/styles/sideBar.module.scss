@@ -6,6 +6,13 @@ $color-title: #FF8F31;
 .sideBar {
   min-width: 220px;
   margin: 0;
+  position: fixed;
+  z-index: 1;
+  top: 60px;
+  left: 40px;
+  background-color: #FCF8F5;
+  overflow-x: hidden;
+  padding-top: 20px;
 
   @include mix.md2 {
     margin: 0 auto;

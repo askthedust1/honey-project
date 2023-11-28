@@ -1,11 +1,10 @@
 import React from 'react';
 import { apiUrl } from '@/constants';
-// import Cart from '@/assets/images/cart.svg';
 import Link from 'next/link';
 import cls from '../../../styles/products.module.scss';
 import { useAppDispatch } from '@/store/hook';
 import { IProduct } from '@/types';
-import { addToCartState } from '@/features/cart/cartSlice';
+import { addProduct, addToCartState } from '@/features/cart/cartSlice';
 import { useTranslation } from 'next-i18next';
 
 const ProductItem: React.FC<Props> = ({ product }) => {
@@ -13,12 +12,8 @@ const ProductItem: React.FC<Props> = ({ product }) => {
 
   const { t } = useTranslation('common');
 
-  // const addToCart = () => {
-  //   dispatch(addProduct(product));
-  // };
-
-  const handleAddToCart = (productId: string) => {
-    dispatch(addToCartState(productId));
+  const addToCart = () => {
+    dispatch(addProduct(product));
   };
 
   const picture = apiUrl + '/' + product.image;
@@ -28,10 +23,6 @@ const ProductItem: React.FC<Props> = ({ product }) => {
       <Link href={'/products/' + product._id}>
         <div className={cls.card}>
           <div className={cls.imgContainer}>
-            {/*<div className={cls.cartIcon}>*/}
-            {/*  <img src={Cart.src} alt="cart" />*/}
-            {/*</div>*/}
-
             <img className={cls.cardImg} src={picture} alt={product.title} />
           </div>
           <div className={cls.content}>
@@ -40,15 +31,8 @@ const ProductItem: React.FC<Props> = ({ product }) => {
           </div>
         </div>
       </Link>
-
-      {/*<div className={cls.btn_block}>*/}
-      {/*  <button onClick={() => addToCart(product)} type="button" className="btn-primary">*/}
-      {/*    {t('add-to-basket')}*/}
-      {/*  </button>*/}
-      {/*</div>*/}
-
       <div className={cls.btn_block}>
-        <button onClick={() => handleAddToCart(product._id)} type="button" className="btn-primary">
+        <button onClick={addToCart} type="button" className={cls.btn_prod}>
           {t('add-to-basket')}
         </button>
       </div>
