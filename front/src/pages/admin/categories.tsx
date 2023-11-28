@@ -1,5 +1,4 @@
 'use client';
-import isAuth from '@/components/UI/protectedRoute/protectedRoute';
 import { wrapper } from '@/store/store';
 import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
 import axiosApi from '@/axiosApi';

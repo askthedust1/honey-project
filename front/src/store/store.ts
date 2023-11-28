@@ -9,7 +9,7 @@ import { categoriesSlice } from '@/features/categories/categoriesSlice';
 import { bannersSlice } from '@/features/banners/bannersSlice';
 import { cartSlice } from '@/features/cart/cartSlice';
 import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrapper';
-import {adminCategoriesSlice} from "@/features/adminCategories/adminCategoriesSlice";
+import { adminCategoriesSlice } from '@/features/adminCategories/adminCategoriesSlice';
 
 const usersPersistConfig = {
   key: 'honey:users',
