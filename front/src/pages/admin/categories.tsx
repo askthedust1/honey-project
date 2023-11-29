@@ -1,8 +1,15 @@
 import React from 'react';
-import isAuth from '@/components/UI/protectedRoute/ProtectedRoute';
+import { MyPage } from '@/components/common/types';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 
-const CategoriesAdminPage = () => {
-  return <div>Categories</div>;
+const CategoriesAdminPage: MyPage = () => {
+  return (
+    <ProtectedRoute>
+      <div>Categories</div>
+    </ProtectedRoute>
+  );
 };
 
-export default isAuth(CategoriesAdminPage);
+CategoriesAdminPage.Layout = 'Admin';
+
+export default CategoriesAdminPage;
