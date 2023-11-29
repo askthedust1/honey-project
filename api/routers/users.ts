@@ -124,4 +124,25 @@ usersRouter.post('/sessions', async (req, res, next) => {
   }
 });
 
+usersRouter.get('/roleCheck', async (req, res, next) => {
+  try {
+    const token = req.get('Authorization');
+    const userCheck = await User.findOne({ token });
+
+    if (!userCheck) {
+      return res.send({ message: 'Access denied!', userCheck: false });
+    }
+
+    const isAdmin = userCheck.role === 'admin';
+
+    if (!isAdmin) {
+      return res.send(400).send({ message: 'Access denied!', userCheck: false });
+    }
+
+    return res.send({ message: 'User is admin', userCheck: true });
+  } catch (e) {
+    next(e);
+  }
+});
+
 export default usersRouter;

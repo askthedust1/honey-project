@@ -1,5 +1,5 @@
 import React from 'react';
-import isAuth from '@/components/UI/protectedRoute/protectedRoute';
+import isAuth from '@/components/UI/protectedRoute/ProtectedRoute';
 
 const CategoriesAdminPage = () => {
   return <div>Categories</div>;
