@@ -6,15 +6,15 @@ import User from '../models/User';
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
-  const lang = req.headers['accept-language'] || 'ru';
+  // const lang = req.headers['accept-language'] || 'ru';
   try {
     const token = req.get('Authorization');
     const user = await User.findOne({ token });
     const filterBy = req.query.filterBy;
 
     if (user && user.role === 'admin') {
-      const result = await Product.aggregate(pipelineProduct(lang));
-      return res.send(result);
+      const products = await Product.find();
+      return res.send(products);
     }
 
     if (filterBy && filterBy === 'hit') {

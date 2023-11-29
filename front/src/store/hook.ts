@@ -1,6 +1,5 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { RootState, RootStore } from './store';
-import { ICategoryPost, IProductOne } from '@/types';
 
 // interface TranslationData {
 //   translations?: {

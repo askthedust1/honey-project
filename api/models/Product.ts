@@ -108,23 +108,21 @@ const Product = mongoose.model('Product', ProductSchema);
 //
 // const ModifyProduct = Modify.map(i => new Product(i))
 
-export const pipelineProduct = (lang: string) => [
-  {
-    $project: {
-      category: '$category',
-      image: '$image',
-      oldPrice: '$oldPrice',
-      actualPrice: '$actualPrice',
-      amount: '$amount',
-      isActive: '$isActive',
-      isHit: '$isHit',
-      datetime: '$datetime',
-      lang: lang,
-      title: `$translations.${lang}.title`,
-      description: `$translations.${lang}.description`,
-    },
+export const pipelineProduct = (lang: string) => ({
+  $project: {
+    category: '$category',
+    image: '$image',
+    oldPrice: '$oldPrice',
+    actualPrice: '$actualPrice',
+    amount: '$amount',
+    isActive: '$isActive',
+    isHit: '$isHit',
+    datetime: '$datetime',
+    lang: lang,
+    title: `$translations.${lang}.title`,
+    description: `$translations.${lang}.description`,
   },
-];
+});
 
 export const oneProduct = (lang: string, id: string) => [
   {

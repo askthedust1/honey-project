@@ -4,7 +4,7 @@ import { ICategory } from '@/types';
 
 export const fetchCategories = createAsyncThunk<ICategory[]>(
   'categories/fetchCategories',
-  async (payload) => {
+  async () => {
     const response = await axiosApi.get<ICategory[]>('/categories');
     return response.data;
   },

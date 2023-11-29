@@ -12,7 +12,6 @@ categoriesRouter.get('/', async (req, res) => {
   const lang = req.headers['accept-language'] || 'ru';
 
   try {
-    // const categories = await Category.find();
     const categories = await Category.aggregate(pipelineCategory(lang));
     const result = await categories;
 
