@@ -1,0 +1,51 @@
+.main {
+  background: #FCF8F5;
+  &_title {
+    color: #5A3733;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    li {
+      position: relative;
+      width: 222px;
+      border-radius: 15px;
+      background: #FFF center left 11px no-repeat;
+      box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.43);
+      padding: 20px 13px 20px 72px;
+      display: flex;
+      flex-direction: column;
+    }
+    &_number {
+      color: #5A3733;
+      font-size: 27px;
+      font-weight: 500;
+    }
+    &_description {
+      color: #5A3733;
+      font-size: 17px;
+      font-weight: 500;
+    }
+    .user {
+      background-image: url("../assets/images/adminIcon/userQuantityIcon.png");
+    }
+    .product {
+      background-image: url("../assets/images/adminIcon/productQuantityIcon.png");
+    }
+    .category {
+      background-image: url("../assets/images/adminIcon/categoryQuantityIcon.png");
+    }
+    .order {
+      background-image: url("../assets/images/adminIcon/orderQuantityIcon.png");
+    }
+    .sum {
+      background-image: url("../assets/images/adminIcon/sumQuantityIcon.png");
+    }
+  }
+}
