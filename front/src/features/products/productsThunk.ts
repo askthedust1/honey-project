@@ -1,12 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
 import { IProduct, IProductsOfPage, IProductView, IQueryObjectCategory } from '@/types';
+import { useProductsTranslation, useProductTranslation } from '@/features/products/productHook';
 
 export const fetchProducts = createAsyncThunk<IProductsOfPage, string>(
   'products/fetchAll',
   async (query) => {
     const productsResponse = await axiosApi.get<IProductsOfPage>(`/products?page=${query}`);
-    return productsResponse.data;
+    const { productsOfPage, totalPages, currentPage } = productsResponse.data;
+    return {
+      productsOfPage: useProductsTranslation(productsOfPage, 'kg'),
+      totalPages,
+      currentPage,
+    };
   },
 );
 
@@ -16,8 +22,12 @@ export const fetchProductsByCategory = createAsyncThunk<IProductsOfPage, IQueryO
     const productsResponse = await axiosApi.get<IProductsOfPage>(
       `/products?categoryId=${query.categoryId}&categoryPage=${query.categoryPage}`,
     );
-
-    return productsResponse.data;
+    const { productsOfPage, totalPages, currentPage } = productsResponse.data;
+    return {
+      productsOfPage: useProductsTranslation(productsOfPage, 'kg'),
+      totalPages,
+      currentPage,
+    };
   },
 );
 
@@ -25,19 +35,14 @@ export const fetchBestsellers = createAsyncThunk<IProduct[], string>(
   'products/fetchByFilter',
   async (query) => {
     const productsResponse = await axiosApi.get<IProduct[]>(`/products?filterBy=${query}`);
-    return productsResponse.data;
+    return useProductsTranslation(productsResponse.data, 'kg');
   },
 );
-
-// export const fetchProducts = createAsyncThunk<IProduct[]>('products/fetchAll', async () => {
-//   const productsResponse = await axiosApi.get<IProduct[]>('/products');
-//   return productsResponse.data;
-// });
 
 export const getProduct = createAsyncThunk<IProductView, string>(
   'products/getOne',
   async (id: string) => {
-    const response = await axiosApi(`/products/${id}`);
-    return response.data;
+    const response = await axiosApi<IProductView>(`/products/${id}`);
+    return useProductTranslation(response.data, 'ru');
   },
 );

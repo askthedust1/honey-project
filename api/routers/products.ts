@@ -85,29 +85,27 @@ productRouter.get('/', async (req, res) => {
 });
 
 productRouter.get('/:id', async (req, res) => {
-  const lang = req.headers['accept-language'] || 'ru';
   try {
     const token = req.get('Authorization');
     const user = await User.findOne({ token });
 
     const productId = req.params.id;
-    // const product = await Product.findById(productId).populate({
-    //   path: 'category',
-    //   select: ['title'],
-    //   model: Category,
-    const product = await Product.aggregate(oneProduct(lang, productId));
-    return res.send(product);
-    // if (!product) {
-    //   return res.status(404).send({ error: 'Not found' });
-    // }
-    //
-    // if (
-    //   (user && user.role === 'admin') ||
-    //   (!user && product.isActive) ||
-    //   (user && user.role === 'user' && product.isActive)
-    // ) {
-    //
-    // }
+    const product = await Product.findById(productId).populate({
+      path: 'category',
+      select: ['translations'],
+      model: Category,
+    });
+
+    if (!product) {
+      return res.status(404).send({ error: 'Not found' });
+    }
+    if (
+      (user && user.role === 'admin') ||
+      (!user && product.isActive) ||
+      (user && user.role === 'user' && product.isActive)
+    ) {
+      return res.send(product);
+    }
 
     return res.status(404).send({ error: 'Not found' });
   } catch {
