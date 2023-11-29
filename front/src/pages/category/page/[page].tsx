@@ -47,13 +47,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
       const idOfCategory = query.cId as string;
       const pageNumber = query.cPage as string;
-
       if (idOfCategory && pageNumber) {
         const iQueryObjectCategory: IQueryObjectCategory = {
           categoryId: idOfCategory,
           categoryPage: pageNumber,
         };
-
         await store.dispatch(fetchProductsByCategory(iQueryObjectCategory));
       }
 
