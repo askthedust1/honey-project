@@ -24,14 +24,49 @@ export interface IKits {
   amount: number;
   price: number;
 }
+
 export type IKitsMutation = Omit<IKits, 'price'>;
+
 export interface ITransactionPost {
   user: string;
   totalPrice: number;
   kits: IKits[];
 }
 
+export interface ICategoryPost {
+  translations: {
+    en: {
+      title: string;
+      description?: string;
+    };
+    ru: {
+      title: string;
+      description?: string;
+    };
+    kg: {
+      title: string;
+      description?: string;
+    };
+  };
+  image: string;
+}
+
 export interface IBannerPost {
+  translations: {
+    en: {
+      image?: string;
+    };
+    ru: {
+      image?: string;
+    };
+    kg: {
+      image?: string;
+    };
+  };
   description: string;
+}
+
+export interface IBanner {
   image?: string;
+  description: string;
 }
