@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   GlobalError,
+  ICheck,
   IUser,
   LoginMutation,
   RegisterMutation,
@@ -10,6 +11,7 @@ import {
 import axiosApi from '@/axiosApi';
 import { isAxiosError } from 'axios';
 import { unsetUser } from './usersSlice';
+import { RootState } from '@/store/store';
 
 export const register = createAsyncThunk<
   RegisterResponse,
@@ -49,3 +51,19 @@ export const logout = createAsyncThunk('users/logout', async (_, { dispatch }) =
 
   dispatch(unsetUser());
 });
+
+export const roleCheck = createAsyncThunk<ICheck, undefined, { state: RootState }>(
+  'users/fetchRole',
+  async (_, thunkAPI) => {
+    const user = thunkAPI.getState().users.user;
+
+    const token = user && user.token ? user.token : 'nouser';
+
+    const headers = {
+      Authorization: token,
+    };
+
+    const response = await axiosApi.get<ICheck>('/users/roleCheck', { headers });
+    return response.data;
+  },
+);

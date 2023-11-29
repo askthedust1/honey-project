@@ -5,10 +5,10 @@ import cls from './../styles/cart.module.scss';
 import { ICart } from '@/types';
 import CartItem from '@/components/CartItem/CartItem';
 import { wrapper } from '@/store/store';
-import axiosApi from '@/axiosApi';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { MyPage } from '@/components/common/types';
 
-const Cart = () => {
+const Cart: MyPage = () => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -64,6 +64,8 @@ const Cart = () => {
     </>
   );
 };
+
+Cart.Layout = 'Main';
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   return {

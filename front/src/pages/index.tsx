@@ -9,8 +9,9 @@ import React from 'react';
 import { fetchBanners } from '@/features/banners/bannersThunk';
 import axiosApi from '@/axiosApi';
 import { fetchBestsellers } from '@/features/products/productsThunk';
+import { MyPage } from '@/components/common/types';
 
-const Home = () => {
+const Home: MyPage = () => {
   return (
     <>
       <main>
@@ -22,6 +23,8 @@ const Home = () => {
     </>
   );
 };
+
+Home.Layout = 'Main';
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';

@@ -11,8 +11,9 @@ import Pagination from '@/components/UI/pagination/Pagination';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import axiosApi from '@/axiosApi';
 import { selectCategories } from '@/features/categories/categoriesSlice';
+import { MyPage } from '@/components/common/types';
 
-const ProductByCategoryPage = () => {
+const ProductByCategoryPage: MyPage = () => {
   const router = useRouter();
   const categories = useAppSelector(selectCategories);
   const category = categories.find((obj) => obj._id === router.query.cId);
@@ -34,6 +35,8 @@ const ProductByCategoryPage = () => {
     </>
   );
 };
+
+ProductByCategoryPage.Layout = 'Main';
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>

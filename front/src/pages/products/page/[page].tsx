@@ -8,8 +8,9 @@ import { selectTotalPages } from '@/features/products/productsSlice';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { addToCartState, setProductsDataLoaded } from '@/features/cart/cartSlice';
+import { MyPage } from '@/components/common/types';
 
-const ProductPage = () => {
+const ProductPage: MyPage = () => {
   const totalPagesState = useAppSelector(selectTotalPages);
 
   return (
@@ -19,6 +20,9 @@ const ProductPage = () => {
     </>
   );
 };
+
+ProductPage.Layout = 'Main';
+
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   await store.dispatch(fetchCategories());
 

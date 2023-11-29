@@ -4,8 +4,9 @@ import Register from '@/components/reg&logForms/Register';
 import acc from '@/components/reg&logForms/accounts.module.scss';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { MyPage } from '@/components/common/types';
 
-const Accounts = () => {
+const Accounts: MyPage = () => {
   const [isLoginActive, setIsLoginActive] = useState(true);
   let container = useRef<HTMLDivElement | null>(null);
   let currentRef = useRef<HTMLDivElement | null>(null);
@@ -111,5 +112,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     },
   };
 });
+
+Accounts.Layout = 'Main';
 
 export default Accounts;
