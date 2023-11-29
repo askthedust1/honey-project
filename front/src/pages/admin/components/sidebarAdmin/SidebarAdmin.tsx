@@ -25,7 +25,7 @@ const SidebarAdmin = () => {
   return (
     <div style={{ display: role && role.userCheck ? 'block' : 'none' }} className={cls.sidebar}>
       <header className={cls.sidebar_header}>
-        <Link className={cls.logo} href={'/'}>
+        <Link className={cls.logo} href={'/admin'}>
           <img src={logo.src} alt={'logo'} />
         </Link>
         <div className={cls.box}>
@@ -40,7 +40,7 @@ const SidebarAdmin = () => {
       <nav>
         <ul className={cls.list}>
           <li className={cls.main}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin'}>
               Главная панель
             </Link>
           </li>
@@ -63,35 +63,35 @@ const SidebarAdmin = () => {
             <span className={cls.list_link}>Все категории</span>
           </li>
           <li className={`${cls.detail} ${isShowCategory ? cls.detail_show : ''}`}>
-            <span className={cls.list_link}>Новая категорию</span>
+            <span className={cls.list_link}>Новая категория</span>
           </li>
           <li className={cls.banner}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin'}>
               Управление банером
             </Link>
           </li>
           <li className={cls.hit}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin/bestseller'}>
               Управление хитами
             </Link>
           </li>
           <li className={cls.order}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin'}>
               Заказы
             </Link>
           </li>
           <li className={cls.client}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin'}>
               Клиенты
             </Link>
           </li>
           <li className={cls.analytics}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin'}>
               Аналитика
             </Link>
           </li>
           <li className={cls.report}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin'}>
               Отчетность
             </Link>
           </li>
