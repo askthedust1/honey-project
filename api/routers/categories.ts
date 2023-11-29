@@ -5,6 +5,7 @@ import auth from '../middleware/auth';
 import permit from '../middleware/permit';
 import Product from '../models/Product';
 import { imagesUpload } from '../multer';
+import { ICategoryPost } from '../types';
 
 const categoriesRouter = express.Router();
 
@@ -27,7 +28,7 @@ categoriesRouter.post(
   permit('admin'),
   imagesUpload.single('image'),
   async (req, res, next) => {
-    const categoryData = {
+    const categoryData: ICategoryPost = {
       translations: req.body.translations,
       image: req.file ? req.file.filename : '',
     };
