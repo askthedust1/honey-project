@@ -5,8 +5,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import shop from '@/assets/images/shop_honey.jpeg';
 import Link from 'next/link';
+import { MyPage } from '@/components/common/types';
 
-const Contacts = () => {
+const Contacts: MyPage = () => {
   const { t } = useTranslation('common');
   return (
     <div className={cls.contacts}>
@@ -167,6 +168,8 @@ const Contacts = () => {
     </div>
   );
 };
+
+Contacts.Layout = 'Main';
 
 export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
   return {

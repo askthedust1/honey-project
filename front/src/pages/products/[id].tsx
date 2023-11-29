@@ -1,5 +1,4 @@
 import React from 'react';
-import { InferGetServerSidePropsType, NextPage } from 'next';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { wrapper } from '@/store/store';
 import { getProduct } from '@/features/products/productsThunk';
@@ -8,22 +7,17 @@ import { apiUrl } from '@/constants';
 import cls from '../../styles/product.module.scss';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { addProduct, addToCartState } from '@/features/cart/cartSlice';
+import { addProduct } from '@/features/cart/cartSlice';
+import { MyPage } from '@/components/common/types';
 
-const Product: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
+const Product: MyPage = () => {
   const product = useAppSelector(selectOneProduct);
   const { t } = useTranslation('common');
   const dispatch = useAppDispatch();
 
-  // const addToCart = () => {
-  //   if (product) {
-  //     dispatch(addProduct(product));
-  //   }
-  // };
-
-  const handleAddToCart = (productId: string) => {
+  const addToCart = () => {
     if (product) {
-      dispatch(addToCartState(productId));
+      dispatch(addProduct(product));
     }
   };
 
@@ -93,13 +87,7 @@ const Product: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> 
               </h3>
 
               {product && product.amount > 0 && (
-                // <div onClick={addToCart} className={cls.product_btns}>
-                //   <button type="button" className="btn-primary">
-                //     {t('add-to-basket')}
-                //   </button>
-                // </div>
-
-                <div onClick={() => handleAddToCart(product?._id)} className={cls.product_btns}>
+                <div onClick={() => addToCart()} className={cls.product_btns}>
                   <button type="button" className="btn-primary">
                     {t('add-to-basket')}
                   </button>
@@ -112,6 +100,8 @@ const Product: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> 
     </div>
   );
 };
+
+Product.Layout = 'Main';
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
