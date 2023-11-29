@@ -136,7 +136,7 @@ usersRouter.get('/roleCheck', async (req, res, next) => {
     const isAdmin = userCheck.role === 'admin';
 
     if (!isAdmin) {
-      return res.send(400).send({ message: 'Access denied!', userCheck: false });
+      return res.send({ message: 'Access denied!', userCheck: false });
     }
 
     return res.send({ message: 'User is admin', userCheck: true });
