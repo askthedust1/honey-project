@@ -1,20 +1,19 @@
 import express from 'express';
-import Product from '../models/Product';
+import Product, {oneProduct, pipelineProduct} from '../models/Product';
 import Category from '../models/Category';
 import User from '../models/User';
 
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
-  // const lang = req.headers['accept-language'] || 'ru';
-
+  const lang = req.headers['accept-language'] || 'ru';
   try {
     const token = req.get('Authorization');
     const user = await User.findOne({ token });
     const filterBy = req.query.filterBy;
 
     if (user && user.role === 'admin') {
-      const result = await Product.find();
+      const result = await Product.aggregate(pipelineProduct(lang));
       return res.send(result);
     }
 
@@ -86,28 +85,29 @@ productRouter.get('/', async (req, res) => {
 });
 
 productRouter.get('/:id', async (req, res) => {
+  const lang = req.headers['accept-language'] || 'ru';
   try {
     const token = req.get('Authorization');
     const user = await User.findOne({ token });
 
     const productId = req.params.id;
-    const product = await Product.findById(productId).populate({
-      path: 'category',
-      select: ['title'],
-      model: Category,
-    });
-
-    if (!product) {
-      return res.status(404).send({ error: 'Not found' });
-    }
-
-    if (
-      (user && user.role === 'admin') ||
-      (!user && product.isActive) ||
-      (user && user.role === 'user' && product.isActive)
-    ) {
-      return res.send(product);
-    }
+    // const product = await Product.findById(productId).populate({
+    //   path: 'category',
+    //   select: ['title'],
+    //   model: Category,
+    const product = await Product.aggregate(oneProduct(lang, productId));
+    return res.send(product);
+    // if (!product) {
+    //   return res.status(404).send({ error: 'Not found' });
+    // }
+    //
+    // if (
+    //   (user && user.role === 'admin') ||
+    //   (!user && product.isActive) ||
+    //   (user && user.role === 'user' && product.isActive)
+    // ) {
+    //
+    // }
 
     return res.status(404).send({ error: 'Not found' });
   } catch {

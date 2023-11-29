@@ -98,6 +98,10 @@ export interface ICategoryPost {
       title: string;
       description: string;
     };
+    kg: {
+      title: string;
+      description: string;
+    };
   };
 }
 

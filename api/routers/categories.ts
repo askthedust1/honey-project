@@ -9,14 +9,14 @@ import { imagesUpload } from '../multer';
 const categoriesRouter = express.Router();
 
 categoriesRouter.get('/', async (req, res) => {
-  // const lang = req.headers['accept-language'] || 'ru';
+  const lang = req.headers['accept-language'] || 'ru';
 
   try {
-    const categories = await Category.find();
-    // const categories = await Category.aggregate(pipelineCategory(lang));
-    // const result = await categories;
+    // const categories = await Category.find();
+    const categories = await Category.aggregate(pipelineCategory(lang));
+    const result = await categories;
 
-    return res.send(categories);
+    return res.send(result);
   } catch (e) {
     return res.sendStatus(500);
   }
