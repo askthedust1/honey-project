@@ -14,8 +14,13 @@ const productAdminRouter = express.Router();
 productAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
   // const lang = req.headers['accept-language'] || 'ru';
   try {
-    const result = await Product.find();
-    return res.send(result);
+    if (req.query.category) {
+      const result = await Product.find({ category: req.query.category });
+      return res.send(result);
+    } else {
+      const result = await Product.find();
+      return res.send(result);
+    }
   } catch (error) {
     console.error('Error fetching products:', error);
     return res.status(500).send('Internal Server Error');

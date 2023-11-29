@@ -1,0 +1,151 @@
+.container {
+  max-width: 1624px;
+  min-height: 400px;
+  display: flex;
+  margin: 20px auto;
+  color: #5A3733;
+  .sidebar {
+    width: 361px;
+    height: auto;
+    background-color: #FFFFFF;
+  }
+  .productsBlock {
+    width: 1283px;
+    height: auto;
+    background-color: #FCF8F5;
+
+    .adminProductsMainTitle {
+      margin: 20px 0 0 30px;
+      font-weight: 500;
+    }
+    .adminProductsNav {
+      display: flex;
+      background-color: #FFFFFF;
+      border-radius: 15px;
+      margin: 20px 26px 16px;
+      padding: 16px 20px;
+      box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+      select {
+        font-family: 'Montserrat', sans-serif;
+        padding: 11px;
+        font-size: 13px;
+        color: #5A3733;
+        font-weight: 400;
+        letter-spacing: 0.25px;
+        border: 0.5px solid #5A3733;
+        border-radius: 4px;
+        background-color: #fff;
+        width: 265px;
+        margin: 0 21px 0 0;
+      }
+      select:focus-visible {
+        border: 2px solid #5A3733;
+        outline: none;
+      }
+      option {
+        padding: 8px;
+        font-size: 14px;
+        background-color: #fff;
+        color: #333;
+      }
+      option:active {
+        background-color: #5A3733;
+        color: #333;
+      }
+
+      option:hover {
+        padding: 8px;
+        background-color: #f0f0f0;
+      }
+      input {
+        width: 250px;
+        background: url('../assets/images/findIcon.svg') no-repeat center right 10px;
+        height: 40px;
+        padding: 8px 40px 8px 10px;
+        border: 0.5px solid #5A3733;
+        border-radius: 4px;
+        margin: 0 67px 0 0;
+      }
+      input::placeholder {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+        letter-spacing: 0.25px;
+        font-size: 13px;
+        color: #5A3733;
+      }
+      input:focus-visible {
+        border: 2px solid #5A3733;
+        outline: none;
+      }
+      .adminProductsPagination {
+        display: flex;
+        margin: 8px 0 0 0;
+        font-size: 14px;
+        .arrowToLeft {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: url('../assets/images/arrowToLeft.svg') no-repeat center;
+        }
+        .arrowToRight {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: url('../assets/images/arrowToRight.svg') no-repeat center;
+        }
+        p {
+          margin: 5px 5px 0;
+        }
+      }
+      .addNewProductBtn {
+        position: relative;
+        margin: 0 15px 0 auto;
+        background-color: #5A3733;
+        color: #FFFFFF;
+        width: 197px;
+        height: 40px;
+        border: none;
+        border-radius: 14px;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+        img {
+          position: absolute;
+          top: 13px;
+          left: 9px;
+          width: auto;
+        }
+      }
+
+    }
+    .adminProductsTable {
+      max-width: 1230px;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+      border-radius: 15px;
+      padding: 10px 0;
+      margin: 0 26px;
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #FFFFFF;
+      }
+      th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        font-weight: 600;
+        font-size: 12px;
+      }
+    }
+
+  }
+}
+
+
+
+

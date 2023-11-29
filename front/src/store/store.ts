@@ -9,6 +9,8 @@ import { categoriesSlice } from '@/features/categories/categoriesSlice';
 import { bannersSlice } from '@/features/banners/bannersSlice';
 import { cartSlice } from '@/features/cart/cartSlice';
 import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrapper';
+import { productsAdminSlice } from '@/features/productAdmin/productsAdminSlice';
+import { addInterceptors } from '@/axiosApi';
 
 const usersPersistConfig = {
   key: 'honey:users',
@@ -24,6 +26,7 @@ const makeStore = wrapMakeStore(() => {
     [categoriesSlice.name]: categoriesSlice.reducer,
     [bannersSlice.name]: bannersSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,
+    [productsAdminSlice.name]: productsAdminSlice.reducer,
     [usersSlice.name]: isServer
       ? usersSlice.reducer
       : (persistReducer(usersPersistConfig, usersSlice.reducer) as Reducer),
@@ -46,6 +49,7 @@ const makeStore = wrapMakeStore(() => {
       );
     },
   });
+  addInterceptors(store);
 
   if (!isServer) {
     // @ts-expect-error
