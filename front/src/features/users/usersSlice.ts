@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { GlobalError, IUser, ValidationError } from '@/types';
-import { login, register } from './usersThunk';
+import { GlobalError, ICheck, IUser, ValidationError } from '@/types';
+import { login, register, roleCheck } from './usersThunk';
 import { RootState } from '@/store/store';
 
 export interface UserState {
@@ -9,6 +9,8 @@ export interface UserState {
   registerError: ValidationError | null;
   loginLoading: boolean;
   loginError: GlobalError | null;
+  isAdmin: ICheck | null;
+  isAdminLoading: boolean;
 }
 
 const initialState: UserState = {
@@ -17,6 +19,8 @@ const initialState: UserState = {
   registerError: null,
   loginLoading: false,
   loginError: null,
+  isAdmin: null,
+  isAdminLoading: true,
 };
 
 export const usersSlice = createSlice({
@@ -59,11 +63,27 @@ export const usersSlice = createSlice({
         state.loginLoading = false;
         state.loginError = error || null;
       });
+
+    builder
+      .addCase(roleCheck.pending, (state) => {
+        state.isAdminLoading = true;
+      })
+
+      .addCase(roleCheck.fulfilled, (state, { payload: userResponse }) => {
+        state.isAdminLoading = false;
+        state.isAdmin = userResponse;
+      })
+
+      .addCase(roleCheck.rejected, (state) => {
+        state.isAdminLoading = false;
+      });
   },
 });
 
 export const { unsetUser } = usersSlice.actions;
 export const selectUser = (state: RootState) => state.users.user;
+export const selectRole = (state: RootState) => state.users.isAdmin;
+export const selectRoleLoading = (state: RootState) => state.users.isAdminLoading;
 export const selectRegisterLoading = (state: RootState) => state.users.registerLoading;
 export const selectRegisterError = (state: RootState) => state.users.registerError;
 export const selectLoginLoading = (state: RootState) => state.users.loginLoading;

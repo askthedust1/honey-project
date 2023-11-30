@@ -3,21 +3,25 @@ import '@/styles/main.scss';
 import '@/styles/products.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import type { AppProps } from 'next/app';
 import { wrapper } from '@/store/store';
 import { Provider } from 'react-redux';
 import { appWithTranslation } from 'next-i18next';
-import Header from '@/components/UI/header/Header';
-import Footer from '@/components/UI/footer/Footer';
+import React from 'react';
+import { Layouts } from '@/components/common/Layouts';
+import { MyAppProps } from '@/components/common/types';
 
-const App = ({ Component, ...rest }: AppProps) => {
+const App = ({ Component, ...rest }: MyAppProps) => {
+  const Layout = Layouts[Component.Layout] ?? ((page: any) => page);
   const { store, props } = wrapper.useWrappedStore(rest);
 
   return (
     <Provider store={store}>
-      <Header />
-      <Component {...props.pageProps} />
-      <Footer />
+      <Layout>
+        <Component {...props.pageProps} />
+      </Layout>
+      {/*<Header />*/}
+      {/*<Component {...props.pageProps} />*/}
+      {/*<Footer />*/}
     </Provider>
   );
 };

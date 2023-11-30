@@ -117,3 +117,8 @@ export interface ICart {
   product: IProduct | IProductView;
   amount: number;
 }
+
+export interface ICheck {
+  userCheck: boolean;
+  message: string;
+}

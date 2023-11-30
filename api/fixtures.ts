@@ -534,15 +534,45 @@ const run = async () => {
 
   await Banner.create(
     {
-      image: 'fixtures/landing.png',
+      translations: {
+        ru: {
+          image: 'fixtures/landing.png',
+        },
+        en: {
+          image: 'fixtures/banner-en1.png',
+        },
+        kg: {
+          image: 'fixtures/banner-kg1.png',
+        },
+      },
       description: 'landing1',
     },
     {
-      image: 'fixtures/landing2.png',
+      translations: {
+        ru: {
+          image: 'fixtures/landing2.png',
+        },
+        en: {
+          image: 'fixtures/banner-en2.png',
+        },
+        kg: {
+          image: 'fixtures/banner-kg2.png',
+        },
+      },
       description: 'landing2',
     },
     {
-      image: 'fixtures/landing3.png',
+      translations: {
+        ru: {
+          image: 'fixtures/landing3.png',
+        },
+        en: {
+          image: 'fixtures/banner-en2.png',
+        },
+        kg: {
+          image: 'fixtures/banner-kg2.png',
+        },
+      },
       description: 'landing3',
     },
   );

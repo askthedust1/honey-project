@@ -1,8 +1,15 @@
 import React from 'react';
-import isAuth from '@/components/UI/protectedRoute/protectedRoute';
+import { MyPage } from '@/components/common/types';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 
-const Orders = () => {
-  return <div>Orders</div>;
+const Orders: MyPage = () => {
+  return (
+    <ProtectedRoute>
+      <div>Orders</div>
+    </ProtectedRoute>
+  );
 };
 
-export default isAuth(Orders);
+Orders.Layout = 'Admin';
+
+export default Orders;
