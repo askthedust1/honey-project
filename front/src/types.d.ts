@@ -139,3 +139,28 @@ export interface ICheck {
   userCheck: boolean;
   message: string;
 }
+
+export interface IAdminMainInfo {
+  productAmount: number,
+  categoriesAmount: number,
+  usersAmount: number,
+  transactionsAmount: number,
+  sumAmount: number,
+}
+
+export interface IAdminMainHit {
+  amount: number;
+  product: {
+    actualPrice: number;
+    image: string;
+    title:string;
+    category: {
+      translations: {
+        ru: {
+          title: string;
+        }
+      }
+    };
+  };
+  sum: number;
+}
