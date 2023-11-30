@@ -84,6 +84,7 @@ export interface ICategory {
   title: string;
   description?: string;
   image: string | '';
+  isActive: boolean;
 }
 
 export interface ICategoryPost {
@@ -105,6 +106,17 @@ export interface ICategoryPost {
   };
 }
 
+export interface IAdminCategory {
+  _id: string;
+  translations: {
+    ru: {
+      title: string;
+    };
+  };
+  image: string | '';
+  isActive: boolean;
+}
+
 export interface IBanner {
   _id: string;
   description: string;
@@ -119,4 +131,9 @@ export interface IQueryObjectCategory {
 export interface ICart {
   product: IProduct | IProductView;
   amount: number;
+}
+
+export interface ICheck {
+  userCheck: boolean;
+  message: string;
 }

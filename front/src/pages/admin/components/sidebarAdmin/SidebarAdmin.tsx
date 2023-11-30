@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, {useState} from 'react';
+import Link from "next/link";
 import logo from '@/assets/images/logo.svg';
 import cls from '../../../../styles/_sideBarAdmin.module.scss';
-import { useAppDispatch } from '@/store/hook';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { logout } from '@/features/users/usersThunk';
+import { selectRole } from '@/features/users/usersSlice';
 
 const SidebarAdmin = () => {
   const dispatch = useAppDispatch();
+  const role = useAppSelector(selectRole);
   const handleLogout = () => dispatch(logout());
   const [isShowExit, setIsShowExit] = useState<boolean>(false);
   const [isShowProduct, setIsShowProduct] = useState<boolean>(false);
@@ -21,7 +23,7 @@ const SidebarAdmin = () => {
     setIsShowProduct(false);
   };
   return (
-    <div className={cls.sidebar}>
+    <div style={{ display: role && role.userCheck ? 'block' : 'none' }} className={cls.sidebar}>
       <header className={cls.sidebar_header}>
         <Link className={cls.logo} href={'/'}>
           <img src={logo.src} alt={'logo'} />

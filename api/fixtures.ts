@@ -53,6 +53,7 @@ const run = async () => {
   const [honey, herbs, driedFruits] = await Category.create(
     {
       image: 'fixtures/honey2.jpeg',
+      isActive: true,
       translations: {
         en: {
           title: 'Honey',
@@ -73,6 +74,7 @@ const run = async () => {
     },
     {
       image: 'fixtures/herbs_category.svg',
+      isActive: false,
       translations: {
         en: {
           title: 'Herbs',
@@ -93,6 +95,7 @@ const run = async () => {
     },
     {
       image: 'fixtures/fruits_category.svg',
+      isActive: false,
       translations: {
         en: {
           title: 'Dried fruits',
@@ -221,6 +224,138 @@ const run = async () => {
       actualPrice: 300,
       amount: 20,
       image: 'fixtures/White-honey.svg',
+    },
+    {
+      title: 'Каштановый мед',
+      description:
+        'Каштановый мед считается одним из самых ценных сортов, среди всех видов меда получаемых пасечниками в разных регионах России.',
+      category: honey._id,
+      oldPrice: 500,
+      actualPrice: 500,
+      amount: 20,
+      image: 'fixtures/honey3.png',
+    },
+    {
+      title: 'Цветочный мед',
+      description:
+        'Цветочный мёд - продукт пчеловодства, в котором соединены пыльца и нектар с разных цветущих растений.',
+      category: honey._id,
+      oldPrice: 400,
+      actualPrice: 400,
+      amount: 20,
+      image: 'fixtures/honey3.png',
+    },
+    {
+      title: 'Прополисный мёд',
+      description:
+        'Насыщенный продукт, который обладает одновременно противовоспалительными, питательными и антибактериальными свойствами.',
+      category: honey._id,
+      oldPrice: 300,
+      actualPrice: 300,
+      amount: 20,
+      image: 'fixtures/White-honey.svg',
+    },
+    {
+      title: 'Травяной сбор для иммунитета',
+      description:
+        ' Этот сбор трав содержит эхинацею, шиповник и зверобой, которые способствуют укреплению иммунной системы и повышению ее защитных функций.',
+      category: herbs._id,
+      oldPrice: 200,
+      actualPrice: 200,
+      amount: 0,
+      image: 'fixtures/herbs.svg',
+    },
+    {
+      title: 'Сбор трав для пищеварения',
+      description:
+        'Этот сбор включает мяту, ромашку и фенхель, которые помогают улучшить пищеварение, снизить вздутие и уменьшить дискомфорт в желудке.',
+      category: herbs._id,
+      oldPrice: 200,
+      actualPrice: 200,
+      amount: 20,
+      image: 'fixtures/herbs.svg',
+    },
+    {
+      title: 'Березовый сбор для очищения',
+      description:
+        'Этот сбор содержит березовые почки, крапиву и зверобой, которые помогают очистить организм от токсинов, улучшить функцию почек и стимулировать мочеотделение.',
+      category: herbs._id,
+      oldPrice: 300,
+      actualPrice: 300,
+      amount: 20,
+      image: 'fixtures/herbs.svg',
+      isHit: true,
+    },
+    {
+      title: 'Сбор трав для успокоения нервной системы',
+      description:
+        'Этот сбор включает валериану, пустырник и мелиссу, которые помогают снять напряжение, улучшить сон и смягчить нервное возбуждение.',
+      category: herbs._id,
+      oldPrice: 300,
+      actualPrice: 300,
+      amount: 20,
+      image: 'fixtures/herbs.svg',
+    },
+    {
+      title: 'Ромашковый чай',
+      description:
+        'Ромашка аптечная это неприхотливое полевое растение семейства сложноцветных. Она широко распространена в Северной Америки и Евразии и встречается почти во всех регионах обоих полушарий, не считая тропического и субтропического поясов.',
+      category: herbs._id,
+      oldPrice: 100,
+      actualPrice: 100,
+      amount: 20,
+      image: 'fixtures/herbs.svg',
+    },
+    {
+      title: 'Эвкалиптовый напиток',
+      description:
+        'Эвкалипт это вечнозеленое древесное растение семейства Миртовые. Больше всего различных видов эвкалипта произрастает в Новой Зеландии, Тасмании и лесах Австралии. Некоторые его виды встречаются на Филиппинах, в Индонезии и в Новой Гвинее. В северном полушарии растет всего один вид эвкалипта – это Эвкалипт радужный.',
+      category: herbs._id,
+      oldPrice: 400,
+      actualPrice: 400,
+      amount: 20,
+      image: 'fixtures/herbs.svg',
+    },
+    {
+      title: 'Чай из лепестков роз',
+      description:
+        'Розы это не только красивые и популярные цветы с восхитительным ароматом, но и лекарственное растение.',
+      category: herbs._id,
+      oldPrice: 300,
+      actualPrice: 300,
+      amount: 20,
+      image: 'fixtures/herbs.svg',
+    },
+    {
+      title: 'Фруктовый микс "Энергия"',
+      description:
+        ' Этот сбор содержит смесь из чернослива, изюма, фиников и кураги, обогащенных витаминами и минералами, которые придают энергию и восстанавливают силы.',
+      category: driedFruits._id,
+      oldPrice: 300,
+      actualPrice: 300,
+      amount: 20,
+      isHit: true,
+      image: 'fixtures/driedFruits.svg',
+    },
+    {
+      title: 'Сухофруктовый набор "Витамины"',
+      description:
+        ' Этот набор включает в себя смесь из изюма, чернослива, кураги и вишни, богатых витаминами и антиоксидантами, которые способствуют поддержанию здоровья и укреплению иммунитета.',
+      category: driedFruits._id,
+      oldPrice: 350,
+      actualPrice: 350,
+      amount: 20,
+      image: 'fixtures/driedFruits.svg',
+    },
+    {
+      title: 'Тропический микс "Экзотика"',
+      description:
+        'Этот микс содержит смесь из сушеного ананаса, манго, банана и кокоса, создавая экзотический вкус и богатство питательных веществ тропических фруктов.',
+      category: driedFruits._id,
+      oldPrice: 400,
+      actualPrice: 400,
+      amount: 20,
+      image: 'fixtures/driedFruits.svg',
       translations: {
         en: {
           title: 'Honeeeey',
@@ -286,6 +421,27 @@ const run = async () => {
           description: 'Бал таттуу',
         },
       },
+    },
+    {
+      title: 'Ягодный сбор "Здоровье"',
+      description:
+        'Этот сбор включает в себя смесь из сушеных черники, малины, клюквы и красной смородины, обогащенных антиоксидантами, способствующими укреплению иммунной системы и поддержанию здоровья.',
+      category: driedFruits._id,
+      oldPrice: 300,
+      actualPrice: 300,
+      amount: 0,
+      isHit: true,
+      image: 'fixtures/driedFruits.svg',
+    },
+    {
+      title: 'Чай травяной сбор фруктовый ягодный "Ягодная поляна"',
+      description:
+        'Наслаждайтесь ярким и ароматным праздником вкусов с нашим фруктово-ягодным чаем "Ягодная поляна", где сочные ягоды и ароматные фрукты создают неповторимый букет удовольствия в каждом глотке.',
+      category: driedFruits._id,
+      oldPrice: 500,
+      actualPrice: 500,
+      amount: 10,
+      image: 'fixtures/driedFruits.svg',
     },
     // {
     //   title: 'Прополисный мёд',
@@ -422,6 +578,201 @@ const run = async () => {
     // },
   );
 
+  await Transaction.create(
+    {
+      user: user1._id,
+      address: 'проспект Чуй, 35',
+      kits: [
+        {
+          product: honey1._id,
+          amount: 1,
+          price: honey1.actualPrice,
+        },
+        {
+          product: honey2._id,
+          amount: 1,
+          price: honey2.actualPrice,
+        },
+        {
+          product: honey5._id,
+          amount: 1,
+          price: honey5.actualPrice,
+        },
+        {
+          product: driedFruits1._id,
+          amount: 1,
+          price: driedFruits1.actualPrice,
+        },
+      ],
+      totalPrice: 1100,
+    },
+    {
+      user: user1._id,
+      address: '6 микрорайон, 5 дом, 43 квартира',
+      kits: [
+        {
+          product: herbs3._id,
+          amount: 1,
+          price: herbs3.actualPrice,
+        },
+        {
+          product: honey2._id,
+          amount: 1,
+          price: honey2.actualPrice,
+        },
+        {
+          product: honey6._id,
+          amount: 1,
+          price: honey6.actualPrice,
+        },
+        {
+          product: driedFruits3._id,
+          amount: 1,
+          price: driedFruits3.actualPrice,
+        },
+      ],
+      totalPrice: 1200,
+    },
+    {
+      user: user1._id,
+      address: 'ул. Малдыбаева 7/1',
+      kits: [
+        {
+          product: honey4._id,
+          amount: 3,
+          price: honey4.actualPrice,
+        },
+      ],
+      totalPrice: 900,
+    },
+    {
+      user: user1._id,
+      address: 'ул. Малдыбаева 7/1',
+      kits: [
+        {
+          product: driedFruits5._id,
+          amount: 2,
+          price: driedFruits5.actualPrice,
+        },
+      ],
+      totalPrice: 500,
+    },
+    {
+      user: user1._id,
+      address: 'ул. Малдыбаева 7/1',
+      kits: [
+        {
+          product: honey7._id,
+          amount: 1,
+          price: honey7.actualPrice,
+        },
+      ],
+      totalPrice: 700,
+    },
+    {
+      user: user2._id,
+      address: 'Медерова, 35',
+      kits: [
+        {
+          product: honey4._id,
+          amount: 1,
+          price: honey4.actualPrice,
+        },
+        {
+          product: driedFruits2._id,
+          amount: 1,
+          price: driedFruits2.actualPrice,
+        },
+        {
+          product: herbs3._id,
+          amount: 1,
+          price: herbs3.actualPrice,
+        },
+      ],
+      totalPrice: 950,
+    },
+    {
+      user: user2._id,
+      address: 'Ахунбаева, 23',
+      kits: [
+        {
+          product: honey1._id,
+          amount: 2,
+          price: honey1.actualPrice,
+        },
+        {
+          product: driedFruits3._id,
+          amount: 2,
+          price: driedFruits3.actualPrice,
+        },
+      ],
+      totalPrice: 1400,
+    },
+    {
+      user: user2._id,
+      address: 'Ахунбаева, 23',
+      kits: [
+        {
+          product: herbs5._id,
+          amount: 1,
+          price: herbs5.actualPrice,
+        },
+        {
+          product: herbs6._id,
+          amount: 1,
+          price: herbs6.actualPrice,
+        },
+        {
+          product: herbs7._id,
+          amount: 1,
+          price: herbs7.actualPrice,
+        },
+        {
+          product: driedFruits3._id,
+          amount: 2,
+          price: driedFruits3.actualPrice,
+        },
+      ],
+      totalPrice: 1400,
+    },
+    {
+      user: user2._id,
+      address: 'Логвиненко, 32',
+      kits: [
+        {
+          product: herbs1._id,
+          amount: 1,
+          price: herbs1.actualPrice,
+        },
+        {
+          product: herbs2._id,
+          amount: 1,
+          price: herbs2.actualPrice,
+        },
+        {
+          product: herbs3._id,
+          amount: 1,
+          price: herbs3.actualPrice,
+        },
+        {
+          product: honey3._id,
+          amount: 1,
+          price: honey3.actualPrice,
+        },
+        {
+          product: herbs4._id,
+          amount: 1,
+          price: herbs4.actualPrice,
+        },
+        {
+          product: driedFruits4._id,
+          amount: 1,
+          price: driedFruits4.actualPrice,
+        },
+      ],
+      totalPrice: 1700,
+    },
+  );
   // await Transaction.create(
   //   {
   //     user: user1._id,
@@ -620,15 +971,45 @@ const run = async () => {
 
   await Banner.create(
     {
-      image: 'fixtures/landing.png',
+      translations: {
+        ru: {
+          image: 'fixtures/landing.png',
+        },
+        en: {
+          image: 'fixtures/banner-en1.png',
+        },
+        kg: {
+          image: 'fixtures/banner-kg1.png',
+        },
+      },
       description: 'landing1',
     },
     {
-      image: 'fixtures/landing2.png',
+      translations: {
+        ru: {
+          image: 'fixtures/landing2.png',
+        },
+        en: {
+          image: 'fixtures/banner-en2.png',
+        },
+        kg: {
+          image: 'fixtures/banner-kg2.png',
+        },
+      },
       description: 'landing2',
     },
     {
-      image: 'fixtures/landing3.png',
+      translations: {
+        ru: {
+          image: 'fixtures/landing3.png',
+        },
+        en: {
+          image: 'fixtures/banner-en2.png',
+        },
+        kg: {
+          image: 'fixtures/banner-kg2.png',
+        },
+      },
       description: 'landing3',
     },
   );

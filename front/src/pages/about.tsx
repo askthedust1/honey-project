@@ -11,8 +11,9 @@ import jia from '@/assets/images/partners/jia.png';
 import plata_kg from '@/assets/images/partners/plata_kg.png';
 import usaid from '@/assets/images/partners/usaid.png';
 import { useTranslation } from 'next-i18next';
+import { MyPage } from '@/components/common/types';
 
-const About = () => {
+const About: MyPage = () => {
   const { t } = useTranslation('common');
   return (
     <div className={cls.about}>
@@ -231,6 +232,8 @@ const About = () => {
     </div>
   );
 };
+
+About.Layout = 'Main';
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   return {
