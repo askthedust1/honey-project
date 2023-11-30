@@ -124,11 +124,11 @@ export const pipelineProduct = (lang: string) => ({
   },
 });
 
-export const oneProduct = (lang: string, id: string) => [
-  {
-    $match: {
-      _id: id,
-    },
-  },
-];
+// export const oneProduct = (lang: string, id: string) => [
+//   {
+//     $match: {
+//       _id: id,
+//     },
+//   },
+// ];
 export default Product;

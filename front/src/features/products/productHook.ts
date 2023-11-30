@@ -8,7 +8,7 @@ interface FitProducts extends IProduct {
   };
 }
 
-export const useProductsTranslation = (data: FitProducts[], lang: string | undefined) => {
+export const useProductsTranslation = (data: FitProducts[], lang?: string | undefined) => {
   return data.map((i) => {
     const translations = i.translations ? i.translations[lang || 'ru'] : null;
     const fit = {
@@ -29,7 +29,7 @@ interface FitOneProduct extends IProductView {
   };
 }
 
-export const useProductTranslation = (data: FitOneProduct, lang: string | undefined) => {
+export const useProductTranslation = (data: FitOneProduct, lang?: string | undefined) => {
   const translations = data.translations ? data.translations[lang || 'ru'] : null;
   const category = data.category.translations ? data.category.translations[lang || 'ru'] : null;
   const fit = {

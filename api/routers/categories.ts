@@ -1,5 +1,5 @@
 import * as express from 'express';
-import Category, { pipelineCategory } from '../models/Category';
+import Category from '../models/Category';
 
 const categoriesRouter = express.Router();
 

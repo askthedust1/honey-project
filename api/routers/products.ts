@@ -1,5 +1,5 @@
 import express from 'express';
-import Product, {oneProduct, pipelineProduct} from '../models/Product';
+import Product from '../models/Product';
 import Category from '../models/Category';
 import User from '../models/User';
 
