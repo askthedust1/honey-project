@@ -12,13 +12,20 @@ import * as fs from 'fs';
 const productAdminRouter = express.Router();
 
 productAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
-  // const lang = req.headers['accept-language'] || 'ru';
   try {
     if (req.query.category) {
-      const result = await Product.find({ category: req.query.category });
+      const result = await Product.find({ category: req.query.category }).populate({
+        path: 'category',
+        select: ['translations'],
+        model: Category,
+      });
       return res.send(result);
     } else {
-      const result = await Product.find();
+      const result = await Product.find().populate({
+        path: 'category',
+        select: ['translations'],
+        model: Category,
+      });
       return res.send(result);
     }
   } catch (error) {
@@ -32,7 +39,7 @@ productAdminRouter.get('/:id', auth, permit('admin'), async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId).populate({
       path: 'category',
-      select: ['title'],
+      select: ['translations'],
       model: Category,
     });
 

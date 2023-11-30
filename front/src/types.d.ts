@@ -58,6 +58,7 @@ export interface IProductView {
   amount: number;
   isActive: boolean;
   isHit: boolean;
+  datetime: string;
 }
 
 export interface IProduct {
@@ -97,6 +98,10 @@ export interface ICategoryPost {
       description: string;
     };
     ru: {
+      title: string;
+      description: string;
+    };
+    kg: {
       title: string;
       description: string;
     };
