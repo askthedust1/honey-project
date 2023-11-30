@@ -11,6 +11,7 @@ import { cartSlice } from '@/features/cart/cartSlice';
 import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrapper';
 import { productsAdminSlice } from '@/features/productAdmin/productsAdminSlice';
 import { addInterceptors } from '@/axiosApi';
+import { adminCategoriesSlice } from '@/features/adminCategories/adminCategoriesSlice';
 
 const usersPersistConfig = {
   key: 'honey:users',
