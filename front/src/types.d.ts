@@ -58,6 +58,7 @@ export interface IProductView {
   amount: number;
   isActive: boolean;
   isHit: boolean;
+  datetime: string;
 }
 
 export interface IProduct {

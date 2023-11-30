@@ -1,28 +1,33 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProduct } from '@/types';
+import { IProductView } from '@/types';
 import axiosApi from '@/axiosApi';
+import {
+  useProductsAdminTranslation,
+  useProductsTranslation,
+  useProductTranslation,
+} from '@/features/products/productHook';
 
-export const fetchAllProductsForAdmin = createAsyncThunk<IProduct[]>(
+export const fetchAllProductsForAdmin = createAsyncThunk<IProductView[]>(
   'adminProducts/fetchAdmin',
   async () => {
-    const productsResponse = await axiosApi.get<IProduct[]>('/admin');
-    return productsResponse.data;
+    const productsResponse = await axiosApi.get<IProductView[]>('/admin');
+    return useProductsAdminTranslation(productsResponse.data, 'ru');
   },
 );
 
-export const fetchAllProductsForAdminByCategory = createAsyncThunk<IProduct[], string>(
+export const fetchAllProductsForAdminByCategory = createAsyncThunk<IProductView[], string>(
   'adminProducts/fetchByCategoryAdmin',
   async (id) => {
-    const productsResponse = await axiosApi.get<IProduct[]>(`/admin?category=${id}`);
-    return productsResponse.data;
+    const productsResponse = await axiosApi.get<IProductView[]>(`/admin?category=${id}`);
+    return useProductsAdminTranslation(productsResponse.data, 'ru');
   },
 );
 
-export const fetchOneProductForAdmin = createAsyncThunk<IProduct, string>(
+export const fetchOneProductForAdmin = createAsyncThunk<IProductView, string>(
   'adminProducts/fetchOneByAdmin',
   async (id) => {
-    const productsResponse = await axiosApi.get<IProduct>(`/admin/${id}`);
-    return productsResponse.data;
+    const productResponse = await axiosApi.get<IProductView>(`/admin/${id}`);
+    return useProductTranslation(productResponse.data, 'ru');
   },
 );
 

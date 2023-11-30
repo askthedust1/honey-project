@@ -109,7 +109,7 @@ const ProductsAdminPage: MyPage = () => {
                       <img src={apiUrl + '/' + product.image} alt="image" />
                     </td>
                     <td>{product.title}</td>
-                    <td>{product.category}</td>
+                    <td>{product.category.title}</td>
                     <td>{product.oldPrice}</td>
                     <td>{product.actualPrice}</td>
                     <td>{product.amount}</td>
@@ -166,7 +166,7 @@ ProductsAdminPage.Layout = 'Admin';
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
-  await store.dispatch(fetchCategories());
+  await store.dispatch(fetchCategories(''));
 
   return {
     props: {

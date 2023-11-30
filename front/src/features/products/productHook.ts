@@ -21,6 +21,24 @@ export const useProductsTranslation = (data: FitProducts[], lang?: string | unde
   });
 };
 
+export const useProductsAdminTranslation = (data: FitOneProduct[], lang?: string | undefined) => {
+  return data.map((i) => {
+    const translations = i.translations ? i.translations[lang || 'ru'] : null;
+    const category = i.category.translations ? i.category.translations[lang || 'ru'] : null;
+    const fit = {
+      ...i,
+      ...translations,
+      category: {
+        _id: i.category._id,
+        title: category.title,
+      },
+    };
+
+    delete fit.translations;
+    return fit;
+  });
+};
+
 interface FitOneProduct extends IProductView {
   translations?: {
     [key: string]: {
