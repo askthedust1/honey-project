@@ -5,6 +5,10 @@ const CategorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isActive: {
+    type: Boolean,
+    default: false,
+  },
   translations: {
     en: {
       title: {
@@ -39,6 +43,7 @@ export const pipelineCategory = (lang: string) => [
       lang: lang,
       title: `$translations.${lang}.title`,
       description: `$translations.${lang}.description`,
+      isActive: '$isActive',
     },
   },
 ];

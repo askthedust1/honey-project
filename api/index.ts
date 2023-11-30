@@ -9,6 +9,7 @@ import transactionsRouter from './routers/transactions';
 import collectionRouter from './routers/collections';
 import bannersRouter from './routers/banners';
 import productAdminRouter from './adminRouters/productsAdmin';
+import categoriesAdminRouter from './adminRouters/categoriesAdmin';
 
 const app = express();
 const port = 8000;
@@ -23,6 +24,7 @@ app.use('/transactions', transactionsRouter);
 app.use('/banners', bannersRouter);
 app.use('/collections', collectionRouter);
 app.use('/admin', productAdminRouter);
+app.use('/adminCategories', categoriesAdminRouter);
 const run = async () => {
   await mongoose.connect(config.db);
 
