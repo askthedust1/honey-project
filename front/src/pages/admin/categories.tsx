@@ -1,15 +1,26 @@
 'use client';
 import { wrapper } from '@/store/store';
-import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
+import {
+  fetchAdminCategories,
+  patchCategory,
+} from '@/features/adminCategories/adminCategoriesThunk';
 import axiosApi from '@/axiosApi';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useAppSelector } from '@/store/hook';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
 import cls from '../../styles/_categories.module.scss';
 import { apiUrl } from '@/constants';
+import { useRouter } from 'next/navigation';
 
 const CategoriesAdminPage = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const categories = useAppSelector(selectAdminCategories);
+
+  const categoryPatch = async (id: string) => {
+    await dispatch(patchCategory(id));
+    router.push('/admin/categories');
+  };
 
   return (
     <div className={cls.categories_page}>
@@ -47,6 +58,7 @@ const CategoriesAdminPage = () => {
                   </td>
                   <td>
                     <button
+                      onClick={() => categoryPatch(item._id)}
                       style={{
                         backgroundColor: item.isActive
                           ? 'rgba(39, 174, 96, 0.20)'

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
 import { ICategory } from '@/types';
+import { RootState } from '@/store/store';
 
 export const fetchAdminCategories = createAsyncThunk<ICategory[]>(
   'adminCategories/fetchAdminCategories',
@@ -10,9 +11,15 @@ export const fetchAdminCategories = createAsyncThunk<ICategory[]>(
   },
 );
 
-export const patchCategory = createAsyncThunk<void, string>(
+export const patchCategory = createAsyncThunk<void, string, { state: RootState }>(
   'adminCategories/patchCategory',
-  async (id) => {
-    await axiosApi.patch(`/categories/${id}`);
+  async (id, thunkApi) => {
+    const usersState = thunkApi.getState().users;
+    const token = usersState.user?.token;
+    await axiosApi.patch(
+      `/categories/${id}`,
+      { headers: { Authorization: token } },
+      { headers: { Authorization: token } },
+    );
   },
 );
