@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, {useState} from 'react';
+import Link from "next/link";
 import logo from '@/assets/images/logo.svg';
 import cls from '../../../../styles/_sideBarAdmin.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';

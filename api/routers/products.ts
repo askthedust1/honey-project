@@ -86,14 +86,13 @@ productRouter.get('/:id', async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId).populate({
       path: 'category',
-      select: ['title'],
+      select: ['translations'],
       model: Category,
     });
 
     if (!product) {
       return res.status(404).send({ error: 'Not found' });
     }
-
     if (
       (user && user.role === 'admin') ||
       (!user && product.isActive) ||
