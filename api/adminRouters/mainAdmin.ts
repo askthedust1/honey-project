@@ -40,11 +40,11 @@ mainAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 });
 
-mainAdminRouter.get('/hit',  async (req, res) => {
+mainAdminRouter.get('/hit', auth, permit('admin'), async (req, res) => {
     try {
         const transactions = await Transaction.find().populate({
             path: 'kits.product',
-            select: 'actualPrice image',
+            select: 'actualPrice image title',
             populate: {
                 path: 'category',
                 select: 'translations.ru.title',

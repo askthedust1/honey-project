@@ -1,14 +1,18 @@
 import React, {useEffect} from 'react';
 import cls from '../../../styles/_adminMainPage.module.scss';
-import {selectAdminMain} from "@/features/adminMain/adminMainSlice";
+import {selectAdminMain, selectAdminMainHits} from "@/features/adminMain/adminMainSlice";
 import {useAppDispatch, useAppSelector} from "@/store/hook";
-import {fetchAdminMain} from "@/features/adminMain/adminMainThunk";
+import {fetchAdminMain, fetchAdminMainHit} from "@/features/adminMain/adminMainThunk";
+import {apiUrl} from "@/constants";
 
 const AdminMain = () => {
     const dispatch = useAppDispatch();
     const info = useAppSelector(selectAdminMain);
+    const hits = useAppSelector(selectAdminMainHits);
+    console.log(hits);
     useEffect(() => {
         dispatch(fetchAdminMain());
+        dispatch(fetchAdminMainHit());
     }, [dispatch]);
     return (
         <div className={cls.main}>
@@ -35,6 +39,35 @@ const AdminMain = () => {
                     <span className={cls.list_description}>общая сумма</span>
                 </li>
             </ul>
+            <div className={cls.hit}>
+                <h3 className={cls.hit_title}>Список лучших продуктов</h3>
+                <table className={cls.table}>
+                    <thead>
+                    <tr className={cls.lineHead}>
+                        <th>Фотография</th>
+                        <th>Название</th>
+                        <th>Категория</th>
+                        <th>Цена</th>
+                        <th>Продано товара </th>
+                        <th>Общая сумма</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {hits.map(hit => (
+                        <tr className={cls.lineBody}>
+                            <td><div className={cls.imgWrap}>
+                                <img src={apiUrl + '/' + hit.product.image} alt={hit.product.title}/>
+                            </div></td>
+                            <td>{hit.product.title}</td>
+                            <td>{hit.product.category.translations.ru.title}</td>
+                            <td>{hit.product.actualPrice}</td>
+                            <td>{hit.amount}</td>
+                            <td>{hit.sum}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

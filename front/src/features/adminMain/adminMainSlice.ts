@@ -1,11 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {HYDRATE} from "next-redux-wrapper";
 import {RootState} from "@/store/store";
-import {IAdminMainInfo} from "@/types";
-import {fetchAdminMain} from "@/features/adminMain/adminMainThunk";
+import {IAdminMainHit, IAdminMainInfo} from "@/types";
+import {fetchAdminMain, fetchAdminMainHit} from "@/features/adminMain/adminMainThunk";
 
 interface AdminMainState {
     items: IAdminMainInfo;
+    hits: IAdminMainHit[];
     loading: boolean;
 }
 
@@ -17,6 +18,7 @@ const initialState: AdminMainState = {
         transactionsAmount: 0,
         sumAmount: 0,
     },
+    hits: [],
     loading: false,
 };
 
@@ -39,10 +41,21 @@ export const adminMainSlice = createSlice({
         builder.addCase(fetchAdminMain.rejected, (state) => {
             state.loading = false;
         });
+        builder.addCase(fetchAdminMainHit.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(fetchAdminMainHit.fulfilled, (state, { payload: hits }) => {
+            state.hits = hits;
+            state.loading = false;
+        });
+        builder.addCase(fetchAdminMainHit.rejected, (state) => {
+            state.loading = false;
+        });
     },
 });
 
 export const adminMainReducer = adminMainSlice.reducer;
 export const selectAdminMain = (state: RootState) => state.adminMain.items;
+export const selectAdminMainHits = (state: RootState) => state.adminMain.hits;
 
 export const selectAdminMainLoading = (state: RootState) => state.adminMain.loading;

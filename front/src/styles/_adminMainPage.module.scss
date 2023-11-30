@@ -48,4 +48,62 @@
       background-image: url("../assets/images/adminIcon/sumQuantityIcon.png");
     }
   }
+  .hit {
+    margin-top: 34px;
+    padding: 14px 30px;
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+    &_title {
+      color: #5A3733;
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 8px 10px;
+      border-radius: 4px;
+      margin-bottom: 26px;
+      background: rgba(90, 55, 51, 0.11);
+    }
+    .table {
+      border-collapse: separate;
+      th, td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        color: #5A3733;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 21px;
+        letter-spacing: 0.1px;
+      }
+      thead {
+
+        td {
+          font-size: 16px;
+          font-weight: 700;
+        }
+      }
+      tbody {
+        .imgWrap {
+          height: 95px;
+          border-radius: 15px;
+          border: 1px solid rgba(90, 55, 51, 0.11);
+          text-align: center;
+          img {
+            height: 86px;
+            width: auto;
+          }
+        }
+        .lineBody {
+          border-bottom: 1px solid rgba(90, 55, 51, 0.11);
+          padding: 8px 20px;
+
+        }
+        td {
+          margin: 8px 0;
+          border-bottom: 1px solid rgba(90, 55, 51, 0.11);
+        }
+      }
+    }
+  }
 }

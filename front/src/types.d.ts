@@ -142,3 +142,20 @@ export interface IAdminMainInfo {
   transactionsAmount: number,
   sumAmount: number,
 }
+
+export interface IAdminMainHit {
+  amount: number;
+  product: {
+    actualPrice: number;
+    image: string;
+    title:string;
+    category: {
+      translations: {
+        ru: {
+          title: string;
+        }
+      }
+    };
+  };
+  sum: number;
+}
