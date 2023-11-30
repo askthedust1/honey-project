@@ -1,16 +1,14 @@
-.container {
+.mainAdminLayout {
   max-width: 1624px;
   min-height: 400px;
   display: flex;
-  margin: 20px auto;
+  margin: 0 auto;
   color: #5A3733;
-  .sidebar {
-    width: 361px;
-    height: auto;
-    background-color: #FFFFFF;
-  }
+}
+
+.container {
   .productsBlock {
-    width: 1283px;
+    width: 1200px;
     height: auto;
     background-color: #FCF8F5;
 
