@@ -71,6 +71,7 @@ export interface IProduct {
   amount: number;
   isActive: boolean;
   isHit: boolean;
+  datetime: string;
 }
 
 export interface IProductsOfPage {

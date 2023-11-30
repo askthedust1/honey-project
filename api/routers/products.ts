@@ -7,15 +7,9 @@ const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
   // const lang = req.headers['accept-language'] || 'ru';
-  try {
-    const token = req.get('Authorization');
-    const user = await User.findOne({ token });
-    const filterBy = req.query.filterBy;
 
-    if (user && user.role === 'admin') {
-      const products = await Product.find();
-      return res.send(products);
-    }
+  try {
+    const filterBy = req.query.filterBy;
 
     if (filterBy && filterBy === 'hit') {
       const result = await Product.find({ isHit: true, isActive: true }).limit(4);
