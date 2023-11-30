@@ -4,8 +4,9 @@ import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import cls from '@/styles/delivery.module.scss';
 import { useTranslation } from 'next-i18next';
+import { MyPage } from '@/components/common/types';
 
-const Delivery = () => {
+const Delivery: MyPage = () => {
   const { t } = useTranslation('common');
   return (
     <div className={cls.delivery}>
@@ -19,6 +20,8 @@ const Delivery = () => {
     </div>
   );
 };
+
+Delivery.Layout = 'Main';
 
 export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
   return {

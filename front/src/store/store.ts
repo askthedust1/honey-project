@@ -18,7 +18,7 @@ const usersPersistConfig = {
   whitelist: ['user'],
 };
 
-const makeStore = wrapMakeStore(() => {
+export const makeStore = wrapMakeStore(() => {
   const isServer = typeof window === 'undefined';
 
   const reducers = {

@@ -98,4 +98,5 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     },
   };
 });
+
 export default ProductsAdminPage;

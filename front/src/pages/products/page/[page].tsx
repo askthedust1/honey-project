@@ -8,8 +8,10 @@ import { selectTotalPages } from '@/features/products/productsSlice';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { addToCartState, setProductsDataLoaded } from '@/features/cart/cartSlice';
+import { MyPage } from '@/components/common/types';
+import axiosApi from '@/axiosApi';
 
-const ProductPage = () => {
+const ProductPage: MyPage = () => {
   const totalPagesState = useAppSelector(selectTotalPages);
 
   return (
@@ -19,12 +21,16 @@ const ProductPage = () => {
     </>
   );
 };
-export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
-  await store.dispatch(fetchCategories());
 
+ProductPage.Layout = 'Main';
+
+export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   const currentPage = context.params?.page;
+
   const cookies = context.req.headers.cookie;
   const { locale } = context;
+  axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
+  await store.dispatch(fetchCategories());
   const productsDataLoaded = store.getState().cart.dataLoaded;
 
   if (cookies && !productsDataLoaded) {
