@@ -129,6 +129,26 @@ productAdminRouter.patch('/:id', auth, permit('admin'), async (req, res) => {
   }
 });
 
+productAdminRouter.patch('/:id/hit', auth, permit('admin'), async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const product = await Product.findById(id);
+
+    if (!product) {
+      return res.status(404).send('Not found!');
+    }
+
+    await Product.findByIdAndUpdate(id, {
+      isHit: !product.isHit,
+    });
+
+    return res.send(product);
+  } catch (e) {
+    return res.status(500).send('error');
+  }
+});
+
 productAdminRouter.delete('/:id', auth, permit('admin'), async (req, res) => {
   try {
     const id = req.params.id;

@@ -5,6 +5,7 @@ import {
   fetchAllProductsForAdmin,
   fetchAllProductsForAdminByCategory,
   patchActiveProducts,
+  patchHitProducts,
 } from '@/features/productAdmin/productsAdminThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectAllProductsForAdmin } from '@/features/productAdmin/productsAdminSlice';
@@ -25,12 +26,9 @@ const ProductsAdminPage: MyPage = () => {
 
   useEffect(() => {
     dispatch(fetchAllProductsForAdmin());
-    if (selectedCategory) {
-      dispatch(fetchAllProductsForAdminByCategory(selectedCategory));
-    }
-  }, [dispatch, selectedCategory]);
+  }, [dispatch]);
 
-  const onActive = async (id: string) => {
+  const onStatusActive = async (id: string) => {
     await dispatch(patchActiveProducts(id));
     await dispatch(fetchAllProductsForAdmin());
     if (selectedCategory) {
@@ -38,12 +36,22 @@ const ProductsAdminPage: MyPage = () => {
     }
   };
 
-  console.log(products);
-  console.log(categories);
+  const onHitActivate = async (id: string) => {
+    await dispatch(patchHitProducts(id));
+    await dispatch(fetchAllProductsForAdmin());
+    if (selectedCategory) {
+      dispatch(fetchAllProductsForAdminByCategory(selectedCategory));
+    }
+  };
 
-  const handleCategoryChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  const handleCategoryChange = async (event: ChangeEvent<HTMLSelectElement>) => {
     const categoryId = event.target.value;
     setSelectedCategory(categoryId);
+    if (categoryId !== '') {
+      await dispatch(fetchAllProductsForAdminByCategory(categoryId));
+    } else {
+      await dispatch(fetchAllProductsForAdmin());
+    }
   };
 
   return (
@@ -107,20 +115,36 @@ const ProductsAdminPage: MyPage = () => {
                     <td>{product.amount}</td>
                     <td>
                       {product.isActive ? (
-                        <button className={cls.btnActive} onClick={() => onActive(product._id)}>
+                        <button
+                          className={cls.btnActive}
+                          onClick={() => onStatusActive(product._id)}
+                        >
                           Активен
                         </button>
                       ) : (
-                        <button className={cls.btnInactive} onClick={() => onActive(product._id)}>
+                        <button
+                          className={cls.btnInactive}
+                          onClick={() => onStatusActive(product._id)}
+                        >
                           Неактивен
                         </button>
                       )}
                     </td>
                     <td>
                       {product.isHit ? (
-                        <button className={cls.btnActive}>Активен</button>
+                        <button
+                          className={cls.btnActive}
+                          onClick={() => onHitActivate(product._id)}
+                        >
+                          Активен
+                        </button>
                       ) : (
-                        <button className={cls.btnInactive}>Неактивен</button>
+                        <button
+                          className={cls.btnInactive}
+                          onClick={() => onHitActivate(product._id)}
+                        >
+                          Неактивен
+                        </button>
                       )}
                     </td>
                     <td>{new Date(product.datetime).toLocaleDateString()}</td>

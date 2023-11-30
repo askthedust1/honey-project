@@ -18,9 +18,24 @@ export const fetchAllProductsForAdminByCategory = createAsyncThunk<IProduct[], s
   },
 );
 
+export const fetchOneProductForAdmin = createAsyncThunk<IProduct, string>(
+  'adminProducts/fetchOneByAdmin',
+  async (id) => {
+    const productsResponse = await axiosApi.get<IProduct>(`/admin/${id}`);
+    return productsResponse.data;
+  },
+);
+
 export const patchActiveProducts = createAsyncThunk<void, string>(
   'adminProducts/patchProducts',
   async (id) => {
     await axiosApi.patch(`/admin/${id}`);
+  },
+);
+
+export const patchHitProducts = createAsyncThunk<void, string>(
+  'adminProducts/patchHitProducts',
+  async (id) => {
+    await axiosApi.patch(`/admin/${id}/hit`);
   },
 );
