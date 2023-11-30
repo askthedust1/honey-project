@@ -3,7 +3,6 @@ import { IProductView } from '@/types';
 import axiosApi from '@/axiosApi';
 import {
   useProductsAdminTranslation,
-  useProductsTranslation,
   useProductTranslation,
 } from '@/features/products/productHook';
 
