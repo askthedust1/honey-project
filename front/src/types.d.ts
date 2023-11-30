@@ -85,6 +85,7 @@ export interface ICategory {
   title: string;
   description?: string;
   image: string | '';
+  isActive: boolean;
 }
 
 export interface ICategoryPost {
@@ -100,6 +101,17 @@ export interface ICategoryPost {
       description: string;
     };
   };
+}
+
+export interface IAdminCategory {
+  _id: string;
+  translations: {
+    ru: {
+      title: string;
+    };
+  };
+  image: string | '';
+  isActive: boolean;
 }
 
 export interface IBanner {

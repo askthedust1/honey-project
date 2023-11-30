@@ -24,6 +24,7 @@ export const makeStore = wrapMakeStore(() => {
   const reducers = {
     [productsSlice.name]: productsSlice.reducer,
     [categoriesSlice.name]: categoriesSlice.reducer,
+    [adminCategoriesSlice.name]: adminCategoriesSlice.reducer,
     [bannersSlice.name]: bannersSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,
     [productsAdminSlice.name]: productsAdminSlice.reducer,
