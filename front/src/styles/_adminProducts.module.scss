@@ -5,10 +5,9 @@
   margin: 0 auto;
   color: #5A3733;
 }
-
 .container {
   .productsBlock {
-    width: 1200px;
+    width: 1073px;
     height: auto;
     background-color: #FCF8F5;
 
@@ -20,7 +19,7 @@
       display: flex;
       background-color: #FFFFFF;
       border-radius: 15px;
-      margin: 20px 26px 16px;
+      margin: 20px 15px 16px;
       padding: 16px 20px;
       box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
       select {
@@ -97,10 +96,10 @@
       }
       .addNewProductBtn {
         position: relative;
-        margin: 0 15px 0 auto;
+        margin: 0 0 0 auto;
         background-color: #5A3733;
         color: #FFFFFF;
-        width: 197px;
+        width: 180px;
         height: 40px;
         border: none;
         border-radius: 14px;
@@ -122,7 +121,7 @@
       box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
       border-radius: 15px;
       padding: 10px 0;
-      margin: 0 26px;
+      margin: 0 15px;
 
       table {
         width: 100%;
@@ -131,13 +130,63 @@
       }
       th, td {
         padding: 8px;
-        text-align: left;
+        text-align: center;
         border-bottom: 1px solid #ddd;
       }
 
       th {
         font-weight: 600;
         font-size: 12px;
+      }
+      .tableBodyBlock {
+        td {
+          font-size: 13px;
+          font-weight: 500;
+        }
+        .imageTd {
+          width: 69px;
+          height: 69px;
+
+          img {
+            width: 69px;
+            height: 69px;
+            border-radius: 15px;
+            border: 1px solid rgb(25 5 5 / 12%);
+          }
+        }
+        .btnActive {
+          font-size: 13px;
+          width: 92px;
+          height: 26px;
+          padding: 5px 12px;
+          color: #27AE60;
+          background-color: rgb(39 174 96 / 20%);
+          border: none;
+          border-radius: 6px;
+        }
+        .btnInactive {
+          width: 92px;
+          height: 26px;
+          padding: 5px 12px;
+          color: #AE2727;
+          background-color: rgba(174, 39, 39, 0.2);
+          border: none;
+          border-radius: 6px;
+          font-size: 13px;
+        }
+        .viewMoreBtn {
+          border: none;
+          background: url("../assets/images/adminIcon/toWatchMoreIcon.svg") no-repeat center;
+          width: 27px;
+          height: 18px;
+          margin: 0 9px 0 0;
+        }
+        .editBtn {
+          border: none;
+          width: 22px;
+          height: 23px;
+          background: url("../assets/images/adminIcon/editIcon.svg") no-repeat center;
+        }
       }
     }
 

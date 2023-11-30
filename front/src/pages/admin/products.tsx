@@ -4,6 +4,7 @@ import plusIcon from '@/assets/images/plusIcon.png';
 import {
   fetchAllProductsForAdmin,
   fetchAllProductsForAdminByCategory,
+  patchActiveProducts,
 } from '@/features/productAdmin/productsAdminThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectAllProductsForAdmin } from '@/features/productAdmin/productsAdminSlice';
@@ -14,6 +15,7 @@ import axiosApi from '@/axiosApi';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import { MyPage } from '@/components/common/types';
+import { apiUrl } from '@/constants';
 
 const ProductsAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -23,13 +25,19 @@ const ProductsAdminPage: MyPage = () => {
 
   useEffect(() => {
     dispatch(fetchAllProductsForAdmin());
-  }, [dispatch]);
-
-  useEffect(() => {
     if (selectedCategory) {
       dispatch(fetchAllProductsForAdminByCategory(selectedCategory));
     }
   }, [dispatch, selectedCategory]);
+
+  const onActive = async (id: string) => {
+    await dispatch(patchActiveProducts(id));
+    await dispatch(fetchAllProductsForAdmin());
+    if (selectedCategory) {
+      dispatch(fetchAllProductsForAdminByCategory(selectedCategory));
+    }
+  };
+
   console.log(products);
   console.log(categories);
 
@@ -86,7 +94,43 @@ const ProductsAdminPage: MyPage = () => {
                   <th>Действие</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody className={cls.tableBodyBlock}>
+                {products.map((product) => (
+                  <tr key={product._id}>
+                    <td className={cls.imageTd}>
+                      <img src={apiUrl + '/' + product.image} alt="image" />
+                    </td>
+                    <td>{product.title}</td>
+                    <td>{product.category}</td>
+                    <td>{product.oldPrice}</td>
+                    <td>{product.actualPrice}</td>
+                    <td>{product.amount}</td>
+                    <td>
+                      {product.isActive ? (
+                        <button className={cls.btnActive} onClick={() => onActive(product._id)}>
+                          Активен
+                        </button>
+                      ) : (
+                        <button className={cls.btnInactive} onClick={() => onActive(product._id)}>
+                          Неактивен
+                        </button>
+                      )}
+                    </td>
+                    <td>
+                      {product.isHit ? (
+                        <button className={cls.btnActive}>Активен</button>
+                      ) : (
+                        <button className={cls.btnInactive}>Неактивен</button>
+                      )}
+                    </td>
+                    <td>{new Date(product.datetime).toLocaleDateString()}</td>
+                    <td>
+                      <button className={cls.viewMoreBtn}></button>
+                      <button className={cls.editBtn}></button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </div>

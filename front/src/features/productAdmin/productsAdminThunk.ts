@@ -3,7 +3,7 @@ import { IProduct } from '@/types';
 import axiosApi from '@/axiosApi';
 
 export const fetchAllProductsForAdmin = createAsyncThunk<IProduct[]>(
-  'products/fetchAdmin',
+  'adminProducts/fetchAdmin',
   async () => {
     const productsResponse = await axiosApi.get<IProduct[]>('/admin');
     return productsResponse.data;
@@ -11,9 +11,16 @@ export const fetchAllProductsForAdmin = createAsyncThunk<IProduct[]>(
 );
 
 export const fetchAllProductsForAdminByCategory = createAsyncThunk<IProduct[], string>(
-  'products/fetchByCategoryAdmin',
+  'adminProducts/fetchByCategoryAdmin',
   async (id) => {
     const productsResponse = await axiosApi.get<IProduct[]>(`/admin?category=${id}`);
     return productsResponse.data;
+  },
+);
+
+export const patchActiveProducts = createAsyncThunk<void, string>(
+  'adminProducts/patchProducts',
+  async (id) => {
+    await axiosApi.patch(`/admin/${id}`);
   },
 );
