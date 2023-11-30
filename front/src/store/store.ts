@@ -10,6 +10,7 @@ import { bannersSlice } from '@/features/banners/bannersSlice';
 import { cartSlice } from '@/features/cart/cartSlice';
 import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrapper';
 import { adminCategoriesSlice } from '@/features/adminCategories/adminCategoriesSlice';
+import {adminMainSlice} from "@/features/adminMain/adminMainSlice";
 
 const usersPersistConfig = {
   key: 'honey:users',
@@ -24,6 +25,7 @@ export const makeStore = wrapMakeStore(() => {
     [productsSlice.name]: productsSlice.reducer,
     [categoriesSlice.name]: categoriesSlice.reducer,
     [adminCategoriesSlice.name]: adminCategoriesSlice.reducer,
+    [adminMainSlice.name]: adminMainSlice.reducer,
     [bannersSlice.name]: bannersSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,
     [usersSlice.name]: isServer

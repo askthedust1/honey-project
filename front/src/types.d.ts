@@ -133,3 +133,11 @@ export interface ICheck {
   userCheck: boolean;
   message: string;
 }
+
+export interface IAdminMainInfo {
+  productAmount: number,
+  categoriesAmount: number,
+  usersAmount: number,
+  transactionsAmount: number,
+  sumAmount: number,
+}
