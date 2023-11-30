@@ -12,13 +12,13 @@ import {
 import { fetchBestsellers } from '@/features/products/productsThunk';
 
 const Bestseller = () => {
-  const { t } = useTranslation('home');
+  const { t, i18n } = useTranslation('home');
   const bestsellers = useAppSelector(selectBestsellers);
   const activeBestseller = useAppSelector(selectActiveBestsellers);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchBestsellers(activeBestseller));
+    dispatch(fetchBestsellers({ type: activeBestseller, locale: i18n.language }));
   }, [activeBestseller, dispatch]);
 
   const switchBestseller = (query: string) => {

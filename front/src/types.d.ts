@@ -58,6 +58,7 @@ export interface IProductView {
   amount: number;
   isActive: boolean;
   isHit: boolean;
+  datetime: string;
 }
 
 export interface IProduct {
@@ -71,6 +72,7 @@ export interface IProduct {
   amount: number;
   isActive: boolean;
   isHit: boolean;
+  datetime: string;
 }
 
 export interface IProductsOfPage {
@@ -84,6 +86,7 @@ export interface ICategory {
   title: string;
   description?: string;
   image: string | '';
+  isActive: boolean;
 }
 
 export interface ICategoryPost {
@@ -98,7 +101,22 @@ export interface ICategoryPost {
       title: string;
       description: string;
     };
+    kg: {
+      title: string;
+      description: string;
+    };
   };
+}
+
+export interface IAdminCategory {
+  _id: string;
+  translations: {
+    ru: {
+      title: string;
+    };
+  };
+  image: string | '';
+  isActive: boolean;
 }
 
 export interface IBanner {
@@ -120,4 +138,29 @@ export interface ICart {
 export interface ICheck {
   userCheck: boolean;
   message: string;
+}
+
+export interface IAdminMainInfo {
+  productAmount: number,
+  categoriesAmount: number,
+  usersAmount: number,
+  transactionsAmount: number,
+  sumAmount: number,
+}
+
+export interface IAdminMainHit {
+  amount: number;
+  product: {
+    actualPrice: number;
+    image: string;
+    title:string;
+    category: {
+      translations: {
+        ru: {
+          title: string;
+        }
+      }
+    };
+  };
+  sum: number;
 }

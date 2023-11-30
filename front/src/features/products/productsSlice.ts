@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchBestsellers, fetchProducts, fetchProductsByCategory } from './productsThunk';
-import { BestsellerVariant, IProduct, IProductView } from '@/types';
+import { IProduct, IProductView } from '@/types';
 import { getProduct } from '@/features/products/productsThunk';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';

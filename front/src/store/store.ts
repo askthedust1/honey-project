@@ -9,6 +9,10 @@ import { categoriesSlice } from '@/features/categories/categoriesSlice';
 import { bannersSlice } from '@/features/banners/bannersSlice';
 import { cartSlice } from '@/features/cart/cartSlice';
 import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrapper';
+import { productsAdminSlice } from '@/features/productAdmin/productsAdminSlice';
+import { addInterceptors } from '@/axiosApi';
+import { adminCategoriesSlice } from '@/features/adminCategories/adminCategoriesSlice';
+import {adminMainSlice} from "@/features/adminMain/adminMainSlice";
 
 const usersPersistConfig = {
   key: 'honey:users',
@@ -22,8 +26,11 @@ export const makeStore = wrapMakeStore(() => {
   const reducers = {
     [productsSlice.name]: productsSlice.reducer,
     [categoriesSlice.name]: categoriesSlice.reducer,
+    [adminCategoriesSlice.name]: adminCategoriesSlice.reducer,
+    [adminMainSlice.name]: adminMainSlice.reducer,
     [bannersSlice.name]: bannersSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,
+    [productsAdminSlice.name]: productsAdminSlice.reducer,
     [usersSlice.name]: isServer
       ? usersSlice.reducer
       : (persistReducer(usersPersistConfig, usersSlice.reducer) as Reducer),
@@ -46,6 +53,7 @@ export const makeStore = wrapMakeStore(() => {
       );
     },
   });
+  addInterceptors(store);
 
   if (!isServer) {
     // @ts-expect-error

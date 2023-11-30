@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, {useState} from 'react';
+import Link from "next/link";
 import logo from '@/assets/images/logo.svg';
-import cls from '../../../../styles/_sideBarAdmin.module.scss';
+import cls from '../../../styles/_sideBarAdmin.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { logout } from '@/features/users/usersThunk';
 import { selectRole } from '@/features/users/usersSlice';
@@ -48,10 +48,10 @@ const SidebarAdmin = () => {
             <span className={cls.list_link}>Управление продуктами</span>
           </li>
           <li className={`${cls.detail} ${isShowProduct ? cls.detail_show : ''}`}>
-            <span className={cls.list_link}>Все продукты</span>
+            <Link href={'/'} className={cls.list_link}>Все продукты</Link>
           </li>
           <li className={`${cls.detail} ${isShowProduct ? cls.detail_show : ''}`}>
-            <span className={cls.list_link}>Новый продукт</span>
+            <Link href={'/'} className={cls.list_link}>Новый продукт</Link>
           </li>
           <li
             className={`${cls.category} ${isShowCategory ? cls.open : ''}`}
@@ -60,9 +60,10 @@ const SidebarAdmin = () => {
             <span className={cls.list_link}>Управление категориями</span>
           </li>
           <li className={`${cls.detail} ${isShowCategory ? cls.detail_show : ''}`}>
-            <span className={cls.list_link}>Все категории</span>
+            <Link href={'/admin/categories'} className={cls.list_link}>Все категории</Link>
           </li>
           <li className={`${cls.detail} ${isShowCategory ? cls.detail_show : ''}`}>
+            <Link href={'/'} className={cls.list_link}>Новая категорию</Link>
             <span className={cls.list_link}>Новая категория</span>
           </li>
           <li className={cls.banner}>
