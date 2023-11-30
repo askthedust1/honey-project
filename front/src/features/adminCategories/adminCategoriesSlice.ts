@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ICategory } from '@/types';
+import { IAdminCategory } from '@/types';
 import { RootState } from '@/store/store';
 import { fetchAdminCategories } from './adminCategoriesThunk';
 import { HYDRATE } from 'next-redux-wrapper';
 
 interface AdminCategoriesState {
-  items: ICategory[];
+  items: IAdminCategory[];
   loading: boolean;
 }
 

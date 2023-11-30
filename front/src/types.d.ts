@@ -102,6 +102,17 @@ export interface ICategoryPost {
   };
 }
 
+export interface IAdminCategory {
+  _id: string;
+  translations: {
+    ru: {
+      title: string;
+    };
+  };
+  image: string | '';
+  isActive: boolean;
+}
+
 export interface IBanner {
   _id: string;
   description: string;
