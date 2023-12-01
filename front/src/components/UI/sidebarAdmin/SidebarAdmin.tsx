@@ -25,7 +25,7 @@ const SidebarAdmin = () => {
   return (
     <div style={{ display: role && role.userCheck ? 'block' : 'none' }} className={cls.sidebar}>
       <header className={cls.sidebar_header}>
-        <Link className={cls.logo} href={'/'}>
+        <Link className={cls.logo} href={'/admin'}>
           <img src={logo.src} alt={'logo'} />
         </Link>
         <div className={cls.box}>
@@ -51,7 +51,7 @@ const SidebarAdmin = () => {
             <Link href={'/admin/products'} className={cls.list_link}>Все продукты</Link>
           </li>
           <li className={`${cls.detail} ${isShowProduct ? cls.detail_show : ''}`}>
-            <Link href={'/'} className={cls.list_link}>Новый продукт</Link>
+            <Link href={'/admin/products'} className={cls.list_link}>Новый продукт</Link>
           </li>
           <li
             className={`${cls.category} ${isShowCategory ? cls.open : ''}`}
@@ -63,7 +63,7 @@ const SidebarAdmin = () => {
             <Link href={'/admin/categories'} className={cls.list_link}>Все категории</Link>
           </li>
           <li className={`${cls.detail} ${isShowCategory ? cls.detail_show : ''}`}>
-            <Link href={'/'} className={cls.list_link}>Новая категорию</Link>
+            <Link href={'/admin/categories'} className={cls.list_link}>Новая категория</Link>
           </li>
           <li className={cls.banner}>
             <Link className={cls.list_link} href={'/admin/banners'}>
