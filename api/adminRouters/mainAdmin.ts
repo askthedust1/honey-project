@@ -44,7 +44,7 @@ mainAdminRouter.get('/hit', auth, permit('admin'), async (req, res) => {
     try {
         const transactions = await Transaction.find().populate({
             path: 'kits.product',
-            select: 'actualPrice image title',
+            select: 'actualPrice image translations.ru.title',
             populate: {
                 path: 'category',
                 select: 'translations.ru.title',
