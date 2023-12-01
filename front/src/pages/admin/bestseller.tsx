@@ -88,8 +88,14 @@ const BestsellerAdminPage: MyPage = () => {
                     <td>{product.category.title}</td>
                     <td>{product.actualPrice}</td>
                     <td>
-                      <span className={cls.active}>
-                        {product.isActive && product.isActive ? 'Активен' : 'Не активен'}
+                      <span
+                        className={
+                          product.isActive
+                            ? cls.adminBestsellersTable_active
+                            : cls.adminBestsellersTable_inactive
+                        }
+                      >
+                        {product.isActive ? 'Активен' : 'Не активен'}
                       </span>
                     </td>
                     <td>

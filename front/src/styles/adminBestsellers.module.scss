@@ -32,6 +32,7 @@
   align-items: center;
   margin: 15px 15px 15px;
   padding: 5px;
+
   select {
     font-family: 'Montserrat', sans-serif;
     padding: 11px;
@@ -45,16 +46,19 @@
     width: 265px;
     margin-right: 30px;
   }
+
   select:focus-visible {
     border: 2px solid $admin-brown-color;
     outline: none;
   }
+
   option {
     padding: 8px;
     font-size: 14px;
     background-color: #fff;
     color: #333;
   }
+
   option:active {
     background-color: $admin-brown-color;
     color: #333;
@@ -64,6 +68,7 @@
     padding: 8px;
     background-color: #f0f0f0;
   }
+
   input {
     width: 250px;
     height: 40px;
@@ -74,6 +79,7 @@
     background-color: $white;
     margin: 0 67px 0 0;
   }
+
   input::placeholder {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
@@ -81,26 +87,31 @@
     font-size: 13px;
     color: $admin-brown-color;
   }
+
   input:focus-visible {
     border: 2px solid $admin-brown-color;
     outline: none;
   }
+
   .adminProductsPagination {
     display: flex;
     margin: 8px 0 0 0;
     font-size: 14px;
+
     .arrowToLeft {
       width: 25px;
       height: 25px;
       border-radius: 50%;
       background: url('../assets/images/arrowToLeft.svg') no-repeat center;
     }
+
     .arrowToRight {
       width: 25px;
       height: 25px;
       border-radius: 50%;
       background: url('../assets/images/arrowToRight.svg') no-repeat center;
     }
+
     p {
       margin: 5px 5px 0;
     }
@@ -120,6 +131,7 @@
     border-collapse: collapse;
     background-color: $white;
   }
+
   th, td {
     padding: 8px;
     text-align: center;
@@ -130,6 +142,7 @@
     font-weight: 600;
     font-size: 12px;
   }
+
   &_body {
     .imageTd {
       height: 70px;
@@ -141,32 +154,35 @@
         border-radius: 15px;
         border: 1px solid rgb(25 5 5 / 12%);
       }
+
       td {
         font-size: 13px;
         font-weight: 500;
       }
 
     }
-    .active {
-      font-size: 13px;
-      width: 92px;
-      height: 26px;
-      padding: 5px 12px;
-      color: #27AE60;
-      background-color: rgb(39 174 96 / 20%);
-      border: none;
-      border-radius: 6px;
-    }
-    .inactive {
-      width: 92px;
-      height: 26px;
-      padding: 5px 12px;
-      color: #AE2727;
-      background-color: rgba(174, 39, 39, 0.2);
-      border: none;
-      border-radius: 6px;
-      font-size: 13px;
-    }
+  }
+
+  &_active {
+    font-size: 13px;
+    width: 92px;
+    height: 26px;
+    padding: 5px 12px;
+    color: #27AE60;
+    background-color: rgb(39 174 96 / 20%);
+    border: none;
+    border-radius: 6px;
+  }
+
+  &_inactive {
+    width: 92px;
+    height: 26px;
+    padding: 5px 12px;
+    color: #AE2727;
+    background-color: rgba(174, 39, 39, 0.2);
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
   }
 
   &_addBtn {
@@ -177,6 +193,7 @@
     height: 30px;
     border: none;
     border-radius: 7px;
+
     img {
       position: absolute;
       top: 9px;
