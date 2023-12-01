@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import cls from '@/styles/hit.module.scss';
+import cls from '@/styles/adminBestsellers.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectAllProductsForAdmin } from '@/features/productAdmin/productsAdminSlice';
 import { apiUrl } from '@/constants';
@@ -66,7 +66,7 @@ const BestsellerAdminPage: MyPage = () => {
               <a className={cls.arrowToRight} href="#"></a>
             </div>
           </div>
-          <div className={cls.adminProductsTable}>
+          <div className={cls.adminBestsellersTable}>
             <table>
               <thead>
                 <tr>
@@ -78,7 +78,7 @@ const BestsellerAdminPage: MyPage = () => {
                   <th>Действие</th>
                 </tr>
               </thead>
-              <tbody className={cls.tableBodyBlock}>
+              <tbody className={cls.adminBestsellersTable_body}>
                 {products.map((product) => (
                   <tr key={product._id}>
                     <td className={cls.imageTd}>
@@ -87,11 +87,13 @@ const BestsellerAdminPage: MyPage = () => {
                     <td>{product.title}</td>
                     <td>{product.category.title}</td>
                     <td>{product.actualPrice}</td>
-                    <td className={cls.btnActive}>
-                      {product.isActive && product.isActive ? 'Активен' : 'Не активен'}
+                    <td>
+                      <span className={cls.active}>
+                        {product.isActive && product.isActive ? 'Активен' : 'Не активен'}
+                      </span>
                     </td>
                     <td>
-                      <button className={cls.addNewProductBtn}>
+                      <button className={cls.adminBestsellersTable_addBtn}>
                         <img src={plusIcon.src} alt="plusIcon" />
                       </button>
                     </td>
@@ -115,7 +117,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   return {
     props: {
       name: 'Products',
-      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'home', 'header', 'footer'])),
+      ...(await serverSideTranslations(locale ?? 'ru', ['common'])),
     },
   };
 });

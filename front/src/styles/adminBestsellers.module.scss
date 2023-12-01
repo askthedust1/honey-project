@@ -66,13 +66,13 @@
   }
   input {
     width: 250px;
-    background: url('../assets/images/findIcon.svg') no-repeat center right 10px;
     height: 40px;
+    background: url('../assets/images/findIcon.svg') no-repeat center right 10px;
     padding: 8px 40px 8px 10px;
     border: 0.5px solid $admin-brown-color;
     border-radius: 4px;
+    background-color: $white;
     margin: 0 67px 0 0;
-    background-color: #FFFFFF;
   }
   input::placeholder {
     font-family: 'Montserrat', sans-serif;
@@ -107,9 +107,9 @@
   }
 }
 
-.adminProductsTable {
+.adminBestsellersTable {
   max-width: 1197px;
-  background-color: #FFFFFF;
+  background-color: $white;
   box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
   border-radius: 15px;
   padding: 10px 0;
@@ -118,26 +118,22 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #FFFFFF;
+    background-color: $white;
   }
   th, td {
     padding: 8px;
     text-align: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $white;
   }
 
   th {
     font-weight: 600;
     font-size: 12px;
   }
-  .tableBodyBlock {
-    td {
-      font-size: 13px;
-      font-weight: 500;
-    }
+  &_body {
     .imageTd {
-      width: 69px;
-      height: 69px;
+      height: 70px;
+      width: 70px;
 
       img {
         width: 69px;
@@ -145,8 +141,13 @@
         border-radius: 15px;
         border: 1px solid rgb(25 5 5 / 12%);
       }
+      td {
+        font-size: 13px;
+        font-weight: 500;
+      }
+
     }
-    .btnActive {
+    .active {
       font-size: 13px;
       width: 92px;
       height: 26px;
@@ -156,7 +157,7 @@
       border: none;
       border-radius: 6px;
     }
-    .btnInactive {
+    .inactive {
       width: 92px;
       height: 26px;
       padding: 5px 12px;
@@ -167,20 +168,21 @@
       font-size: 13px;
     }
   }
-}
-.addNewProductBtn {
-  position: relative;
-  background-color: $admin-brown-color;
-  color: #FFFFFF;
-  width: 30px;
-  height: 30px;
-  border: none;
-  border-radius: 7px;
-  img {
-    position: absolute;
-    top: 9px;
-    left: 8px;
-    width: auto;
+
+  &_addBtn {
+    position: relative;
+    background-color: $admin-brown-color;
+    color: $white;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    img {
+      position: absolute;
+      top: 9px;
+      left: 8px;
+      width: auto;
+    }
   }
 }
 
