@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/adminBestsellers.module.scss';
@@ -20,15 +20,14 @@ const BestsellerAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
   const products = useAppSelector(selectAllProductsForAdmin);
   const categories = useAppSelector(selectCategories);
-  const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     dispatch(fetchAllProductsForAdmin());
   }, [dispatch]);
 
-  const handleCategoryChange = async (event: ChangeEvent<HTMLSelectElement>) => {
+  const categoryChangeHandle = async (event: ChangeEvent<HTMLSelectElement>) => {
     const categoryId = event.target.value;
-    setSelectedCategory(categoryId);
+
     if (categoryId !== '') {
       await dispatch(fetchAllProductsForAdminByCategory(categoryId));
     } else {
@@ -44,7 +43,7 @@ const BestsellerAdminPage: MyPage = () => {
           <div className={cls.bestseller_activeBest}></div>
           <div className={cls.adminProductsNav}>
             <h3 className={cls.bestseller_title}>Все товары</h3>
-            <select onChange={handleCategoryChange}>
+            <select onChange={categoryChangeHandle}>
               <option value="">Отфильтровать по категории</option>
               {categories.map((category) => (
                 <option key={category._id} value={category._id}>
@@ -100,7 +99,7 @@ const BestsellerAdminPage: MyPage = () => {
                     </td>
                     <td>
                       <button className={cls.adminBestsellersTable_addBtn}>
-                        <img src={plusIcon.src} alt="plusIcon" />
+                        <img src={plusIcon.src} alt="Plus Icon" />
                       </button>
                     </td>
                   </tr>
