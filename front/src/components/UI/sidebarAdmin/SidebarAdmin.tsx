@@ -48,10 +48,10 @@ const SidebarAdmin = () => {
             <span className={cls.list_link}>Управление продуктами</span>
           </li>
           <li className={`${cls.detail} ${isShowProduct ? cls.detail_show : ''}`}>
-            <Link href={'/'} className={cls.list_link}>Все продукты</Link>
+            <Link href={'/admin/products'} className={cls.list_link}>Все продукты</Link>
           </li>
           <li className={`${cls.detail} ${isShowProduct ? cls.detail_show : ''}`}>
-            <Link href={'/'} className={cls.list_link}>Новый продукт</Link>
+            <Link href={'/admin/products'} className={cls.list_link}>Новый продукт</Link>
           </li>
           <li
             className={`${cls.category} ${isShowCategory ? cls.open : ''}`}
@@ -63,11 +63,10 @@ const SidebarAdmin = () => {
             <Link href={'/admin/categories'} className={cls.list_link}>Все категории</Link>
           </li>
           <li className={`${cls.detail} ${isShowCategory ? cls.detail_show : ''}`}>
-            <Link href={'/'} className={cls.list_link}>Новая категорию</Link>
-            <span className={cls.list_link}>Новая категория</span>
+            <Link href={'/admin/categories'} className={cls.list_link}>Новая категория</Link>
           </li>
           <li className={cls.banner}>
-            <Link className={cls.list_link} href={'/admin'}>
+            <Link className={cls.list_link} href={'/admin/banners'}>
               Управление банером
             </Link>
           </li>
@@ -77,7 +76,7 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li className={cls.order}>
-            <Link className={cls.list_link} href={'/admin'}>
+            <Link className={cls.list_link} href={'/admin/orders'}>
               Заказы
             </Link>
           </li>

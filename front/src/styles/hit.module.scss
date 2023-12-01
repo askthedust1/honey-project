@@ -1,0 +1,186 @@
+@import "variables";
+
+.bestseller {
+  width: 1073px;
+  height: auto;
+  background-color: #FCF8F5;
+
+  &_main_title {
+    font-weight: 500;
+    font-size: 30px;
+    margin-left: 20px;
+  }
+
+  &_title {
+    font-weight: 500;
+    margin-right: 37px;
+    font-size: 25px;
+  }
+
+  &_activeBest {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    height: 200px;
+    box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+    margin: 20px 15px 16px;
+    padding: 16px 20px;
+  }
+}
+
+.adminProductsNav {
+  display: flex;
+  align-items: center;
+  margin: 15px 15px 15px;
+  padding: 5px;
+  select {
+    font-family: 'Montserrat', sans-serif;
+    padding: 11px;
+    font-size: 13px;
+    color: $admin-brown-color;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+    border: 0.5px solid $admin-brown-color;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 265px;
+    margin-right: 30px;
+  }
+  select:focus-visible {
+    border: 2px solid $admin-brown-color;
+    outline: none;
+  }
+  option {
+    padding: 8px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+  }
+  option:active {
+    background-color: $admin-brown-color;
+    color: #333;
+  }
+
+  option:hover {
+    padding: 8px;
+    background-color: #f0f0f0;
+  }
+  input {
+    width: 250px;
+    background: url('../assets/images/findIcon.svg') no-repeat center right 10px;
+    height: 40px;
+    padding: 8px 40px 8px 10px;
+    border: 0.5px solid $admin-brown-color;
+    border-radius: 4px;
+    margin: 0 67px 0 0;
+    background-color: #FFFFFF;
+  }
+  input::placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+    font-size: 13px;
+    color: $admin-brown-color;
+  }
+  input:focus-visible {
+    border: 2px solid $admin-brown-color;
+    outline: none;
+  }
+  .adminProductsPagination {
+    display: flex;
+    margin: 8px 0 0 0;
+    font-size: 14px;
+    .arrowToLeft {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: url('../assets/images/arrowToLeft.svg') no-repeat center;
+    }
+    .arrowToRight {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: url('../assets/images/arrowToRight.svg') no-repeat center;
+    }
+    p {
+      margin: 5px 5px 0;
+    }
+  }
+}
+
+.adminProductsTable {
+  max-width: 1197px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+  border-radius: 15px;
+  padding: 10px 0;
+  margin: 0 15px;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #FFFFFF;
+  }
+  th, td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .tableBodyBlock {
+    td {
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .imageTd {
+      width: 69px;
+      height: 69px;
+
+      img {
+        width: 69px;
+        height: 69px;
+        border-radius: 15px;
+        border: 1px solid rgb(25 5 5 / 12%);
+      }
+    }
+    .btnActive {
+      font-size: 13px;
+      width: 92px;
+      height: 26px;
+      padding: 5px 12px;
+      color: #27AE60;
+      background-color: rgb(39 174 96 / 20%);
+      border: none;
+      border-radius: 6px;
+    }
+    .btnInactive {
+      width: 92px;
+      height: 26px;
+      padding: 5px 12px;
+      color: #AE2727;
+      background-color: rgba(174, 39, 39, 0.2);
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+  }
+}
+.addNewProductBtn {
+  position: relative;
+  background-color: $admin-brown-color;
+  color: #FFFFFF;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 7px;
+  img {
+    position: absolute;
+    top: 9px;
+    left: 8px;
+    width: auto;
+  }
+}
+
