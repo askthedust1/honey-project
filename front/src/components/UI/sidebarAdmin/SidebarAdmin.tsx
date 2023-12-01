@@ -48,7 +48,7 @@ const SidebarAdmin = () => {
             <span className={cls.list_link}>Управление продуктами</span>
           </li>
           <li className={`${cls.detail} ${isShowProduct ? cls.detail_show : ''}`}>
-            <Link href={'/'} className={cls.list_link}>Все продукты</Link>
+            <Link href={'/admin/products'} className={cls.list_link}>Все продукты</Link>
           </li>
           <li className={`${cls.detail} ${isShowProduct ? cls.detail_show : ''}`}>
             <Link href={'/'} className={cls.list_link}>Новый продукт</Link>
@@ -66,32 +66,32 @@ const SidebarAdmin = () => {
             <Link href={'/'} className={cls.list_link}>Новая категорию</Link>
           </li>
           <li className={cls.banner}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin/banners'}>
               Управление банером
             </Link>
           </li>
           <li className={cls.hit}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin/bestseller'}>
               Управление хитами
             </Link>
           </li>
           <li className={cls.order}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin/orders'}>
               Заказы
             </Link>
           </li>
           <li className={cls.client}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin'}>
               Клиенты
             </Link>
           </li>
           <li className={cls.analytics}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin'}>
               Аналитика
             </Link>
           </li>
           <li className={cls.report}>
-            <Link className={cls.list_link} href={'/'}>
+            <Link className={cls.list_link} href={'/admin'}>
               Отчетность
             </Link>
           </li>
