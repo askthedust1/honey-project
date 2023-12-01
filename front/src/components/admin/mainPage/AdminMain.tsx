@@ -58,7 +58,7 @@ const AdminMain = () => {
                             <td><div className={cls.imgWrap}>
                                 <img src={apiUrl + '/' + hit.product.image} alt={hit.product.title}/>
                             </div></td>
-                            <td>{hit.product.title}</td>
+                            <td>{hit.product.translations.ru.title}</td>
                             <td>{hit.product.category.translations.ru.title}</td>
                             <td>{hit.product.actualPrice}</td>
                             <td>{hit.amount}</td>

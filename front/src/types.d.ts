@@ -151,6 +151,11 @@ export interface IAdminMainInfo {
 export interface IAdminMainHit {
   amount: number;
   product: {
+    translations: {
+      ru: {
+        title: string;
+      }
+    }
     actualPrice: number;
     image: string;
     title:string;
