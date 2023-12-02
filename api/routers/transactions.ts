@@ -17,13 +17,14 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
     return res.sendStatus(500);
   }
 });
-transactionsRouter.get('/user', auth, async (req, res) => {
+
+transactionsRouter.get('/user/:date', auth, async (req, res) => {
   const user = (req as RequestWithUser).user;
   try {
     if (!user._id) {
       return res.status(400).send({ error: 'Invalid user ID' });
     }
-    const transactions = await Transaction.find({ user: user._id })
+    const transactions = await Transaction.find({ user: user._id, dateTime: req.params.date })
       .populate('user', 'displayName')
       .populate('kits.product', 'title');
     return res.send(transactions);
@@ -59,6 +60,9 @@ transactionsRouter.post('/', auth, async (req, res, next) => {
       user: user.id,
       kits: fullKits,
       totalPrice: totalPrice,
+      address: req.body.address,
+      dateTime: req.body.dateTime,
+      status: false,
     };
 
     const transaction = new Transaction(transactionData);

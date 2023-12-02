@@ -15,6 +15,7 @@ usersRouter.post('/', async (req, res, next) => {
       passwordConfirm: req.body.passwordConfirm,
       displayName: req.body.displayName,
       phone: req.body.phone,
+      address: req.body.address || null,
     });
 
     user.generateToken();
@@ -116,7 +117,8 @@ usersRouter.post('/sessions', async (req, res, next) => {
       token: userCheck.token,
       displayName: userCheck.displayName,
       phone: userCheck.phone,
-    }
+      address: userCheck.address,
+    };
 
     return res.send({ message: 'Email and password correct!', user });
   } catch (e) {

@@ -30,6 +30,7 @@ const run = async () => {
       role: 'user',
       displayName: 'Sam Smith ',
       phone: '0772 77-22-77',
+      address: 'Some street 1',
     },
     {
       email: 'oleg@gmail.com',
@@ -39,6 +40,7 @@ const run = async () => {
       role: 'user',
       displayName: 'Oleg Mongol ',
       phone: '0552 82-78-76',
+      address: 'Some street 2',
     },
     {
       email: 'admin@gmail.com',
@@ -48,6 +50,7 @@ const run = async () => {
       role: 'admin',
       displayName: 'Administrator',
       phone: '0555 55-55-55',
+      address: 'Some street 3',
     },
   );
 
@@ -605,6 +608,7 @@ const run = async () => {
   await Transaction.create(
     {
       user: user1._id,
+      dateTime: '3023-11-29T14:18:43.174Z',
       address: 'проспект Чуй, 35',
       kits: [
         {
@@ -632,6 +636,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      dateTime: '3023-12-29T14:18:43.174Z',
       address: '6 микрорайон, 5 дом, 43 квартира',
       kits: [
         {
@@ -659,6 +664,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      dateTime: '3023-13-29T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
         {
@@ -671,6 +677,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      dateTime: '3023-19-29T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
         {
@@ -683,6 +690,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      dateTime: '3023-14-29T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
         {
@@ -695,6 +703,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      dateTime: '3023-15-29T14:18:43.174Z',
       address: 'Медерова, 35',
       kits: [
         {
@@ -717,6 +726,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      dateTime: '3023-16-29T14:18:43.174Z',
       address: 'Ахунбаева, 23',
       kits: [
         {
@@ -734,6 +744,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      dateTime: '3023-17-29T14:18:43.174Z',
       address: 'Ахунбаева, 23',
       kits: [
         {
@@ -761,6 +772,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      dateTime: '3023-18-29T14:18:43.174Z',
       address: 'Логвиненко, 32',
       kits: [
         {
