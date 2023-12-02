@@ -13,7 +13,7 @@ import { isAxiosError } from 'axios';
 import { unsetUser } from './usersSlice';
 import { RootState } from '@/store/store';
 import { resetCart } from '@/features/cart/cartSlice';
-import { useRouter } from 'next/router';
+
 
 export const register = createAsyncThunk<
   RegisterResponse,

@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 
 const Transaction = () => {
   const [isClient, setIsClient] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
   const dispatch = useAppDispatch();
   const orderDate = useAppSelector(selectDateOrder);
   const user = useAppSelector(selectUser);
