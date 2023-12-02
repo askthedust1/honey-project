@@ -1,7 +1,7 @@
-import {Schema, model, Model, HydratedDocument} from 'mongoose';
+import { Schema, model, Model, HydratedDocument } from 'mongoose';
 import bcrypt from 'bcrypt';
-import {randomUUID} from 'crypto';
-import {IUserApi} from '../types';
+import { randomUUID } from 'crypto';
+import { IUserApi } from '../types';
 
 const SALT_WORK_FACTOR = 10;
 
@@ -16,7 +16,7 @@ type UserModel = Model<IUserApi, object, IUserMethods>;
 const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
   email: {
     type: String,
-    required: [true, "Почта обязательна к заполнению"],
+    required: [true, 'Почта обязательна к заполнению'],
     unique: true,
     lowercase: true,
     validate: {
@@ -31,7 +31,7 @@ const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
   },
   password: {
     type: String,
-    required: [true, "Пароль обязателен к заполнению"],
+    required: [true, 'Пароль обязателен к заполнению'],
     minLength: [4, 'Пароль должен состоять из четерех или более символов'],
   },
   passwordConfirm: {
@@ -40,8 +40,9 @@ const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
     validate: {
       validator: function (this: HydratedDocument<IUserApi>, el: string) {
         return el === this.password;
-      }, message: 'Пароль не совпадает'
-    }
+      },
+      message: 'Пароль не совпадает',
+    },
   },
   role: {
     type: String,
@@ -55,7 +56,7 @@ const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
   },
   displayName: {
     type: String,
-    required: [true, "Имя обязательно к заполнению"],
+    required: [true, 'Имя обязательно к заполнению'],
     validate: {
       validator: function (this: HydratedDocument<IUserApi>, valueUserName: string) {
         return valueUserName.trim().length > 0;
@@ -65,7 +66,7 @@ const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
   },
   phone: {
     type: String,
-    required: [true, "Телефон обязателен к заполнению"],
+    required: [true, 'Телефон обязателен к заполнению'],
     unique: true,
     validate: {
       validator: async function (this: HydratedDocument<IUserApi>, valueUserName: string) {
@@ -78,6 +79,7 @@ const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
     },
   },
   googleID: String,
+  address: String,
 });
 
 UserSchema.pre('save', async function (next) {
