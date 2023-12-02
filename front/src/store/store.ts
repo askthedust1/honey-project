@@ -12,7 +12,8 @@ import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrap
 import { productsAdminSlice } from '@/features/productAdmin/productsAdminSlice';
 import { addInterceptors } from '@/axiosApi';
 import { adminCategoriesSlice } from '@/features/adminCategories/adminCategoriesSlice';
-import {adminMainSlice} from "@/features/adminMain/adminMainSlice";
+import { adminMainSlice } from '@/features/adminMain/adminMainSlice';
+import { orderSlice } from '@/features/order/orderSlice';
 
 const usersPersistConfig = {
   key: 'honey:users',
@@ -30,6 +31,7 @@ export const makeStore = wrapMakeStore(() => {
     [adminMainSlice.name]: adminMainSlice.reducer,
     [bannersSlice.name]: bannersSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,
+    [orderSlice.name]: orderSlice.reducer,
     [productsAdminSlice.name]: productsAdminSlice.reducer,
     [usersSlice.name]: isServer
       ? usersSlice.reducer

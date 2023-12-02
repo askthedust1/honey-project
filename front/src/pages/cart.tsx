@@ -7,9 +7,13 @@ import CartItem from '@/components/CartItem/CartItem';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
+import { selectUser } from '@/features/users/usersSlice';
+import { useRouter } from 'next/router';
 
 const Cart: MyPage = () => {
   const [isClient, setIsClient] = useState(false);
+  const userState = useAppSelector(selectUser);
+  const router = useRouter();
 
   useEffect(() => {
     setIsClient(true);
@@ -22,6 +26,10 @@ const Cart: MyPage = () => {
       const { product, amount } = item;
       return total + product.actualPrice * amount;
     }, 0);
+  };
+
+  const handlePageChange = () => {
+    userState ? router.push('/order') : router.push('/accounts');
   };
 
   return (
@@ -51,7 +59,7 @@ const Cart: MyPage = () => {
               </div>
 
               <div className={cls.checkout}>
-                <button className={cls.btn} type="button">
+                <button className={cls.btn} type="button" onClick={handlePageChange}>
                   Оформить заказ
                 </button>
               </div>

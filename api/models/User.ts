@@ -34,16 +34,16 @@ const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
     required: [true, 'Пароль обязателен к заполнению'],
     minLength: [4, 'Пароль должен состоять из четерех или более символов'],
   },
-  passwordConfirm: {
-    type: String,
-    required: [true, 'Повторите пароль'],
-    validate: {
-      validator: function (this: HydratedDocument<IUserApi>, el: string) {
-        return el === this.password;
-      },
-      message: 'Пароль не совпадает',
-    },
-  },
+  // passwordConfirm: {
+  //   type: String,
+  //   required: [true, 'Повторите пароль'],
+  //   validate: {
+  //     validator: function (this: HydratedDocument<IUserApi>, el: string) {
+  //       return el === this.password;
+  //     },
+  //     message: 'Пароль не совпадает',
+  //   },
+  // },
   role: {
     type: String,
     required: true,
@@ -86,7 +86,7 @@ UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
   this.password = await bcrypt.hash(this.password, salt);
-  this.passwordConfirm = undefined;
+  // this.passwordConfirm = undefined;
   next();
 });
 

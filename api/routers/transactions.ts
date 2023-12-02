@@ -24,9 +24,10 @@ transactionsRouter.get('/user/:date', auth, async (req, res) => {
     if (!user._id) {
       return res.status(400).send({ error: 'Invalid user ID' });
     }
-    const transactions = await Transaction.find({ user: user._id, dateTime: req.params.date })
+    const transactions = await Transaction.findOne({ user: user._id, dateTime: req.params.date })
       .populate('user', 'displayName')
       .populate('kits.product', 'title');
+
     return res.send(transactions);
   } catch {
     return res.sendStatus(500);
