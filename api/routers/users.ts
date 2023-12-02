@@ -9,10 +9,14 @@ const client = new OAuth2Client(config.google.clientId);
 
 usersRouter.post('/', async (req, res, next) => {
   try {
+    if (req.body.password !== req.body.passwordConfirm) {
+      return res.status(400).send({ error: 'Пароль не совпадает!' });
+    }
+
     const user = new User({
       email: req.body.email,
       password: req.body.password,
-      passwordConfirm: req.body.passwordConfirm,
+      // passwordConfirm: req.body.passwordConfirm,
       displayName: req.body.displayName,
       phone: req.body.phone,
       address: req.body.address || null,
@@ -75,10 +79,13 @@ usersRouter.post('/google', async (req, res, next) => {
 usersRouter.delete('/sessions', async (req, res, next) => {
   try {
     const token = req.get('Authorization');
+    console.log(token);
+
     if (!token) {
       return res.send({ message: 'Success logout' });
     }
     const user = await User.findOne({ token });
+    console.log(user);
 
     if (!user) {
       return res.send({ message: 'Success logout' });
@@ -94,31 +101,47 @@ usersRouter.delete('/sessions', async (req, res, next) => {
 
 usersRouter.post('/sessions', async (req, res, next) => {
   try {
-    const userCheck = await User.findOne({ email: req.body.email });
+    // const userCheck = await User.findOne({ email: req.body.email });
+    //
+    // if (!userCheck) {
+    //   return res.status(400).send({ error: 'Неправильный логин или пароль!' });
+    // }
+    //
+    // const isMatch = await userCheck.checkPassword(req.body.password);
+    //
+    // if (!isMatch) {
+    //   return res.status(400).send({ error: 'Неправильный логин или пароль!' });
+    // }
+    //
+    // userCheck.passwordConfirm = userCheck.password;
+    // userCheck.generateToken();
+    // await userCheck.save();
+    //
+    // const user = {
+    //   _id: userCheck._id,
+    //   email: userCheck.email,
+    //   role: userCheck.role,
+    //   token: userCheck.token,
+    //   displayName: userCheck.displayName,
+    //   phone: userCheck.phone,
+    //   address: userCheck.address,
+    // };
+    //
+    // return res.send({ message: 'Email and password correct!', user });
+    const user = await User.findOne({ email: req.body.email });
 
-    if (!userCheck) {
+    if (!user) {
       return res.status(400).send({ error: 'Неправильный логин или пароль!' });
     }
 
-    const isMatch = await userCheck.checkPassword(req.body.password);
+    const isMatch = await user.checkPassword(req.body.password);
 
     if (!isMatch) {
       return res.status(400).send({ error: 'Неправильный логин или пароль!' });
     }
 
-    userCheck.passwordConfirm = userCheck.password;
-    userCheck.generateToken();
-    await userCheck.save();
-
-    const user = {
-      _id: userCheck._id,
-      email: userCheck.email,
-      role: userCheck.role,
-      token: userCheck.token,
-      displayName: userCheck.displayName,
-      phone: userCheck.phone,
-      address: userCheck.address,
-    };
+    user.generateToken();
+    await user.save();
 
     return res.send({ message: 'Email and password correct!', user });
   } catch (e) {
