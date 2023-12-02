@@ -7,7 +7,7 @@ interface Props {
 }
 
 const OrderItem: React.FC<Props> = ({ item }) => {
-  const dispatch = useAppDispatch();
+
   return (
     <div>
       <span>{item.product.title}</span>
