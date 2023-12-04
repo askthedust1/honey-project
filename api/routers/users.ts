@@ -18,6 +18,7 @@ usersRouter.post('/', async (req, res, next) => {
       password: req.body.password,
       displayName: req.body.displayName,
       phone: req.body.phone,
+      address: req.body.address || null,
     });
 
     user.generateToken();
@@ -77,10 +78,13 @@ usersRouter.post('/google', async (req, res, next) => {
 usersRouter.delete('/sessions', async (req, res, next) => {
   try {
     const token = req.get('Authorization');
+    console.log(token);
+
     if (!token) {
       return res.send({ message: 'Success logout' });
     }
     const user = await User.findOne({ token });
+    console.log(user);
 
     if (!user) {
       return res.send({ message: 'Success logout' });
@@ -110,7 +114,6 @@ usersRouter.post('/sessions', async (req, res, next) => {
 
     user.generateToken();
     await user.save();
-
 
     return res.send({ message: 'Email and password correct!', user });
   } catch (e) {

@@ -1,5 +1,5 @@
 'use static';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import cls from '../../../styles/_header.module.scss';
 import logo from '@/assets/images/logo.svg';
@@ -9,14 +9,20 @@ import { useAppSelector } from '@/store/hook';
 import { selectUser } from '@/features/users/usersSlice';
 import UserNav from '@/components/UI/header/UserNav';
 import AnonymousNav from '@/components/UI/header/AnonymousNav';
-import Cart from '@/components/CartItem/Cart';
 import { selectCart } from '@/features/cart/cartSlice';
 
 const Header = () => {
   const user = useAppSelector(selectUser);
   const [isShowNav, setIsShowNav] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const { t } = useTranslation('header');
   const cart = useAppSelector(selectCart);
+  const [isClient, setIsClient] = useState(false);
+
   const toggleNav = () => setIsShowNav(!isShowNav);
 
   return (
@@ -53,8 +59,13 @@ const Header = () => {
             <a href="tel:+99655555555">+996 555 55 55 55</a>
           </div>
           <Link href={'/cart'} className={cls.basket}>
-            <span className={cls.basket_item}>{<Cart />}</span>
-            {/*<Cart />*/}
+            {typeof window !== 'undefined' && cart && isClient ? (
+              <span className={cls.basket_item}>
+                {cart.reduce((total, item) => total + item.amount, 0)}
+              </span>
+            ) : (
+              <span></span>
+            )}
           </Link>
         </div>
       </div>

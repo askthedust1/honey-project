@@ -5,6 +5,7 @@ import { register } from '@/features/users/usersThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectRegisterError, selectRegisterLoading } from '@/features/users/usersSlice';
 import acc from './form.module.scss';
+import { selectCart } from '@/features/cart/cartSlice';
 
 interface Props {
   containerRef: React.RefObject<HTMLDivElement>;
@@ -15,6 +16,7 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
   const error = useAppSelector(selectRegisterError);
   const loading = useAppSelector(selectRegisterLoading);
   const router = useRouter();
+  const cartState = useAppSelector(selectCart);
 
   const [state, setState] = useState<RegisterMutation>({
     email: '',
@@ -22,6 +24,7 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
     passwordConfirm: '',
     displayName: '',
     phone: '',
+    address: '',
   });
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +40,7 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
 
     try {
       await dispatch(register(state)).unwrap();
-      router.push('/');
+      cartState.length > 0 ? router.push('/order') : router.push('/');
     } catch (e) {
       // nothing
     }
@@ -71,7 +74,7 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
             {error && <span className={acc.error}>{getFieldError('password')}</span>}
           </div>
           <div className={acc.formGroup}>
-            <label htmlFor="password">Повторите пароль*</label>
+            <label htmlFor="passwordConfirm">Повторите пароль*</label>
             <input
               onChange={inputChangeHandler}
               type="password"
@@ -94,6 +97,11 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
               placeholder="Номер телефона"
             />
             {error && <span className={acc.error}>{getFieldError('phone')}</span>}
+          </div>
+          <div className={acc.formGroup}>
+            <label htmlFor="address">Адрес*</label>
+            <input onChange={inputChangeHandler} type="text" name="address" placeholder="Адрес" />
+            {error && <span className={acc.error}>{getFieldError('address')}</span>}
           </div>
           <div className={acc.footer}>
             <button disabled={loading} type="submit" className={acc.btn}>

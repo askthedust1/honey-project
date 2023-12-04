@@ -27,11 +27,17 @@ const Home: MyPage = () => {
 Home.Layout = 'Main';
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
-  axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
+  const lang = locale ?? 'ru';
+  axiosApi.defaults.headers.common['Accept-Language'] = lang;
 
-  await store.dispatch(fetchCategories());
+  await store.dispatch(fetchCategories(lang));
   await store.dispatch(fetchBanners());
-  await store.dispatch(fetchBestsellers('hit'));
+  await store.dispatch(
+    fetchBestsellers({
+      locale: lang,
+      type: 'hit',
+    }),
+  );
 
   return {
     props: {

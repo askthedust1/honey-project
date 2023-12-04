@@ -1,11 +1,12 @@
 import React from 'react';
 import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import AdminMain from "@/components/admin/mainPage/AdminMain";
 
 const AdminMainPage: MyPage = () => {
   return (
     <ProtectedRoute>
-      <h1>Admin main Page</h1>
+        <AdminMain/>
     </ProtectedRoute>
   );
 };

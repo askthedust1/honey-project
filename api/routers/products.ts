@@ -9,14 +9,7 @@ productRouter.get('/', async (req, res) => {
   // const lang = req.headers['accept-language'] || 'ru';
 
   try {
-    const token = req.get('Authorization');
-    const user = await User.findOne({ token });
     const filterBy = req.query.filterBy;
-
-    if (user && user.role === 'admin') {
-      const result = await Product.find();
-      return res.send(result);
-    }
 
     if (filterBy && filterBy === 'hit') {
       const result = await Product.find({ isHit: true, isActive: true }).limit(4);
@@ -93,14 +86,13 @@ productRouter.get('/:id', async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId).populate({
       path: 'category',
-      select: ['title'],
+      select: ['translations'],
       model: Category,
     });
 
     if (!product) {
       return res.status(404).send({ error: 'Not found' });
     }
-
     if (
       (user && user.role === 'admin') ||
       (!user && product.isActive) ||

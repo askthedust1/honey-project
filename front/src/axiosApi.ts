@@ -1,6 +1,6 @@
-import axios, { AxiosHeaders } from 'axios';
 import { apiUrl } from '@/constants';
-import { Store } from '@reduxjs/toolkit';
+import axios, { AxiosHeaders } from 'axios';
+import { Store } from 'redux';
 import { RootState } from '@/store/store';
 
 export const addInterceptors = (store: Store<RootState>) => {

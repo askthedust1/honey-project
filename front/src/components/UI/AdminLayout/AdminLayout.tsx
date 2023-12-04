@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
-import SidebarAdmin from '@/pages/admin/components/sidebarAdmin/SidebarAdmin';
+import SidebarAdmin from '@/components/UI/sidebarAdmin/SidebarAdmin';
+import cls from '../../../styles/_adminProducts.module.scss';
 
 interface LayoutProps {
   children: ReactNode;
@@ -7,9 +8,11 @@ interface LayoutProps {
 
 const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div style={{ display: 'flex' }}>
+    <div className={cls.mainAdminLayout}>
       <SidebarAdmin />
-      {children}
+        <div style={{flexGrow: '1', padding: '30px 35px'}}>
+            {children}
+        </div>
     </div>
   );
 };

@@ -41,9 +41,10 @@ ProductByCategoryPage.Layout = 'Main';
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ locale, query }) => {
-      axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
+      const lang = locale ?? 'ru';
+      axiosApi.defaults.headers.common['Accept-Language'] = lang;
 
-      await store.dispatch(fetchCategories());
+      await store.dispatch(fetchCategories(lang));
 
       const idOfCategory = query.cId as string;
       const pageNumber = query.cPage as string;
@@ -52,7 +53,9 @@ export const getServerSideProps = wrapper.getServerSideProps(
           categoryId: idOfCategory,
           categoryPage: pageNumber,
         };
-        await store.dispatch(fetchProductsByCategory(iQueryObjectCategory));
+        await store.dispatch(
+          fetchProductsByCategory({ query: iQueryObjectCategory, locale: lang }),
+        );
       }
 
       return {

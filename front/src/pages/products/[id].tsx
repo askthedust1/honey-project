@@ -9,6 +9,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { addProduct } from '@/features/cart/cartSlice';
 import { MyPage } from '@/components/common/types';
+import axiosApi from '@/axiosApi';
 
 const Product: MyPage = () => {
   const product = useAppSelector(selectOneProduct);
@@ -106,12 +107,15 @@ Product.Layout = 'Main';
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ locale, params }) => {
+      const lang = locale ?? 'ru';
+      axiosApi.defaults.headers.common['Accept-Language'] = lang;
+
       const id = params?.id;
       if (!id || Array.isArray(id)) {
         throw new Error('Param id must be a string');
       }
 
-      await store.dispatch(getProduct(id));
+      await store.dispatch(getProduct({ id: id, locale: lang }));
       return {
         props: {
           ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),

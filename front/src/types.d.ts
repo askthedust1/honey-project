@@ -6,6 +6,7 @@ export interface RegisterMutation {
   passwordConfirm: string;
   displayName: string;
   phone: string;
+  address: string;
 }
 
 export interface RegisterResponse {
@@ -26,6 +27,7 @@ export interface IUser {
   displayName: string;
   phone: string;
   googleID?: string;
+  address?: string;
 }
 
 export interface ValidationError {
@@ -58,6 +60,7 @@ export interface IProductView {
   amount: number;
   isActive: boolean;
   isHit: boolean;
+  datetime: string;
 }
 
 export interface IProduct {
@@ -71,6 +74,7 @@ export interface IProduct {
   amount: number;
   isActive: boolean;
   isHit: boolean;
+  datetime: string;
 }
 
 export interface IProductsOfPage {
@@ -84,6 +88,7 @@ export interface ICategory {
   title: string;
   description?: string;
   image: string | '';
+  isActive: boolean;
 }
 
 export interface ICategoryPost {
@@ -98,7 +103,22 @@ export interface ICategoryPost {
       title: string;
       description: string;
     };
+    kg: {
+      title: string;
+      description: string;
+    };
   };
+}
+
+export interface IAdminCategory {
+  _id: string;
+  translations: {
+    ru: {
+      title: string;
+    };
+  };
+  image: string | '';
+  isActive: boolean;
 }
 
 export interface IBanner {
@@ -131,7 +151,59 @@ export interface ICheck {
   message: string;
 }
 
-export interface IChangeBanner {
-  priority: string;
-  image: string;
+export interface IAdminMainInfo {
+  productAmount: number;
+  categoriesAmount: number;
+  usersAmount: number;
+  transactionsAmount: number;
+  sumAmount: number;
 }
+
+export interface IAdminMainHit {
+  amount: number;
+  product: {
+    translations: {
+      ru: {
+        title: string;
+      };
+    };
+    actualPrice: number;
+    image: string;
+    title: string;
+    category: {
+      translations: {
+        ru: {
+          title: string;
+        };
+      };
+    };
+  };
+  sum: number;
+}
+
+export interface IProductOfKits {
+  product: IProduct;
+  amount: number;
+  price: number;
+}
+
+export interface IOrder {
+  user: IUser;
+  address: string;
+  totalPrice: number;
+  status: boolean;
+  dateTime: string;
+  kits: IProductOfKits[];
+}
+
+export interface OrderMutation {
+  product: string;
+  amount: number;
+}
+
+export interface IFullOrder {
+  kits: OrderMutation[];
+  address: string;
+  dateTime: string;
+}
+  

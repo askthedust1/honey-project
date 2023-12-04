@@ -29,8 +29,9 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
 
   const cookies = context.req.headers.cookie;
   const { locale } = context;
-  axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
-  await store.dispatch(fetchCategories());
+  const lang = locale ?? 'ru';
+  axiosApi.defaults.headers.common['Accept-Language'] = lang;
+  await store.dispatch(fetchCategories(lang));
   const productsDataLoaded = store.getState().cart.dataLoaded;
 
   if (cookies && !productsDataLoaded) {
@@ -61,7 +62,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
     }
   }
 
-  await store.dispatch(fetchProducts(currentPage as string));
+  await store.dispatch(fetchProducts({ query: currentPage as string, locale: lang }));
   return {
     props: {
       name: 'Products',
