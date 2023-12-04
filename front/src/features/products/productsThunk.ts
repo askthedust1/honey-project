@@ -29,11 +29,6 @@ export const fetchBestsellers = createAsyncThunk<IProduct[], string>(
   },
 );
 
-// export const fetchProducts = createAsyncThunk<IProduct[]>('products/fetchAll', async () => {
-//   const productsResponse = await axiosApi.get<IProduct[]>('/products');
-//   return productsResponse.data;
-// });
-
 export const getProduct = createAsyncThunk<IProductView, string>(
   'products/getOne',
   async (id: string) => {

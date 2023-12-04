@@ -27,6 +27,14 @@ const BannerSchema = new Schema({
     type: String,
     required: true,
   },
+  page: {
+    type: String,
+    required: true,
+  },
+  priority: {
+    type: Number,
+    required: true,
+  }
 });
 
 export const pipelineBanner = (lang: string) => [
@@ -34,6 +42,8 @@ export const pipelineBanner = (lang: string) => [
     $project: {
       image: `$translations.${lang}.image`,
       description: `$description`,
+      page: `$page`,
+      priority: `$priority`
     },
   },
 ];

@@ -7,7 +7,7 @@ interface LayoutProps {
 
 const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       <SidebarAdmin />
       {children}
     </div>

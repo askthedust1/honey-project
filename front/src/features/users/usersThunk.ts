@@ -16,7 +16,7 @@ import { RootState } from '@/store/store';
 export const register = createAsyncThunk<
   RegisterResponse,
   RegisterMutation,
-  { rejectValue: ValidationError }
+  { rejectValue: ValidationError | GlobalError }
 >('users/accounts', async (registerMutation, { rejectWithValue }) => {
   try {
     const response = await axiosApi.post<RegisterResponse>('/users', registerMutation);

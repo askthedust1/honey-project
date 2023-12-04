@@ -1,7 +1,6 @@
 export interface IUserApi {
   email: string;
   password: string;
-  passwordConfirm: string | undefined;
   token: string;
   role: string;
   displayName: string;

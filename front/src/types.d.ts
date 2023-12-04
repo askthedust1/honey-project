@@ -104,7 +104,16 @@ export interface ICategoryPost {
 export interface IBanner {
   _id: string;
   description: string;
-  image: string;
+  image: string | File;
+  priority: number;
+  page: string;
+}
+
+export interface IBannerPost {
+  description: string;
+  image: File | null;
+  priority: string;
+  page: string;
 }
 
 export interface IQueryObjectCategory {
@@ -120,4 +129,9 @@ export interface ICart {
 export interface ICheck {
   userCheck: boolean;
   message: string;
+}
+
+export interface IChangeBanner {
+  priority: string;
+  image: string;
 }

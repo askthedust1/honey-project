@@ -9,10 +9,13 @@ const client = new OAuth2Client(config.google.clientId);
 
 usersRouter.post('/', async (req, res, next) => {
   try {
+    if (req.body.password !== req.body.passwordConfirm) {
+      return res.status(400).send({ error: 'Пароль не совпадает!' });
+    }
+
     const user = new User({
       email: req.body.email,
       password: req.body.password,
-      passwordConfirm: req.body.passwordConfirm,
       displayName: req.body.displayName,
       phone: req.body.phone,
     });
@@ -93,30 +96,21 @@ usersRouter.delete('/sessions', async (req, res, next) => {
 
 usersRouter.post('/sessions', async (req, res, next) => {
   try {
-    const userCheck = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email });
 
-    if (!userCheck) {
+    if (!user) {
       return res.status(400).send({ error: 'Неправильный логин или пароль!' });
     }
 
-    const isMatch = await userCheck.checkPassword(req.body.password);
+    const isMatch = await user.checkPassword(req.body.password);
 
     if (!isMatch) {
       return res.status(400).send({ error: 'Неправильный логин или пароль!' });
     }
 
-    userCheck.passwordConfirm = userCheck.password;
-    userCheck.generateToken();
-    await userCheck.save();
+    user.generateToken();
+    await user.save();
 
-    const user = {
-      _id: userCheck._id,
-      email: userCheck.email,
-      role: userCheck.role,
-      token: userCheck.token,
-      displayName: userCheck.displayName,
-      phone: userCheck.phone,
-    }
 
     return res.send({ message: 'Email and password correct!', user });
   } catch (e) {
