@@ -124,7 +124,16 @@ export interface IAdminCategory {
 export interface IBanner {
   _id: string;
   description: string;
-  image: string;
+  image: string | File;
+  priority: number;
+  page: string;
+}
+
+export interface IBannerPost {
+  description: string;
+  image: File | null;
+  priority: string;
+  page: string;
 }
 
 export interface IQueryObjectCategory {
@@ -197,3 +206,4 @@ export interface IFullOrder {
   address: string;
   dateTime: string;
 }
+  

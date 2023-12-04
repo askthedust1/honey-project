@@ -6,7 +6,7 @@ import { RootState } from '@/store/store';
 export interface UserState {
   user: IUser | null;
   registerLoading: boolean;
-  registerError: ValidationError | null;
+  registerError: ValidationError | null | GlobalError;
   loginLoading: boolean;
   loginError: GlobalError | null;
   isAdmin: ICheck | null;

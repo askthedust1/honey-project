@@ -81,7 +81,7 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
               name="passwordConfirm"
               placeholder="Повторите пароль"
             />
-            {error && <span className={acc.error}>{getFieldError('passwordConfirm')}</span>}
+            {error && <span className={acc.error}>{error.error}</span>}
           </div>
           <div className={acc.formGroup}>
             <label htmlFor="email">Email*</label>

@@ -57,6 +57,8 @@ export const makeStore = wrapMakeStore(() => {
   });
   addInterceptors(store);
 
+  addInterceptors(store);
+
   if (!isServer) {
     // @ts-expect-error
     store.__persistor = persistStore(store);
