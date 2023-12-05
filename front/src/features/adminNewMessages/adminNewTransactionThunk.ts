@@ -1,9 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {RootState} from "@/store/store";
 import axiosApi from "@/axiosApi";
+import {IOrder} from "@/types";
 
 export const fetchAdminHewTransaction = createAsyncThunk<
-    any[],
+    IOrder[],
     void,
     {
         state: RootState;

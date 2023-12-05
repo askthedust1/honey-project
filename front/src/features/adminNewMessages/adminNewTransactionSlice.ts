@@ -2,9 +2,10 @@ import {createSlice} from "@reduxjs/toolkit";
 import {HYDRATE} from "next-redux-wrapper";
 import {RootState} from "@/store/store";
 import {fetchAdminHewTransaction} from "@/features/adminNewMessages/adminNewTransactionThunk";
+import {IOrder} from "@/types";
 
 interface AdminMainState {
-    newTransactions: any[];
+    newTransactions: IOrder[];
     loading: boolean;
 }
 
