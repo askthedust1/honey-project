@@ -220,5 +220,31 @@
         display: block;
       }
     }
+    .newOrder {
+      position: relative;
+      span {
+        text-align: center;
+        display: inline-block;
+        width: 31px;
+        height: 31px;
+        padding: 5px;
+        position: absolute;
+        background: orange;
+        left: 11px;
+        top: 8px;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .empty {
+        background: rgba(148, 148, 148, 0.51);
+        color: #757575;
+      }
+      &:hover {
+        span {
+          background: rgba(128, 128, 128, 0.73);
+        }
+      }
+    }
   }
 }
