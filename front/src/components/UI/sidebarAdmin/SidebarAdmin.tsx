@@ -110,8 +110,8 @@ const SidebarAdmin = () => {
           <li className={cls.newOrder}>
             <Link className={cls.list_link} href={'/admin/newOrders'}>
               Новые заказы
-              <span className={!newTransaction.length ? cls.empty : ''}>
-                {newTransaction.length < 100 ? newTransaction.length : 99}
+              <span className={newTransaction && !newTransaction.length ? cls.empty : ''}>
+                {newTransaction ? newTransaction.length < 100 ? newTransaction.length : 99 : 0}
               </span>
             </Link>
           </li>
