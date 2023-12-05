@@ -1,7 +1,5 @@
 import { ICategory } from '@/types';
 
-
-
 interface FitCategory extends ICategory {
   translations?: {
     [key: string]: {

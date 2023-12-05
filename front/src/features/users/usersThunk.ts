@@ -14,7 +14,6 @@ import { unsetUser } from './usersSlice';
 import { RootState } from '@/store/store';
 import { resetCart } from '@/features/cart/cartSlice';
 
-
 export const register = createAsyncThunk<
   RegisterResponse,
   RegisterMutation,

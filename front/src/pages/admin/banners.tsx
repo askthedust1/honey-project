@@ -3,8 +3,12 @@ import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import ImageSlider from '@/components/ImageSlider/ImageSlider';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { selectBanners } from '@/features/banners/bannersSlice';
-import { fetchBanners } from '@/features/banners/bannersThunk';
+import {
+  selectBannerError,
+  selectBanners,
+  selectBannersPutLoading,
+} from '@/features/banners/bannersSlice';
+import { fetchBanners, putBanners } from '@/features/banners/bannersThunk';
 import { wrapper } from '@/store/store';
 import axiosApi from '@/axiosApi';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -12,11 +16,15 @@ import LanguageSwitcher from '@/components/UI/langSwitcher/LanguageSwitcher';
 import { IBannerPost } from '@/types';
 import FileUpload from '@/components/UI/FileUpload/FileUpload';
 import cls from '@/styles/_bannersAdmin.module.scss';
+import { i18n } from 'next-i18next';
 
 const BannersAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
   const banners = useAppSelector(selectBanners);
+  const loading = useAppSelector(selectBannersPutLoading);
+  const error = useAppSelector(selectBannerError);
   const [state, setState] = useState<IBannerPost>({
+    translations: i18n?.language,
     description: '',
     image: null,
     priority: '',
@@ -27,9 +35,9 @@ const BannersAdminPage: MyPage = () => {
     e.preventDefault();
 
     try {
-      // await dispatch((state)).unwrap();
+      await dispatch(putBanners(state)).unwrap();
     } catch (e) {
-      alert('Invalid field');
+      //
     }
   };
 
@@ -64,12 +72,13 @@ const BannersAdminPage: MyPage = () => {
             <LanguageSwitcher />
           </div>
           <form onSubmit={submitFormHandler}>
+            {error && <div style={{ color: 'red', fontWeight: 'bold' }}>{error.error}</div>}
             <div className={cls.formWrap}>
               <label className={cls.formTitle} htmlFor="priority">
-                Выберите очедность баннера:
+                Выберите очедность баннера*:
               </label>
               <select className={cls.select} onChange={inputChangeHandler} name="priority">
-                <option disabled>Выберите очедность:</option>
+                <option value="">Выберите очедность:</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -80,7 +89,7 @@ const BannersAdminPage: MyPage = () => {
                 Выберите перенаправление на страницу:
               </label>
               <select className={cls.select} onChange={inputChangeHandler} name="page">
-                <option disabled>Выберите станицу:</option>
+                <option value="">Выберите станицу:</option>
                 <option value="/products/page/1">Товары</option>
                 <option value="/about">О нас</option>
                 <option value="/">Конструктор наборов</option>
@@ -103,7 +112,7 @@ const BannersAdminPage: MyPage = () => {
               <FileUpload onChange={filesInputChangeHandler} name="image" label="image" />
             </div>
             <div className={cls.formWrp}>
-              <button className={cls.formBtn} type="submit">
+              <button disabled={loading} className={cls.formBtn} type="submit">
                 Отправить
               </button>
             </div>

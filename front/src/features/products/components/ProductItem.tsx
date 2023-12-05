@@ -4,7 +4,7 @@ import Link from 'next/link';
 import cls from '../../../styles/products.module.scss';
 import { useAppDispatch } from '@/store/hook';
 import { IProduct } from '@/types';
-import { addProduct, addToCartState } from '@/features/cart/cartSlice';
+import { addProduct } from '@/features/cart/cartSlice';
 import { useTranslation } from 'next-i18next';
 
 const ProductItem: React.FC<Props> = ({ product }) => {

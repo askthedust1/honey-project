@@ -84,7 +84,6 @@ usersRouter.delete('/sessions', async (req, res, next) => {
       return res.send({ message: 'Success logout' });
     }
     const user = await User.findOne({ token });
-    console.log(user);
 
     if (!user) {
       return res.send({ message: 'Success logout' });

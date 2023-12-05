@@ -33,8 +33,8 @@ const BannerSchema = new Schema({
   },
   priority: {
     type: Number,
-    required: true,
-  }
+    required: [true, 'Телефон обязателен к заполнению'],
+  },
 });
 
 export const pipelineBanner = (lang: string) => [

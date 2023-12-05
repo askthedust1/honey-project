@@ -14,6 +14,10 @@ export interface RegisterResponse {
   message: string;
 }
 
+export interface BannerResponse {
+  message: string;
+}
+
 export interface LoginMutation {
   email: string;
   password: string;
@@ -124,12 +128,13 @@ export interface IAdminCategory {
 export interface IBanner {
   _id: string;
   description: string;
-  image: string | File;
+  image: string | null;
   priority: number;
   page: string;
 }
 
 export interface IBannerPost {
+  translations: string | undefined;
   description: string;
   image: File | null;
   priority: string;
@@ -162,6 +167,7 @@ export interface IAdminMainInfo {
 export interface IAdminMainHit {
   amount: number;
   product: {
+    _id: string;
     translations: {
       ru: {
         title: string;
@@ -206,4 +212,3 @@ export interface IFullOrder {
   address: string;
   dateTime: string;
 }
-  
