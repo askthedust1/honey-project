@@ -63,7 +63,7 @@ const SidebarAdmin = () => {
             <Link href={'/admin/categories'} className={cls.list_link}>Все категории</Link>
           </li>
           <li className={`${cls.detail} ${isShowCategory ? cls.detail_show : ''}`}>
-            <Link href={'/'} className={cls.list_link}>Новая категорию</Link>
+            <Link href={'/admin/createCategories'} className={cls.list_link}>Новая категорию</Link>
           </li>
           <li className={cls.banner}>
             <Link className={cls.list_link} href={'/admin/banners'}>
