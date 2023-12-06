@@ -17,9 +17,11 @@ import { IBannerPost } from '@/types';
 import FileUpload from '@/components/UI/FileUpload/FileUpload';
 import cls from '@/styles/_bannersAdmin.module.scss';
 import { i18n } from 'next-i18next';
+import { useRouter } from 'next/router';
 
 const BannersAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const banners = useAppSelector(selectBanners);
   const loading = useAppSelector(selectBannersPutLoading);
   const error = useAppSelector(selectBannerError);
@@ -36,6 +38,14 @@ const BannersAdminPage: MyPage = () => {
 
     try {
       await dispatch(putBanners(state)).unwrap();
+      setState({
+        translations: i18n?.language,
+        description: '',
+        image: null,
+        priority: '',
+        page: '',
+      });
+      router.reload();
     } catch (e) {
       //
     }
@@ -77,8 +87,16 @@ const BannersAdminPage: MyPage = () => {
               <label className={cls.formTitle} htmlFor="priority">
                 Выберите очедность баннера*:
               </label>
-              <select className={cls.select} onChange={inputChangeHandler} name="priority">
-                <option value="">Выберите очедность:</option>
+              <select
+                defaultValue=""
+                required
+                className={cls.select}
+                onChange={inputChangeHandler}
+                name="priority"
+              >
+                <option value="" disabled>
+                  Выберите очедность:
+                </option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -88,8 +106,16 @@ const BannersAdminPage: MyPage = () => {
               <label className={cls.formTitle} htmlFor="page">
                 Выберите перенаправление на страницу:
               </label>
-              <select className={cls.select} onChange={inputChangeHandler} name="page">
-                <option value="">Выберите станицу:</option>
+              <select
+                defaultValue=""
+                required
+                className={cls.select}
+                onChange={inputChangeHandler}
+                name="page"
+              >
+                <option value="" disabled>
+                  Выберите станицу:
+                </option>
                 <option value="/products/page/1">Товары</option>
                 <option value="/about">О нас</option>
                 <option value="/">Конструктор наборов</option>

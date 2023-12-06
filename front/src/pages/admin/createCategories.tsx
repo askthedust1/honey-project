@@ -1,14 +1,17 @@
 import React, { ChangeEvent, useState } from 'react';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import { useAppDispatch } from '@/store/hook';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { useRouter } from 'next/router';
 import { createCategory } from '@/features/adminCategories/adminCategoriesThunk';
 import cls from '@/styles/_createCategories.module.scss';
 import { ICategoryMutation } from '@/types';
+import { selectErrorsCategoriesAdmin } from '@/features/adminCategories/adminCategoriesSlice';
+import { MyPage } from '@/components/common/types';
 
-const CreateCategories = () => {
+const CreateCategories: MyPage = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const error = useAppSelector(selectErrorsCategoriesAdmin);
 
   const [file, setFile] = useState<File | null>();
   const [state, setState] = useState({
@@ -56,34 +59,60 @@ const CreateCategories = () => {
     }
   };
 
+  const getFieldError = (fieldName: string) => {
+    try {
+      return error?.errors[fieldName].message;
+    } catch {
+      return undefined;
+    }
+  };
+
   return (
     <ProtectedRoute>
       <div className={cls.createCategory}>
         <h2>Форма создания категории</h2>
         <form className={cls.createCategory_form} onSubmit={submitFormHandler}>
-          <input
-            className={cls.createCategory_input}
-            placeholder="Название на EN"
-            name="titleEN"
-            value={state.titleEN}
-            onChange={inputChangeHandler}
-          />
+          <div>
+            <span className={cls.langSpan}>EN</span>
+            <input
+              className={cls.createCategory_input}
+              placeholder="Название на EN"
+              name="titleEN"
+              value={state.titleEN}
+              onChange={inputChangeHandler}
+            />
+            {Boolean(getFieldError('translations.en.title')) && (
+              <span className={cls.field_error}>Некорректные данные EN</span>
+            )}
+          </div>
 
-          <input
-            className={cls.createCategory_input}
-            placeholder="Название на RU"
-            name="titleRU"
-            value={state.titleRU}
-            onChange={inputChangeHandler}
-          />
+          <div>
+            <span className={cls.langSpan}>RU</span>
+            <input
+              className={cls.createCategory_input}
+              placeholder="Название на RU"
+              name="titleRU"
+              value={state.titleRU}
+              onChange={inputChangeHandler}
+            />
+            {Boolean(getFieldError('translations.ru.title')) && (
+              <span className={cls.field_error}>Некорректные данные RU</span>
+            )}
+          </div>
 
-          <input
-            className={cls.createCategory_input}
-            placeholder="Название на KG"
-            name="titleKG"
-            value={state.titleKG}
-            onChange={inputChangeHandler}
-          />
+          <div>
+            <span className={cls.langSpan}>KG</span>
+            <input
+              className={cls.createCategory_input}
+              placeholder="Название на KG"
+              name="titleKG"
+              value={state.titleKG}
+              onChange={inputChangeHandler}
+            />
+            {Boolean(getFieldError('translations.kg.title')) && (
+              <span className={cls.field_error}>Некорректные данные KG</span>
+            )}
+          </div>
 
           <input
             className={cls.createCategory_fileInput}
@@ -96,7 +125,15 @@ const CreateCategories = () => {
             {file ? (
               <img src={file ? URL.createObjectURL(file) : ''} alt="" />
             ) : (
-              <span>Загрузить изображение</span>
+              <span
+                style={{
+                  color: Boolean(getFieldError('image')) ? 'red' : 'rgba(90, 55, 51, 0.25)',
+                }}
+              >
+                {Boolean(getFieldError('image'))
+                  ? 'Некорректное изображение'
+                  : 'Загрузить изображение'}
+              </span>
             )}
           </label>
           <button type="submit">Сохранить</button>
