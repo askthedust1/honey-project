@@ -1,21 +1,35 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProductNew, IProductView } from '@/types';
+import { IProductView } from '@/types';
 import axiosApi from '@/axiosApi';
 import { useProductsAdminTranslation } from '@/features/products/productHook';
 
 export const fetchBestsellersProducts = createAsyncThunk<IProductView[], string | null>(
-  'adminBestsellers/fetchBestsellers',
+  'adminBestsellers/fetchProducts',
   async (id) => {
     const query = id ? `?category=${id}` : '';
-    const productsResponse = await axiosApi.get<IProductView[]>(`/adminBestsellers/${query}`);
-    return useProductsAdminTranslation(productsResponse.data, 'ru');
+    const productsResponse = await axiosApi.get<IProductView[]>(`/admin/${query}`);
+    return useProductsAdminTranslation(
+      productsResponse.data.filter((i) => i.isHit === false),
+      'ru',
+    );
   },
 );
 
-export const fetchOneHit = createAsyncThunk<IProductNew, string>(
-  'adminBestsellers/getHit',
+export const fetchBestsellers = createAsyncThunk<IProductView[]>(
+  'adminBestsellers/fetchBestsellers',
+  async () => {
+    // const query = id ? `?category=${id}` : '';
+    const productsResponse = await axiosApi.get<IProductView[]>(`/admin`);
+    return useProductsAdminTranslation(
+      productsResponse.data.filter((i) => i.isHit === true).slice(0, 4),
+      'ru',
+    );
+  },
+);
+
+export const patchHitProduct = createAsyncThunk<void, string>(
+  'adminBestsellers/patchHitProduct',
   async (id) => {
-    const productResponse = await axiosApi.get<IProductNew>(`/adminBestsellers/${id}`);
-    return productResponse.data;
+    await axiosApi.patch(`/admin/${id}/hit`);
   },
 );

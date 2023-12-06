@@ -15,8 +15,9 @@ import axiosApi from '@/axiosApi';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import {
+  fetchBestsellers,
   fetchBestsellersProducts,
-  fetchOneHit,
+  patchHitProduct,
 } from '@/features/adminBestsellers/adminBestsellersThunk';
 
 const BestsellerAdminPage: MyPage = () => {
@@ -26,6 +27,7 @@ const BestsellerAdminPage: MyPage = () => {
   const categories = useAppSelector(selectCategories);
 
   useEffect(() => {
+    dispatch(fetchBestsellers());
     dispatch(fetchBestsellersProducts(''));
   }, [dispatch]);
 
@@ -39,9 +41,10 @@ const BestsellerAdminPage: MyPage = () => {
     }
   };
 
-  const addHit = (id: string) => {
-    dispatch(fetchOneHit(id));
-    fetchBestsellersProducts('');
+  const addHit = async (id: string) => {
+    await dispatch(patchHitProduct(id));
+    await dispatch(fetchBestsellers());
+    await dispatch(fetchBestsellersProducts(''));
   };
 
   return (
@@ -51,7 +54,9 @@ const BestsellerAdminPage: MyPage = () => {
           <h1 className={cls.bestseller_main_title}>Хиты</h1>
           <div className={cls.bestseller_activeBest}>
             {bestsellers.map((i) => (
-              <div key={i._id}>{i.translations.ru.title}</div>
+              <button key={i._id} onClick={() => addHit(i._id)}>
+                {i.title}
+              </button>
             ))}
           </div>
           <div className={cls.adminProductsNav}>

@@ -1,12 +1,15 @@
-import {IProductNew, IProductView} from '@/types';
+import { IProductView } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { RootState } from '@/store/store';
-import {fetchBestsellersProducts, fetchOneHit} from '@/features/adminBestsellers/adminBestsellersThunk';
+import {
+  fetchBestsellers,
+  fetchBestsellersProducts,
+} from '@/features/adminBestsellers/adminBestsellersThunk';
 
 interface BestsellersState {
   products: IProductView[];
-  bestsellers: IProductNew[];
+  bestsellers: IProductView[];
   fetchLoading: boolean;
 }
 
@@ -36,14 +39,14 @@ export const bestsellersSlice = createSlice({
       state.fetchLoading = false;
     });
 
-    builder.addCase(fetchOneHit.pending, (state) => {
+    builder.addCase(fetchBestsellers.pending, (state) => {
       state.fetchLoading = true;
     });
-    builder.addCase(fetchOneHit.fulfilled, (state, { payload: product }) => {
+    builder.addCase(fetchBestsellers.fulfilled, (state, { payload: products }) => {
       state.fetchLoading = false;
-      state.bestsellers.push(product);
+      state.bestsellers = products;
     });
-    builder.addCase(fetchOneHit.rejected, (state) => {
+    builder.addCase(fetchBestsellers.rejected, (state) => {
       state.fetchLoading = false;
     });
 
