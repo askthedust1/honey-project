@@ -63,6 +63,48 @@ export interface IProductView {
   datetime: string;
 }
 
+export interface IProductNew {
+  translations: {
+    en: {
+      title: string;
+      description: string;
+    };
+    ru: {
+      title: string;
+      description: string;
+    };
+    kg: {
+      title: string;
+      description: string;
+    };
+  };
+  _id: string;
+  category: {
+    _id: string;
+    translations: {
+      en: {
+        title: string;
+        description: string;
+      };
+      ru: {
+        title: string;
+        description: string;
+      };
+      kg: {
+        title: string;
+        description: string;
+      };
+    };
+  };
+  oldPrice: number;
+  actualPrice: number;
+  image: string;
+  amount: number;
+  isActive: boolean;
+  isHit: boolean;
+  datetime: string;
+}
+
 export interface IProduct {
   _id: string;
   category: string;

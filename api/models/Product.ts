@@ -44,14 +44,6 @@ const ProductSchema = new Schema({
     required: true,
     default: new Date().toISOString(),
   },
-  // title: {
-  //   type: String,
-  //   required: true,
-  // },
-  // description: {
-  //   type: String,
-  //   required: true,
-  // },
   translations: {
     ru: {
       title: {

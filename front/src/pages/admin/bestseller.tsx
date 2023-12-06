@@ -3,36 +3,45 @@ import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/adminBestsellers.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { selectAllProductsForAdmin } from '@/features/productAdmin/productsAdminSlice';
 import { apiUrl } from '@/constants';
 import { selectCategories } from '@/features/categories/categoriesSlice';
 import {
-  fetchAllProductsForAdmin,
-  fetchAllProductsForAdminByCategory,
-} from '@/features/productAdmin/productsAdminThunk';
+  selectAllBestsellers,
+  selectAllBestsellersForAdmin,
+} from '@/features/adminBestsellers/adminBestsellersSlice';
 import plusIcon from '@/assets/images/plusIcon.png';
 import { wrapper } from '@/store/store';
 import axiosApi from '@/axiosApi';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import {
+  fetchBestsellersProducts,
+  fetchOneHit,
+} from '@/features/adminBestsellers/adminBestsellersThunk';
 
 const BestsellerAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector(selectAllProductsForAdmin);
+  const products = useAppSelector(selectAllBestsellersForAdmin);
+  const bestsellers = useAppSelector(selectAllBestsellers);
   const categories = useAppSelector(selectCategories);
 
   useEffect(() => {
-    dispatch(fetchAllProductsForAdmin());
+    dispatch(fetchBestsellersProducts(''));
   }, [dispatch]);
 
   const categoryChangeHandle = async (event: ChangeEvent<HTMLSelectElement>) => {
     const categoryId = event.target.value;
 
     if (categoryId !== '') {
-      await dispatch(fetchAllProductsForAdminByCategory(categoryId));
+      await dispatch(fetchBestsellersProducts(categoryId));
     } else {
-      await dispatch(fetchAllProductsForAdmin());
+      await dispatch(fetchBestsellersProducts(''));
     }
+  };
+
+  const addHit = (id: string) => {
+    dispatch(fetchOneHit(id));
+    fetchBestsellersProducts('');
   };
 
   return (
@@ -40,7 +49,11 @@ const BestsellerAdminPage: MyPage = () => {
       <div className={cls.container}>
         <div className={cls.bestseller}>
           <h1 className={cls.bestseller_main_title}>Хиты</h1>
-          <div className={cls.bestseller_activeBest}></div>
+          <div className={cls.bestseller_activeBest}>
+            {bestsellers.map((i) => (
+              <div key={i._id}>{i.translations.ru.title}</div>
+            ))}
+          </div>
           <div className={cls.adminProductsNav}>
             <h3 className={cls.bestseller_title}>Все товары</h3>
             <select onChange={categoryChangeHandle}>
@@ -86,6 +99,9 @@ const BestsellerAdminPage: MyPage = () => {
                     <td>{product.title}</td>
                     <td>{product.category.title}</td>
                     <td>{product.actualPrice}</td>
+                    <td>{product.actualPrice}</td>
+                    <td>{product.actualPrice}</td>
+                    <td>{product.actualPrice}</td>
                     <td>
                       <span
                         className={
@@ -98,7 +114,10 @@ const BestsellerAdminPage: MyPage = () => {
                       </span>
                     </td>
                     <td>
-                      <button className={cls.adminBestsellersTable_addBtn}>
+                      <button
+                        className={cls.adminBestsellersTable_addBtn}
+                        onClick={() => addHit(product._id)}
+                      >
                         <img src={plusIcon.src} alt="Plus Icon" />
                       </button>
                     </td>
