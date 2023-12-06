@@ -66,7 +66,7 @@ const BestsellerAdminPage: MyPage = () => {
           <div className={cls.bestseller_activeBest}>
             {!bestsellers.length ? (
               <span className={cls.bestseller_hit_title}>
-                В данном разделе нет хитов! Вы можете добавить, нажав на плюсик.
+                В данном разделе пока нет хитов! Вы можете добавить, нажав на плюсик.
               </span>
             ) : (
               bestsellers.map((i) => (
