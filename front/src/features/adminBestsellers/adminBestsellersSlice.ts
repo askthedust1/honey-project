@@ -5,18 +5,23 @@ import { RootState } from '@/store/store';
 import {
   fetchBestsellers,
   fetchBestsellersProducts,
+  patchHitProduct,
 } from '@/features/adminBestsellers/adminBestsellersThunk';
 
 interface BestsellersState {
   products: IProductView[];
-  bestsellers: IProductView[];
+  bestsellersAdmin: IProductView[];
   fetchLoading: boolean;
+  fetchHitsLoading: boolean;
+  patchHitLoading: boolean;
 }
 
 const initialState: BestsellersState = {
   products: [],
-  bestsellers: [],
+  bestsellersAdmin: [],
   fetchLoading: false,
+  fetchHitsLoading: false,
+  patchHitLoading: false,
 };
 
 export const bestsellersSlice = createSlice({
@@ -40,35 +45,31 @@ export const bestsellersSlice = createSlice({
     });
 
     builder.addCase(fetchBestsellers.pending, (state) => {
-      state.fetchLoading = true;
+      state.fetchHitsLoading = true;
     });
-    builder.addCase(fetchBestsellers.fulfilled, (state, { payload: products }) => {
-      state.fetchLoading = false;
-      state.bestsellers = products;
+    builder.addCase(fetchBestsellers.fulfilled, (state, { payload: hits }) => {
+      state.fetchHitsLoading = false;
+      state.bestsellersAdmin = hits;
     });
     builder.addCase(fetchBestsellers.rejected, (state) => {
-      state.fetchLoading = false;
+      state.fetchHitsLoading = false;
     });
 
-    //
-    // builder.addCase(patchHitProducts.pending, (state) => {
-    //   state.patchHitLoading = true;
-    // });
-    // builder.addCase(patchHitProducts.fulfilled, (state) => {
-    //   state.patchHitLoading = false;
-    // });
-    // builder.addCase(patchHitProducts.rejected, (state) => {
-    //   state.patchHitLoading = false;
-    // });
+    builder.addCase(patchHitProduct.pending, (state) => {
+      state.patchHitLoading = true;
+    });
+    builder.addCase(patchHitProduct.fulfilled, (state) => {
+      state.patchHitLoading = false;
+    });
+    builder.addCase(patchHitProduct.rejected, (state) => {
+      state.patchHitLoading = false;
+    });
   },
 });
 
-export const BestsellersReducer = bestsellersSlice.reducer;
 export const selectAllBestsellersForAdmin = (state: RootState) => state.bestsellersAdmin.products;
-export const selectAllBestsellers = (state: RootState) => state.bestsellersAdmin.bestsellers;
-// export const selectOneProductForAdmin = (state: RootState) => state.productsAdmin.item;
-// export const selectAllProductsLoading = (state: RootState) => state.productsAdmin.fetchLoading;
-// export const selectOneProductsLoading = (state: RootState) => state.productsAdmin.fetchOneLoading;
-// export const selectActiveStatusLoading = (state: RootState) =>
-//   state.productsAdmin.patchActiveLoading;
-// export const selectActiveHitLoading = (state: RootState) => state.productsAdmin.patchHitLoading;
+export const selectAllBestsellers = (state: RootState) => state.bestsellersAdmin.bestsellersAdmin;
+export const selectAllProductsLoading = (state: RootState) =>
+  state.bestsellersAdmin.fetchHitsLoading;
+export const selectBestsellersLoading = (state: RootState) => state.bestsellersAdmin.fetchLoading;
+export const selectActiveHitLoading = (state: RootState) => state.bestsellersAdmin.patchHitLoading;

@@ -41,7 +41,18 @@ const BestsellerAdminPage: MyPage = () => {
     }
   };
 
+  const deleteHit = async (id: string) => {
+    await dispatch(patchHitProduct(id));
+    await dispatch(fetchBestsellers());
+    await dispatch(fetchBestsellersProducts(''));
+  };
+
   const addHit = async (id: string) => {
+    if (bestsellers.length > 5) {
+      alert('В хиты можно добавлять только 6 продуктов!');
+      return;
+    }
+
     await dispatch(patchHitProduct(id));
     await dispatch(fetchBestsellers());
     await dispatch(fetchBestsellersProducts(''));
@@ -53,11 +64,21 @@ const BestsellerAdminPage: MyPage = () => {
         <div className={cls.bestseller}>
           <h1 className={cls.bestseller_main_title}>Хиты</h1>
           <div className={cls.bestseller_activeBest}>
-            {bestsellers.map((i) => (
-              <button key={i._id} onClick={() => addHit(i._id)}>
-                {i.title}
-              </button>
-            ))}
+            {!bestsellers.length ? (
+              <span className={cls.bestseller_hit_title}>
+                В данном разделе нет хитов! Вы можете добавить, нажав на плюсик.
+              </span>
+            ) : (
+              bestsellers.map((i) => (
+                <div className={cls.bestseller_hit} key={i._id}>
+                  <span className={cls.bestseller_hit_title}>{i.title}</span>
+                  <button
+                    onClick={() => deleteHit(i._id)}
+                    className={cls.bestseller_hit_btn}
+                  ></button>
+                </div>
+              ))
+            )}
           </div>
           <div className={cls.adminProductsNav}>
             <h3 className={cls.bestseller_title}>Все товары</h3>
@@ -91,7 +112,7 @@ const BestsellerAdminPage: MyPage = () => {
                   <th>Название</th>
                   <th>Категория</th>
                   <th>Цена</th>
-                  <th>Статус</th>
+                  {/*<th>Статус</th>*/}
                   <th>Действие</th>
                 </tr>
               </thead>
@@ -101,23 +122,20 @@ const BestsellerAdminPage: MyPage = () => {
                     <td className={cls.imageTd}>
                       <img src={apiUrl + '/' + product.image} alt="image" />
                     </td>
-                    <td>{product.title}</td>
+                    <td className={cls.adminBestsellersTable_body_title}>{product.title}</td>
                     <td>{product.category.title}</td>
                     <td>{product.actualPrice}</td>
-                    <td>{product.actualPrice}</td>
-                    <td>{product.actualPrice}</td>
-                    <td>{product.actualPrice}</td>
-                    <td>
-                      <span
-                        className={
-                          product.isActive
-                            ? cls.adminBestsellersTable_active
-                            : cls.adminBestsellersTable_inactive
-                        }
-                      >
-                        {product.isActive ? 'Активен' : 'Не активен'}
-                      </span>
-                    </td>
+                    {/*<td>*/}
+                    {/*  <span*/}
+                    {/*    className={*/}
+                    {/*      product.isActive*/}
+                    {/*        ? cls.adminBestsellersTable_active*/}
+                    {/*        : cls.adminBestsellersTable_inactive*/}
+                    {/*    }*/}
+                    {/*  >*/}
+                    {/*    {product.isActive ? 'Активен' : 'Не активен'}*/}
+                    {/*  </span>*/}
+                    {/*</td>*/}
                     <td>
                       <button
                         className={cls.adminBestsellersTable_addBtn}

@@ -18,10 +18,9 @@ export const fetchBestsellersProducts = createAsyncThunk<IProductView[], string 
 export const fetchBestsellers = createAsyncThunk<IProductView[]>(
   'adminBestsellers/fetchBestsellers',
   async () => {
-    // const query = id ? `?category=${id}` : '';
     const productsResponse = await axiosApi.get<IProductView[]>(`/admin`);
     return useProductsAdminTranslation(
-      productsResponse.data.filter((i) => i.isHit === true).slice(0, 4),
+      productsResponse.data.filter((i) => i.isHit === true),
       'ru',
     );
   },
