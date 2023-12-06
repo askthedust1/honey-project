@@ -42,7 +42,7 @@
   }
 
   &_input {
-    margin-bottom: 15px;
+    margin-bottom: 17px;
     border: none;
     border-bottom: 2px solid rgba(90, 55, 51, 0.28);
     outline: none;
@@ -127,4 +127,26 @@
       height: 100%;
     }
   }
+}
+
+.langSpan {
+  margin-right: 35px;
+  font-family: "Montserrat", sans-serif;
+  padding: 6px;
+  font-size: 14px;
+  color: #5A3733;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  border: 2.5px solid #5A3733;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.field_error {
+  color: red;
+  margin: -16px 0 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+  display: block;
 }
