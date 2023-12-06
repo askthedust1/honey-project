@@ -14,6 +14,10 @@ export interface RegisterResponse {
   message: string;
 }
 
+export interface BannerResponse {
+  message: string;
+}
+
 export interface LoginMutation {
   email: string;
   password: string;
@@ -110,6 +114,21 @@ export interface ICategoryPost {
   };
 }
 
+export interface ICategoryMutation {
+  translations: {
+    ru: {
+      title: string;
+    };
+    en: {
+      title: string;
+    };
+    kg: {
+      title: string;
+    };
+  };
+  image: File | null;
+}
+
 export interface IAdminCategory {
   _id: string;
   translations: {
@@ -124,12 +143,13 @@ export interface IAdminCategory {
 export interface IBanner {
   _id: string;
   description: string;
-  image: string | File;
+  image: string | null;
   priority: number;
   page: string;
 }
 
 export interface IBannerPost {
+  translations: string | undefined;
   description: string;
   image: File | null;
   priority: string;
@@ -162,6 +182,7 @@ export interface IAdminMainInfo {
 export interface IAdminMainHit {
   amount: number;
   product: {
+    _id: string;
     translations: {
       ru: {
         title: string;

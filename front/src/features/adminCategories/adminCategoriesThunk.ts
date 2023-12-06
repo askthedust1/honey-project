@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
-import { IAdminCategory } from '@/types';
+import { IAdminCategory, ICategoryMutation, ValidationError } from '@/types';
 import { RootState } from '@/store/store';
+import { isAxiosError } from 'axios';
 
 export const fetchAdminCategories = createAsyncThunk<
   IAdminCategory[],
@@ -28,3 +29,29 @@ export const patchCategory = createAsyncThunk<void, string, { state: RootState }
     );
   },
 );
+
+export const createCategory = createAsyncThunk<
+  void,
+  ICategoryMutation,
+  { rejectValue: ValidationError }
+>('adminCategories/createCategory', async (categoryMutation, { rejectWithValue }) => {
+  const formData = new FormData();
+  formData.append('translations', JSON.stringify(categoryMutation.translations));
+
+  if (categoryMutation.image) {
+    formData.append('image', categoryMutation.image);
+  }
+
+  try {
+    await axiosApi.post('/adminCategories', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  } catch (e) {
+    if (isAxiosError(e) && e.response && e.response.status === 400) {
+      return rejectWithValue(e.response.data);
+    }
+    throw e;
+  }
+});

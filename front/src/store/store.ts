@@ -14,6 +14,7 @@ import { addInterceptors } from '@/axiosApi';
 import { adminCategoriesSlice } from '@/features/adminCategories/adminCategoriesSlice';
 import { adminMainSlice } from '@/features/adminMain/adminMainSlice';
 import { orderSlice } from '@/features/order/orderSlice';
+import {adminNewTransactionsSlice} from "@/features/adminNewMessages/adminNewTransactionSlice";
 
 const usersPersistConfig = {
   key: 'honey:users',
@@ -29,6 +30,7 @@ export const makeStore = wrapMakeStore(() => {
     [categoriesSlice.name]: categoriesSlice.reducer,
     [adminCategoriesSlice.name]: adminCategoriesSlice.reducer,
     [adminMainSlice.name]: adminMainSlice.reducer,
+    [adminNewTransactionsSlice.name]: adminNewTransactionsSlice.reducer,
     [bannersSlice.name]: bannersSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,
     [orderSlice.name]: orderSlice.reducer,

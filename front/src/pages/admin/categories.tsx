@@ -9,8 +9,9 @@ import cls from '../../styles/_categories.module.scss';
 import { apiUrl } from '@/constants';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import { useEffect } from 'react';
+import { MyPage } from '@/components/common/types';
 
-const CategoriesAdminPage = () => {
+const CategoriesAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectAdminCategories);
 
