@@ -1,30 +1,27 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
-import { IBanner, IChangeBanner } from '@/types';
-import { fetchBanners } from '@/features/banners/bannersThunk';
+import { GlobalError, IBanner } from '@/types';
+import { fetchBanners, putBanners } from '@/features/banners/bannersThunk';
 
 interface BannersState {
   items: IBanner[];
   loading: boolean;
+  loadingPut: boolean;
+  errorBanner: GlobalError | null;
 }
 
 const initialState: BannersState = {
   items: [],
   loading: false,
+  loadingPut: false,
+  errorBanner: null,
 };
 
 export const bannersSlice = createSlice({
   name: 'banners',
   initialState,
-  reducers: {
-    changeBanner: (state, action: PayloadAction<IChangeBanner>) => {
-      const banner = state.items.findIndex(
-        (item) => item.priority === parseInt(action.payload.priority),
-      );
-      state.items[banner].image = action.payload.image;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(HYDRATE, (state, action) => {
       // @ts-expect-error
@@ -40,9 +37,22 @@ export const bannersSlice = createSlice({
     builder.addCase(fetchBanners.rejected, (state) => {
       state.loading = false;
     });
+
+    builder.addCase(putBanners.pending, (state) => {
+      state.loadingPut = true;
+      state.errorBanner = null;
+    });
+    builder.addCase(putBanners.fulfilled, (state) => {
+      state.loadingPut = false;
+    });
+    builder.addCase(putBanners.rejected, (state, { payload: error }) => {
+      state.loadingPut = false;
+      state.errorBanner = error || null;
+    });
   },
 });
 
-export const { changeBanner } = bannersSlice.actions;
 export const selectBanners = (state: RootState) => state.banners.items;
 export const selectBannersLoading = (state: RootState) => state.banners.loading;
+export const selectBannersPutLoading = (state: RootState) => state.banners.loadingPut;
+export const selectBannerError = (state: RootState) => state.banners.errorBanner;

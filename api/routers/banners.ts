@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import auth from '../middleware/auth';
 import permit from '../middleware/permit';
 import { imagesUpload } from '../multer';
-import { IBanner } from '../types';
 import Banner, { pipelineBanner } from '../models/Banner';
 import config from '../config';
 import * as fs from 'fs';
@@ -20,12 +19,39 @@ bannersRouter.put(
       const banner = await Banner.findOne({ priority: banner_priority });
 
       if (!banner) {
-          return res.status(404).send({ error: 'Not found!' });
+          return res.send({ error: 'Укажите очередность баннера!' });
       }
+
+      if (req.body.translations === 'ru') {
+          if (banner.translations) {
+              if (banner.translations.ru) {
+                  banner.translations.ru.image = req.file ? req.file.filename : banner.translations.ru.image;
+              }
+          }
+      }
+
+      if (req.body.translations === 'en') {
+          if (banner.translations) {
+              if (banner.translations.en) {
+                  banner.translations.en.image = req.file ? req.file.filename : banner.translations.en.image;
+              }
+          }
+      }
+
+      if (req.body.translations === 'kg') {
+          if (banner.translations) {
+              if (banner.translations.kg) {
+                  banner.translations.kg.image = req.file ? req.file.filename : banner.translations.kg.image;
+              }
+          }
+      }
+
+      banner.page = req.body.page || banner.page;
+      banner.description = req.body.description || banner.description;
 
     try {
       await banner.save();
-      res.send(banner);
+        return res.send({ message: 'Success' });
     } catch (e) {
       if (e instanceof mongoose.Error.ValidationError) {
         return res.status(400).send(e);
