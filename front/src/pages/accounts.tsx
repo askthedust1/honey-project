@@ -7,7 +7,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
 
 const Accounts: MyPage = () => {
-  const [isLoginActive, setIsLoginActive] = useState(true);
+  const [isLoginActive, setIsLoginActive] = useState(false);
   let container = useRef<HTMLDivElement | null>(null);
   let currentRef = useRef<HTMLDivElement | null>(null);
   let rightSideRef = useRef<HTMLDivElement | null>(null);

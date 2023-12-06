@@ -2,10 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
 import { GlobalError, IBanner } from '@/types';
-import { fetchBanners, putBanners } from '@/features/banners/bannersThunk';
+import { fetchBanners, fetchBannersAdmin, putBanners } from '@/features/banners/bannersThunk';
 
 interface BannersState {
   items: IBanner[];
+  itemsAdmin: IBanner[];
   loading: boolean;
   loadingPut: boolean;
   errorBanner: GlobalError | null;
@@ -13,6 +14,7 @@ interface BannersState {
 
 const initialState: BannersState = {
   items: [],
+  itemsAdmin: [],
   loading: false,
   loadingPut: false,
   errorBanner: null,
@@ -35,6 +37,17 @@ export const bannersSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(fetchBanners.rejected, (state) => {
+      state.loading = false;
+    });
+
+    builder.addCase(fetchBannersAdmin.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchBannersAdmin.fulfilled, (state, { payload: banners }) => {
+      state.items = banners;
+      state.loading = false;
+    });
+    builder.addCase(fetchBannersAdmin.rejected, (state) => {
       state.loading = false;
     });
 

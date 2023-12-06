@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import ImageSlider from '@/components/ImageSlider/ImageSlider';
@@ -8,15 +8,10 @@ import {
   selectBanners,
   selectBannersPutLoading,
 } from '@/features/banners/bannersSlice';
-import { fetchBanners, putBanners } from '@/features/banners/bannersThunk';
-import { wrapper } from '@/store/store';
-import axiosApi from '@/axiosApi';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import LanguageSwitcher from '@/components/UI/langSwitcher/LanguageSwitcher';
+import { fetchBannersAdmin, putBanners } from '@/features/banners/bannersThunk';
 import { IBannerPost } from '@/types';
 import FileUpload from '@/components/UI/FileUpload/FileUpload';
 import cls from '@/styles/_bannersAdmin.module.scss';
-import { i18n } from 'next-i18next';
 import { useRouter } from 'next/router';
 
 const BannersAdminPage: MyPage = () => {
@@ -26,12 +21,16 @@ const BannersAdminPage: MyPage = () => {
   const loading = useAppSelector(selectBannersPutLoading);
   const error = useAppSelector(selectBannerError);
   const [state, setState] = useState<IBannerPost>({
-    translations: i18n?.language,
+    translations: 'ru',
     description: '',
     image: null,
     priority: '',
     page: '',
   });
+
+  useEffect(() => {
+    dispatch(fetchBannersAdmin(state.translations));
+  }, [dispatch, state.translations]);
 
   const submitFormHandler = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +38,7 @@ const BannersAdminPage: MyPage = () => {
     try {
       await dispatch(putBanners(state)).unwrap();
       setState({
-        translations: i18n?.language,
+        translations: 'ru',
         description: '',
         image: null,
         priority: '',
@@ -79,7 +78,16 @@ const BannersAdminPage: MyPage = () => {
         <div className={cls.wrapperBottom}>
           <div className={cls.formWrap}>
             <p className={cls.formTitle}>Выберите язык баннеров:</p>
-            <LanguageSwitcher />
+            <select
+              className={cls.lang_select}
+              onChange={inputChangeHandler}
+              value={state.translations}
+              name="translations"
+            >
+              <option value="ru">RU</option>
+              <option value="en">EN</option>
+              <option value="kg">KG</option>
+            </select>
           </div>
           <form onSubmit={submitFormHandler}>
             {error && <div style={{ color: 'red', fontWeight: 'bold' }}>{error.error}</div>}
@@ -150,18 +158,5 @@ const BannersAdminPage: MyPage = () => {
 };
 
 BannersAdminPage.Layout = 'Admin';
-
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
-  axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
-
-  await store.dispatch(fetchBanners());
-
-  return {
-    props: {
-      name: 'Products',
-      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'home', 'header', 'footer'])),
-    },
-  };
-});
 
 export default BannersAdminPage;

@@ -10,10 +10,6 @@ import {
   selectAllBestsellersForAdmin,
 } from '@/features/adminBestsellers/adminBestsellersSlice';
 import plusIcon from '@/assets/images/plusIcon.png';
-import { wrapper } from '@/store/store';
-import axiosApi from '@/axiosApi';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import {
   fetchBestsellers,
   fetchBestsellersProducts,
@@ -157,16 +153,16 @@ const BestsellerAdminPage: MyPage = () => {
 
 BestsellerAdminPage.Layout = 'Admin';
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
-  axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
-  await store.dispatch(fetchCategories(''));
-
-  return {
-    props: {
-      name: 'Products',
-      ...(await serverSideTranslations(locale ?? 'ru', ['common'])),
-    },
-  };
-});
+// export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+//   axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
+//   await store.dispatch(fetchCategories(''));
+//
+//   return {
+//     props: {
+//       name: 'Products',
+//       ...(await serverSideTranslations(locale ?? 'ru', ['common'])),
+//     },
+//   };
+// });
 
 export default BestsellerAdminPage;
