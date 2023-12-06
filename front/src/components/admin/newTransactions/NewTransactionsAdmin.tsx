@@ -12,13 +12,14 @@ const NewTransactionsAdmin = () => {
     const [more, setMore] = useState<boolean>(false);
     const newTransactions = useAppSelector(selectAdminNewTransactions);
     let sixFirstTransactions: IOrderMutation[] = [];
-    if (newTransactions.length > 6 && newTransactions) {
-        sixFirstTransactions = newTransactions.slice(0, 6)
-    } else {
-        if (newTransactions.length) sixFirstTransactions = newTransactions
+    if (Array.isArray(newTransactions)) {
+        if (newTransactions.length > 6) {
+            sixFirstTransactions = newTransactions.slice(0, 6)
+        } else {
+            if (newTransactions.length) sixFirstTransactions = newTransactions
+        }
+        if (more && newTransactions.length) sixFirstTransactions = newTransactions;
     }
-    if (more && newTransactions.length) sixFirstTransactions = newTransactions;
-    console.log(sixFirstTransactions);
     const moreShow = () => {
         setMore(!more);
     };
@@ -64,11 +65,11 @@ const NewTransactionsAdmin = () => {
                         </span>
                     </li>
                 )) :
-                    <div className={cls.empty}>
+                    <li className={cls.empty}>
                         <span>Новых  заказов нет</span>
-                    </div>}
+                    </li>}
             </ul>
-            {newTransactions.length > 6 && newTransactions.length !== sixFirstTransactions.length ?
+            {newTransactions && newTransactions.length > 6 && newTransactions.length !== sixFirstTransactions.length ?
                 <div className={cls.more}>
                     <span onClick={moreShow}>еще {newTransactions.length - 6}</span>
                 </div> : newTransactions.length > 6 && <div className={cls.more}>
