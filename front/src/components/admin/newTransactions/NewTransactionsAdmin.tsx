@@ -1,9 +1,11 @@
 import {useAppSelector} from "@/store/hook";
 import {selectAdminNewTransactions} from "@/features/adminNewMessages/adminNewTransactionSlice";
 import cls from '../../../styles/_adminNewTransaction.module.scss';
+import {IOrder} from "@/types";
 const NewTransactionsAdmin = () => {
     const newTransactions = useAppSelector(selectAdminNewTransactions);
-    const sixFirstTransactions = newTransactions.slice(0, 6);
+    let sixFirstTransactions: IOrder[] = [];
+    if (newTransactions) sixFirstTransactions = newTransactions.slice(0, 6);
     console.log(newTransactions[0]);
     return (
         <div className={cls.container}>
