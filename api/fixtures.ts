@@ -822,7 +822,7 @@ const run = async () => {
       },
       description: 'landing1',
       page: '/products/page/1',
-      priority: 1
+      priority: 1,
     },
     {
       translations: {
