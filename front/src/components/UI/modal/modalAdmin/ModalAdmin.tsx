@@ -17,10 +17,10 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, order }) => {
     const handleInnerBlockClick = (event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
     };
-    const handleConfirmOrder = () => {
+    const handleConfirmOrder = async () => {
         if (order) {
-            dispatch(confirmOrderAdmin(order._id));
-            dispatch(fetchAdminHewTransaction());
+            await dispatch(confirmOrderAdmin(order._id));
+            await dispatch(fetchAdminHewTransaction());
             onClose();
         }
     };

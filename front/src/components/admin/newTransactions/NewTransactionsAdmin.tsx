@@ -12,8 +12,13 @@ const NewTransactionsAdmin = () => {
     const [more, setMore] = useState<boolean>(false);
     const newTransactions = useAppSelector(selectAdminNewTransactions);
     let sixFirstTransactions: IOrderMutation[] = [];
-    if (newTransactions.length > 6 && newTransactions) sixFirstTransactions = newTransactions.slice(0, 6);
-    if (more) sixFirstTransactions = newTransactions;
+    if (newTransactions.length > 6 && newTransactions) {
+        sixFirstTransactions = newTransactions.slice(0, 6)
+    } else {
+        if (newTransactions.length) sixFirstTransactions = newTransactions
+    }
+    if (more && newTransactions.length) sixFirstTransactions = newTransactions;
+    console.log(sixFirstTransactions);
     const moreShow = () => {
         setMore(!more);
     };
@@ -34,8 +39,8 @@ const NewTransactionsAdmin = () => {
         <div className={cls.container}>
             <h3 className={cls.title}>Новые заказы</h3>
             <ul className={cls.cardList}>
-                {sixFirstTransactions.map((transaction, index) => (
-                    <li onClick={() => handleOpenModal(transaction)} key={index} className={cls.card}>
+                {sixFirstTransactions.length ? sixFirstTransactions.map((transaction, index) => (
+                    <li onClick={() => handleOpenModal(transaction)} key={transaction._id} className={cls.card}>
                         <span>{index + 1}</span>
                         <span className={cls.user}>{transaction.user.displayName}</span>
                         <span className={cls.kits}>
@@ -58,13 +63,19 @@ const NewTransactionsAdmin = () => {
                             })}
                         </span>
                     </li>
-                ))}
+                )) :
+                    <div className={cls.empty}>
+                        <span>Новых  заказов нет</span>
+                    </div>}
             </ul>
-            {newTransactions.length > 6 && newTransactions.length !== sixFirstTransactions.length ? <div className={cls.more}>
-                <span onClick={moreShow}>еще {newTransactions.length - 6}</span>
-            </div> : <div className={cls.more}>
-                <span onClick={moreShow}>скрыть</span>
-            </div>}
+            {newTransactions.length > 6 && newTransactions.length !== sixFirstTransactions.length ?
+                <div className={cls.more}>
+                    <span onClick={moreShow}>еще {newTransactions.length - 6}</span>
+                </div> : newTransactions.length > 6 && <div className={cls.more}>
+                    <span onClick={moreShow}>скрыть</span>
+                </div>
+            }
+
             <Modal isOpen={isModalOpen.state} onClose={handleCloseModal} order={isModalOpen.order}/>
         </div>
     );
