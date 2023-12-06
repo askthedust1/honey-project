@@ -14,6 +14,7 @@ import { addInterceptors } from '@/axiosApi';
 import { adminCategoriesSlice } from '@/features/adminCategories/adminCategoriesSlice';
 import { adminMainSlice } from '@/features/adminMain/adminMainSlice';
 import { orderSlice } from '@/features/order/orderSlice';
+import {bestsellersSlice} from "@/features/adminBestsellers/adminBestsellersSlice";
 import {adminNewTransactionsSlice} from "@/features/adminNewMessages/adminNewTransactionSlice";
 
 const usersPersistConfig = {
@@ -32,6 +33,7 @@ export const makeStore = wrapMakeStore(() => {
     [adminMainSlice.name]: adminMainSlice.reducer,
     [adminNewTransactionsSlice.name]: adminNewTransactionsSlice.reducer,
     [bannersSlice.name]: bannersSlice.reducer,
+    [bestsellersSlice.name]: bestsellersSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,
     [orderSlice.name]: orderSlice.reducer,
     [productsAdminSlice.name]: productsAdminSlice.reducer,
@@ -57,8 +59,6 @@ export const makeStore = wrapMakeStore(() => {
       );
     },
   });
-  addInterceptors(store);
-
   addInterceptors(store);
 
   if (!isServer) {

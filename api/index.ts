@@ -27,6 +27,7 @@ app.use('/collections', collectionRouter);
 app.use('/admin', productAdminRouter);
 app.use('/adminCategories', categoriesAdminRouter);
 app.use('/adminMain', mainAdmin);
+
 const run = async () => {
   await mongoose.connect(config.db);
 
