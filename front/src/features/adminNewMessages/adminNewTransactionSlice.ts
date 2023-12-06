@@ -2,10 +2,10 @@ import {createSlice} from "@reduxjs/toolkit";
 import {HYDRATE} from "next-redux-wrapper";
 import {RootState} from "@/store/store";
 import {fetchAdminHewTransaction} from "@/features/adminNewMessages/adminNewTransactionThunk";
-import {IOrder} from "@/types";
+import {IOrderMutation} from "@/types";
 
 interface AdminMainState {
-    newTransactions: IOrder[];
+    newTransactions: IOrderMutation[];
     loading: boolean;
 }
 
@@ -31,6 +31,7 @@ export const adminNewTransactionsSlice = createSlice({
             state.loading = false;
         });
         builder.addCase(fetchAdminHewTransaction.rejected, (state) => {
+            state.newTransactions = [];
             state.loading = false;
         });
 

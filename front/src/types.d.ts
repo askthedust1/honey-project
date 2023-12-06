@@ -81,6 +81,30 @@ export interface IProduct {
   datetime: string;
 }
 
+export interface IProductMutation {
+  _id: string;
+  category: {
+    translations: {
+      ru: {
+        title: string;
+      };
+    };
+  };
+  translations: {
+    ru: {
+      title: string;
+    };
+  };
+  oldPrice: number;
+  actualPrice: number;
+  description: string;
+  image: string;
+  amount: number;
+  isActive: boolean;
+  isHit: boolean;
+  datetime: string;
+}
+
 export interface IProductsOfPage {
   productsOfPage: IProduct[];
   currentPage: number;
@@ -226,4 +250,18 @@ export interface IFullOrder {
   kits: OrderMutation[];
   address: string;
   dateTime: string;
+}
+
+export interface IOrderMutation {
+  _id: string;
+  user: IUser;
+  address: string;
+  totalPrice: number;
+  status: boolean;
+  dateTime: string;
+  kits: {
+    product: IProductMutation;
+    amount: number;
+    price: number;
+  }[];
 }
