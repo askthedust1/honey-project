@@ -110,6 +110,21 @@ export interface ICategoryPost {
   };
 }
 
+export interface ICategoryMutation {
+  translations: {
+    ru: {
+      title: string;
+    };
+    en: {
+      title: string;
+    };
+    kg: {
+      title: string;
+    };
+  };
+  image: File | null;
+}
+
 export interface IAdminCategory {
   _id: string;
   translations: {
