@@ -1,12 +1,12 @@
 export interface IUserApi {
   email: string;
   password: string;
-  passwordConfirm: string | undefined;
   token: string;
   role: string;
   displayName: string;
   phone: string;
   googleID?: string;
+  address?: string;
 }
 
 export interface IProductPost {
@@ -30,7 +30,10 @@ export type IKitsMutation = Omit<IKits, 'price'>;
 export interface ITransactionPost {
   user: string;
   totalPrice: number;
+  address: string;
   kits: IKits[];
+  dateTime: string;
+  status: boolean;
 }
 
 export interface ICategoryPost {

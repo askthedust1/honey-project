@@ -9,7 +9,6 @@ const AdminMain = () => {
     const dispatch = useAppDispatch();
     const info = useAppSelector(selectAdminMain);
     const hits = useAppSelector(selectAdminMainHits);
-    console.log(hits);
     useEffect(() => {
         dispatch(fetchAdminMain());
         dispatch(fetchAdminMainHit());
@@ -58,7 +57,7 @@ const AdminMain = () => {
                             <td><div className={cls.imgWrap}>
                                 <img src={apiUrl + '/' + hit.product.image} alt={hit.product.title}/>
                             </div></td>
-                            <td>{hit.product.title}</td>
+                            <td>{hit.product.translations.ru.title}</td>
                             <td>{hit.product.category.translations.ru.title}</td>
                             <td>{hit.product.actualPrice}</td>
                             <td>{hit.amount}</td>

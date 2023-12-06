@@ -12,11 +12,13 @@ import axiosApi from '@/axiosApi';
 import { isAxiosError } from 'axios';
 import { unsetUser } from './usersSlice';
 import { RootState } from '@/store/store';
+import { resetCart } from '@/features/cart/cartSlice';
+
 
 export const register = createAsyncThunk<
   RegisterResponse,
   RegisterMutation,
-  { rejectValue: ValidationError }
+  { rejectValue: ValidationError | GlobalError }
 >('users/accounts', async (registerMutation, { rejectWithValue }) => {
   try {
     const response = await axiosApi.post<RegisterResponse>('/users', registerMutation);
@@ -47,8 +49,8 @@ export const login = createAsyncThunk<IUser, LoginMutation, { rejectValue: Globa
 );
 
 export const logout = createAsyncThunk('users/logout', async (_, { dispatch }) => {
+  dispatch(resetCart());
   await axiosApi.delete('/users/sessions');
-
   dispatch(unsetUser());
 });
 

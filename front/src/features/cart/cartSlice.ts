@@ -5,13 +5,11 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 interface CartState {
   cart: ICart[];
-  itemsCart: string[];
   dataLoaded: boolean;
 }
 
 const initialState: CartState = {
   cart: [],
-  itemsCart: [],
   dataLoaded: false,
 };
 
@@ -46,16 +44,6 @@ export const cartSlice = createSlice({
     resetCart: (state) => {
       state.cart = [];
     },
-
-    addToCartState: (state, action: PayloadAction<string>) => {
-      // state.itemsCart.push(action.payload);
-    },
-    clearCart: (state) => {
-      state.itemsCart = [];
-    },
-    setProductsDataLoaded: (state, action) => {
-      state.dataLoaded = action.payload;
-    },
   },
   extraReducers(builder) {
     builder.addCase<typeof HYDRATE, PayloadAction<RootState, typeof HYDRATE>>(
@@ -66,15 +54,7 @@ export const cartSlice = createSlice({
 });
 
 export const selectCart = (state: RootState) => state.cart.cart;
-export const {
-  addProduct,
-  decreaseProduct,
-  delProduct,
-  resetCart,
-  addToCartState,
-  clearCart,
-  setProductsDataLoaded,
-} = cartSlice.actions;
+export const { addProduct, decreaseProduct, delProduct, resetCart } = cartSlice.actions;
 
 export const selectProductsDataLoaded = (state: RootState) => state.cart.dataLoaded;
-export const selectCartItems = (state: RootState) => state.cart.itemsCart;
+export const selectCartItems = (state: RootState) => state.cart.cart;

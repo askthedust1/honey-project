@@ -6,6 +6,7 @@ export interface RegisterMutation {
   passwordConfirm: string;
   displayName: string;
   phone: string;
+  address: string;
 }
 
 export interface RegisterResponse {
@@ -26,6 +27,7 @@ export interface IUser {
   displayName: string;
   phone: string;
   googleID?: string;
+  address?: string;
 }
 
 export interface ValidationError {
@@ -137,7 +139,16 @@ export interface IAdminCategory {
 export interface IBanner {
   _id: string;
   description: string;
-  image: string;
+  image: string | File;
+  priority: number;
+  page: string;
+}
+
+export interface IBannerPost {
+  description: string;
+  image: File | null;
+  priority: string;
+  page: string;
 }
 
 export interface IQueryObjectCategory {
@@ -156,26 +167,58 @@ export interface ICheck {
 }
 
 export interface IAdminMainInfo {
-  productAmount: number,
-  categoriesAmount: number,
-  usersAmount: number,
-  transactionsAmount: number,
-  sumAmount: number,
+  productAmount: number;
+  categoriesAmount: number;
+  usersAmount: number;
+  transactionsAmount: number;
+  sumAmount: number;
 }
 
 export interface IAdminMainHit {
   amount: number;
   product: {
+    translations: {
+      ru: {
+        title: string;
+      };
+    };
     actualPrice: number;
     image: string;
-    title:string;
+    title: string;
     category: {
       translations: {
         ru: {
           title: string;
-        }
-      }
+        };
+      };
     };
   };
   sum: number;
 }
+
+export interface IProductOfKits {
+  product: IProduct;
+  amount: number;
+  price: number;
+}
+
+export interface IOrder {
+  user: IUser;
+  address: string;
+  totalPrice: number;
+  status: boolean;
+  dateTime: string;
+  kits: IProductOfKits[];
+}
+
+export interface OrderMutation {
+  product: string;
+  amount: number;
+}
+
+export interface IFullOrder {
+  kits: OrderMutation[];
+  address: string;
+  dateTime: string;
+}
+  

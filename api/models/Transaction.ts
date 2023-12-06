@@ -48,6 +48,10 @@ const TransactionSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
+  dateTime: {
+    type: String,
+    required: true,
+  },
 });
 
 const Transaction = mongoose.model('Transaction', TransactionSchema);

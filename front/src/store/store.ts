@@ -12,7 +12,9 @@ import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrap
 import { productsAdminSlice } from '@/features/productAdmin/productsAdminSlice';
 import { addInterceptors } from '@/axiosApi';
 import { adminCategoriesSlice } from '@/features/adminCategories/adminCategoriesSlice';
-import {adminMainSlice} from "@/features/adminMain/adminMainSlice";
+import { adminMainSlice } from '@/features/adminMain/adminMainSlice';
+import { orderSlice } from '@/features/order/orderSlice';
+import {adminNewTransactionsSlice} from "@/features/adminNewMessages/adminNewTransactionSlice";
 
 const usersPersistConfig = {
   key: 'honey:users',
@@ -28,8 +30,10 @@ export const makeStore = wrapMakeStore(() => {
     [categoriesSlice.name]: categoriesSlice.reducer,
     [adminCategoriesSlice.name]: adminCategoriesSlice.reducer,
     [adminMainSlice.name]: adminMainSlice.reducer,
+    [adminNewTransactionsSlice.name]: adminNewTransactionsSlice.reducer,
     [bannersSlice.name]: bannersSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,
+    [orderSlice.name]: orderSlice.reducer,
     [productsAdminSlice.name]: productsAdminSlice.reducer,
     [usersSlice.name]: isServer
       ? usersSlice.reducer
@@ -53,6 +57,8 @@ export const makeStore = wrapMakeStore(() => {
       );
     },
   });
+  addInterceptors(store);
+
   addInterceptors(store);
 
   if (!isServer) {

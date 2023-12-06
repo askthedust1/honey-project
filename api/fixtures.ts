@@ -25,29 +25,29 @@ const run = async () => {
     {
       email: 'sam@gmail.com',
       password: 'user',
-      passwordConfirm: 'user',
       token: crypto.randomUUID(),
       role: 'user',
       displayName: 'Sam Smith ',
       phone: '0772 77-22-77',
+      address: 'Some street 1',
     },
     {
       email: 'oleg@gmail.com',
       password: 'oleg',
-      passwordConfirm: 'oleg',
       token: crypto.randomUUID(),
       role: 'user',
       displayName: 'Oleg Mongol ',
       phone: '0552 82-78-76',
+      address: 'Some street 2',
     },
     {
       email: 'admin@gmail.com',
       password: 'admin',
-      passwordConfirm: 'admin',
       token: crypto.randomUUID(),
       role: 'admin',
       displayName: 'Administrator',
       phone: '0555 55-55-55',
+      address: 'Some street 3',
     },
   );
 
@@ -605,6 +605,7 @@ const run = async () => {
   await Transaction.create(
     {
       user: user1._id,
+      dateTime: '3023-11-29T14:18:43.174Z',
       address: 'проспект Чуй, 35',
       kits: [
         {
@@ -632,6 +633,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      dateTime: '3023-12-29T14:18:43.174Z',
       address: '6 микрорайон, 5 дом, 43 квартира',
       kits: [
         {
@@ -659,6 +661,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      dateTime: '3023-13-29T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
         {
@@ -671,6 +674,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      dateTime: '3023-19-29T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
         {
@@ -683,6 +687,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      dateTime: '3023-14-29T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
         {
@@ -695,6 +700,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      dateTime: '3023-15-29T14:18:43.174Z',
       address: 'Медерова, 35',
       kits: [
         {
@@ -717,6 +723,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      dateTime: '3023-16-29T14:18:43.174Z',
       address: 'Ахунбаева, 23',
       kits: [
         {
@@ -734,6 +741,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      dateTime: '3023-17-29T14:18:43.174Z',
       address: 'Ахунбаева, 23',
       kits: [
         {
@@ -761,6 +769,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      dateTime: '3023-18-29T14:18:43.174Z',
       address: 'Логвиненко, 32',
       kits: [
         {
@@ -812,6 +821,8 @@ const run = async () => {
         },
       },
       description: 'landing1',
+      page: '/products/page/1',
+      priority: 1
     },
     {
       translations: {
@@ -826,6 +837,8 @@ const run = async () => {
         },
       },
       description: 'landing2',
+      page: '/products/page/1',
+      priority: 2
     },
     {
       translations: {
@@ -840,6 +853,8 @@ const run = async () => {
         },
       },
       description: 'landing3',
+      page: '/products/page/1',
+      priority: 3
     },
   );
 

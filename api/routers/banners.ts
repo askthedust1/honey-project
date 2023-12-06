@@ -10,26 +10,18 @@ import * as fs from 'fs';
 
 const bannersRouter = express.Router();
 
-bannersRouter.post(
-  '/',
+bannersRouter.put(
+  '/:number',
   auth,
   permit('admin'),
   imagesUpload.single('image'),
   async (req, res, next) => {
-    const bannerData: IBanner = {
-      description: req.body.description,
-    };
+      const banner_priority = req.params.number;
+      const banner = await Banner.findOne({ priority: banner_priority });
 
-    if (req.file) {
-      bannerData.image = req.file.filename;
-    }
-
-    // const bannerData: IBannerPost = {
-    //   translations: req.body.translations,
-    //   description: req.body.description,
-    // };
-
-    const banner = new Banner(bannerData);
+      if (!banner) {
+          return res.status(404).send({ error: 'Not found!' });
+      }
 
     try {
       await banner.save();
@@ -46,8 +38,8 @@ bannersRouter.post(
 bannersRouter.get('/', async (req, res) => {
   const lang = req.headers['accept-language'] || 'ru';
   try {
-    const banners = await Banner.aggregate(pipelineBanner(lang));
-    return res.send(banners);
+      const banners = await Banner.aggregate(pipelineBanner(lang)).sort({ priority: 1 });
+      return res.send(banners);
   } catch (e) {
     return res.sendStatus(500);
   }
