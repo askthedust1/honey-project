@@ -1,17 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IAdminCategory } from '@/types';
+import { IAdminCategory, ValidationError } from '@/types';
 import { RootState } from '@/store/store';
-import { fetchAdminCategories } from './adminCategoriesThunk';
+import { createCategory, fetchAdminCategories } from './adminCategoriesThunk';
 import { HYDRATE } from 'next-redux-wrapper';
 
 interface AdminCategoriesState {
   items: IAdminCategory[];
   loading: boolean;
+  createLoading: boolean;
+  error: ValidationError | null;
 }
 
 const initialState: AdminCategoriesState = {
   items: [],
   loading: false,
+  createLoading: false,
+  error: null,
 };
 
 export const adminCategoriesSlice = createSlice({
@@ -33,6 +37,18 @@ export const adminCategoriesSlice = createSlice({
     builder.addCase(fetchAdminCategories.rejected, (state) => {
       state.loading = false;
     });
+
+    builder.addCase(createCategory.pending, (state) => {
+      state.createLoading = true;
+      state.error = null;
+    });
+    builder.addCase(createCategory.fulfilled, (state) => {
+      state.createLoading = false;
+    });
+    builder.addCase(createCategory.rejected, (state, { payload: error }) => {
+      state.createLoading = false;
+      state.error = error || null;
+    });
   },
 });
 
@@ -40,3 +56,5 @@ export const adminCategoriesReducer = adminCategoriesSlice.reducer;
 export const selectAdminCategories = (state: RootState) => state.adminCategories.items;
 
 export const selectAdminCategoriesLoading = (state: RootState) => state.adminCategories.loading;
+
+export const selectErrorsCategoriesAdmin = (state: RootState) => state.adminCategories.error;

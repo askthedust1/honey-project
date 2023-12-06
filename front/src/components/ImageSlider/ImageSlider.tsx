@@ -7,9 +7,10 @@ import Link from 'next/link';
 
 interface Props {
   images: IBanner[];
+  width: string;
 }
 
-const ImageSlider: React.FC<Props> = ({ images }) => {
+const ImageSlider: React.FC<Props> = ({ images, width }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const testSettings = {
     backgroundColor: 'rgb(0,0,0)',
@@ -43,10 +44,10 @@ const ImageSlider: React.FC<Props> = ({ images }) => {
   };
 
   return (
-    <div className={stl.image__slider__container}>
+    <div className={stl.image__slider__container} style={{ maxWidth: width }}>
       <Slider {...settings}>
         {images.map((image) => (
-          <Link key={image._id} href={'/products/page/1'}>
+          <Link key={image._id} href={image.page}>
             <img src={apiUrl + '/' + image.image} alt={image.description} />
           </Link>
         ))}

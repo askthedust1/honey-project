@@ -14,11 +14,10 @@ import { unsetUser } from './usersSlice';
 import { RootState } from '@/store/store';
 import { resetCart } from '@/features/cart/cartSlice';
 
-
 export const register = createAsyncThunk<
   RegisterResponse,
   RegisterMutation,
-  { rejectValue: ValidationError }
+  { rejectValue: ValidationError | GlobalError }
 >('users/accounts', async (registerMutation, { rejectWithValue }) => {
   try {
     const response = await axiosApi.post<RegisterResponse>('/users', registerMutation);

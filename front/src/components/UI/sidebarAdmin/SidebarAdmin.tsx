@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Link from "next/link";
 import logo from '@/assets/images/logo.svg';
 import cls from '../../../styles/_sideBarAdmin.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { logout } from '@/features/users/usersThunk';
 import { selectRole } from '@/features/users/usersSlice';
+import {selectAdminNewTransactions} from "@/features/adminNewMessages/adminNewTransactionSlice";
+import {fetchAdminHewTransaction} from "@/features/adminNewMessages/adminNewTransactionThunk";
 
 const SidebarAdmin = () => {
   const dispatch = useAppDispatch();
@@ -22,6 +24,16 @@ const SidebarAdmin = () => {
     setIsShowCategory(!isShowCategory);
     setIsShowProduct(false);
   };
+  const newTransaction = useAppSelector(selectAdminNewTransactions);
+  useEffect(() => {
+    dispatch(fetchAdminHewTransaction());
+  }, [dispatch]);
+  useEffect(() => {
+    setInterval(() => {
+      dispatch(fetchAdminHewTransaction());
+    },15000);
+
+  }, [dispatch]);
   return (
     <div style={{ display: role && role.userCheck ? 'block' : 'none' }} className={cls.sidebar}>
       <header className={cls.sidebar_header}>
@@ -63,7 +75,7 @@ const SidebarAdmin = () => {
             <Link href={'/admin/categories'} className={cls.list_link}>Все категории</Link>
           </li>
           <li className={`${cls.detail} ${isShowCategory ? cls.detail_show : ''}`}>
-            <Link href={'/admin/categories'} className={cls.list_link}>Новая категория</Link>
+            <Link href={'/admin/createCategories'} className={cls.list_link}>Новая категорию</Link>
           </li>
           <li className={cls.banner}>
             <Link className={cls.list_link} href={'/admin/banners'}>
@@ -80,19 +92,27 @@ const SidebarAdmin = () => {
               Заказы
             </Link>
           </li>
-          <li className={cls.client}>
-            <Link className={cls.list_link} href={'/admin'}>
-              Клиенты
-            </Link>
-          </li>
+          {/*<li className={cls.client}>*/}
+          {/*  <Link className={cls.list_link} href={'/admin'}>*/}
+          {/*    Клиенты*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
           <li className={cls.analytics}>
             <Link className={cls.list_link} href={'/admin'}>
               Аналитика
             </Link>
           </li>
-          <li className={cls.report}>
-            <Link className={cls.list_link} href={'/admin'}>
-              Отчетность
+          {/*<li className={cls.report}>*/}
+          {/*  <Link className={cls.list_link} href={'/admin'}>*/}
+          {/*    Отчетность*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
+          <li className={cls.newOrder}>
+            <Link className={cls.list_link} href={'/admin/newOrders'}>
+              Новые заказы
+              <span className={newTransaction && !newTransaction.length ? cls.empty : ''}>
+                {newTransaction ? newTransaction.length < 100 ? newTransaction.length : 99 : 0}
+              </span>
             </Link>
           </li>
         </ul>

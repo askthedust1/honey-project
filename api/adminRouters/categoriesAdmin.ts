@@ -5,7 +5,7 @@ import auth from '../middleware/auth';
 import permit from '../middleware/permit';
 import Product from '../models/Product';
 import { imagesUpload } from '../multer';
-import { ICategoryPost } from '../types';
+import { Error } from 'mongoose';
 
 const categoriesAdminRouter = express.Router();
 
@@ -25,21 +25,19 @@ categoriesAdminRouter.post(
   permit('admin'),
   imagesUpload.single('image'),
   async (req, res, next) => {
-    const categoryData: ICategoryPost = {
-      translations: req.body.translations,
-      image: req.file ? req.file.filename : '',
-    };
-
-    const category = new Category(categoryData);
-
     try {
-      await category.save();
-      res.send(category);
+      const categoryData = new Category({
+        translations: JSON.parse(req.body.translations),
+        image: req.file ? req.file.filename : '',
+      });
+
+      await categoryData.save();
+      res.send(categoryData);
     } catch (e) {
-      if (e instanceof mongoose.Error.ValidationError) {
+      if (e instanceof Error.ValidationError) {
         return res.status(400).send(e);
       }
-      next(e);
+      return next(e);
     }
   },
 );

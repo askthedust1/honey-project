@@ -15,6 +15,7 @@ import { adminCategoriesSlice } from '@/features/adminCategories/adminCategories
 import { adminMainSlice } from '@/features/adminMain/adminMainSlice';
 import { orderSlice } from '@/features/order/orderSlice';
 import {bestsellersSlice} from "@/features/adminBestsellers/adminBestsellersSlice";
+import {adminNewTransactionsSlice} from "@/features/adminNewMessages/adminNewTransactionSlice";
 
 const usersPersistConfig = {
   key: 'honey:users',
@@ -30,6 +31,7 @@ export const makeStore = wrapMakeStore(() => {
     [categoriesSlice.name]: categoriesSlice.reducer,
     [adminCategoriesSlice.name]: adminCategoriesSlice.reducer,
     [adminMainSlice.name]: adminMainSlice.reducer,
+    [adminNewTransactionsSlice.name]: adminNewTransactionsSlice.reducer,
     [bannersSlice.name]: bannersSlice.reducer,
     [bestsellersSlice.name]: bestsellersSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,

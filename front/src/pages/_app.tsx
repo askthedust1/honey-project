@@ -19,9 +19,6 @@ const App = ({ Component, ...rest }: MyAppProps) => {
       <Layout>
         <Component {...props.pageProps} />
       </Layout>
-      {/*<Header />*/}
-      {/*<Component {...props.pageProps} />*/}
-      {/*<Footer />*/}
     </Provider>
   );
 };
