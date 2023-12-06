@@ -9,7 +9,6 @@ const AdminMain = () => {
   const dispatch = useAppDispatch();
   const info = useAppSelector(selectAdminMain);
   const hits = useAppSelector(selectAdminMainHits);
-  console.log(hits);
   useEffect(() => {
     dispatch(fetchAdminMain());
     dispatch(fetchAdminMainHit());

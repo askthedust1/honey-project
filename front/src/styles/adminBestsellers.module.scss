@@ -1,7 +1,7 @@
 @import "variables";
 
 .bestseller {
-  width: 1073px;
+  max-width: 1073px;
   height: auto;
   background-color: #FCF8F5;
 
@@ -20,10 +20,39 @@
   &_activeBest {
     background-color: #FFFFFF;
     border-radius: 15px;
-    height: 200px;
+    min-height: 95px;
     box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
     margin: 20px 15px 16px;
     padding: 16px 20px;
+  }
+
+  &_hit {
+    display: inline-flex;
+    align-items: center;
+    color: $admin-brown-color;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 18px;
+    margin: 10px;
+    background: #FCF8F5;
+    background-size: 22px;
+
+    &_title {
+      margin-right: 30px;
+    }
+
+    &_btn {
+      background: url('../assets/images/cross-icon.svg') no-repeat center;
+      background-size: contain;
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
   }
 }
 
@@ -135,7 +164,7 @@
   th, td {
     padding: 8px;
     text-align: center;
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid #ddd;
   }
 
   th {
@@ -160,6 +189,10 @@
         font-weight: 500;
       }
 
+    }
+
+    &_title {
+      width: 300px;
     }
   }
 

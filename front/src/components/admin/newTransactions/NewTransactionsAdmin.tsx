@@ -1,16 +1,41 @@
 import {useAppSelector} from "@/store/hook";
 import {selectAdminNewTransactions} from "@/features/adminNewMessages/adminNewTransactionSlice";
 import cls from '../../../styles/_adminNewTransaction.module.scss';
+import {IOrderMutation} from "@/types";
+import {useState} from "react";
+import Modal from "@/components/UI/modal/modalAdmin/ModalAdmin";
+interface IModal {
+    state: boolean;
+    order: IOrderMutation | null;
+}
 const NewTransactionsAdmin = () => {
+    const [more, setMore] = useState<boolean>(false);
     const newTransactions = useAppSelector(selectAdminNewTransactions);
-    const sixFirstTransactions = newTransactions.slice(0, 6);
-    console.log(newTransactions[0]);
+    let sixFirstTransactions: IOrderMutation[] = [];
+    if (newTransactions.length > 6 && newTransactions) sixFirstTransactions = newTransactions.slice(0, 6);
+    if (more) sixFirstTransactions = newTransactions;
+    const moreShow = () => {
+        setMore(!more);
+    };
+    const [isModalOpen, setModalOpen] = useState<IModal>({
+        state: false, order: null
+    });
+    const handleOpenModal = (order: IOrderMutation) => {
+        setModalOpen({
+            state: true, order: order
+        });
+    };
+    const handleCloseModal = () => {
+        setModalOpen({
+            state: false, order: null
+        });
+    };
     return (
         <div className={cls.container}>
             <h3 className={cls.title}>Новые заказы</h3>
             <ul className={cls.cardList}>
                 {sixFirstTransactions.map((transaction, index) => (
-                    <li key={index} className={cls.card}>
+                    <li onClick={() => handleOpenModal(transaction)} key={index} className={cls.card}>
                         <span>{index + 1}</span>
                         <span className={cls.user}>{transaction.user.displayName}</span>
                         <span className={cls.kits}>
@@ -32,13 +57,15 @@ const NewTransactionsAdmin = () => {
                                 timeZone: 'UTC',
                             })}
                         </span>
-
                     </li>
                 ))}
             </ul>
-            {newTransactions.length > 6 && <div className={cls.more}>
-                <span>еще {newTransactions.length - 6}</span>
+            {newTransactions.length > 6 && newTransactions.length !== sixFirstTransactions.length ? <div className={cls.more}>
+                <span onClick={moreShow}>еще {newTransactions.length - 6}</span>
+            </div> : <div className={cls.more}>
+                <span onClick={moreShow}>скрыть</span>
             </div>}
+            <Modal isOpen={isModalOpen.state} onClose={handleCloseModal} order={isModalOpen.order}/>
         </div>
     );
 };
