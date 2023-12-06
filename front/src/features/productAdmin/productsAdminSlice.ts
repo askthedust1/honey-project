@@ -1,7 +1,8 @@
-import { IProductView } from '@/types';
+import { IProductView, ValidationError } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import {
+  createProduct,
   fetchAllProductsForAdmin,
   fetchAllProductsForAdminByCategory,
   fetchOneProductForAdmin,
@@ -17,6 +18,8 @@ interface ProductsState {
   fetchOneLoading: boolean;
   patchActiveLoading: boolean;
   patchHitLoading: boolean;
+  createLoading: boolean;
+  error: ValidationError | null;
 }
 
 const initialState: ProductsState = {
@@ -26,6 +29,8 @@ const initialState: ProductsState = {
   fetchOneLoading: false,
   patchActiveLoading: false,
   patchHitLoading: false,
+  createLoading: false,
+  error: null,
 };
 
 export const productsAdminSlice = createSlice({
@@ -71,6 +76,18 @@ export const productsAdminSlice = createSlice({
     });
     builder.addCase(fetchOneProductForAdmin.rejected, (state) => {
       state.fetchOneLoading = false;
+    });
+
+    builder.addCase(createProduct.pending, (state) => {
+      state.createLoading = true;
+      state.error = null;
+    });
+    builder.addCase(createProduct.fulfilled, (state) => {
+      state.createLoading = false;
+    });
+    builder.addCase(createProduct.rejected, (state, { payload: error }) => {
+      state.createLoading = false;
+      state.error = error || null;
     });
 
     builder.addCase(patchActiveProducts.pending, (state) => {

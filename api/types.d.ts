@@ -11,10 +11,22 @@ export interface IUserApi {
 
 export interface IProductPost {
   category: string;
-  title: string;
+  translations: {
+    en: {
+      title: string;
+      description: string;
+    };
+    ru: {
+      title: string;
+      description: string;
+    };
+    kg: {
+      title: string;
+      description: string;
+    };
+  };
   oldPrice: number;
   actualPrice: number;
-  description: string;
   image: string;
   amount: number;
 }
