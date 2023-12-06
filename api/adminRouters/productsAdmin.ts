@@ -1,12 +1,11 @@
 import express from 'express';
 import { imagesUpload } from '../multer';
 import auth from '../middleware/auth';
-import mongoose from 'mongoose';
-import { IProductPost } from '../types';
 import Product from '../models/Product';
 import Category from '../models/Category';
 import permit from '../middleware/permit';
 import config from '../config';
+import { Error } from 'mongoose';
 import * as fs from 'fs';
 
 const productAdminRouter = express.Router();
@@ -14,18 +13,22 @@ const productAdminRouter = express.Router();
 productAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
   try {
     if (req.query.category) {
-      const result = await Product.find({ category: req.query.category }).populate({
-        path: 'category',
-        select: ['translations'],
-        model: Category,
-      });
+      const result = await Product.find({ category: req.query.category })
+        .sort({ datetime: -1 })
+        .populate({
+          path: 'category',
+          select: ['translations'],
+          model: Category,
+        });
       return res.send(result);
     } else {
-      const result = await Product.find().populate({
-        path: 'category',
-        select: ['translations'],
-        model: Category,
-      });
+      const result = await Product.find()
+        .sort({ datetime: -1 })
+        .populate({
+          path: 'category',
+          select: ['translations'],
+          model: Category,
+        });
       return res.send(result);
     }
   } catch (error) {
@@ -59,29 +62,37 @@ productAdminRouter.post(
   permit('admin'),
   imagesUpload.single('image'),
   async (req, res, next) => {
-    if (!req.body.title) return res.status(400).send({ error: 'Title is required!' });
-    if (!req.body.price) return res.status(400).send({ error: 'Price is required!' });
-
-    const productData: IProductPost = {
-      category: req.body.category,
-      title: req.body.title,
-      oldPrice: req.body.oldPrice,
-      actualPrice: req.body.actualPrice,
-      description: req.body.description,
-      amount: req.body.amount,
-      image: req.file ? req.file.filename : '',
-    };
-
-    const product = new Product(productData);
-
     try {
-      await product.save();
-      return res.send(product);
+      const translationsInfo = JSON.parse(req.body.translations);
+      const productData = new Product({
+        translations: {
+          ru: {
+            title: translationsInfo.ru.title,
+            description: translationsInfo.ru.description,
+          },
+          en: {
+            title: translationsInfo.en.title,
+            description: translationsInfo.en.description,
+          },
+          kg: {
+            title: translationsInfo.kg.title,
+            description: translationsInfo.kg.description,
+          },
+        },
+        category: req.body.category,
+        oldPrice: parseFloat(req.body.oldPrice),
+        actualPrice: parseFloat(req.body.actualPrice),
+        amount: parseFloat(req.body.amount),
+        image: req.file ? req.file.filename : '',
+      });
+
+      await productData.save();
+      res.send(productData);
     } catch (e) {
-      if (e instanceof mongoose.Error.ValidationError) {
+      if (e instanceof Error.ValidationError) {
         return res.status(400).send(e);
       }
-      next(e);
+      return next(e);
     }
   },
 );

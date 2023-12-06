@@ -5,7 +5,6 @@ import {
   fetchAllProductsForAdmin,
   fetchAllProductsForAdminByCategory,
   patchActiveProducts,
-  patchHitProducts,
 } from '@/features/productAdmin/productsAdminThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectAllProductsForAdmin } from '@/features/productAdmin/productsAdminSlice';
@@ -17,6 +16,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import { MyPage } from '@/components/common/types';
 import { apiUrl } from '@/constants';
+import Link from 'next/link';
 
 const ProductsAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -30,14 +30,6 @@ const ProductsAdminPage: MyPage = () => {
 
   const onStatusActive = async (id: string) => {
     await dispatch(patchActiveProducts(id));
-    await dispatch(fetchAllProductsForAdmin());
-    if (selectedCategory) {
-      dispatch(fetchAllProductsForAdminByCategory(selectedCategory));
-    }
-  };
-
-  const onHitActivate = async (id: string) => {
-    await dispatch(patchHitProducts(id));
     await dispatch(fetchAllProductsForAdmin());
     if (selectedCategory) {
       dispatch(fetchAllProductsForAdminByCategory(selectedCategory));
@@ -83,7 +75,7 @@ const ProductsAdminPage: MyPage = () => {
             </div>
             <button className={cls.addNewProductBtn}>
               <img src={plusIcon.src} alt="plusIcon" />
-              Добавить продукт
+              <Link href={'/admin/addProduct'}> Добавить продукт</Link>
             </button>
           </div>
           <div className={cls.adminProductsTable}>
@@ -132,19 +124,9 @@ const ProductsAdminPage: MyPage = () => {
                     </td>
                     <td>
                       {product.isHit ? (
-                        <button
-                          className={cls.btnActive}
-                          onClick={() => onHitActivate(product._id)}
-                        >
-                          Активен
-                        </button>
+                        <button className={cls.btnActive}>Активен</button>
                       ) : (
-                        <button
-                          className={cls.btnInactive}
-                          onClick={() => onHitActivate(product._id)}
-                        >
-                          Неактивен
-                        </button>
+                        <button className={cls.btnInactive}>Неактивен</button>
                       )}
                     </td>
                     <td>{new Date(product.datetime).toLocaleDateString()}</td>

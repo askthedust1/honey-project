@@ -206,4 +206,25 @@ export interface IFullOrder {
   address: string;
   dateTime: string;
 }
-  
+
+export interface IProductMutation {
+  category: string;
+  oldPrice: number;
+  actualPrice: number;
+  amount: number;
+  translations: {
+    ru: {
+      title: string;
+      description: string;
+    };
+    en: {
+      title: string;
+      description: string;
+    };
+    kg: {
+      title: string;
+      description: string;
+    };
+  };
+  image: File | null;
+}

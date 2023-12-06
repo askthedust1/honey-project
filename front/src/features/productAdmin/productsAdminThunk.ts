@@ -1,10 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProductView } from '@/types';
+import { IProductMutation, IProductView, ValidationError } from '@/types';
 import axiosApi from '@/axiosApi';
 import {
   useProductsAdminTranslation,
   useProductTranslation,
 } from '@/features/products/productHook';
+import { isAxiosError } from 'axios';
 
 export const fetchAllProductsForAdmin = createAsyncThunk<IProductView[]>(
   'adminProducts/fetchAdmin',
@@ -43,3 +44,33 @@ export const patchHitProducts = createAsyncThunk<void, string>(
     await axiosApi.patch(`/admin/${id}/hit`);
   },
 );
+
+export const createProduct = createAsyncThunk<
+  void,
+  IProductMutation,
+  { rejectValue: ValidationError }
+>('adminProducts/createProduct', async (productMutation, { rejectWithValue }) => {
+  const formData = new FormData();
+  formData.append('translations', JSON.stringify(productMutation.translations));
+
+  formData.append('category', productMutation.category);
+  formData.append('oldPrice', productMutation.oldPrice.toString());
+  formData.append('actualPrice', productMutation.actualPrice.toString());
+  formData.append('amount', productMutation.amount.toString());
+
+  if (productMutation.image) {
+    formData.append('image', productMutation.image);
+  }
+  try {
+    await axiosApi.post('/admin', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  } catch (e) {
+    if (isAxiosError(e) && e.response && e.response.status === 400) {
+      return rejectWithValue(e.response.data);
+    }
+    throw e;
+  }
+});
