@@ -28,7 +28,17 @@
       border-radius: 15px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       padding: 20px 10px;
-      margin-bottom: 15px;
+      margin: 8px 0;
+      cursor: pointer;
+      &:hover {
+        padding: 24px 10px;
+        margin: 3px 0;
+        background-color: rgba(255, 165, 0, 0.53);
+        border: 1px solid orange;
+      }
+      &:active {
+        background-color: rgba(168, 110, 0, 0.53);
+      }
 
       span {
         display: inline-block;
@@ -58,9 +68,20 @@
     }
   }
   .more {
+
     text-align: center;
     padding: 15px;
     font-weight: bolder;
+    span {
+      cursor: pointer;
+      &:hover {
+        color: orange;
+      }
+      &:active {
+        color: #916000;
+      }
+    }
+
   }
 }
 
