@@ -188,6 +188,7 @@ export interface IProductOfKits {
 }
 
 export interface IOrder {
+  indexNumber: number;
   user: IUser;
   address: string;
   totalPrice: number;
@@ -202,8 +203,8 @@ export interface OrderMutation {
 }
 
 export interface IFullOrder {
+  // indexNumber: string;
   kits: OrderMutation[];
   address: string;
   dateTime: string;
 }
-  

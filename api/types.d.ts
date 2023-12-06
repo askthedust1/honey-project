@@ -28,6 +28,7 @@ export interface IKits {
 export type IKitsMutation = Omit<IKits, 'price'>;
 
 export interface ITransactionPost {
+  indexNumber: number;
   user: string;
   totalPrice: number;
   address: string;

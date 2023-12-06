@@ -605,6 +605,7 @@ const run = async () => {
   await Transaction.create(
     {
       user: user1._id,
+      indexNumber: 1,
       dateTime: '3023-11-29T14:18:43.174Z',
       address: 'проспект Чуй, 35',
       kits: [
@@ -633,6 +634,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      indexNumber: 2,
       dateTime: '3023-12-29T14:18:43.174Z',
       address: '6 микрорайон, 5 дом, 43 квартира',
       kits: [
@@ -661,6 +663,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      indexNumber: 3,
       dateTime: '3023-13-29T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
@@ -674,6 +677,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      indexNumber: 4,
       dateTime: '3023-19-29T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
@@ -687,6 +691,7 @@ const run = async () => {
     },
     {
       user: user1._id,
+      indexNumber: 5,
       dateTime: '3023-14-29T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
@@ -700,6 +705,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      indexNumber: 6,
       dateTime: '3023-15-29T14:18:43.174Z',
       address: 'Медерова, 35',
       kits: [
@@ -723,6 +729,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      indexNumber: 7,
       dateTime: '3023-16-29T14:18:43.174Z',
       address: 'Ахунбаева, 23',
       kits: [
@@ -741,6 +748,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      indexNumber: 8,
       dateTime: '3023-17-29T14:18:43.174Z',
       address: 'Ахунбаева, 23',
       kits: [
@@ -769,6 +777,7 @@ const run = async () => {
     },
     {
       user: user2._id,
+      indexNumber: 9,
       dateTime: '3023-18-29T14:18:43.174Z',
       address: 'Логвиненко, 32',
       kits: [
@@ -822,7 +831,7 @@ const run = async () => {
       },
       description: 'landing1',
       page: '/products/page/1',
-      priority: 1
+      priority: 1,
     },
     {
       translations: {
@@ -838,7 +847,7 @@ const run = async () => {
       },
       description: 'landing2',
       page: '/products/page/1',
-      priority: 2
+      priority: 2,
     },
     {
       translations: {
@@ -854,7 +863,7 @@ const run = async () => {
       },
       description: 'landing3',
       page: '/products/page/1',
-      priority: 3
+      priority: 3,
     },
   );
 

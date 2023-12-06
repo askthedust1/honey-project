@@ -5,6 +5,7 @@ import Transaction from '../models/Transaction';
 import Product from '../models/Product';
 import auth, { RequestWithUser } from '../middleware/auth';
 import permit from '../middleware/permit';
+import Category from '../models/Category';
 
 const transactionsRouter = express.Router();
 transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
@@ -24,9 +25,18 @@ transactionsRouter.get('/user/:date', auth, async (req, res) => {
     if (!user._id) {
       return res.status(400).send({ error: 'Invalid user ID' });
     }
+    // const transactions = await Transaction.findOne({ user: user._id, dateTime: req.params.date })
+    //   .populate('user', 'displayName')
+    //   .populate('kits.product', 'title');
+
     const transactions = await Transaction.findOne({ user: user._id, dateTime: req.params.date })
       .populate('user', 'displayName')
-      .populate('kits.product', 'title');
+      .populate({
+        path: 'kits.product',
+        model: Product,
+        select: ['translations'],
+        // select: 'title',
+      });
 
     return res.send(transactions);
   } catch {
@@ -56,8 +66,17 @@ transactionsRouter.post('/', auth, async (req, res, next) => {
       fullKits.push(fullKit);
     }
 
+    const lastDocument = await Transaction.findOne().sort({ indexNumber: -1 });
+
+    let indexNumberCount = 1;
+
+    if (lastDocument && lastDocument.indexNumber) {
+      indexNumberCount = lastDocument.indexNumber + indexNumberCount;
+    }
+
     const user = (req as RequestWithUser).user;
     const transactionData: ITransactionPost = {
+      indexNumber: indexNumberCount,
       user: user.id,
       kits: fullKits,
       totalPrice: totalPrice,
