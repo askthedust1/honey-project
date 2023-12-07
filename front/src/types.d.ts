@@ -252,7 +252,7 @@ export interface IFullOrder {
   dateTime: string;
 }
 
-export interface IProductMutation {
+export interface IProductMutationNew {
   category: string;
   oldPrice: number;
   actualPrice: number;
@@ -276,6 +276,7 @@ export interface IProductMutation {
 
 export interface IOrderMutation {
   _id: string;
+  phone: string;
   user: IUser;
   address: string;
   totalPrice: number;

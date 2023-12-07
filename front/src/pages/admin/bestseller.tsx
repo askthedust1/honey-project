@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/adminBestsellers.module.scss';
@@ -10,6 +10,7 @@ import {
   selectAllBestsellersForAdmin,
 } from '@/features/adminBestsellers/adminBestsellersSlice';
 import plusIcon from '@/assets/images/plusIcon.png';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
 import {
   fetchBestsellers,
   fetchBestsellersProducts,
@@ -21,17 +22,19 @@ const BestsellerAdminPage: MyPage = () => {
   const products = useAppSelector(selectAllBestsellersForAdmin);
   const bestsellers = useAppSelector(selectAllBestsellers);
   const categories = useAppSelector(selectCategories);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
 
   useEffect(() => {
+    dispatch(fetchCategories(''));
     dispatch(fetchBestsellers());
     dispatch(fetchBestsellersProducts(''));
   }, [dispatch]);
 
   const categoryChangeHandle = async (event: ChangeEvent<HTMLSelectElement>) => {
-    const categoryId = event.target.value;
-
-    if (categoryId !== '') {
-      await dispatch(fetchBestsellersProducts(categoryId));
+    const category = event.target.value;
+    setSelectedCategory(category);
+    if (category !== '') {
+      await dispatch(fetchBestsellersProducts(category));
     } else {
       await dispatch(fetchBestsellersProducts(''));
     }
@@ -40,25 +43,25 @@ const BestsellerAdminPage: MyPage = () => {
   const deleteHit = async (id: string) => {
     await dispatch(patchHitProduct(id));
     await dispatch(fetchBestsellers());
-    await dispatch(fetchBestsellersProducts(''));
+    await dispatch(fetchBestsellersProducts(selectedCategory));
   };
 
   const addHit = async (id: string) => {
     if (bestsellers.length > 5) {
-      alert('В хиты можно добавлять только 6 продуктов!');
+      alert('В хиты можно добавлять только 6 товаров!');
       return;
     }
 
     await dispatch(patchHitProduct(id));
     await dispatch(fetchBestsellers());
-    await dispatch(fetchBestsellersProducts(''));
+    await dispatch(fetchBestsellersProducts(selectedCategory));
   };
 
   return (
     <ProtectedRoute>
       <div className={cls.container}>
         <div className={cls.bestseller}>
-          <h1 className={cls.bestseller_main_title}>Хиты</h1>
+          <h1 className={cls.bestseller_mainTitle}>Хиты</h1>
           <div className={cls.bestseller_activeBest}>
             {!bestsellers.length ? (
               <span className={cls.bestseller_hit_title}>
@@ -108,7 +111,6 @@ const BestsellerAdminPage: MyPage = () => {
                   <th>Название</th>
                   <th>Категория</th>
                   <th>Цена</th>
-                  {/*<th>Статус</th>*/}
                   <th>Действие</th>
                 </tr>
               </thead>
@@ -121,17 +123,6 @@ const BestsellerAdminPage: MyPage = () => {
                     <td className={cls.adminBestsellersTable_body_title}>{product.title}</td>
                     <td>{product.category.title}</td>
                     <td>{product.actualPrice}</td>
-                    {/*<td>*/}
-                    {/*  <span*/}
-                    {/*    className={*/}
-                    {/*      product.isActive*/}
-                    {/*        ? cls.adminBestsellersTable_active*/}
-                    {/*        : cls.adminBestsellersTable_inactive*/}
-                    {/*    }*/}
-                    {/*  >*/}
-                    {/*    {product.isActive ? 'Активен' : 'Не активен'}*/}
-                    {/*  </span>*/}
-                    {/*</td>*/}
                     <td>
                       <button
                         className={cls.adminBestsellersTable_addBtn}
@@ -152,17 +143,4 @@ const BestsellerAdminPage: MyPage = () => {
 };
 
 BestsellerAdminPage.Layout = 'Admin';
-
-// export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
-//   axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
-//   await store.dispatch(fetchCategories(''));
-//
-//   return {
-//     props: {
-//       name: 'Products',
-//       ...(await serverSideTranslations(locale ?? 'ru', ['common'])),
-//     },
-//   };
-// });
-
 export default BestsellerAdminPage;

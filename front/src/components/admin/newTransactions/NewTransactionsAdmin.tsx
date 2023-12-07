@@ -37,22 +37,24 @@ const NewTransactionsAdmin = () => {
         });
     };
     return (
-        <div className={cls.container}>
-            <h3 className={cls.title}>Новые заказы</h3>
-            <ul className={cls.cardList}>
-                {sixFirstTransactions.length ? sixFirstTransactions.map((transaction, index) => (
-                    <li onClick={() => handleOpenModal(transaction)} key={transaction._id} className={cls.card}>
-                        <span>{index + 1}</span>
-                        <span className={cls.user}>{transaction.user.displayName}</span>
-                        <span className={cls.kits}>
+        <>
+            { newTransactions &&
+                <div className={cls.container}>
+                    <h3 className={cls.title}>Новые заказы</h3>
+                    <ul className={cls.cardList}>
+                        {sixFirstTransactions.length ? sixFirstTransactions.map((transaction, index) => (
+                                <li onClick={() => handleOpenModal(transaction)} key={transaction._id} className={cls.card}>
+                                    <span>{index + 1}</span>
+                                    <span className={cls.user}>{transaction.user.displayName}</span>
+                                    <span className={cls.kits}>
                             {transaction.kits.length}{' '}
-                            {transaction.kits.length === 1
-                                ? 'товар'
-                                : transaction.kits.length > 1 && transaction.kits.length <= 4
-                                    ? 'товара'
-                                    : 'товаров'}
+                                        {transaction.kits.length === 1
+                                            ? 'товар'
+                                            : transaction.kits.length > 1 && transaction.kits.length <= 4
+                                                ? 'товара'
+                                                : 'товаров'}
                         </span>
-                        <span className={cls.dateTime}>
+                                    <span className={cls.dateTime}>
                             {new Date(transaction.dateTime).toLocaleString('en-US', {
                                 day: 'numeric',
                                 month: 'numeric',
@@ -63,22 +65,25 @@ const NewTransactionsAdmin = () => {
                                 timeZone: 'UTC',
                             })}
                         </span>
-                    </li>
-                )) :
-                    <li className={cls.empty}>
-                        <span>Новых  заказов нет</span>
-                    </li>}
-            </ul>
-            {newTransactions && newTransactions.length > 6 && newTransactions.length !== sixFirstTransactions.length ?
-                <div className={cls.more}>
-                    <span onClick={moreShow}>еще {newTransactions.length - 6}</span>
-                </div> : newTransactions.length > 6 && <div className={cls.more}>
-                    <span onClick={moreShow}>скрыть</span>
+                                </li>
+                            )) :
+                            <li className={cls.empty}>
+                                <span>Новых  заказов нет</span>
+                            </li>}
+                    </ul>
+                    {newTransactions && newTransactions.length > 6 && newTransactions.length !== sixFirstTransactions.length ?
+                        <div className={cls.more}>
+                            <span onClick={moreShow}>еще {newTransactions.length - 6}</span>
+                        </div> : newTransactions.length > 6 && <div className={cls.more}>
+                        <span onClick={moreShow}>скрыть</span>
+                    </div>
+                    }
+
+                    <Modal isOpen={isModalOpen.state} onClose={handleCloseModal} order={isModalOpen.order}/>
                 </div>
             }
+        </>
 
-            <Modal isOpen={isModalOpen.state} onClose={handleCloseModal} order={isModalOpen.order}/>
-        </div>
     );
 };
 
