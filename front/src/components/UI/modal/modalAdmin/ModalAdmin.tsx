@@ -63,6 +63,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, order }) => {
                         </div>
                         <div className={cls.infoContainer}>
                             <div><span>Имя: </span>{order.user.displayName}</div>
+                            <div><span>Тел: </span>{order.user.phone}</div>
                             <div><span>Адрес: </span>{order.address}</div>
                             <div className={cls.kits}>
                                 <span>Заказ: </span>
