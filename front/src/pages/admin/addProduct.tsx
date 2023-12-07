@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import cls from '@/styles/_addNewProductForm.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { useRouter } from 'next/router';
-import { IProductMutation } from '@/types';
+import { IProductMutationNew } from '@/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import { MyPage } from '@/components/common/types';
 import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
@@ -55,7 +55,7 @@ const AddProductForm: MyPage = () => {
   const submitFormHandler = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const productMutation: IProductMutation = {
+      const productMutation: IProductMutationNew = {
         category: state.category,
         amount: state.amount,
         oldPrice: state.oldPrice,

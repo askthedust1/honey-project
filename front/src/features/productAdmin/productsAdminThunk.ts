@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProductMutation, IProductView, ValidationError } from '@/types';
+import { IProductMutationNew, IProductView, ValidationError } from '@/types';
 import axiosApi from '@/axiosApi';
 import {
   useProductsAdminTranslation,
@@ -47,7 +47,7 @@ export const patchHitProducts = createAsyncThunk<void, string>(
 
 export const createProduct = createAsyncThunk<
   void,
-  IProductMutation,
+  IProductMutationNew,
   { rejectValue: ValidationError }
 >('adminProducts/createProduct', async (productMutation, { rejectWithValue }) => {
   const formData = new FormData();
