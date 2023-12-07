@@ -276,6 +276,7 @@ export interface IProductMutation {
 
 export interface IOrderMutation {
   _id: string;
+  phone: string;
   user: IUser;
   address: string;
   totalPrice: number;

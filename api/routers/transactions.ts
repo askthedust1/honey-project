@@ -21,7 +21,7 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
 transactionsRouter.get('/new', auth, permit('admin'), async (req, res) => {
   try {
     const transactions = await Transaction.find({status: false})
-        .populate('user', 'displayName')
+        .populate('user', 'displayName phone')
         .populate({
           path: 'kits.product',
           select: 'actualPrice image translations.ru.title isHit',
