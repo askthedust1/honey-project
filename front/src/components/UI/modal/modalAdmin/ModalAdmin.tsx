@@ -17,10 +17,10 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, order }) => {
     const handleInnerBlockClick = (event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
     };
-    const handleConfirmOrder = () => {
+    const handleConfirmOrder = async () => {
         if (order) {
-            dispatch(confirmOrderAdmin(order._id));
-            dispatch(fetchAdminHewTransaction());
+            await dispatch(confirmOrderAdmin(order._id));
+            await dispatch(fetchAdminHewTransaction());
             onClose();
         }
     };
@@ -63,6 +63,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, order }) => {
                         </div>
                         <div className={cls.infoContainer}>
                             <div><span>Имя: </span>{order.user.displayName}</div>
+                            <div><span>Тел: </span>{order.user.phone}</div>
                             <div><span>Адрес: </span>{order.address}</div>
                             <div className={cls.kits}>
                                 <span>Заказ: </span>

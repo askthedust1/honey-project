@@ -173,7 +173,7 @@ export interface IBanner {
 }
 
 export interface IBannerPost {
-  translations: string | undefined;
+  translations: string;
   description: string;
   image: File | null;
   priority: string;
@@ -273,9 +273,10 @@ export interface IProductMutation {
   };
   image: File | null;
 }
-  
+
 export interface IOrderMutation {
   _id: string;
+  phone: string;
   user: IUser;
   address: string;
   totalPrice: number;

@@ -3,10 +3,22 @@ import { BannerResponse, GlobalError, IBanner, IBannerPost } from '@/types';
 import axiosApi from '@/axiosApi';
 import { isAxiosError } from 'axios';
 
-export const fetchBanners = createAsyncThunk<IBanner[]>('banner/fetchBanners', async () => {
+export const fetchBanners = createAsyncThunk('banner/fetchBanners', async () => {
   const response = await axiosApi.get<IBanner[]>('/banners');
   return response.data;
 });
+
+export const fetchBannersAdmin = createAsyncThunk(
+  'banners/fetchBannersAdmin',
+  async (lang?: string) => {
+    const response = await axiosApi.get<IBanner[]>('/banners', {
+      headers: {
+        'accept-language': lang,
+      },
+    });
+    return response.data;
+  },
+);
 
 export const putBanners = createAsyncThunk<
   BannerResponse,

@@ -8,7 +8,7 @@ import acc from './form.module.scss';
 import { selectCart } from '@/features/cart/cartSlice';
 
 interface Props {
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef?: React.RefObject<HTMLDivElement>;
 }
 
 const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
