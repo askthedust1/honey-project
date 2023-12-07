@@ -13,8 +13,8 @@
 
   &_title {
     font-weight: 500;
-    margin-right: 37px;
     font-size: 25px;
+    margin-right: 37px;
   }
 
   &_activeBest {
@@ -28,8 +28,8 @@
 
   &_hit {
     display: inline-flex;
-    align-items: center;
     color: $admin-brown-color;
+    align-items: center;
     font-size: 16px;
     border-radius: 4px;
     padding: 18px;
