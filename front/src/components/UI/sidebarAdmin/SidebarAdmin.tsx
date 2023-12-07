@@ -86,7 +86,7 @@ const SidebarAdmin = () => {
           </li>
           <li className={cls.banner}>
             <Link className={cls.list_link} href={'/admin/banners'}>
-              Управление банером
+              Управление баннером
             </Link>
           </li>
           <li className={cls.hit}>

@@ -61,7 +61,7 @@ const BestsellerAdminPage: MyPage = () => {
     <ProtectedRoute>
       <div className={cls.container}>
         <div className={cls.bestseller}>
-          <h1 className={cls.bestseller_main_title}>Хиты</h1>
+          <h1 className={cls.bestseller_mainTitle}>Хиты</h1>
           <div className={cls.bestseller_activeBest}>
             {!bestsellers.length ? (
               <span className={cls.bestseller_hit_title}>
@@ -111,7 +111,6 @@ const BestsellerAdminPage: MyPage = () => {
                   <th>Название</th>
                   <th>Категория</th>
                   <th>Цена</th>
-                  {/*<th>Статус</th>*/}
                   <th>Действие</th>
                 </tr>
               </thead>
@@ -124,17 +123,6 @@ const BestsellerAdminPage: MyPage = () => {
                     <td className={cls.adminBestsellersTable_body_title}>{product.title}</td>
                     <td>{product.category.title}</td>
                     <td>{product.actualPrice}</td>
-                    {/*<td>*/}
-                    {/*  <span*/}
-                    {/*    className={*/}
-                    {/*      product.isActive*/}
-                    {/*        ? cls.adminBestsellersTable_active*/}
-                    {/*        : cls.adminBestsellersTable_inactive*/}
-                    {/*    }*/}
-                    {/*  >*/}
-                    {/*    {product.isActive ? 'Активен' : 'Не активен'}*/}
-                    {/*  </span>*/}
-                    {/*</td>*/}
                     <td>
                       <button
                         className={cls.adminBestsellersTable_addBtn}

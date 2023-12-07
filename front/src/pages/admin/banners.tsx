@@ -93,7 +93,7 @@ const BannersAdminPage: MyPage = () => {
             {error && <div style={{ color: 'red', fontWeight: 'bold' }}>{error.error}</div>}
             <div className={cls.formWrap}>
               <label className={cls.formTitle} htmlFor="priority">
-                Выберите очедность баннера*:
+                Выберите очередность баннера*:
               </label>
               <select
                 defaultValue=""
@@ -103,7 +103,7 @@ const BannersAdminPage: MyPage = () => {
                 name="priority"
               >
                 <option value="" disabled>
-                  Выберите очедность:
+                  Выберите очередность:
                 </option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -122,7 +122,7 @@ const BannersAdminPage: MyPage = () => {
                 name="page"
               >
                 <option value="" disabled>
-                  Выберите станицу:
+                  Выберите страницу:
                 </option>
                 <option value="/products/page/1">Товары</option>
                 <option value="/about">О нас</option>

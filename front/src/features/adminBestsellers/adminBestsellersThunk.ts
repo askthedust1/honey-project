@@ -9,7 +9,7 @@ export const fetchBestsellersProducts = createAsyncThunk<IProductView[], string 
     const query = id ? `?category=${id}` : '';
     const productsResponse = await axiosApi.get<IProductView[]>(`/admin/${query}`);
     return useProductsAdminTranslation(
-      productsResponse.data.filter((i) => i.isHit === false),
+      productsResponse.data.filter((i) => i.isHit === false && i.isActive === true),
       'ru',
     );
   },
@@ -20,7 +20,7 @@ export const fetchBestsellers = createAsyncThunk<IProductView[]>(
   async () => {
     const productsResponse = await axiosApi.get<IProductView[]>(`/admin`);
     return useProductsAdminTranslation(
-      productsResponse.data.filter((i) => i.isHit === true),
+      productsResponse.data.filter((i) => i.isHit === true && i.isActive === true),
       'ru',
     );
   },
