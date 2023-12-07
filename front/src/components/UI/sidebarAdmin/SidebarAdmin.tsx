@@ -80,7 +80,7 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li className={`${cls.detail} ${isShowCategory ? cls.detail_show : ''}`}>
-            <Link href={'/admin/categories'} className={cls.list_link}>
+            <Link href={'/admin/createCategories'} className={cls.list_link}>
               Новая категория
             </Link>
           </li>

@@ -11,9 +11,13 @@ import * as fs from 'fs';
 const productAdminRouter = express.Router();
 
 productAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
+  const qSearch = req.query.search as string;
   try {
     if (req.query.category) {
-      const result = await Product.find({ category: req.query.category })
+      const result = await Product.find({
+        category: req.query.category,
+        'translations.ru.title': { $regex: new RegExp(qSearch, 'i') },
+      })
         .sort({ datetime: -1 })
         .populate({
           path: 'category',
@@ -22,7 +26,9 @@ productAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         });
       return res.send(result);
     } else {
-      const result = await Product.find()
+      const result = await Product.find({
+        'translations.ru.title': { $regex: new RegExp(qSearch, 'i') },
+      })
         .sort({ datetime: -1 })
         .populate({
           path: 'category',

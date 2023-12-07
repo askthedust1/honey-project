@@ -3,17 +3,20 @@ import { IProductView } from '@/types';
 import axiosApi from '@/axiosApi';
 import { useProductsAdminTranslation } from '@/features/products/productHook';
 
-export const fetchBestsellersProducts = createAsyncThunk<IProductView[], string | null>(
-  'adminBestsellers/fetchProducts',
-  async (id) => {
-    const query = id ? `?category=${id}` : '';
-    const productsResponse = await axiosApi.get<IProductView[]>(`/admin/${query}`);
-    return useProductsAdminTranslation(
-      productsResponse.data.filter((i) => i.isHit === false && i.isActive === true),
-      'ru',
-    );
-  },
-);
+export const fetchBestsellersProducts = createAsyncThunk<
+  IProductView[],
+  { id?: string; search?: string }
+>('adminBestsellers/fetchProducts', async ({ search, id }) => {
+  const searchQuery = search ? `search=${search}&` : '';
+  const categoryQuery = id ? `category=${id}&` : '';
+  const productsResponse = await axiosApi.get<IProductView[]>(
+    `/admin/?${categoryQuery}${searchQuery}`,
+  );
+  return useProductsAdminTranslation(
+    productsResponse.data.filter((i) => i.isHit === false && i.isActive === true),
+    'ru',
+  );
+});
 
 export const fetchBestsellers = createAsyncThunk<IProductView[]>(
   'adminBestsellers/fetchBestsellers',
