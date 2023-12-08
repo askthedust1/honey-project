@@ -4,7 +4,7 @@ import axiosApi from '@/axiosApi';
 import { useProductsAdminTranslation } from '@/features/products/productHook';
 import { isAxiosError } from 'axios';
 
-export const fetchAllProductsForAdmin = createAsyncThunk<
+export const fetchProductsForAdmin = createAsyncThunk<
   IProductView[],
   { id?: string; search?: string }
 >('adminProducts/fetchAdmin', async ({ search, id }) => {

@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import cls from '../../styles/_adminProducts.module.scss';
 import plusIcon from '@/assets/images/plusIcon.png';
 import {
-  fetchAllProductsForAdmin,
+  fetchProductsForAdmin,
   patchActiveProducts,
 } from '@/features/productAdmin/productsAdminThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
@@ -22,17 +22,16 @@ const ProductsAdminPage: MyPage = () => {
   const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
-    dispatch(fetchProductsForAdmin(selectedCategory));
     dispatch(fetchAdminCategories());
-  }, [dispatch, selectedCategory]);
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchAllProductsForAdmin({ id: selectedCategory, search }));
+    dispatch(fetchProductsForAdmin({ id: selectedCategory, search }));
   }, [dispatch, search, selectedCategory]);
 
   const onStatusActive = async (id: string) => {
     await dispatch(patchActiveProducts(id));
-    await dispatch(fetchProductsForAdmin(selectedCategory));
+    await dispatch(fetchProductsForAdmin({ id: selectedCategory, search }));
   };
 
   const handleCategoryChange = async (event: ChangeEvent<HTMLSelectElement>) => {
