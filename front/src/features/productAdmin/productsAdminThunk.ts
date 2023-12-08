@@ -1,33 +1,27 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProductMutationNew, IProductView, ValidationError } from '@/types';
+import { IProductMutationNew, IProductOneView, IProductView, ValidationError } from '@/types';
 import axiosApi from '@/axiosApi';
-import {
-  useProductsAdminTranslation,
-  useProductTranslation,
-} from '@/features/products/productHook';
+import { useProductsAdminTranslation } from '@/features/products/productHook';
 import { isAxiosError } from 'axios';
 
-export const fetchAllProductsForAdmin = createAsyncThunk<IProductView[]>(
+export const fetchProductsForAdmin = createAsyncThunk<IProductView[], string | undefined>(
   'adminProducts/fetchAdmin',
-  async () => {
-    const productsResponse = await axiosApi.get<IProductView[]>('/admin');
+  async (id?: string) => {
+    let productsResponse;
+    if (id) {
+      productsResponse = await axiosApi.get<IProductView[]>(`/admin?category=${id}`);
+    } else {
+      productsResponse = await axiosApi.get<IProductView[]>('/admin');
+    }
     return useProductsAdminTranslation(productsResponse.data, 'ru');
   },
 );
 
-export const fetchAllProductsForAdminByCategory = createAsyncThunk<IProductView[], string>(
-  'adminProducts/fetchByCategoryAdmin',
-  async (id) => {
-    const productsResponse = await axiosApi.get<IProductView[]>(`/admin?category=${id}`);
-    return useProductsAdminTranslation(productsResponse.data, 'ru');
-  },
-);
-
-export const fetchOneProductForAdmin = createAsyncThunk<IProductView, string>(
+export const fetchOneProductForAdmin = createAsyncThunk<IProductOneView, string>(
   'adminProducts/fetchOneByAdmin',
   async (id) => {
-    const productResponse = await axiosApi.get<IProductView>(`/admin/${id}`);
-    return useProductTranslation(productResponse.data, 'ru');
+    const productResponse = await axiosApi.get<IProductOneView>(`/admin/${id}`);
+    return productResponse.data;
   },
 );
 

@@ -45,7 +45,6 @@ productAdminRouter.get('/:id', auth, permit('admin'), async (req, res) => {
       select: ['translations'],
       model: Category,
     });
-
     if (!product) {
       return res.status(404).send({ error: 'Not found' });
     }

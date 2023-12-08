@@ -67,6 +67,38 @@ export interface IProductView {
   datetime: string;
 }
 
+export interface IProductOneView {
+  _id: string;
+  category: {
+    translations: {
+      ru: {
+        title: string;
+      };
+    };
+  };
+  translations: {
+    ru: {
+      title: string;
+      description: string;
+    };
+    en: {
+      title: string;
+      description: string;
+    };
+    kg: {
+      title: string;
+      description: string;
+    };
+  };
+  isActive: boolean;
+  isHit: boolean;
+  datetime: string;
+  oldPrice: number;
+  actualPrice: number;
+  amount: number;
+  image: string;
+}
+
 export interface IProduct {
   _id: string;
   category: string;
@@ -103,6 +135,28 @@ export interface IProductMutation {
   isActive: boolean;
   isHit: boolean;
   datetime: string;
+}
+
+export interface IProductMutationNew {
+  category: string;
+  oldPrice: number;
+  actualPrice: number;
+  amount: number;
+  translations: {
+    ru: {
+      title: string;
+      description: string;
+    };
+    en: {
+      title: string;
+      description: string;
+    };
+    kg: {
+      title: string;
+      description: string;
+    };
+  };
+  image: File | null;
 }
 
 export interface IProductsOfPage {
@@ -250,28 +304,6 @@ export interface IFullOrder {
   kits: OrderMutation[];
   address: string;
   dateTime: string;
-}
-
-export interface IProductMutationNew {
-  category: string;
-  oldPrice: number;
-  actualPrice: number;
-  amount: number;
-  translations: {
-    ru: {
-      title: string;
-      description: string;
-    };
-    en: {
-      title: string;
-      description: string;
-    };
-    kg: {
-      title: string;
-      description: string;
-    };
-  };
-  image: File | null;
 }
 
 export interface IOrderMutation {
