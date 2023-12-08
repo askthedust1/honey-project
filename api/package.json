@@ -6,9 +6,12 @@
   "scripts": {
     "dev": "nodemon index.ts",
     "seed": "ts-node fixtures.ts",
-    "lint": "eslint .",
+    "dev:test": "NODE_ENV=test ts-node index.ts",
+    "seed:test": "NODE_ENV=test ts-node fixtures.ts",
+    "lint": "eslint --ext .ts --ignore-path .gitignore --ignore-pattern '/node_modules/*' .",
     "format:check": "prettier --check .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "typecheck": "tsc --noemit"
   },
   "keywords": [],
   "author": "",

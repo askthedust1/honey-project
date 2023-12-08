@@ -59,7 +59,7 @@ const Login: React.FC<Props> = ({ containerRef }) => {
           </div>
           <div className={acc.footer}>
             <button disabled={loading} type="submit" className={acc.btn}>
-              Войти
+              Войти в аккаунт
             </button>
           </div>
         </form>

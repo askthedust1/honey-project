@@ -41,7 +41,7 @@ const Accounts: MyPage = () => {
           fontSize: '15px',
         }}
       >
-        Зарегистрироваться
+        Зарегистрироваться!
       </button>
     </>
   ) : (
@@ -58,7 +58,7 @@ const Accounts: MyPage = () => {
           fontSize: '15px',
         }}
       >
-        Войти
+        Войти!
       </button>
     </div>
   );
