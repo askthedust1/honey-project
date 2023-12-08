@@ -4,13 +4,13 @@ import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/adminBestsellers.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { apiUrl } from '@/constants';
-import { selectCategories } from '@/features/categories/categoriesSlice';
+import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
+import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
 import {
   selectAllBestsellers,
   selectAllBestsellersForAdmin,
 } from '@/features/adminBestsellers/adminBestsellersSlice';
 import plusIcon from '@/assets/images/plusIcon.png';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
 import {
   fetchBestsellers,
   fetchBestsellersProducts,
@@ -21,29 +21,29 @@ const BestsellerAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
   const products = useAppSelector(selectAllBestsellersForAdmin);
   const bestsellers = useAppSelector(selectAllBestsellers);
-  const categories = useAppSelector(selectCategories);
+  const categories = useAppSelector(selectAdminCategories);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
 
+  const [search, setSearch] = useState<string>('');
+
   useEffect(() => {
-    dispatch(fetchCategories(''));
+    dispatch(fetchAdminCategories());
     dispatch(fetchBestsellers());
-    dispatch(fetchBestsellersProducts(''));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchBestsellersProducts({ id: selectedCategory, search }));
+  }, [dispatch, search, selectedCategory]);
 
   const categoryChangeHandle = async (event: ChangeEvent<HTMLSelectElement>) => {
     const category = event.target.value;
     setSelectedCategory(category);
-    if (category !== '') {
-      await dispatch(fetchBestsellersProducts(category));
-    } else {
-      await dispatch(fetchBestsellersProducts(''));
-    }
   };
 
   const deleteHit = async (id: string) => {
     await dispatch(patchHitProduct(id));
     await dispatch(fetchBestsellers());
-    await dispatch(fetchBestsellersProducts(selectedCategory));
+    await dispatch(fetchBestsellersProducts({ id: selectedCategory, search }));
   };
 
   const addHit = async (id: string) => {
@@ -54,7 +54,12 @@ const BestsellerAdminPage: MyPage = () => {
 
     await dispatch(patchHitProduct(id));
     await dispatch(fetchBestsellers());
-    await dispatch(fetchBestsellersProducts(selectedCategory));
+    await dispatch(fetchBestsellersProducts({ id: selectedCategory, search }));
+  };
+
+  const setSearchItem = async (event: ChangeEvent<HTMLInputElement>) => {
+    const item = event.target.value;
+    setSearch(item);
   };
 
   return (
@@ -85,7 +90,7 @@ const BestsellerAdminPage: MyPage = () => {
               <option value="">Отфильтровать по категории</option>
               {categories.map((category) => (
                 <option key={category._id} value={category._id}>
-                  {category.title}
+                  {category.translations.ru.title}
                 </option>
               ))}
             </select>
@@ -94,6 +99,7 @@ const BestsellerAdminPage: MyPage = () => {
               name="findProduct"
               id="findProduct"
               placeholder="Найти по названию"
+              onChange={setSearchItem}
             />
             <div className={cls.adminProductsPagination}>
               <a className={cls.arrowToLeft} href="#"></a>

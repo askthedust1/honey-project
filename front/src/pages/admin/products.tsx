@@ -19,20 +19,29 @@ const ProductsAdminPage: MyPage = () => {
   const products = useAppSelector(selectAllProductsForAdmin);
   const categories = useAppSelector(selectAdminCategories);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
-    dispatch(fetchProductsForAdmin(selectedCategory));
     dispatch(fetchAdminCategories());
-  }, [dispatch, selectedCategory]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchProductsForAdmin({ id: selectedCategory, search }));
+  }, [dispatch, search, selectedCategory]);
 
   const onStatusActive = async (id: string) => {
     await dispatch(patchActiveProducts(id));
-    await dispatch(fetchProductsForAdmin(selectedCategory));
+    await dispatch(fetchProductsForAdmin({ id: selectedCategory, search }));
   };
 
   const handleCategoryChange = async (event: ChangeEvent<HTMLSelectElement>) => {
     const categoryId = event.target.value;
     setSelectedCategory(categoryId);
+  };
+
+  const setSearchItem = async (event: ChangeEvent<HTMLInputElement>) => {
+    const item = event.target.value;
+    setSearch(item);
   };
 
   return (
@@ -54,6 +63,7 @@ const ProductsAdminPage: MyPage = () => {
               name="findProduct"
               id="findProduct"
               placeholder="Найти по названию"
+              onChange={setSearchItem}
             />
             <div className={cls.adminProductsPagination}>
               <a className={cls.arrowToLeft} href="#"></a>
@@ -113,9 +123,9 @@ const ProductsAdminPage: MyPage = () => {
                     </td>
                     <td>
                       {product.isHit ? (
-                        <button className={cls.btnActive}>Активен</button>
+                        <span className={cls.hitActive}>Активен</span>
                       ) : (
-                        <button className={cls.btnInactive}>Неактивен</button>
+                        <span className={cls.hitInactive}>Неактивен</span>
                       )}
                     </td>
                     <td>{new Date(product.datetime).toLocaleDateString()}</td>
