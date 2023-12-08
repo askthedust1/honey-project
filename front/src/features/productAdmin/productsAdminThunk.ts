@@ -7,21 +7,25 @@ import {
 } from '@/features/products/productHook';
 import { isAxiosError } from 'axios';
 
-export const fetchAllProductsForAdmin = createAsyncThunk<IProductView[]>(
-  'adminProducts/fetchAdmin',
-  async () => {
-    const productsResponse = await axiosApi.get<IProductView[]>('/admin');
-    return useProductsAdminTranslation(productsResponse.data, 'ru');
-  },
-);
+export const fetchAllProductsForAdmin = createAsyncThunk<
+  IProductView[],
+  { id?: string; search?: string }
+>('adminProducts/fetchAdmin', async ({ search, id }) => {
+  const searchQuery = search ? `search=${search}&` : '';
+  const categoryQuery = id ? `category=${id}&` : '';
+  const productsResponse = await axiosApi.get<IProductView[]>(
+    `/admin/?${categoryQuery}${searchQuery}`,
+  );
+  return useProductsAdminTranslation(productsResponse.data, 'ru');
+});
 
-export const fetchAllProductsForAdminByCategory = createAsyncThunk<IProductView[], string>(
-  'adminProducts/fetchByCategoryAdmin',
-  async (id) => {
-    const productsResponse = await axiosApi.get<IProductView[]>(`/admin?category=${id}`);
-    return useProductsAdminTranslation(productsResponse.data, 'ru');
-  },
-);
+// export const fetchAllProductsForAdminByCategory = createAsyncThunk<IProductView[], string>(
+//   'adminProducts/fetchByCategoryAdmin',
+//   async (id) => {
+//     const productsResponse = await axiosApi.get<IProductView[]>(`/admin?category=${id}`);
+//     return useProductsAdminTranslation(productsResponse.data, 'ru');
+//   },
+// );
 
 export const fetchOneProductForAdmin = createAsyncThunk<IProductView, string>(
   'adminProducts/fetchOneByAdmin',

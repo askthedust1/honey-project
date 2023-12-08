@@ -4,7 +4,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import {
   createProduct,
   fetchAllProductsForAdmin,
-  fetchAllProductsForAdminByCategory,
+  // fetchAllProductsForAdminByCategory,
   fetchOneProductForAdmin,
   patchActiveProducts,
   patchHitProducts,
@@ -53,19 +53,19 @@ export const productsAdminSlice = createSlice({
       state.fetchLoading = false;
     });
 
-    builder.addCase(fetchAllProductsForAdminByCategory.pending, (state) => {
-      state.fetchLoading = true;
-    });
-    builder.addCase(
-      fetchAllProductsForAdminByCategory.fulfilled,
-      (state, { payload: products }) => {
-        state.fetchLoading = false;
-        state.items = products;
-      },
-    );
-    builder.addCase(fetchAllProductsForAdminByCategory.rejected, (state) => {
-      state.fetchLoading = false;
-    });
+    // builder.addCase(fetchAllProductsForAdminByCategory.pending, (state) => {
+    //   state.fetchLoading = true;
+    // });
+    // builder.addCase(
+    //   fetchAllProductsForAdminByCategory.fulfilled,
+    //   (state, { payload: products }) => {
+    //     state.fetchLoading = false;
+    //     state.items = products;
+    //   },
+    // );
+    // builder.addCase(fetchAllProductsForAdminByCategory.rejected, (state) => {
+    //   state.fetchLoading = false;
+    // });
 
     builder.addCase(fetchOneProductForAdmin.pending, (state) => {
       state.fetchOneLoading = true;

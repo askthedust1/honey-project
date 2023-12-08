@@ -3,16 +3,12 @@ import cls from '../../../src/styles/_adminProducts.module.scss';
 import plusIcon from '@/assets/images/plusIcon.png';
 import {
   fetchAllProductsForAdmin,
-  fetchAllProductsForAdminByCategory,
   patchActiveProducts,
 } from '@/features/productAdmin/productsAdminThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectAllProductsForAdmin } from '@/features/productAdmin/productsAdminSlice';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { selectCategories } from '@/features/categories/categoriesSlice';
-import { wrapper } from '@/store/store';
-import axiosApi from '@/axiosApi';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import { MyPage } from '@/components/common/types';
 import { apiUrl } from '@/constants';
@@ -23,27 +19,29 @@ const ProductsAdminPage: MyPage = () => {
   const products = useAppSelector(selectAllProductsForAdmin);
   const categories = useAppSelector(selectCategories);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
-    dispatch(fetchAllProductsForAdmin());
+    dispatch(fetchCategories(''));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchAllProductsForAdmin({ id: selectedCategory, search }));
+  }, [dispatch, search, selectedCategory]);
 
   const onStatusActive = async (id: string) => {
     await dispatch(patchActiveProducts(id));
-    await dispatch(fetchAllProductsForAdmin());
-    if (selectedCategory) {
-      dispatch(fetchAllProductsForAdminByCategory(selectedCategory));
-    }
+    await dispatch(fetchAllProductsForAdmin({ id: selectedCategory, search }));
   };
 
   const handleCategoryChange = async (event: ChangeEvent<HTMLSelectElement>) => {
     const categoryId = event.target.value;
     setSelectedCategory(categoryId);
-    if (categoryId !== '') {
-      await dispatch(fetchAllProductsForAdminByCategory(categoryId));
-    } else {
-      await dispatch(fetchAllProductsForAdmin());
-    }
+  };
+
+  const setSearchItem = async (event: ChangeEvent<HTMLInputElement>) => {
+    const item = event.target.value;
+    setSearch(item);
   };
 
   return (
@@ -65,6 +63,7 @@ const ProductsAdminPage: MyPage = () => {
               name="findProduct"
               id="findProduct"
               placeholder="Найти по названию"
+              onChange={setSearchItem}
             />
             <div className={cls.adminProductsPagination}>
               <a className={cls.arrowToLeft} href="#"></a>
@@ -124,9 +123,9 @@ const ProductsAdminPage: MyPage = () => {
                     </td>
                     <td>
                       {product.isHit ? (
-                        <button className={cls.btnActive}>Активен</button>
+                        <span className={cls.hitActive}>Активен</span>
                       ) : (
-                        <button className={cls.btnInactive}>Неактивен</button>
+                        <span className={cls.hitInactive}>Неактивен</span>
                       )}
                     </td>
                     <td>{new Date(product.datetime).toLocaleDateString()}</td>
@@ -146,16 +145,16 @@ const ProductsAdminPage: MyPage = () => {
 };
 ProductsAdminPage.Layout = 'Admin';
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
-  axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
-  await store.dispatch(fetchCategories(''));
-
-  return {
-    props: {
-      name: 'Products',
-      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'home', 'header', 'footer'])),
-    },
-  };
-});
+// export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+//   axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
+//   await store.dispatch(fetchCategories(''));
+//
+//   return {
+//     props: {
+//       name: 'Products',
+//       ...(await serverSideTranslations(locale ?? 'ru', ['common', 'home', 'header', 'footer'])),
+//     },
+//   };
+// });
 
 export default ProductsAdminPage;
