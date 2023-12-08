@@ -287,12 +287,30 @@ export interface IProductOfKits {
 }
 
 export interface IOrder {
+  indexNumber: number;
   user: IUser;
   address: string;
   totalPrice: number;
   status: boolean;
   dateTime: string;
   kits: IProductOfKits[];
+}
+
+export interface IOrderAdminView {
+  _id: string;
+  indexNumber: number;
+  user: IUser;
+  address: string;
+  totalPrice: number;
+  status: boolean;
+  dateTime: string;
+  kits: IProductOfKits[];
+}
+
+export interface IOrderAdminFullResponse {
+  ordersOfPage: IOrderAdminView[];
+  currentPage: number;
+  totalPages: number;
 }
 
 export interface OrderMutation {

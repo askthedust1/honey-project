@@ -3,6 +3,10 @@ import Product from './Product';
 import User from './User';
 
 const TransactionSchema = new mongoose.Schema({
+  indexNumber: {
+    type: Number,
+    required: true,
+  },
   user: {
     type: mongoose.Types.ObjectId,
     ref: 'User',
@@ -48,6 +52,7 @@ const TransactionSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
+
   dateTime: {
     type: String,
     required: true,

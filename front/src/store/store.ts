@@ -14,6 +14,7 @@ import { addInterceptors } from '@/axiosApi';
 import { adminCategoriesSlice } from '@/features/adminCategories/adminCategoriesSlice';
 import { adminMainSlice } from '@/features/adminMain/adminMainSlice';
 import { orderSlice } from '@/features/order/orderSlice';
+import { orderAdminSlice } from '@/features/orderAdmin/ordersAdminSlice';
 import {bestsellersSlice} from "@/features/adminBestsellers/adminBestsellersSlice";
 import {adminNewTransactionsSlice} from "@/features/adminNewMessages/adminNewTransactionSlice";
 
@@ -36,6 +37,7 @@ export const makeStore = wrapMakeStore(() => {
     [bestsellersSlice.name]: bestsellersSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,
     [orderSlice.name]: orderSlice.reducer,
+    [orderAdminSlice.name]: orderAdminSlice.reducer,
     [productsAdminSlice.name]: productsAdminSlice.reducer,
     [usersSlice.name]: isServer
       ? usersSlice.reducer
