@@ -1,53 +1,96 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/adminBestsellers.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { selectAllProductsForAdmin } from '@/features/productAdmin/productsAdminSlice';
 import { apiUrl } from '@/constants';
-import { selectCategories } from '@/features/categories/categoriesSlice';
+import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
+import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
 import {
-  fetchAllProductsForAdmin,
-  fetchAllProductsForAdminByCategory,
-} from '@/features/productAdmin/productsAdminThunk';
+  selectAllBestsellers,
+  selectAllBestsellersForAdmin,
+} from '@/features/adminBestsellers/adminBestsellersSlice';
 import plusIcon from '@/assets/images/plusIcon.png';
-import { wrapper } from '@/store/store';
-import axiosApi from '@/axiosApi';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import {
+  fetchBestsellers,
+  fetchBestsellersProducts,
+  patchHitProduct,
+} from '@/features/adminBestsellers/adminBestsellersThunk';
 
 const BestsellerAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector(selectAllProductsForAdmin);
-  const categories = useAppSelector(selectCategories);
+  const products = useAppSelector(selectAllBestsellersForAdmin);
+  const bestsellers = useAppSelector(selectAllBestsellers);
+  const categories = useAppSelector(selectAdminCategories);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+
+  const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
-    dispatch(fetchAllProductsForAdmin());
+    dispatch(fetchAdminCategories());
+    dispatch(fetchBestsellers());
   }, [dispatch]);
 
-  const categoryChangeHandle = async (event: ChangeEvent<HTMLSelectElement>) => {
-    const categoryId = event.target.value;
+  useEffect(() => {
+    dispatch(fetchBestsellersProducts({ id: selectedCategory, search }));
+  }, [dispatch, search, selectedCategory]);
 
-    if (categoryId !== '') {
-      await dispatch(fetchAllProductsForAdminByCategory(categoryId));
-    } else {
-      await dispatch(fetchAllProductsForAdmin());
+  const categoryChangeHandle = async (event: ChangeEvent<HTMLSelectElement>) => {
+    const category = event.target.value;
+    setSelectedCategory(category);
+  };
+
+  const deleteHit = async (id: string) => {
+    await dispatch(patchHitProduct(id));
+    await dispatch(fetchBestsellers());
+    await dispatch(fetchBestsellersProducts({ id: selectedCategory, search }));
+  };
+
+  const addHit = async (id: string) => {
+    if (bestsellers.length > 5) {
+      alert('В хиты можно добавлять только 6 товаров!');
+      return;
     }
+
+    await dispatch(patchHitProduct(id));
+    await dispatch(fetchBestsellers());
+    await dispatch(fetchBestsellersProducts({ id: selectedCategory, search }));
+  };
+
+  const setSearchItem = async (event: ChangeEvent<HTMLInputElement>) => {
+    const item = event.target.value;
+    setSearch(item);
   };
 
   return (
     <ProtectedRoute>
       <div className={cls.container}>
         <div className={cls.bestseller}>
-          <h1 className={cls.bestseller_main_title}>Хиты</h1>
-          <div className={cls.bestseller_activeBest}></div>
+          <h1 className={cls.bestseller_mainTitle}>Хиты</h1>
+          <div className={cls.bestseller_activeBest}>
+            {!bestsellers.length ? (
+              <span className={cls.bestseller_hit_title}>
+                В данном разделе пока нет хитов! Вы можете добавить, нажав на плюсик.
+              </span>
+            ) : (
+              bestsellers.map((i) => (
+                <div className={cls.bestseller_hit} key={i._id}>
+                  <span className={cls.bestseller_hit_title}>{i.title}</span>
+                  <button
+                    onClick={() => deleteHit(i._id)}
+                    className={cls.bestseller_hit_btn}
+                  ></button>
+                </div>
+              ))
+            )}
+          </div>
           <div className={cls.adminProductsNav}>
             <h3 className={cls.bestseller_title}>Все товары</h3>
             <select onChange={categoryChangeHandle}>
               <option value="">Отфильтровать по категории</option>
               {categories.map((category) => (
                 <option key={category._id} value={category._id}>
-                  {category.title}
+                  {category.translations.ru.title}
                 </option>
               ))}
             </select>
@@ -56,6 +99,7 @@ const BestsellerAdminPage: MyPage = () => {
               name="findProduct"
               id="findProduct"
               placeholder="Найти по названию"
+              onChange={setSearchItem}
             />
             <div className={cls.adminProductsPagination}>
               <a className={cls.arrowToLeft} href="#"></a>
@@ -73,7 +117,6 @@ const BestsellerAdminPage: MyPage = () => {
                   <th>Название</th>
                   <th>Категория</th>
                   <th>Цена</th>
-                  <th>Статус</th>
                   <th>Действие</th>
                 </tr>
               </thead>
@@ -83,22 +126,14 @@ const BestsellerAdminPage: MyPage = () => {
                     <td className={cls.imageTd}>
                       <img src={apiUrl + '/' + product.image} alt="image" />
                     </td>
-                    <td>{product.title}</td>
+                    <td className={cls.adminBestsellersTable_body_title}>{product.title}</td>
                     <td>{product.category.title}</td>
                     <td>{product.actualPrice}</td>
                     <td>
-                      <span
-                        className={
-                          product.isActive
-                            ? cls.adminBestsellersTable_active
-                            : cls.adminBestsellersTable_inactive
-                        }
+                      <button
+                        className={cls.adminBestsellersTable_addBtn}
+                        onClick={() => addHit(product._id)}
                       >
-                        {product.isActive ? 'Активен' : 'Не активен'}
-                      </span>
-                    </td>
-                    <td>
-                      <button className={cls.adminBestsellersTable_addBtn}>
                         <img src={plusIcon.src} alt="Plus Icon" />
                       </button>
                     </td>
@@ -114,17 +149,4 @@ const BestsellerAdminPage: MyPage = () => {
 };
 
 BestsellerAdminPage.Layout = 'Admin';
-
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
-  axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
-  await store.dispatch(fetchCategories(''));
-
-  return {
-    props: {
-      name: 'Products',
-      ...(await serverSideTranslations(locale ?? 'ru', ['common'])),
-    },
-  };
-});
-
 export default BestsellerAdminPage;

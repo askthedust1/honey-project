@@ -9,7 +9,6 @@ const AdminMain = () => {
   const dispatch = useAppDispatch();
   const info = useAppSelector(selectAdminMain);
   const hits = useAppSelector(selectAdminMainHits);
-  console.log(hits);
   useEffect(() => {
     dispatch(fetchAdminMain());
     dispatch(fetchAdminMainHit());
@@ -48,20 +47,20 @@ const AdminMain = () => {
               <th>Название</th>
               <th>Категория</th>
               <th>Цена</th>
-              <th>Продано товара</th>
+              <th>Продано товара </th>
               <th>Общая сумма</th>
             </tr>
           </thead>
           <tbody>
             {hits.map((hit) => (
-              <tr className={cls.lineBody}>
+              <tr key={hit.product._id} className={cls.lineBody}>
                 <td>
                   <div className={cls.imgWrap}>
                     <img src={apiUrl + '/' + hit.product.image} alt={hit.product.title} />
                   </div>
                 </td>
-                <td>{hit.product.translations.ru.title}</td>
-                <td>{hit.product.category.translations.ru.title}</td>
+                <td>{hit.product.translations?.ru.title}</td>
+                <td>{hit.product.category.translations?.ru.title}</td>
                 <td>{hit.product.actualPrice}</td>
                 <td>{hit.amount}</td>
                 <td>{hit.sum}</td>

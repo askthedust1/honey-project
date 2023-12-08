@@ -1,57 +1,47 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import cls from '../../../src/styles/_adminProducts.module.scss';
+import cls from '../../styles/_adminProducts.module.scss';
 import plusIcon from '@/assets/images/plusIcon.png';
 import {
-  fetchAllProductsForAdmin,
-  fetchAllProductsForAdminByCategory,
+  fetchProductsForAdmin,
   patchActiveProducts,
-  patchHitProducts,
 } from '@/features/productAdmin/productsAdminThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectAllProductsForAdmin } from '@/features/productAdmin/productsAdminSlice';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
-import { selectCategories } from '@/features/categories/categoriesSlice';
-import { wrapper } from '@/store/store';
-import axiosApi from '@/axiosApi';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import { MyPage } from '@/components/common/types';
 import { apiUrl } from '@/constants';
+import Link from 'next/link';
+import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
+import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
 
 const ProductsAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
   const products = useAppSelector(selectAllProductsForAdmin);
-  const categories = useAppSelector(selectCategories);
+  const categories = useAppSelector(selectAdminCategories);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
-    dispatch(fetchAllProductsForAdmin());
+    dispatch(fetchAdminCategories());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchProductsForAdmin({ id: selectedCategory, search }));
+  }, [dispatch, search, selectedCategory]);
 
   const onStatusActive = async (id: string) => {
     await dispatch(patchActiveProducts(id));
-    await dispatch(fetchAllProductsForAdmin());
-    if (selectedCategory) {
-      dispatch(fetchAllProductsForAdminByCategory(selectedCategory));
-    }
-  };
-
-  const onHitActivate = async (id: string) => {
-    await dispatch(patchHitProducts(id));
-    await dispatch(fetchAllProductsForAdmin());
-    if (selectedCategory) {
-      dispatch(fetchAllProductsForAdminByCategory(selectedCategory));
-    }
+    await dispatch(fetchProductsForAdmin({ id: selectedCategory, search }));
   };
 
   const handleCategoryChange = async (event: ChangeEvent<HTMLSelectElement>) => {
     const categoryId = event.target.value;
     setSelectedCategory(categoryId);
-    if (categoryId !== '') {
-      await dispatch(fetchAllProductsForAdminByCategory(categoryId));
-    } else {
-      await dispatch(fetchAllProductsForAdmin());
-    }
+  };
+
+  const setSearchItem = async (event: ChangeEvent<HTMLInputElement>) => {
+    const item = event.target.value;
+    setSearch(item);
   };
 
   return (
@@ -64,7 +54,7 @@ const ProductsAdminPage: MyPage = () => {
               <option value="">Отфильтровать по категории</option>
               {categories.map((category) => (
                 <option key={category._id} value={category._id}>
-                  {category.title}
+                  {category.translations.ru.title}
                 </option>
               ))}
             </select>
@@ -73,6 +63,7 @@ const ProductsAdminPage: MyPage = () => {
               name="findProduct"
               id="findProduct"
               placeholder="Найти по названию"
+              onChange={setSearchItem}
             />
             <div className={cls.adminProductsPagination}>
               <a className={cls.arrowToLeft} href="#"></a>
@@ -83,7 +74,7 @@ const ProductsAdminPage: MyPage = () => {
             </div>
             <button className={cls.addNewProductBtn}>
               <img src={plusIcon.src} alt="plusIcon" />
-              Добавить продукт
+              <Link href={'/admin/addProduct'}> Добавить продукт</Link>
             </button>
           </div>
           <div className={cls.adminProductsTable}>
@@ -132,24 +123,16 @@ const ProductsAdminPage: MyPage = () => {
                     </td>
                     <td>
                       {product.isHit ? (
-                        <button
-                          className={cls.btnActive}
-                          onClick={() => onHitActivate(product._id)}
-                        >
-                          Активен
-                        </button>
+                        <span className={cls.hitActive}>Активен</span>
                       ) : (
-                        <button
-                          className={cls.btnInactive}
-                          onClick={() => onHitActivate(product._id)}
-                        >
-                          Неактивен
-                        </button>
+                        <span className={cls.hitInactive}>Неактивен</span>
                       )}
                     </td>
                     <td>{new Date(product.datetime).toLocaleDateString()}</td>
                     <td>
-                      <button className={cls.viewMoreBtn}></button>
+                      <Link href={`/admin/products/` + product._id}>
+                        <button className={cls.viewMoreBtn}></button>
+                      </Link>
                       <button className={cls.editBtn}></button>
                     </td>
                   </tr>
@@ -163,17 +146,5 @@ const ProductsAdminPage: MyPage = () => {
   );
 };
 ProductsAdminPage.Layout = 'Admin';
-
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
-  axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
-  await store.dispatch(fetchCategories(''));
-
-  return {
-    props: {
-      name: 'Products',
-      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'home', 'header', 'footer'])),
-    },
-  };
-});
 
 export default ProductsAdminPage;

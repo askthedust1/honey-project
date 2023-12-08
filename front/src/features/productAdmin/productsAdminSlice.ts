@@ -1,10 +1,10 @@
-import { IProductView } from '@/types';
+import { IProductOneView, IProductView, ValidationError } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import {
-  fetchAllProductsForAdmin,
-  fetchAllProductsForAdminByCategory,
+  createProduct,
   fetchOneProductForAdmin,
+  fetchProductsForAdmin,
   patchActiveProducts,
   patchHitProducts,
 } from '@/features/productAdmin/productsAdminThunk';
@@ -12,11 +12,13 @@ import { RootState } from '@/store/store';
 
 interface ProductsState {
   items: IProductView[];
-  item: IProductView | null;
+  item: IProductOneView | null;
   fetchLoading: boolean;
   fetchOneLoading: boolean;
   patchActiveLoading: boolean;
   patchHitLoading: boolean;
+  createLoading: boolean;
+  error: ValidationError | null;
 }
 
 const initialState: ProductsState = {
@@ -26,6 +28,8 @@ const initialState: ProductsState = {
   fetchOneLoading: false,
   patchActiveLoading: false,
   patchHitLoading: false,
+  createLoading: false,
+  error: null,
 };
 
 export const productsAdminSlice = createSlice({
@@ -37,28 +41,14 @@ export const productsAdminSlice = createSlice({
       // @ts-expect-error
       return action.payload.productsAdmin;
     });
-    builder.addCase(fetchAllProductsForAdmin.pending, (state) => {
+    builder.addCase(fetchProductsForAdmin.pending, (state) => {
       state.fetchLoading = true;
     });
-    builder.addCase(fetchAllProductsForAdmin.fulfilled, (state, { payload: products }) => {
+    builder.addCase(fetchProductsForAdmin.fulfilled, (state, { payload: products }) => {
       state.fetchLoading = false;
       state.items = products;
     });
-    builder.addCase(fetchAllProductsForAdmin.rejected, (state) => {
-      state.fetchLoading = false;
-    });
-
-    builder.addCase(fetchAllProductsForAdminByCategory.pending, (state) => {
-      state.fetchLoading = true;
-    });
-    builder.addCase(
-      fetchAllProductsForAdminByCategory.fulfilled,
-      (state, { payload: products }) => {
-        state.fetchLoading = false;
-        state.items = products;
-      },
-    );
-    builder.addCase(fetchAllProductsForAdminByCategory.rejected, (state) => {
+    builder.addCase(fetchProductsForAdmin.rejected, (state) => {
       state.fetchLoading = false;
     });
 
@@ -71,6 +61,18 @@ export const productsAdminSlice = createSlice({
     });
     builder.addCase(fetchOneProductForAdmin.rejected, (state) => {
       state.fetchOneLoading = false;
+    });
+
+    builder.addCase(createProduct.pending, (state) => {
+      state.createLoading = true;
+      state.error = null;
+    });
+    builder.addCase(createProduct.fulfilled, (state) => {
+      state.createLoading = false;
+    });
+    builder.addCase(createProduct.rejected, (state, { payload: error }) => {
+      state.createLoading = false;
+      state.error = error || null;
     });
 
     builder.addCase(patchActiveProducts.pending, (state) => {

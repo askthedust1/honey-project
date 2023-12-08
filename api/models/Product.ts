@@ -16,10 +16,22 @@ const ProductSchema = new Schema({
   oldPrice: {
     type: Number,
     required: true,
+    validate: {
+      validator: function (value: number) {
+        return value > 0;
+      },
+      message: 'Old price must be greater than 0',
+    },
   },
   actualPrice: {
     type: Number,
     required: true,
+    validate: {
+      validator: function (value: number) {
+        return value > 0;
+      },
+      message: 'Old price must be greater than 0',
+    },
   },
   image: {
     type: String,
@@ -44,14 +56,6 @@ const ProductSchema = new Schema({
     required: true,
     default: new Date().toISOString(),
   },
-  // title: {
-  //   type: String,
-  //   required: true,
-  // },
-  // description: {
-  //   type: String,
-  //   required: true,
-  // },
   translations: {
     ru: {
       title: {

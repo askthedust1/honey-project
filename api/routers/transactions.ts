@@ -83,6 +83,24 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
   }
 });
 
+transactionsRouter.get('/new', auth, permit('admin'), async (req, res) => {
+  try {
+    const transactions = await Transaction.find({status: false})
+        .populate('user', 'displayName phone')
+        .populate({
+          path: 'kits.product',
+          select: 'actualPrice image translations.ru.title isHit',
+          populate: {
+            path: 'category',
+            select: 'translations.ru.title',
+          },
+        });
+    return res.send(transactions);
+  } catch {
+    return res.sendStatus(500);
+  }
+});
+
 transactionsRouter.get('/user/:date', auth, async (req, res) => {
   const user = (req as RequestWithUser).user;
   try {

@@ -14,6 +14,10 @@ export interface RegisterResponse {
   message: string;
 }
 
+export interface BannerResponse {
+  message: string;
+}
+
 export interface LoginMutation {
   email: string;
   password: string;
@@ -63,6 +67,38 @@ export interface IProductView {
   datetime: string;
 }
 
+export interface IProductOneView {
+  _id: string;
+  category: {
+    translations: {
+      ru: {
+        title: string;
+      };
+    };
+  };
+  translations: {
+    ru: {
+      title: string;
+      description: string;
+    };
+    en: {
+      title: string;
+      description: string;
+    };
+    kg: {
+      title: string;
+      description: string;
+    };
+  };
+  isActive: boolean;
+  isHit: boolean;
+  datetime: string;
+  oldPrice: number;
+  actualPrice: number;
+  amount: number;
+  image: string;
+}
+
 export interface IProduct {
   _id: string;
   category: string;
@@ -75,6 +111,52 @@ export interface IProduct {
   isActive: boolean;
   isHit: boolean;
   datetime: string;
+}
+
+export interface IProductMutation {
+  _id: string;
+  category: {
+    translations: {
+      ru: {
+        title: string;
+      };
+    };
+  };
+  translations: {
+    ru: {
+      title: string;
+    };
+  };
+  oldPrice: number;
+  actualPrice: number;
+  description: string;
+  image: string;
+  amount: number;
+  isActive: boolean;
+  isHit: boolean;
+  datetime: string;
+}
+
+export interface IProductMutationNew {
+  category: string;
+  oldPrice: number;
+  actualPrice: number;
+  amount: number;
+  translations: {
+    ru: {
+      title: string;
+      description: string;
+    };
+    en: {
+      title: string;
+      description: string;
+    };
+    kg: {
+      title: string;
+      description: string;
+    };
+  };
+  image: File | null;
 }
 
 export interface IProductsOfPage {
@@ -110,6 +192,21 @@ export interface ICategoryPost {
   };
 }
 
+export interface ICategoryMutation {
+  translations: {
+    ru: {
+      title: string;
+    };
+    en: {
+      title: string;
+    };
+    kg: {
+      title: string;
+    };
+  };
+  image: File | null;
+}
+
 export interface IAdminCategory {
   _id: string;
   translations: {
@@ -124,12 +221,13 @@ export interface IAdminCategory {
 export interface IBanner {
   _id: string;
   description: string;
-  image: string | File;
+  image: string | null;
   priority: number;
   page: string;
 }
 
 export interface IBannerPost {
+  translations: string;
   description: string;
   image: File | null;
   priority: string;
@@ -162,6 +260,7 @@ export interface IAdminMainInfo {
 export interface IAdminMainHit {
   amount: number;
   product: {
+    _id: string;
     translations: {
       ru: {
         title: string;
@@ -220,8 +319,22 @@ export interface OrderMutation {
 }
 
 export interface IFullOrder {
-  // indexNumber: string;
   kits: OrderMutation[];
   address: string;
   dateTime: string;
+}
+
+export interface IOrderMutation {
+  _id: string;
+  phone: string;
+  user: IUser;
+  address: string;
+  totalPrice: number;
+  status: boolean;
+  dateTime: string;
+  kits: {
+    product: IProductMutation;
+    amount: number;
+    price: number;
+  }[];
 }
