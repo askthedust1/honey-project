@@ -1,10 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProductMutationNew, IProductView, ValidationError } from '@/types';
+import { IProductMutationNew, IProductOneView, IProductView, ValidationError } from '@/types';
 import axiosApi from '@/axiosApi';
-import {
-  useProductsAdminTranslation,
-  useProductTranslation,
-} from '@/features/products/productHook';
+import { useProductsAdminTranslation } from '@/features/products/productHook';
 import { isAxiosError } from 'axios';
 
 export const fetchAllProductsForAdmin = createAsyncThunk<
@@ -27,11 +24,11 @@ export const fetchAllProductsForAdmin = createAsyncThunk<
 //   },
 // );
 
-export const fetchOneProductForAdmin = createAsyncThunk<IProductView, string>(
+export const fetchOneProductForAdmin = createAsyncThunk<IProductOneView, string>(
   'adminProducts/fetchOneByAdmin',
   async (id) => {
-    const productResponse = await axiosApi.get<IProductView>(`/admin/${id}`);
-    return useProductTranslation(productResponse.data, 'ru');
+    const productResponse = await axiosApi.get<IProductOneView>(`/admin/${id}`);
+    return productResponse.data;
   },
 );
 

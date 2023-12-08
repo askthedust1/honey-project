@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import cls from '../../../src/styles/_adminProducts.module.scss';
+import cls from '../../styles/_adminProducts.module.scss';
 import plusIcon from '@/assets/images/plusIcon.png';
 import {
   fetchAllProductsForAdmin,
@@ -7,23 +7,24 @@ import {
 } from '@/features/productAdmin/productsAdminThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectAllProductsForAdmin } from '@/features/productAdmin/productsAdminSlice';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
-import { selectCategories } from '@/features/categories/categoriesSlice';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import { MyPage } from '@/components/common/types';
 import { apiUrl } from '@/constants';
 import Link from 'next/link';
+import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
+import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
 
 const ProductsAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
   const products = useAppSelector(selectAllProductsForAdmin);
-  const categories = useAppSelector(selectCategories);
+  const categories = useAppSelector(selectAdminCategories);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
-    dispatch(fetchCategories(''));
-  }, [dispatch]);
+    dispatch(fetchProductsForAdmin(selectedCategory));
+    dispatch(fetchAdminCategories());
+  }, [dispatch, selectedCategory]);
 
   useEffect(() => {
     dispatch(fetchAllProductsForAdmin({ id: selectedCategory, search }));
@@ -31,7 +32,7 @@ const ProductsAdminPage: MyPage = () => {
 
   const onStatusActive = async (id: string) => {
     await dispatch(patchActiveProducts(id));
-    await dispatch(fetchAllProductsForAdmin({ id: selectedCategory, search }));
+    await dispatch(fetchProductsForAdmin(selectedCategory));
   };
 
   const handleCategoryChange = async (event: ChangeEvent<HTMLSelectElement>) => {
@@ -54,7 +55,7 @@ const ProductsAdminPage: MyPage = () => {
               <option value="">Отфильтровать по категории</option>
               {categories.map((category) => (
                 <option key={category._id} value={category._id}>
-                  {category.title}
+                  {category.translations.ru.title}
                 </option>
               ))}
             </select>
@@ -130,7 +131,9 @@ const ProductsAdminPage: MyPage = () => {
                     </td>
                     <td>{new Date(product.datetime).toLocaleDateString()}</td>
                     <td>
-                      <button className={cls.viewMoreBtn}></button>
+                      <Link href={`/admin/products/` + product._id}>
+                        <button className={cls.viewMoreBtn}></button>
+                      </Link>
                       <button className={cls.editBtn}></button>
                     </td>
                   </tr>
@@ -144,17 +147,5 @@ const ProductsAdminPage: MyPage = () => {
   );
 };
 ProductsAdminPage.Layout = 'Admin';
-
-// export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
-//   axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
-//   await store.dispatch(fetchCategories(''));
-//
-//   return {
-//     props: {
-//       name: 'Products',
-//       ...(await serverSideTranslations(locale ?? 'ru', ['common', 'home', 'header', 'footer'])),
-//     },
-//   };
-// });
 
 export default ProductsAdminPage;
