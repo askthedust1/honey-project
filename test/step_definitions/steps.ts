@@ -18,8 +18,12 @@ const { I } = inject();
 //   // TODO: replace with your own step
 // });
 
-Given('I am on login page', () => {
-  I.amOnPage('/login');
+Given('I am on accounts page', () => {
+  I.amOnPage('/accounts');
+});
+
+Given('I click the {string} button', (text: string) => {
+  I.click(`//button[contains(text(), '${text}')]`);
 });
 
 When('I enter form fields:', (userData: IDataTable) => {
@@ -34,8 +38,8 @@ When('I click {string} button', (text: string) => {
   I.click(`//button[contains(text(), '${text}')]`);
 });
 
-Then('I see {string} in user menu.', (username: string) => {
-  const text = `Hello, ${username}`;
+Then('I see {string} in user menu.', (logout: string) => {
+  const text = `${logout}`;
 
-  I.see(text.toUpperCase());
+  I.see(text);
 });

@@ -13,7 +13,7 @@ export const config: CodeceptJS.MainConfig = {
     Puppeteer: {
       url: 'http://localhost:3010',
       show: false,
-      windowSize: '900x900'
+      windowSize: '1500x900'
     }
   },
   include: {
