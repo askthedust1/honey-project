@@ -1,20 +1,22 @@
 import React from 'react';
 import { ICart } from '@/types';
 import { useAppDispatch } from '@/store/hook';
+import cls from "@/styles/order.module.scss";
+import {apiUrl} from "@/constants";
 
 interface Props {
   item: ICart;
 }
 
 const OrderItem: React.FC<Props> = ({ item }) => {
+    console.log(item);
 
-  return (
-    <div>
-      <span>{item.product.title}</span>
-      <span> x </span>
-      <span>{item.amount}</span>
-      <span> = </span>
-      <span>{item.product.actualPrice * item.amount} KGS</span>
+    return (
+    <div className={cls.orderItem}>
+        <img className={cls.img} src={apiUrl + '/' + item.product.image} alt={item.product.title} />
+      <span className={cls.orderItem_title}>{item.product.title}</span>
+      <span>x {item.amount}</span>
+      <span className={cls.orderItem_price}>{item.product.actualPrice * item.amount} KGS</span>
     </div>
   );
 };
