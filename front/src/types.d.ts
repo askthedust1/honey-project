@@ -193,6 +193,7 @@ export interface ICategoryPost {
 }
 
 export interface ICategoryMutation {
+  idCategory?: string;
   translations: {
     ru: {
       title: string;
@@ -213,10 +214,18 @@ export interface IAdminCategory {
     ru: {
       title: string;
     };
+    en: {
+      title: string;
+    };
+    kg: {
+      title: string;
+    };
   };
   image: string | '';
   isActive: boolean;
 }
+
+export type TAdminCategory = Omit<IAdminCategory, 'id'>;
 
 export interface IBanner {
   _id: string;

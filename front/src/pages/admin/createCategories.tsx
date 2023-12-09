@@ -20,7 +20,7 @@ const CreateCategories: MyPage = () => {
     titleKG: '',
   });
 
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setState((prevState) => {
