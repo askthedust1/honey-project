@@ -112,8 +112,7 @@ transactionsRouter.get('/user/:date', auth, async (req, res) => {
       .populate('user', 'displayName')
       .populate({
         path: 'kits.product',
-        model: Product,
-        select: ['translations'],
+        select: 'translations image',
       });
 
     return res.send(transactions);

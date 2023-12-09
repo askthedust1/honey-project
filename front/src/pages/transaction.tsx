@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectUser } from '@/features/users/usersSlice';
-import cls from '@/styles/cart.module.scss';
+import cls from '@/styles/transaction.module.scss';
 import { fetchOrder } from '@/features/order/orderThunk';
 import { selectDateOrder, selectOrder } from '@/features/order/orderSlice';
 import TransactionItem from '@/components/Order/TransactionItem';
 import Cookies from 'js-cookie';
+import Link from "next/link";
 
 const Transaction = () => {
   const [isClient, setIsClient] = useState(false);
@@ -43,25 +44,49 @@ const Transaction = () => {
       dispatch(fetchOrder(orderDateCookie));
     }
   }, [dispatch]);
-  console.log(transaction);
+  let formattedStr = 'sometime';
+  if (transaction) {
+    const dateObj = new Date(transaction.dateTime);
+    const day = dateObj.getDate();
+    const month = dateObj.getMonth() + 1;
+    const year = dateObj.getFullYear();
+    formattedStr = `${day}. ${month}. ${year}`;
+  }
 
   return (
     <>
       {isClient && user && transaction ? (
-        <div>
-          <section></section>
-          <div className={cls.container}>
-            <h1>Данный заказ принят: </h1>
-            <div>Покупатель: {user.email}</div>
-            <div>Контакты: {user.phone}</div>
-            <div>Адрес заказа: {transaction?.address}</div>
-            <ul>
-              {transaction?.kits.map((prod) => (
-                <TransactionItem item={prod} key={prod.product._id} />
-              ))}
-            </ul>
-            <div>Сумма заказа: {transaction?.totalPrice}</div>
-          </div>
+        <div className={cls.container}>
+          <section className={cls.title}>
+            <h3>Корзина</h3>
+            <div className={cls.return}>
+              <Link href={'/cart'}>Вернуться в магазин</Link>
+            </div>
+          </section>
+          <section className={cls.content}>
+            <div className={cls.content_item}>
+              <h3 className={cls.contentTitle}>Спасибо за заказ! 🎉</h3>
+              <h4 className={cls.subtitle}>Ваш заказ был оформлен!</h4>
+              <p className={cls.text}>C вами свяжется наш менеджер для уточнения данных</p>
+              <div className={cls.products}>
+                    {transaction?.kits.map((prod) => (
+                      <TransactionItem item={prod} key={prod.product._id} />
+                    ))}
+              </div>
+              <div>
+                <div className={cls.clientInfo}>
+                  <span className={cls.name}>Покупатель:</span><span>{formattedStr}</span>
+                </div>
+                <div className={cls.clientInfo}>
+                  <span className={cls.name}>Сумма заказа:</span><span>{transaction?.totalPrice} сом</span>
+                </div>
+                <div className={cls.clientInfo}>
+                  <span className={cls.name}>Способ оплаты:</span><span>Наличными</span>
+                </div>
+              </div>
+              <button className={cls.historyBtn}>История покупок</button>
+            </div>
+          </section>
         </div>
       ) : (
         <div></div>
