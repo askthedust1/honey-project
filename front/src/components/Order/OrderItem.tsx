@@ -1,6 +1,5 @@
 import React from 'react';
 import { ICart } from '@/types';
-import { useAppDispatch } from '@/store/hook';
 import cls from "@/styles/order.module.scss";
 import {apiUrl} from "@/constants";
 
@@ -9,7 +8,6 @@ interface Props {
 }
 
 const OrderItem: React.FC<Props> = ({ item }) => {
-    console.log(item);
 
     return (
     <div className={cls.orderItem}>
