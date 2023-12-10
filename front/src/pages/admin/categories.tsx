@@ -1,6 +1,6 @@
-'use client';
 import {
   fetchAdminCategories,
+  fetchOneCategoryForAdmin,
   patchCategory,
 } from '@/features/adminCategories/adminCategoriesThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
@@ -8,12 +8,22 @@ import { selectAdminCategories } from '@/features/adminCategories/adminCategorie
 import cls from '../../styles/_categories.module.scss';
 import { apiUrl } from '@/constants';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { MyPage } from '@/components/common/types';
+import ModalEditCategories from '@/components/UI/modalEditCategories/ModalEditCategories';
 
 const CategoriesAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectAdminCategories);
+
+  const [oneItem, setOneItem] = useState({
+    titleRU: '',
+    titleEN: '',
+    titleKG: '',
+    image: '',
+  });
+
+  const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAdminCategories());
@@ -22,6 +32,15 @@ const CategoriesAdminPage: MyPage = () => {
   const categoryPatch = async (id: string) => {
     await dispatch(patchCategory(id));
     await dispatch(fetchAdminCategories());
+  };
+
+  const getInfoAndIsOpen = (isOpen: boolean, id: string) => {
+    dispatch(fetchOneCategoryForAdmin(id));
+    setOpen(isOpen);
+  };
+
+  const closeModal = () => {
+    setOpen(false);
   };
 
   return (
@@ -72,7 +91,7 @@ const CategoriesAdminPage: MyPage = () => {
                       </button>
                     </td>
                     <td>
-                      <span></span>
+                      <span onClick={() => getInfoAndIsOpen(true, item._id)}></span>
                     </td>
                   </tr>
                 ))}
@@ -81,6 +100,7 @@ const CategoriesAdminPage: MyPage = () => {
           </div>
         </div>
       </div>
+      <ModalEditCategories isOpen={isOpen} closeModalButton={closeModal} closeModalAfterPut={(e) => setOpen(e)} />
     </ProtectedRoute>
   );
 };

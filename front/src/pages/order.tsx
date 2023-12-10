@@ -3,12 +3,12 @@ import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { resetCart, selectCart } from '@/features/cart/cartSlice';
 import { ICart } from '@/types';
-import cls from '@/styles/cart.module.scss';
+import cls from '@/styles/order.module.scss';
 import OrderItem from '@/components/Order/OrderItem';
 import { selectUser } from '@/features/users/usersSlice';
 import { createOrder } from '@/features/order/orderThunk';
 import { changeDate } from '@/features/order/orderSlice';
-import acc from '@/components/reg&logForms/form.module.scss';
+import Link from "next/link";
 
 const Order = () => {
   const [isClient, setIsClient] = useState(false);
@@ -23,8 +23,8 @@ const Order = () => {
 
   useEffect(() => {
     setIsClient(true);
-    // if (!cart) {
-    //   router.push(`/products/page/1`);
+    // if (!cart.length || user) {
+    //   router.push(`/products/page/1`).then(r => console.log(r));
     // }
   }, []);
 
@@ -51,9 +51,7 @@ const Order = () => {
 
   const submitFormHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-
     try {
-      // console.log(state);
       const fullOrder = {
         kits: fullOrderArr,
         address: state.address ? state.address : 'defaultAddress',
@@ -61,50 +59,89 @@ const Order = () => {
       };
       dispatch(changeDate(fullOrder.dateTime));
       await dispatch(createOrder(fullOrder));
-      dispatch(resetCart());
-      router.push(`/transaction`);
+      await dispatch(resetCart());
+      await router.push(`/transaction`);
     } catch (e) {
-      // nothing
-      // throw e;
       console.log(e);
     }
   };
-
+  const [choice, setChoice] = useState<boolean>(false);
+  const changeSelection = () => {
+    setChoice(!choice);
+  };
   return (
     <>
       {isClient && user ? (
-        <div>
-          <section></section>
           <div className={cls.container}>
-            <h1>Данные заказа </h1>
-            <div>Покупатель: {user.email}</div>
-            <div>Контакты: {user.phone}</div>
-            <div>Адрес покупателя: {user.address}</div>
-            <ul>
-              {cart.map((prod: ICart) => (
-                <OrderItem item={prod} key={prod.product._id} />
-              ))}
-            </ul>
-            <div>Итого: {getTotalPrice()} KGS</div>
-            <form className={acc.form} onSubmit={submitFormHandler}>
-              <div>
-                <label htmlFor="address">Адрес*</label>
-                <input
-                  onChange={inputChangeHandler}
-                  type="text"
-                  name="address"
-                  placeholder="Address"
-                />
+            <section className={cls.title}>
+              <h3>Корзина</h3>
+              <div className={cls.return}>
+                <Link href={'/cart'}>Вернуться в магазин</Link>
               </div>
+            </section>
+            <section className={cls.order}>
+              <form onSubmit={submitFormHandler} className={cls.order_leftBlock}>
+                <div className={cls.order_leftBlock_item}>
+                  <h4>Укажите адрес доставки:</h4>
+                  <span className={cls.addressTitle}>Укажите название улицы, номер дома и номер квариры</span>
+                  <input onChange={inputChangeHandler} type="text" name="address" placeholder={'Ваш адрес...'}/>
+                </div>
+                <div className={cls.order_leftBlock_item}>
+                  <h4>Выберите способ оплаты:</h4>
+                  <div className={cls.choice}>
+                    <strong
+                        className={choice ? cls.selected : cls.notSelected}
+                        onClick={changeSelection}
+                    >Наличными</strong>
+                    <span>Оплата производится Наличными курьеру при доставке</span>
+                    <strong
+                        className={!choice ? cls.selected : cls.notSelected}
+                        onClick={changeSelection}
+                    >Картой</strong>
+                    <span>оплата производится Переводом на карты оптима или МБАНК</span>
+                  </div>
+                </div>
+                <div className={`${cls.order_leftBlock_item} ${cls.client}`}
+                >
+                  <div>
+                    <h4>Контактная информация</h4>
+                    <div className={cls.clientInfo}>
+                      <span className={cls.name}>Покупатель:</span><span>{user.displayName}</span>
+                    </div>
+                    <div className={cls.clientInfo}>
+                      <span className={cls.name}>Номер телефона:</span><span>{user.phone}</span>
+                    </div>
+                    <div className={cls.clientInfo}>
+                      <span className={cls.name}>Email:</span><span>{user.email}</span>
+                    </div>
+                  </div>
+                  <button type={"submit"} className={cls.btnBuy}>Купить</button>
+                </div>
+              </form>
 
-              <div className={acc.footer}>
-                <button type="submit" className={acc.btn}>
-                  Отправить заказ
-                </button>
+              <div className={cls.order_info}>
+                <h4>Сумма заказа</h4>
+                <ul>
+                  {cart.map((prod: ICart) => (
+                      <OrderItem item={prod} key={prod.product._id} />
+                  ))}
+                </ul>
+                <div className={cls.item}>
+                  <span>Цена</span><span>{getTotalPrice()} сом</span>
+                </div>
+                <div className={cls.item}>
+                  <span>Скидка</span><span>0</span>
+                </div>
+                <div className={cls.item}>
+                  <span>Доставка</span><span className={cls.free}>бесплатно</span>
+                </div>
+                <div className={cls.total}>
+                  <span>итого</span><span className={cls.total_price}>{getTotalPrice()} сом</span>
+                </div>
               </div>
-            </form>
+            </section>
+
           </div>
-        </div>
       ) : (
         <div>FREE</div>
       )}
