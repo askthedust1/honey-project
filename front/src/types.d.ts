@@ -70,6 +70,7 @@ export interface IProductView {
 export interface IProductOneView {
   _id: string;
   category: {
+    _id: string;
     translations: {
       ru: {
         title: string;
@@ -138,6 +139,7 @@ export interface IProductMutation {
 }
 
 export interface IProductMutationNew {
+  _id: string;
   category: string;
   oldPrice: number;
   actualPrice: number;

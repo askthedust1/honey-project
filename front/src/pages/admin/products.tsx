@@ -133,7 +133,9 @@ const ProductsAdminPage: MyPage = () => {
                       <Link href={`/admin/products/` + product._id}>
                         <button className={cls.viewMoreBtn}></button>
                       </Link>
-                      <button className={cls.editBtn}></button>
+                      <Link href={`/admin/editProduct/` + product._id}>
+                        <button className={cls.editBtn}></button>
+                      </Link>
                     </td>
                   </tr>
                 ))}
