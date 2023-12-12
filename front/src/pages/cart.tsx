@@ -45,20 +45,20 @@ const Cart: MyPage = () => {
             </div>
           </section>
           <section className={cls.contentContainer}>
-            {cart.length ?
-                <div className={cls.table}>
-                  <table>
-                    <thead>
+            {cart.length ? (
+              <div className={cls.table}>
+                <table>
+                  <thead>
                     <tr>
                       <th className={cls.productHead}>{t('product')}</th>
                       <th>{t('quantity')}</th>
                       <th>{t('price')}</th>
                       <th>{t('total')}</th>
                     </tr>
-                    </thead>
-                    <tbody className={cls.tableBodyBlock}>
+                  </thead>
+                  <tbody className={cls.tableBodyBlock}>
                     {cart.map((prod: ICart) => (
-                        <CartItem item={prod} key={prod.product._id} />
+                      <CartItem item={prod} key={prod.product._id} />
                     ))}
                     </tbody>
                   </table>
@@ -72,6 +72,29 @@ const Cart: MyPage = () => {
             <div className={cls.orderInfo}>
               <h4>{t('orderTotal')}</h4>
               <div className={cls.item}>
+                <span>Цена</span>
+                <span>{getTotalPrice()} сом</span>
+              </div>
+              <div className={cls.item}>
+                <span>Скидка</span>
+                <span>0</span>
+              </div>
+              <div className={cls.item}>
+                <span>Доставка</span>
+                <span className={cls.free}>бесплатно</span>
+              </div>
+              <div className={cls.total}>
+                <span>итого</span>
+                <span className={cls.total_price}>{getTotalPrice()} сом</span>
+              </div>
+              <div>
+                {cart.length ? (
+                  <button onClick={handlePageChange} className={cls.orderConfirm}>
+                    Оформить заказ
+                  </button>
+                ) : (
+                  <span></span>
+                )}
                 <span>{t('price')}</span><span>{getTotalPrice()} сом</span>
               </div>
               <div className={cls.item}>

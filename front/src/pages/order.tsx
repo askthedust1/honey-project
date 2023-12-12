@@ -7,6 +7,7 @@ import cls from '@/styles/order.module.scss';
 import OrderItem from '@/components/Order/OrderItem';
 import { selectUser } from '@/features/users/usersSlice';
 import { createOrder } from '@/features/order/orderThunk';
+import NotFound404 from '@/components/UI/notFound404/NotFound404';
 import { changeDate } from '@/features/order/orderSlice';
 import Link from "next/link";
 import {useTranslation} from "next-i18next";
@@ -28,9 +29,6 @@ const Order: MyPage = () => {
 
   useEffect(() => {
     setIsClient(true);
-    // if (!cart.length || user) {
-    //   router.push(`/products/page/1`).then(r => console.log(r));
-    // }
   }, []);
 
   const getTotalPrice = () => {
@@ -64,7 +62,7 @@ const Order: MyPage = () => {
       };
       dispatch(changeDate(fullOrder.dateTime));
       await dispatch(createOrder(fullOrder));
-      await dispatch(resetCart());
+      dispatch(resetCart());
       await router.push(`/transaction`);
     } catch (e) {
       console.log(e);
@@ -74,6 +72,11 @@ const Order: MyPage = () => {
   const changeSelection = () => {
     setChoice(!choice);
   };
+
+  if (cart.length === 0) {
+    return <NotFound404 />;
+  }
+
   return (
       <>
         {isClient && user ? (
@@ -147,7 +150,7 @@ const Order: MyPage = () => {
               </section>
             </div>
         ) : (
-            <div>FREE</div>
+            <NotFound404 />
         )}
       </>
   );
