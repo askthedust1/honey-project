@@ -8,9 +8,13 @@ import OrderItem from '@/components/Order/OrderItem';
 import { selectUser } from '@/features/users/usersSlice';
 import { createOrder } from '@/features/order/orderThunk';
 import { changeDate } from '@/features/order/orderSlice';
-import Link from "next/link";
+import Link from 'next/link';
+import NotFound404 from '@/components/UI/notFound404/NotFound404';
+import { MyPage } from '@/components/common/types';
+import { wrapper } from '@/store/store';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const Order = () => {
+const Order: MyPage = () => {
   const [isClient, setIsClient] = useState(false);
   const [state, setState] = useState({
     address: '',
@@ -23,9 +27,6 @@ const Order = () => {
 
   useEffect(() => {
     setIsClient(true);
-    // if (!cart.length || user) {
-    //   router.push(`/products/page/1`).then(r => console.log(r));
-    // }
   }, []);
 
   const getTotalPrice = () => {
@@ -59,7 +60,7 @@ const Order = () => {
       };
       dispatch(changeDate(fullOrder.dateTime));
       await dispatch(createOrder(fullOrder));
-      await dispatch(resetCart());
+      dispatch(resetCart());
       await router.push(`/transaction`);
     } catch (e) {
       console.log(e);
@@ -69,86 +70,117 @@ const Order = () => {
   const changeSelection = () => {
     setChoice(!choice);
   };
+
+  if (cart.length === 0) {
+    return <NotFound404 />;
+  }
+
   return (
     <>
-      {isClient && user ? (
-          <div className={cls.container}>
-            <section className={cls.title}>
-              <h3>Корзина</h3>
-              <div className={cls.return}>
-                <Link href={'/cart'}>Вернуться в магазин</Link>
+      {isClient && user && cart ? (
+        <div className={cls.container}>
+          <section className={cls.title}>
+            <h3>Корзина</h3>
+            <div className={cls.return}>
+              <Link href={'/cart'}>Вернуться в магазин</Link>
+            </div>
+          </section>
+          <section className={cls.order}>
+            <form onSubmit={submitFormHandler} className={cls.order_leftBlock}>
+              <div className={cls.order_leftBlock_item}>
+                <h4>Укажите адрес доставки:</h4>
+                <span className={cls.addressTitle}>
+                  Укажите название улицы, номер дома и номер квариры
+                </span>
+                <input
+                  onChange={inputChangeHandler}
+                  type="text"
+                  name="address"
+                  placeholder={'Ваш адрес...'}
+                />
               </div>
-            </section>
-            <section className={cls.order}>
-              <form onSubmit={submitFormHandler} className={cls.order_leftBlock}>
-                <div className={cls.order_leftBlock_item}>
-                  <h4>Укажите адрес доставки:</h4>
-                  <span className={cls.addressTitle}>Укажите название улицы, номер дома и номер квариры</span>
-                  <input onChange={inputChangeHandler} type="text" name="address" placeholder={'Ваш адрес...'}/>
-                </div>
-                <div className={cls.order_leftBlock_item}>
-                  <h4>Выберите способ оплаты:</h4>
-                  <div className={cls.choice}>
-                    <strong
-                        className={choice ? cls.selected : cls.notSelected}
-                        onClick={changeSelection}
-                    >Наличными</strong>
-                    <span>Оплата производится Наличными курьеру при доставке</span>
-                    <strong
-                        className={!choice ? cls.selected : cls.notSelected}
-                        onClick={changeSelection}
-                    >Картой</strong>
-                    <span>оплата производится Переводом на карты оптима или МБАНК</span>
-                  </div>
-                </div>
-                <div className={`${cls.order_leftBlock_item} ${cls.client}`}
-                >
-                  <div>
-                    <h4>Контактная информация</h4>
-                    <div className={cls.clientInfo}>
-                      <span className={cls.name}>Покупатель:</span><span>{user.displayName}</span>
-                    </div>
-                    <div className={cls.clientInfo}>
-                      <span className={cls.name}>Номер телефона:</span><span>{user.phone}</span>
-                    </div>
-                    <div className={cls.clientInfo}>
-                      <span className={cls.name}>Email:</span><span>{user.email}</span>
-                    </div>
-                  </div>
-                  <button type={"submit"} className={cls.btnBuy}>Купить</button>
-                </div>
-              </form>
-
-              <div className={cls.order_info}>
-                <h4>Сумма заказа</h4>
-                <ul>
-                  {cart.map((prod: ICart) => (
-                      <OrderItem item={prod} key={prod.product._id} />
-                  ))}
-                </ul>
-                <div className={cls.item}>
-                  <span>Цена</span><span>{getTotalPrice()} сом</span>
-                </div>
-                <div className={cls.item}>
-                  <span>Скидка</span><span>0</span>
-                </div>
-                <div className={cls.item}>
-                  <span>Доставка</span><span className={cls.free}>бесплатно</span>
-                </div>
-                <div className={cls.total}>
-                  <span>итого</span><span className={cls.total_price}>{getTotalPrice()} сом</span>
+              <div className={cls.order_leftBlock_item}>
+                <h4>Выберите способ оплаты:</h4>
+                <div className={cls.choice}>
+                  <strong
+                    className={choice ? cls.selected : cls.notSelected}
+                    onClick={changeSelection}
+                  >
+                    Наличными
+                  </strong>
+                  <span>Оплата производится Наличными курьеру при доставке</span>
+                  <strong
+                    className={!choice ? cls.selected : cls.notSelected}
+                    onClick={changeSelection}
+                  >
+                    Картой
+                  </strong>
+                  <span>оплата производится Переводом на карты оптима или МБАНК</span>
                 </div>
               </div>
-            </section>
+              <div className={`${cls.order_leftBlock_item} ${cls.client}`}>
+                <div>
+                  <h4>Контактная информация</h4>
+                  <div className={cls.clientInfo}>
+                    <span className={cls.name}>Покупатель:</span>
+                    <span>{user.displayName}</span>
+                  </div>
+                  <div className={cls.clientInfo}>
+                    <span className={cls.name}>Номер телефона:</span>
+                    <span>{user.phone}</span>
+                  </div>
+                  <div className={cls.clientInfo}>
+                    <span className={cls.name}>Email:</span>
+                    <span>{user.email}</span>
+                  </div>
+                </div>
+                <button type={'submit'} className={cls.btnBuy}>
+                  Купить
+                </button>
+              </div>
+            </form>
 
-          </div>
+            <div className={cls.order_info}>
+              <h4>Сумма заказа</h4>
+              <ul>
+                {cart.map((prod: ICart) => (
+                  <OrderItem item={prod} key={prod.product._id} />
+                ))}
+              </ul>
+              <div className={cls.item}>
+                <span>Цена</span>
+                <span>{getTotalPrice()} сом</span>
+              </div>
+              <div className={cls.item}>
+                <span>Скидка</span>
+                <span>0</span>
+              </div>
+              <div className={cls.item}>
+                <span>Доставка</span>
+                <span className={cls.free}>бесплатно</span>
+              </div>
+              <div className={cls.total}>
+                <span>итого</span>
+                <span className={cls.total_price}>{getTotalPrice()} сом</span>
+              </div>
+            </div>
+          </section>
+        </div>
       ) : (
-        <div>FREE</div>
+        <NotFound404 />
       )}
     </>
   );
 };
 
 export default Order;
+
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer'])),
+    },
+  };
+});
 
 Order.Layout = 'Main';
