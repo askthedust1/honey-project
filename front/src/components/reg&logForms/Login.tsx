@@ -4,15 +4,16 @@ import { LoginMutation } from '@/types';
 import { useRouter } from 'next/navigation';
 import acc from '@/components/reg&logForms/form.module.scss';
 import { login } from '@/features/users/usersThunk';
-import { selectLoginError } from '@/features/users/usersSlice';
+import { selectLoginError, selectLoginLoading } from "@/features/users/usersSlice";
+import LoadingSpinnerBtn from "@/components/UI/LoadingSpinnerBtn/LoadingSpinnerBtn";
 
 interface Props {
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef?: React.RefObject<HTMLDivElement>;
 }
 
 const Login: React.FC<Props> = ({ containerRef }) => {
   const dispatch = useAppDispatch();
-  const loading = useAppSelector(selectLoginError);
+  const loading = useAppSelector(selectLoginLoading);
   const error = useAppSelector(selectLoginError);
   const [state, setState] = useState<LoginMutation>({
     email: '',
@@ -58,8 +59,13 @@ const Login: React.FC<Props> = ({ containerRef }) => {
             />
           </div>
           <div className={acc.footer}>
-            <button disabled={loading} type="submit" className={acc.btn}>
-              Войти в аккаунт
+            <button
+              style={{ display: 'flex', alignItems: 'center' }}
+              disabled={loading}
+              type="submit"
+              className={acc.btn}
+            >
+              {loading ? <LoadingSpinnerBtn /> : null}Войти в аккаунт
             </button>
           </div>
         </form>

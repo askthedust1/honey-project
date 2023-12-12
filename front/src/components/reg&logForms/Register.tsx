@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectRegisterError, selectRegisterLoading } from '@/features/users/usersSlice';
 import acc from './form.module.scss';
 import { selectCart } from '@/features/cart/cartSlice';
+import LoadingSpinnerBtn from '@/components/UI/LoadingSpinnerBtn/LoadingSpinnerBtn';
 
 interface Props {
   containerRef?: React.RefObject<HTMLDivElement>;
@@ -104,8 +105,13 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
             {error && <span className={acc.error}>{getFieldError('address')}</span>}
           </div>
           <div className={acc.footer}>
-            <button disabled={loading} type="submit" className={acc.btn}>
-              Зарегистрироваться
+            <button
+              style={{ display: 'flex', alignItems: 'center' }}
+              disabled={loading}
+              type="submit"
+              className={acc.btn}
+            >
+              {loading ? <LoadingSpinnerBtn /> : null} Зарегистрироваться
             </button>
           </div>
         </form>

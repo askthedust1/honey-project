@@ -26,7 +26,7 @@ const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
         if (user) return false;
         return valueUserName.trim().length > 0;
       },
-      message: 'Такой email уже зарегистрирован или содержит только пробелы!',
+      message: 'Такой email уже зарегистрирован!',
     },
   },
   password: {
@@ -65,7 +65,7 @@ const UserSchema = new Schema<IUserApi, UserModel, IUserMethods>({
         if (user) return false;
         return valueUserName.trim().length > 0;
       },
-      message: 'Такой телефон уже зарегистрирован или содержит только пробелы!',
+      message: 'Такой телефон уже зарегистрирован!',
     },
   },
   googleID: String,
