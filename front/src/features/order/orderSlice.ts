@@ -65,7 +65,6 @@ export const orderSlice = createSlice({
     builder.addCase(fetchOrdersAll.fulfilled, (state, { payload: orders }) => {
       state.userOrdersLoading = false;
       state.userOrders = orders;
-      console.log(333, orders);
     });
     builder.addCase(fetchOrdersAll.rejected, (state) => {
       state.userOrdersLoading = false;

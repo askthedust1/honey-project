@@ -62,7 +62,7 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
       // perPage - количество элементов на одной странице.
       // (page - 1) * perPage вычисляет, сколько документов следует пропустить, чтобы начать с нужной страницы
 
-      console.log(ordersByThisPage)
+      console.log(ordersByThisPage);
 
       const ordersWithPages = {
         ordersOfPage: ordersByThisPage,
@@ -88,11 +88,19 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
 transactionsRouter.get('/history', auth, async (req, res) => {
   const user = (req as RequestWithUser).user;
   try {
-    const transactions = await Transaction.find({ user: user._id, status: true }).populate(
-      'kits.product',
-      'title',
-    );
-    console.log(transactions[0].kits)
+    const transactions = await Transaction.find({ user: user._id }).populate({
+      path: 'kits',
+      populate: {
+        path: 'product',
+        model: 'Product',
+        populate: {
+          path: 'translations.ru', // Замените 'ru' на нужный язык
+          model: 'Product',
+          select: 'title',
+        },
+      },
+    });
+    console.log(transactions[0].kits);
 
     return res.send(transactions);
   } catch (error) {

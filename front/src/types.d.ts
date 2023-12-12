@@ -272,8 +272,9 @@ export interface IAdminMainHit {
   sum: number;
 }
 
+//Я здесь поменяла тип
 export interface IProductOfKits {
-  product: IProduct;
+  product: IProductOneView;
   amount: number;
   price: number;
 }

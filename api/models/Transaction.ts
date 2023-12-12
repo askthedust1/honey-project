@@ -2,6 +2,26 @@ import mongoose from 'mongoose';
 import Product from './Product';
 import User from './User';
 
+const kitSchema = new mongoose.Schema({
+  product: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Product',
+    required: true,
+    validate: {
+      validator: async (value: mongoose.Types.ObjectId) => await Product.findById(value),
+      message: 'Product does not exist',
+    },
+  },
+  amount: {
+    type: Number,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+});
+
 const TransactionSchema = new mongoose.Schema({
   indexNumber: {
     type: Number,
@@ -20,27 +40,7 @@ const TransactionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  kits: [
-    {
-      product: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Product',
-        required: true,
-        validate: {
-          validator: async (value: mongoose.Types.ObjectId) => await Product.findById(value),
-          message: 'Product does not exist',
-        },
-      },
-      amount: {
-        type: Number,
-        required: true,
-      },
-      price: {
-        type: Number,
-        required: true,
-      },
-    },
-  ],
+  kits: [kitSchema],
 
   totalPrice: {
     type: Number,
@@ -50,7 +50,7 @@ const TransactionSchema = new mongoose.Schema({
   status: {
     type: Boolean,
     required: true,
-    default: true,
+    default: false,
   },
 
   dateTime: {

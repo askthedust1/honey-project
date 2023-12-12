@@ -60,45 +60,47 @@ const Transaction: MyPage = () => {
 
   return (
     <>
-      {isClient && user && transaction ? (
-        <div className={cls.container}>
-          <section className={cls.title}>
-            <h3>{t('basket')}</h3>
-            <div className={cls.return}>
-              <Link href={'/cart'}>{t('returnToStore')}</Link>
+      {/*{isClient && user && transaction ? (*/}
+      <div className={cls.container}>
+        <section className={cls.title}>
+          <h3>{t('basket')}</h3>
+          <div className={cls.return}>
+            <Link href={'/cart'}>{t('returnToStore')}</Link>
+          </div>
+        </section>
+        <section className={cls.content}>
+          <div className={cls.content_item}>
+            <h3 className={cls.contentTitle}>{t('thanksForOrder')} 🎉</h3>
+            <h4 className={cls.subtitle}>{t('orderPlaced')}</h4>
+            <p className={cls.text}>{t('managerContact')}</p>
+            <div className={cls.products}>
+              {transaction?.kits.map((prod) => (
+                <TransactionItem item={prod} key={prod.product._id} />
+              ))}
             </div>
-          </section>
-          <section className={cls.content}>
-            <div className={cls.content_item}>
-              <h3 className={cls.contentTitle}>{t('thanksForOrder')} 🎉</h3>
-              <h4 className={cls.subtitle}>{t('orderPlaced')}</h4>
-              <p className={cls.text}>{t('managerContact')}</p>
-              <div className={cls.products}>
-                {transaction?.kits.map((prod) => (
-                  <TransactionItem item={prod} key={prod.product._id} />
-                ))}
+            <div>
+              <div className={cls.clientInfo}>
+                <span className={cls.name}>{t('client')}:</span>
+                <span>{formattedStr}</span>
               </div>
-              <div>
-                <div className={cls.clientInfo}>
-                  <span className={cls.name}>{t('client')}:</span>
-                  <span>{formattedStr}</span>
-                </div>
-                <div className={cls.clientInfo}>
-                  <span className={cls.name}>{t('orderTotal')}:</span>
-                  <span>{transaction?.totalPrice} сом</span>
-                </div>
-                <div className={cls.clientInfo}>
-                  <span className={cls.name}>{t('paymentMethod')}:</span>
-                  <span>{t('cashPayment')}</span>
-                </div>
+              <div className={cls.clientInfo}>
+                <span className={cls.name}>{t('orderTotal')}:</span>
+                <span>{transaction?.totalPrice} сом</span>
               </div>
-              <button className={cls.historyBtn}>{t('purchaseHistory')}</button>
+              <div className={cls.clientInfo}>
+                <span className={cls.name}>{t('paymentMethod')}:</span>
+                <span>{t('cashPayment')}</span>
+              </div>
             </div>
-          </section>
-        </div>
-      ) : (
-        <div>Null</div>
-      )}
+            <Link className={cls.historyBtn} href={'/orders/history'}>
+              {t('purchaseHistory')}
+            </Link>
+          </div>
+        </section>
+      </div>
+      {/*// ) : (*/}
+      {/*// <div>Null</div>*/}
+      {/*)}*/}
     </>
   );
 };
