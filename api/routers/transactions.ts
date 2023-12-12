@@ -62,6 +62,8 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
       // perPage - количество элементов на одной странице.
       // (page - 1) * perPage вычисляет, сколько документов следует пропустить, чтобы начать с нужной страницы
 
+      console.log(ordersByThisPage)
+
       const ordersWithPages = {
         ordersOfPage: ordersByThisPage,
         currentPage: page,
@@ -90,6 +92,8 @@ transactionsRouter.get('/history', auth, async (req, res) => {
       'kits.product',
       'title',
     );
+    console.log(transactions[0].kits)
+
     return res.send(transactions);
   } catch (error) {
     console.error('Error fetching orders:', error);

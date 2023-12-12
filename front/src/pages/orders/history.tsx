@@ -42,7 +42,7 @@ const History: MyPage = () => {
                 <tr key={order.indexNumber}>
                   <td>{order.indexNumber}</td>
                   <td>{order.address}</td>
-                  <td>{order.dateTime}</td>
+                  <td>{new Date(order.dateTime).toLocaleString()}</td>
                   <td>
                     {order.kits.map((i) => (
                       <ul key={i.product._id} className={cls.list}>
