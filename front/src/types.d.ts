@@ -70,6 +70,7 @@ export interface IProductView {
 export interface IProductOneView {
   _id: string;
   category: {
+    _id: string;
     translations: {
       ru: {
         title: string;
@@ -138,6 +139,7 @@ export interface IProductMutation {
 }
 
 export interface IProductMutationNew {
+  _id: string;
   category: string;
   oldPrice: number;
   actualPrice: number;
@@ -174,6 +176,7 @@ export interface ICategory {
 }
 
 export interface ICategoryMutation {
+  idCategory?: string;
   translations: {
     ru: {
       title: string;
@@ -194,10 +197,18 @@ export interface IAdminCategory {
     ru: {
       title: string;
     };
+    en: {
+      title: string;
+    };
+    kg: {
+      title: string;
+    };
   };
   image: string | '';
   isActive: boolean;
 }
+
+export type TAdminCategory = Omit<IAdminCategory, 'id'>;
 
 export interface IBanner {
   _id: string;

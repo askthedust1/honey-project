@@ -9,7 +9,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
 import { selectUser } from '@/features/users/usersSlice';
 import { useRouter } from 'next/router';
-import Link from "next/link";
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 
 const Cart: MyPage = () => {
   const [isClient, setIsClient] = useState(false);
@@ -32,59 +33,70 @@ const Cart: MyPage = () => {
   const handlePageChange = () => {
     if (cart.length) userState ? router.push('/order') : router.push('/accounts');
   };
-
+  const { t } = useTranslation('cart');
   return (
     <>
       {isClient ? (
         <div className={cls.container}>
           <section className={cls.titleContainer}>
-            <h3>Корзина</h3>
+            <h3>{t('basket')}</h3>
             <div className={cls.return}>
-              <Link href={'/products/page/1'}>Вернуться в магазин</Link>
+              <Link href={'/products/page/1'}>{t('returnToStore')}</Link>
             </div>
           </section>
           <section className={cls.contentContainer}>
-            {cart.length ?
-                <div className={cls.table}>
-                  <table>
-                    <thead>
+            {cart.length ? (
+              <div className={cls.table}>
+                <table>
+                  <thead>
                     <tr>
-                      <th className={cls.productHead}>Товар</th>
-                      <th>Количество</th>
-                      <th>Цена</th>
-                      <th>Сумма</th>
+                      <th className={cls.productHead}>{t('product')}</th>
+                      <th>{t('quantity')}</th>
+                      <th>{t('price')}</th>
+                      <th>{t('total')}</th>
                     </tr>
-                    </thead>
-                    <tbody className={cls.tableBodyBlock}>
+                  </thead>
+                  <tbody className={cls.tableBodyBlock}>
                     {cart.map((prod: ICart) => (
-                        <CartItem item={prod} key={prod.product._id} />
+                      <CartItem item={prod} key={prod.product._id} />
                     ))}
-                    </tbody>
-                  </table>
-                </div>
-                :
-                <div className={cls.nullOrder}>
-                  <span>Тут пусто</span>
-                </div>
-            }
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className={cls.nullOrder}>
+                <span>{t('empty')}</span>
+              </div>
+            )}
 
             <div className={cls.orderInfo}>
-              <h4>Сумма заказа</h4>
+              <h4>{t('orderTotal')}</h4>
               <div className={cls.item}>
-                <span>Цена</span><span>{getTotalPrice()} сом</span>
+                <span>{t('price')}</span>
+                <span>{getTotalPrice()} сом</span>
               </div>
               <div className={cls.item}>
-                <span>Скидка</span><span>0</span>
+                <span>{t('discount')}</span>
+                <span>0</span>
               </div>
               <div className={cls.item}>
-                <span>Доставка</span><span className={cls.free}>бесплатно</span>
+                <span>{t('delivery')}</span>
+                <span className={cls.free}>{t('free')}</span>
               </div>
               <div className={cls.total}>
-                <span>итого</span><span className={cls.total_price}>{getTotalPrice()} сом</span>
+                <span>{t('totalAmount')}</span>
+                <span className={cls.total_price}>
+                  {getTotalPrice()} {t('som')}
+                </span>
               </div>
               <div>
-                {cart.length ? <button onClick={handlePageChange} className={cls.orderConfirm}>Оформить заказ</button>
-                : <span></span>}
+                {cart.length ? (
+                  <button onClick={handlePageChange} className={cls.orderConfirm}>
+                    {t('checkout')}
+                  </button>
+                ) : (
+                  <span></span>
+                )}
               </div>
             </div>
           </section>
@@ -101,7 +113,7 @@ Cart.Layout = 'Main';
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer'])),
+      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer', 'cart'])),
     },
   };
 });

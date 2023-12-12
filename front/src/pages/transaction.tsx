@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectUser } from '@/features/users/usersSlice';
-import cls from '@/styles/_cart.module.scss';
+import cls from '@/styles/transaction.module.scss';
 import { fetchOrder } from '@/features/order/orderThunk';
 import { selectDateOrder, selectOrder } from '@/features/order/orderSlice';
 import TransactionItem from '@/components/Order/TransactionItem';
 import Cookies from 'js-cookie';
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
+import { wrapper } from '@/store/store';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { MyPage } from '@/components/common/types';
 
-const Transaction = () => {
+const Transaction: MyPage = () => {
+  const { t } = useTranslation('transaction');
   const [isClient, setIsClient] = useState(false);
   // const router = useRouter();
   const dispatch = useAppDispatch();
@@ -43,31 +49,65 @@ const Transaction = () => {
       dispatch(fetchOrder(orderDateCookie));
     }
   }, [dispatch]);
-  console.log(transaction);
+  let formattedStr = 'sometime';
+  if (transaction) {
+    const dateObj = new Date(transaction.dateTime);
+    const day = dateObj.getDate();
+    const month = dateObj.getMonth() + 1;
+    const year = dateObj.getFullYear();
+    formattedStr = `${day}. ${month}. ${year}`;
+  }
 
   return (
     <>
       {isClient && user && transaction ? (
-        <div>
-          <section></section>
-          <div className={cls.container}>
-            <h1>Данный заказ принят: </h1>
-            <div>Покупатель: {user.email}</div>
-            <div>Контакты: {user.phone}</div>
-            <div>Адрес заказа: {transaction?.address}</div>
-            <ul>
-              {transaction?.kits.map((prod) => (
-                <TransactionItem item={prod} key={prod.product._id} />
-              ))}
-            </ul>
-            <div>Сумма заказа: {transaction?.totalPrice}</div>
-          </div>
+        <div className={cls.container}>
+          <section className={cls.title}>
+            <h3>{t('basket')}</h3>
+            <div className={cls.return}>
+              <Link href={'/cart'}>{t('returnToStore')}</Link>
+            </div>
+          </section>
+          <section className={cls.content}>
+            <div className={cls.content_item}>
+              <h3 className={cls.contentTitle}>{t('thanksForOrder')} 🎉</h3>
+              <h4 className={cls.subtitle}>{t('orderPlaced')}</h4>
+              <p className={cls.text}>{t('managerContact')}</p>
+              <div className={cls.products}>
+                {transaction?.kits.map((prod) => (
+                  <TransactionItem item={prod} key={prod.product._id} />
+                ))}
+              </div>
+              <div>
+                <div className={cls.clientInfo}>
+                  <span className={cls.name}>{t('client')}:</span>
+                  <span>{formattedStr}</span>
+                </div>
+                <div className={cls.clientInfo}>
+                  <span className={cls.name}>{t('orderTotal')}:</span>
+                  <span>{transaction?.totalPrice} сом</span>
+                </div>
+                <div className={cls.clientInfo}>
+                  <span className={cls.name}>{t('paymentMethod')}:</span>
+                  <span>{t('cashPayment')}</span>
+                </div>
+              </div>
+              <button className={cls.historyBtn}>{t('purchaseHistory')}</button>
+            </div>
+          </section>
         </div>
       ) : (
-        <div></div>
+        <div>Null</div>
       )}
     </>
   );
 };
 export default Transaction;
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer', 'transaction'])),
+    },
+  };
+});
 Transaction.Layout = 'Main';

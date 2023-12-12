@@ -1,9 +1,8 @@
 import React from 'react';
 import cls from './notFound.module.css';
 import Link from 'next/link';
-import { MyPage } from '@/components/common/types';
 
-const NotFound404: MyPage = () => {
+const NotFound404 = () => {
   return (
     <div className={cls.wrap}>
       <h1 className={cls.notFoundTitle}>404</h1>
@@ -14,7 +13,5 @@ const NotFound404: MyPage = () => {
     </div>
   );
 };
-
-NotFound404.Layout = 'None';
 
 export default NotFound404;

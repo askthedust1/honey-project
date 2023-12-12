@@ -16,14 +16,6 @@ export const fetchProductsForAdmin = createAsyncThunk<
   return useProductsAdminTranslation(productsResponse.data, 'ru');
 });
 
-// export const fetchAllProductsForAdminByCategory = createAsyncThunk<IProductView[], string>(
-//   'adminProducts/fetchByCategoryAdmin',
-//   async (id) => {
-//     const productsResponse = await axiosApi.get<IProductView[]>(`/admin?category=${id}`);
-//     return useProductsAdminTranslation(productsResponse.data, 'ru');
-//   },
-// );
-
 export const fetchOneProductForAdmin = createAsyncThunk<IProductOneView, string>(
   'adminProducts/fetchOneByAdmin',
   async (id) => {
@@ -75,3 +67,30 @@ export const createProduct = createAsyncThunk<
     throw e;
   }
 });
+
+export const putProduct = createAsyncThunk<void, IProductMutationNew>(
+  'adminProducts/editProduct',
+  async (productMutation) => {
+    const formData = new FormData();
+    formData.append('translations', JSON.stringify(productMutation.translations));
+
+    formData.append('category', productMutation.category);
+    formData.append('oldPrice', productMutation.oldPrice.toString());
+    formData.append('actualPrice', productMutation.actualPrice.toString());
+    formData.append('amount', productMutation.amount.toString());
+
+    if (productMutation.image) {
+      formData.append('image', productMutation.image);
+    }
+
+    try {
+      await axiosApi.put(`/admin/${productMutation._id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    } catch (e) {
+      throw e;
+    }
+  },
+);

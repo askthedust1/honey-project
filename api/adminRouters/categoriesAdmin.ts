@@ -6,6 +6,7 @@ import permit from '../middleware/permit';
 import Product from '../models/Product';
 import { imagesUpload } from '../multer';
 import { Error } from 'mongoose';
+import category from '../models/Category';
 
 const categoriesAdminRouter = express.Router();
 
@@ -15,6 +16,21 @@ categoriesAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     return res.send(categories);
   } catch (e) {
+    return res.sendStatus(500);
+  }
+});
+
+categoriesAdminRouter.get('/:id', auth, permit('admin'), async (req, res) => {
+  try {
+    const categoryId = req.params.id;
+    const category = await Category.findById(categoryId);
+
+    if (!category) {
+      return res.status(404).send({ error: 'Not found' });
+    }
+
+    return res.send(category);
+  } catch {
     return res.sendStatus(500);
   }
 });
@@ -56,7 +72,7 @@ categoriesAdminRouter.put(
         return res.status(404).send({ error: 'Not found!' });
       }
 
-      category.translations = req.body.translations || category.translations;
+      category.translations = JSON.parse(req.body.translations) || category.translations;
       category.image = req.file ? req.file.filename : category.image;
 
       await category.save();

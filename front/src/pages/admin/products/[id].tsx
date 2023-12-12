@@ -12,7 +12,6 @@ const ProductInfo: MyPage = () => {
   const { id } = useParams() || {};
   const dispatch = useAppDispatch();
   const product = useAppSelector(selectOneProductForAdmin);
-  console.log(product);
 
   useEffect(() => {
     if (id) {

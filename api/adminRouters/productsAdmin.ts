@@ -110,12 +110,30 @@ productAdminRouter.put(
   async (req, res) => {
     try {
       const id = req.params.id;
+      const translationsInfo = JSON.parse(req.body.translations);
+      const product = await Product.findById(id);
+
+      if (!product) {
+        return res.status(404).send('Product not found!');
+      }
 
       const updateProduct = await Product.findByIdAndUpdate(id, {
         category: req.body.category,
-        title: req.body.title,
-        description: req.body.description,
-        image: req.file ? 'images/' + req.file.filename : '',
+        translations: {
+          ru: {
+            title: translationsInfo.ru.title,
+            description: translationsInfo.ru.description,
+          },
+          en: {
+            title: translationsInfo.en.title,
+            description: translationsInfo.en.description,
+          },
+          kg: {
+            title: translationsInfo.kg.title,
+            description: translationsInfo.kg.description,
+          },
+        },
+        image: req.file ? req.file.filename : product.image,
         oldPrice: req.body.oldPrice,
         actualPrice: req.body.actualPrice,
         amount: req.body.amount,

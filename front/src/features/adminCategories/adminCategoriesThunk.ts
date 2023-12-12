@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
-import { IAdminCategory, ICategoryMutation, ValidationError } from '@/types';
+import { IAdminCategory, ICategoryMutation, TAdminCategory, ValidationError } from '@/types';
 import { RootState } from '@/store/store';
 import { isAxiosError } from 'axios';
 
@@ -55,3 +55,43 @@ export const createCategory = createAsyncThunk<
     throw e;
   }
 });
+
+export const fetchOneCategoryForAdmin = createAsyncThunk<TAdminCategory | null, string>(
+  'adminCategories/fetchOneCategoryByAdmin',
+  // @ts-ignore
+  async (id) => {
+    const { data } = await axiosApi<IAdminCategory | null>(`/adminCategories/${id}`);
+
+    if (data) {
+      return {
+        translations: data.translations,
+        image: data.image,
+        _id: data._id,
+      };
+    }
+
+    return null;
+  },
+);
+
+export const putCategory = createAsyncThunk<void, ICategoryMutation>(
+  'adminCategories/putCategory',
+  async (categoryMutation) => {
+    const formData = new FormData();
+    formData.append('translations', JSON.stringify(categoryMutation.translations));
+
+    if (categoryMutation.image) {
+      formData.append('image', categoryMutation.image);
+    }
+
+    try {
+      await axiosApi.put(`/adminCategories/${categoryMutation.idCategory}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    } catch (e) {
+      throw e;
+    }
+  },
+);
