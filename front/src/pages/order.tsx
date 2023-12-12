@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { resetCart, selectCart } from '@/features/cart/cartSlice';
 import { ICart } from '@/types';
-import cls from '@/styles/cart.module.scss';
+import cls from '@/styles/_cart.module.scss';
 import OrderItem from '@/components/Order/OrderItem';
 import { selectUser } from '@/features/users/usersSlice';
 import { createOrder } from '@/features/order/orderThunk';

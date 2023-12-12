@@ -4,7 +4,7 @@ import { selectAllProducts } from '@/features/products/productsSlice';
 import ProductItem from '@/features/products/components/ProductItem';
 import { IProduct } from '@/types';
 import { useTranslation } from 'next-i18next';
-import cls from '../../styles/products.module.scss';
+import cls from '../../styles/_products.module.scss';
 import SideBar from '@/components/UI/sideBar/SideBar';
 import bnr from '@/assets/images/prodBannner.png';
 

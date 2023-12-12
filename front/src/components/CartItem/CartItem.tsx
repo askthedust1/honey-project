@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from '@/styles/cart.module.scss';
+import cls from '@/styles/_cart.module.scss';
 import { apiUrl } from '@/constants';
 import { ICart } from '@/types';
 import { useAppDispatch } from '@/store/hook';

@@ -83,6 +83,20 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
   }
 });
 
+transactionsRouter.get('/history', auth, async (req, res) => {
+  const user = (req as RequestWithUser).user;
+  try {
+    const transactions = await Transaction.find({ user: user._id, status: true }).populate(
+      'kits.product',
+      'title',
+    );
+    return res.send(transactions);
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    return res.status(500).send('Internal Server Error');
+  }
+});
+
 transactionsRouter.get('/new', auth, permit('admin'), async (req, res) => {
   try {
     const transactions = await Transaction.find({ status: false })

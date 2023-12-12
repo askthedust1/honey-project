@@ -2,7 +2,7 @@ import React from 'react';
 import bee_delivery from '@/assets/images/bee-delivery.png';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import cls from '@/styles/delivery.module.scss';
+import cls from '@/styles/_delivery.module.scss';
 import { useTranslation } from 'next-i18next';
 import { MyPage } from '@/components/common/types';
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectUser } from '@/features/users/usersSlice';
-import cls from '@/styles/cart.module.scss';
+import cls from '@/styles/_cart.module.scss';
 import { fetchOrder } from '@/features/order/orderThunk';
 import { selectDateOrder, selectOrder } from '@/features/order/orderSlice';
 import TransactionItem from '@/components/Order/TransactionItem';

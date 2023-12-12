@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import cls from '@/styles/adminBestsellers.module.scss';
+import cls from '@/styles/_adminBestsellers.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { apiUrl } from '@/constants';
 import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
