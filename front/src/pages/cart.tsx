@@ -9,8 +9,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
 import { selectUser } from '@/features/users/usersSlice';
 import { useRouter } from 'next/router';
-import Link from "next/link";
-import {useTranslation} from "next-i18next";
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 
 const Cart: MyPage = () => {
   const [isClient, setIsClient] = useState(false);
@@ -60,55 +60,43 @@ const Cart: MyPage = () => {
                     {cart.map((prod: ICart) => (
                       <CartItem item={prod} key={prod.product._id} />
                     ))}
-                    </tbody>
-                  </table>
-                </div>
-                :
-                <div className={cls.nullOrder}>
-                  <span>{t('empty')}</span>
-                </div>
-            }
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className={cls.nullOrder}>
+                <span>{t('empty')}</span>
+              </div>
+            )}
 
             <div className={cls.orderInfo}>
               <h4>{t('orderTotal')}</h4>
               <div className={cls.item}>
-                <span>Цена</span>
+                <span>{t('price')}</span>
                 <span>{getTotalPrice()} сом</span>
               </div>
               <div className={cls.item}>
-                <span>Скидка</span>
+                <span>{t('discount')}</span>
                 <span>0</span>
               </div>
               <div className={cls.item}>
-                <span>Доставка</span>
-                <span className={cls.free}>бесплатно</span>
+                <span>{t('delivery')}</span>
+                <span className={cls.free}>{t('free')}</span>
               </div>
               <div className={cls.total}>
-                <span>итого</span>
-                <span className={cls.total_price}>{getTotalPrice()} сом</span>
+                <span>{t('totalAmount')}</span>
+                <span className={cls.total_price}>
+                  {getTotalPrice()} {t('som')}
+                </span>
               </div>
               <div>
                 {cart.length ? (
                   <button onClick={handlePageChange} className={cls.orderConfirm}>
-                    Оформить заказ
+                    {t('checkout')}
                   </button>
                 ) : (
                   <span></span>
                 )}
-                <span>{t('price')}</span><span>{getTotalPrice()} сом</span>
-              </div>
-              <div className={cls.item}>
-                <span>{t('discount')}</span><span>0</span>
-              </div>
-              <div className={cls.item}>
-                <span>{t('delivery')}</span><span className={cls.free}>{t('free')}</span>
-              </div>
-              <div className={cls.total}>
-                <span>{t('totalAmount')}</span><span className={cls.total_price}>{getTotalPrice()} {t('som')}</span>
-              </div>
-              <div>
-                {cart.length ? <button onClick={handlePageChange} className={cls.orderConfirm}>{t('checkout')}</button>
-                : <span></span>}
               </div>
             </div>
           </section>
