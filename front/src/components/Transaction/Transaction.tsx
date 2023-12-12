@@ -67,7 +67,7 @@ const Transaction = () => {
                   <span>{t('cashPayment')}</span>
                 </div>
               </div>
-              <button className={cls.historyBtn}>{t('purchaseHistory')}</button>
+              <Link className={cls.historyBtn} href={'/orders/history'}>{t('purchaseHistory')}</Link>
             </div>
           </section>
         </div>

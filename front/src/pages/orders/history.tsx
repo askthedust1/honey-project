@@ -55,7 +55,7 @@ const History: MyPage = () => {
                         timeZone: 'UTC',
                       })}
                     </td>
-                    <td>
+                    <td className={cls.prod}>
                       {order.kits.map((i) => (
                         <ul key={i.product._id} className={cls.list}>
                           <li>

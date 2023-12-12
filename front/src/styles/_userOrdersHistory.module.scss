@@ -23,17 +23,17 @@
   }
 
 
-    &_return {
-      color: #FF8F31;
-      font-size: 18px;
-      text-align: center;
-      font-weight: 400;
-      text-decoration-line: underline;
+  &_return {
+    color: $primary;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 400;
+    text-decoration-line: underline;
 
-      &:hover {
-        text-decoration: none;
-      }
+    &:hover {
+      text-decoration: none;
     }
+  }
 }
 
 .adminBestsellersTable {
@@ -41,12 +41,15 @@
   background-color: $white;
   box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
   border-radius: 17px;
-  padding: 10px 0;
+  padding: 5px 0;
 
   table {
-    padding: 10px;
     width: 100%;
     border-collapse: collapse;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f3efef;
   }
 
   th, td {
@@ -60,16 +63,12 @@
   }
 
   &_body {
-      td {
-        padding: 5px;
-        font-size: 13px;
-        font-weight: 500;
-      }
+    td {
+      padding: 5px;
+      font-size: 13px;
+      font-weight: 500;
     }
-
-    &_title {
-      width: 300px;
-    }
+  }
 }
 
 .list {
@@ -79,4 +78,8 @@
   li {
     margin: 0;
   }
+}
+
+.prod {
+  width: 280px;
 }
