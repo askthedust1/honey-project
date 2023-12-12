@@ -44,8 +44,8 @@ export const usersSlice = createSlice({
       })
 
       .addCase(register.rejected, (state, { payload: error }) => {
-        state.registerLoading = false;
         state.registerError = error || null;
+        state.registerLoading = false;
       });
 
     builder
@@ -60,8 +60,8 @@ export const usersSlice = createSlice({
       })
 
       .addCase(login.rejected, (state, { payload: error }) => {
-        state.loginLoading = false;
         state.loginError = error || null;
+        state.loginLoading = false;
       });
 
     builder

@@ -34,9 +34,7 @@ export const orderSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase<typeof HYDRATE, PayloadAction<RootState, typeof HYDRATE>>(
       HYDRATE,
-      (state, action) => {
-        return { ...state, ...action.payload.order };
-      },
+      (state, { payload }) => ({ ...state, ...payload.order }),
     );
     builder.addCase(fetchOrder.pending, (state) => {
       state.dataLoaded = true;
