@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@/store/hook';
 import { selectCart } from '@/features/cart/cartSlice';
-import cls from './../styles/cart.module.scss';
+import cls from '../styles/_cart.module.scss';
 import { ICart } from '@/types';
 import CartItem from '@/components/CartItem/CartItem';
 import { wrapper } from '@/store/store';

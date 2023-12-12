@@ -1,6 +1,6 @@
 import '@/styles/_globals.scss';
-import '@/styles/main.scss';
-import '@/styles/products.module.scss';
+import '@/styles/_main.scss';
+import '@/styles/_products.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { wrapper } from '@/store/store';

@@ -1,0 +1,85 @@
+@import "variables";
+
+.container {
+  max-width: 1170px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.history {
+  padding: 20px 0 50px;
+
+  &_mainTitle {
+    font-size: 24px;
+    color: $text-color;
+    margin-bottom: 20px;
+  }
+
+  &_title {
+    font-style: italic;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+
+  &_return {
+    color: $primary;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 400;
+    text-decoration-line: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.adminBestsellersTable {
+  max-width: 1170px;
+  background-color: $white;
+  box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+  border-radius: 17px;
+  padding: 5px 0;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f3efef;
+  }
+
+  th, td {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    font-size: 15px;
+    padding: 8px;
+  }
+
+  &_body {
+    td {
+      padding: 5px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    margin: 0;
+  }
+}
+
+.prod {
+  width: 280px;
+}

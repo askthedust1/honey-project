@@ -1,7 +1,7 @@
 import React from 'react';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import cls from '../styles/about.module.scss';
+import cls from '../styles/_about.module.scss';
 import about1 from '@/assets/images/about1.jpg';
 import about2 from '@/assets/images/about2.jpg';
 import european_bank from '@/assets/images/partners/european_bank.png';

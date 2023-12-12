@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from '../../../styles/sideBar.module.scss';
+import cls from '../../../styles/_sideBar.module.scss';
 import { useAppSelector } from '@/store/hook';
 import { selectCategories } from '@/features/categories/categoriesSlice';
 import Link from 'next/link';

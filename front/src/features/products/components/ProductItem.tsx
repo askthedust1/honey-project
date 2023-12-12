@@ -1,7 +1,7 @@
 import React from 'react';
 import { apiUrl } from '@/constants';
 import Link from 'next/link';
-import cls from '../../../styles/products.module.scss';
+import cls from '../../../styles/_products.module.scss';
 import { useAppDispatch } from '@/store/hook';
 import { IProduct } from '@/types';
 import { addProduct } from '@/features/cart/cartSlice';
