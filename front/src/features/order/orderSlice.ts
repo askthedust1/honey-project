@@ -9,6 +9,7 @@ interface OrderState {
   userOrders: IOrder[];
   userOrdersLoading: boolean;
   dateOrder: string | null;
+  orderLoading: boolean;
   dataLoaded: boolean;
 }
 
@@ -18,6 +19,7 @@ const initialState: OrderState = {
   userOrdersLoading: false,
   dateOrder: null,
   dataLoaded: false,
+  orderLoading: true,
 };
 
 export const orderSlice = createSlice({
@@ -37,14 +39,14 @@ export const orderSlice = createSlice({
       (state, { payload }) => ({ ...state, ...payload.order }),
     );
     builder.addCase(fetchOrder.pending, (state) => {
-      state.dataLoaded = true;
+      state.orderLoading = true;
     });
     builder.addCase(fetchOrder.fulfilled, (state, { payload: order }) => {
-      state.dataLoaded = false;
+      state.orderLoading = false;
       state.transaction = order;
     });
     builder.addCase(fetchOrder.rejected, (state) => {
-      state.dataLoaded = false;
+      state.orderLoading = false;
     });
 
     builder.addCase(createOrder.pending, (state) => {
@@ -77,3 +79,4 @@ export const selectUserOrders = (state: RootState) => state.order.userOrders;
 export const selectUserOrdersLoad = (state: RootState) => state.order.userOrdersLoading;
 export const { resetOrder, changeDate } = orderSlice.actions;
 export const selectProductsDataLoaded = (state: RootState) => state.order.dataLoaded;
+export const selectOrderLoading = (state: RootState) => state.order.orderLoading;
