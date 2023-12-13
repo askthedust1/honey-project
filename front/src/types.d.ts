@@ -175,25 +175,6 @@ export interface ICategory {
   isActive: boolean;
 }
 
-export interface ICategoryPost {
-  _id: string;
-  image: string | '';
-  translations: {
-    en: {
-      title: string;
-      description: string;
-    };
-    ru: {
-      title: string;
-      description: string;
-    };
-    kg: {
-      title: string;
-      description: string;
-    };
-  };
-}
-
 export interface ICategoryMutation {
   idCategory?: string;
   translations: {
@@ -291,8 +272,9 @@ export interface IAdminMainHit {
   sum: number;
 }
 
+//Я здесь поменяла тип
 export interface IProductOfKits {
-  product: IProduct;
+  product: IProductOneView;
   amount: number;
   price: number;
 }

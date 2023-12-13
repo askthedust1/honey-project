@@ -55,7 +55,7 @@ export const fetchOrdersAll = createAsyncThunk<
   try {
     const userState = thunkAPI.getState().users;
     const token = userState.user?.token;
-    const ordersAllResponse = await axiosApi.get<IOrder[]>(`/transactions`, {
+    const ordersAllResponse = await axiosApi.get<IOrder[]>(`/transactions/history`, {
       headers: { Authorization: token },
     });
     return ordersAllResponse.data;

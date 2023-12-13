@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IOrder } from '@/types';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
-import { createOrder, fetchOrder } from '@/features/order/orderThunk';
+import { createOrder, fetchOrder, fetchOrdersAll } from '@/features/order/orderThunk';
 
 interface OrderState {
   transaction: IOrder | null;
+  userOrders: IOrder[];
+  userOrdersLoading: boolean;
   dateOrder: string | null;
   orderLoading: boolean;
   dataLoaded: boolean;
@@ -13,6 +15,8 @@ interface OrderState {
 
 const initialState: OrderState = {
   transaction: null,
+  userOrders: [],
+  userOrdersLoading: false,
   dateOrder: null,
   dataLoaded: false,
   orderLoading: true,
@@ -54,12 +58,25 @@ export const orderSlice = createSlice({
     builder.addCase(createOrder.rejected, (state) => {
       state.dataLoaded = false;
     });
+
+    builder.addCase(fetchOrdersAll.pending, (state) => {
+      state.userOrdersLoading = true;
+    });
+    builder.addCase(fetchOrdersAll.fulfilled, (state, { payload: orders }) => {
+      state.userOrdersLoading = false;
+      state.userOrders = orders;
+    });
+    builder.addCase(fetchOrdersAll.rejected, (state) => {
+      state.userOrdersLoading = false;
+    });
   },
 });
 
 export const selectOrder = (state: RootState) => state.order.transaction;
 
 export const selectDateOrder = (state: RootState) => state.order.dateOrder;
+export const selectUserOrders = (state: RootState) => state.order.userOrders;
+export const selectUserOrdersLoad = (state: RootState) => state.order.userOrdersLoading;
 export const { resetOrder, changeDate } = orderSlice.actions;
 export const selectProductsDataLoaded = (state: RootState) => state.order.dataLoaded;
 export const selectOrderLoading = (state: RootState) => state.order.orderLoading;
