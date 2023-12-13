@@ -14,22 +14,22 @@
     width: 100%;
     li {
       position: relative;
-      width: 222px;
+      width: 200px;
       border-radius: 15px;
       background: #FFF center left 11px no-repeat;
       box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.43);
-      padding: 20px 13px 20px 72px;
+      padding: 15px 3px 15px 67px;
       display: flex;
       flex-direction: column;
     }
     &_number {
       color: #5A3733;
-      font-size: 27px;
+      font-size: 25px;
       font-weight: 500;
     }
     &_description {
       color: #5A3733;
-      font-size: 17px;
+      font-size: 14px;
       font-weight: 500;
     }
     .user {
@@ -72,26 +72,28 @@
         text-align: center;
         border-bottom: 1px solid #ddd;
         color: #5A3733;
-        font-size: 17px;
+        font-size: 15px;
         font-weight: 500;
         line-height: 21px;
         letter-spacing: 0.1px;
       }
       thead {
 
-        td {
+        th {
           font-size: 16px;
           font-weight: 700;
         }
       }
       tbody {
         .imgWrap {
-          height: 95px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 85px;
           border-radius: 15px;
           border: 1px solid rgba(90, 55, 51, 0.11);
-          text-align: center;
           img {
-            height: 86px;
+            height: 76px;
             width: auto;
           }
         }
