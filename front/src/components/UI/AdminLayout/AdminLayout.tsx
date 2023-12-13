@@ -10,7 +10,7 @@ const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className={cls.mainAdminLayout}>
       <SidebarAdmin />
-        <div style={{flexGrow: '1', padding: '30px 35px'}}>
+        <div className={cls.mainAdminLayoutContainer}>
             {children}
         </div>
     </div>
