@@ -7,6 +7,7 @@ import { createOrder, fetchOrder } from '@/features/order/orderThunk';
 interface OrderState {
   transaction: IOrder | null;
   dateOrder: string | null;
+  orderLoading: boolean;
   dataLoaded: boolean;
 }
 
@@ -14,6 +15,7 @@ const initialState: OrderState = {
   transaction: null,
   dateOrder: null,
   dataLoaded: false,
+  orderLoading: true,
 };
 
 export const orderSlice = createSlice({
@@ -33,14 +35,14 @@ export const orderSlice = createSlice({
       (state, { payload }) => ({ ...state, ...payload.order }),
     );
     builder.addCase(fetchOrder.pending, (state) => {
-      state.dataLoaded = true;
+      state.orderLoading = true;
     });
     builder.addCase(fetchOrder.fulfilled, (state, { payload: order }) => {
-      state.dataLoaded = false;
+      state.orderLoading = false;
       state.transaction = order;
     });
     builder.addCase(fetchOrder.rejected, (state) => {
-      state.dataLoaded = false;
+      state.orderLoading = false;
     });
 
     builder.addCase(createOrder.pending, (state) => {
@@ -60,3 +62,4 @@ export const selectOrder = (state: RootState) => state.order.transaction;
 export const selectDateOrder = (state: RootState) => state.order.dateOrder;
 export const { resetOrder, changeDate } = orderSlice.actions;
 export const selectProductsDataLoaded = (state: RootState) => state.order.dataLoaded;
+export const selectOrderLoading = (state: RootState) => state.order.orderLoading;

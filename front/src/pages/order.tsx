@@ -7,7 +7,6 @@ import cls from '@/styles/order.module.scss';
 import OrderItem from '@/components/Order/OrderItem';
 import { selectUser } from '@/features/users/usersSlice';
 import { createOrder } from '@/features/order/orderThunk';
-import NotFound404 from '@/components/UI/notFound404/NotFound404';
 import { changeDate } from '@/features/order/orderSlice';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
@@ -16,20 +15,25 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
 
 const Order: MyPage = () => {
+  const router = useRouter();
   const { t } = useTranslation('order');
   const [isClient, setIsClient] = useState(false);
   const [state, setState] = useState({
     address: '',
   });
-
-  const router = useRouter();
   const cart = useAppSelector(selectCart);
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     setIsClient(true);
-  }, []);
+    setLoading(false);
+    if ((!user && !loading) || (!cart.length && !loading)) {
+      router.push('/');
+    }
+  }, [loading, router, user]);
 
   const getTotalPrice = () => {
     return cart.reduce((total: number, item: ICart) => {
@@ -74,12 +78,12 @@ const Order: MyPage = () => {
   };
 
   if (cart.length === 0) {
-    return <NotFound404 />;
+    return <div>Loading...</div>;
   }
 
   return (
     <>
-      {isClient && user ? (
+      {isClient && user && !loading ? (
         <div className={cls.container}>
           <section className={cls.title}>
             <h3>{t('basket')}</h3>
@@ -167,7 +171,7 @@ const Order: MyPage = () => {
           </section>
         </div>
       ) : (
-        <NotFound404 />
+        <div>Loading</div>
       )}
     </>
   );

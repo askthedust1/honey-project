@@ -4,21 +4,30 @@ import Link from 'next/link';
 import TransactionItem from '@/components/Order/TransactionItem';
 import { useTranslation } from 'next-i18next';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { selectOrder, selectProductsDataLoaded } from '@/features/order/orderSlice';
+import { selectOrder, selectOrderLoading } from '@/features/order/orderSlice';
 import { selectUser } from '@/features/users/usersSlice';
 import { fetchOrder } from '@/features/order/orderThunk';
-import NotFound404 from '@/components/UI/notFound404/NotFound404';
+import { useRouter } from 'next/router';
 
 const Transaction = () => {
   const { t } = useTranslation('transaction');
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const user = useAppSelector(selectUser);
   const transaction = useAppSelector(selectOrder);
-  const loading = useAppSelector(selectProductsDataLoaded);
+  const loading = useAppSelector(selectOrderLoading);
 
   useEffect(() => {
     dispatch(fetchOrder());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!loading && !user && !transaction) {
+      router.push('/');
+    } else if (!loading && user && transaction && transaction.user._id !== user._id) {
+      router.push('/');
+    }
+  }, [loading, router, transaction, user]);
 
   let formattedStr = 'sometime';
   if (transaction) {
@@ -29,13 +38,9 @@ const Transaction = () => {
     formattedStr = `${day}. ${month}. ${year}`;
   }
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <>
-      {user && transaction && transaction?.user._id === user._id ? (
+      {user && transaction && transaction.user && transaction.user._id === user._id ? (
         <div className={cls.container}>
           <section className={cls.title}>
             <h3>{t('basket')}</h3>
@@ -72,7 +77,7 @@ const Transaction = () => {
           </section>
         </div>
       ) : (
-        <NotFound404 />
+        <div>Loading...</div>
       )}
     </>
   );

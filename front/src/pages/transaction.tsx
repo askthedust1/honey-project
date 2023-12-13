@@ -6,9 +6,9 @@ import Transaction from '@/components/Transaction/Transaction';
 
 const TransactionPage: MyPage = () => {
   return (
-    <>
+    <div style={{ minHeight: '600px' }}>
       <Transaction />
-    </>
+    </div>
   );
 };
 export default TransactionPage;
