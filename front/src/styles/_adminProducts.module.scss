@@ -1,9 +1,16 @@
 .mainAdminLayout {
-  max-width: 1624px;
   min-height: 400px;
   display: flex;
-  margin: 0 auto;
+  justify-content: space-between;
   color: #5A3733;
+  .mainAdminLayoutContainer {
+    display: flex;
+    justify-content: center;
+    flex-Grow: 1;
+    padding: 30px 35px;
+    height: 100vh;
+    overflow-y: auto;
+  }
 }
 .container {
   .productsBlock {
