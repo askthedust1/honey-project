@@ -45,6 +45,17 @@ Then('I see {string} in user menu.', (logout: string) => {
   I.see(text);
 });
 
+When('I click {string} in user menu', (text: string) => {
+  I.click(`//li[contains(text(), '${text}')]`);
+});
+
+Then('I see {string} in user menu', (login: string) => {
+  const text = `${login}`;
+
+  I.see(text);
+});
+
+
 const productId = ['65796edc808b3741700725be', '65796edc808b3741700725bc', '65796edc808b3741700725c5', '65796edc808b3741700725bd'];
 Given('I am on products page', () => {
   I.amOnPage('/products/page/1');

@@ -11,6 +11,17 @@ Feature: Users
     And I click "Войти в аккаунт" button
     Then I see "Выйти" in user menu.
 
+  Scenario: User logout
+    Given I am on accounts page
+    Given I click the "Войти!" button
+    When I enter form fields:
+      | email | sam@gmail.com |
+      | password | user |
+    And I click "Войти в аккаунт" button
+    Then I see "Выйти" in user menu.
+    When I click "Выйти" in user menu
+    Then I see "Войти" in user menu
+
   Scenario: User register
     Given I am on accounts page
     When I enter form fields:
