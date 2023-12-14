@@ -1,4 +1,4 @@
-import * as wasi from "wasi";
+// import * as wasi from "wasi";
 import assert from 'assert';
 
 interface IDataTableCalls {
@@ -61,6 +61,6 @@ Then('I should be on the product page', async () => {
   const currentUrl = await I.grabCurrentUrl();
   const expectedUrlPart = '/products/';
 
-  // Проверяем, что текущий URL содержит ожидаемый фрагмент (часть) URL
+  // Проверяем, что текущий URL содержит ожидаемый фрагмент URL (часть)
   assert.ok(currentUrl.includes(expectedUrlPart), `Expected URL to include "${expectedUrlPart}", but got "${currentUrl}"`);
 });
