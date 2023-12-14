@@ -4,6 +4,7 @@ $color-text: #5A3733;
 $color-card-bg: #FFFFFF;
 $color-card-border: #e2e2e2;
 $color-icon-price: #FF8F31;
+$color-icon-inCart: #934300;
 
 .container {
   display: flex;
@@ -86,6 +87,13 @@ $color-icon-price: #FF8F31;
   border-radius: 0 0 35px 35px;
 }
 
+.btn_block_in_cart {
+  margin-top: auto;
+  background: $color-icon-inCart;
+  border-radius: 0 0 35px 35px;
+  width: 100%;
+}
+
 .btn_prod {
   display: inline-block;
   padding: 16px 34px;
@@ -97,6 +105,7 @@ $color-icon-price: #FF8F31;
   text-decoration: none;
   font-size: 16px;
   transition: .3s;
+  width: 100%;
 
   &:hover {
     background: $color-text;

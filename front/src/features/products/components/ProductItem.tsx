@@ -2,21 +2,25 @@ import React from 'react';
 import { apiUrl } from '@/constants';
 import Link from 'next/link';
 import cls from '../../../styles/_products.module.scss';
-import { useAppDispatch } from '@/store/hook';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { IProduct } from '@/types';
-import { addProduct } from '@/features/cart/cartSlice';
+import { addProduct, delProduct, selectCart } from '@/features/cart/cartSlice';
 import { useTranslation } from 'next-i18next';
 
 const ProductItem: React.FC<Props> = ({ product }) => {
   const dispatch = useAppDispatch();
-
+  const cartState = useAppSelector(selectCart);
   const { t } = useTranslation('common');
-
-  const addToCart = () => {
-    dispatch(addProduct(product));
-  };
-
   const picture = apiUrl + '/' + product.image;
+  const isInCart = cartState.some((unit) => product._id === unit.product._id);
+
+  const handleToggleCart = () => {
+    if (isInCart) {
+      dispatch(delProduct(product._id));
+    } else {
+      dispatch(addProduct(product));
+    }
+  };
 
   return (
     <div className={cls.card_block}>
@@ -31,9 +35,9 @@ const ProductItem: React.FC<Props> = ({ product }) => {
           </div>
         </div>
       </Link>
-      <div className={cls.btn_block}>
-        <button onClick={addToCart} type="button" className={cls.btn_prod}>
-          {t('add-to-basket')}
+      <div className={isInCart ? cls.btn_block_in_cart : cls.btn_block}>
+        <button onClick={handleToggleCart} type="button" className={cls.btn_prod}>
+          {isInCart ? t('remove-from-basket') : t('add-to-basket')}
         </button>
       </div>
     </div>
