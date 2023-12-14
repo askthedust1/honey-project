@@ -64,3 +64,16 @@ Then('I should be on the product page', async () => {
   // Проверяем, что текущий URL содержит ожидаемый фрагмент URL (часть)
   assert.ok(currentUrl.includes(expectedUrlPart), `Expected URL to include "${expectedUrlPart}", but got "${currentUrl}"`);
 });
+
+Given('I am on main page', () => {
+  I.amOnPage('/');
+});
+
+Given('I click on {string} button', (text: string) => {
+  I.click(`//a[contains(text(), '${text}')]`);
+});
+
+Then('I see products page', () => {
+  I.amOnPage('/products/page/1');
+});
+
