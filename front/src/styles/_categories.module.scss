@@ -15,13 +15,14 @@
   }
 
   &_inner {
-    width: 616px;
+    width: 589px;
     margin: 0 auto 0 0;
-    padding: 0 11px;
+    padding: 0 0 10px;
     box-sizing: border-box;
     border-radius: 15px;
     background: #FFF;
     box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+    overflow: hidden;
 
     &_table {
       border-collapse:collapse;
@@ -29,7 +30,7 @@
       thead {
         th {
           padding: 20px 0 10px;
-          border-bottom: 2px solid rgba(90, 55, 51, 0.28);
+          border-bottom: 1px solid rgba(90, 55, 51, 0.11);
 
           p {
             color: #5A3733;
@@ -97,10 +98,6 @@
               border: none;
               outline: none;
               transition: 0.3s;
-
-              &:hover {
-                transform: scale(1.1);
-              }
             }
 
             span {
@@ -113,10 +110,6 @@
               background-position: center;
               background-repeat: no-repeat;
               transition: 0.3s;
-
-              &:hover {
-                box-shadow: 0 0 3px 1px #5A3733;
-              }
             }
           }
 

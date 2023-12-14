@@ -11,17 +11,11 @@ import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import { useEffect, useState } from 'react';
 import { MyPage } from '@/components/common/types';
 import ModalEditCategories from '@/components/UI/modalEditCategories/ModalEditCategories';
+import AdminNav from '@/components/admin/adminNav/AdminNav';
 
 const CategoriesAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectAdminCategories);
-
-  const [oneItem, setOneItem] = useState({
-    titleRU: '',
-    titleEN: '',
-    titleKG: '',
-    image: '',
-  });
 
   const [isOpen, setOpen] = useState(false);
 
@@ -48,7 +42,14 @@ const CategoriesAdminPage: MyPage = () => {
       <div className={cls.categories_page}>
         <div>
           <h2>Категории</h2>
-          {/*верхняя панель с поиском и пагинацией*/}
+          <AdminNav
+            navProducts={false}
+            navBestsellers={false}
+            navCategories={true}
+            navOrders={false}
+            categories={categories}
+          />
+
           <div className={cls.categories_page_inner}>
             <table className={cls.categories_page_inner_table}>
               <thead>
@@ -100,7 +101,11 @@ const CategoriesAdminPage: MyPage = () => {
           </div>
         </div>
       </div>
-      <ModalEditCategories isOpen={isOpen} closeModalButton={closeModal} closeModalAfterPut={(e) => setOpen(e)} />
+      <ModalEditCategories
+        isOpen={isOpen}
+        closeModalButton={closeModal}
+        closeModalAfterPut={(e) => setOpen(e)}
+      />
     </ProtectedRoute>
   );
 };

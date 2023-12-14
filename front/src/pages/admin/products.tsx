@@ -1,6 +1,5 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cls from '../../styles/_adminProducts.module.scss';
-import plusIcon from '@/assets/images/plusIcon.png';
 import {
   fetchProductsForAdmin,
   patchActiveProducts,
@@ -13,6 +12,7 @@ import { apiUrl } from '@/constants';
 import Link from 'next/link';
 import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
 import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
+import AdminNav from '@/components/admin/adminNav/AdminNav';
 
 const ProductsAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -34,49 +34,22 @@ const ProductsAdminPage: MyPage = () => {
     await dispatch(fetchProductsForAdmin({ id: selectedCategory, search }));
   };
 
-  const handleCategoryChange = async (event: ChangeEvent<HTMLSelectElement>) => {
-    const categoryId = event.target.value;
-    setSelectedCategory(categoryId);
-  };
-
-  const setSearchItem = async (event: ChangeEvent<HTMLInputElement>) => {
-    const item = event.target.value;
-    setSearch(item);
-  };
-
   return (
     <ProtectedRoute>
       <div className={cls.container}>
         <div className={cls.productsBlock}>
           <h1 className={cls.adminProductsMainTitle}>Продукты</h1>
-          <div className={cls.adminProductsNav}>
-            <select onChange={handleCategoryChange}>
-              <option value="">Отфильтровать по категории</option>
-              {categories.map((category) => (
-                <option key={category._id} value={category._id}>
-                  {category.translations.ru.title}
-                </option>
-              ))}
-            </select>
-            <input
-              type="text"
-              name="findProduct"
-              id="findProduct"
-              placeholder="Найти по названию"
-              onChange={setSearchItem}
-            />
-            <div className={cls.adminProductsPagination}>
-              <a className={cls.arrowToLeft} href="#"></a>
-              <p>
-                Страница: <span>1</span> из <span>12</span>
-              </p>
-              <a className={cls.arrowToRight} href="#"></a>
-            </div>
-            <button className={cls.addNewProductBtn}>
-              <img src={plusIcon.src} alt="plusIcon" />
-              <Link href={'/admin/addProduct'}> Добавить продукт</Link>
-            </button>
-          </div>
+
+          <AdminNav
+            navProducts={true}
+            navBestsellers={false}
+            navCategories={false}
+            navOrders={false}
+            categories={categories}
+            getCategorySelectId={(e: string): void => setSelectedCategory(e)}
+            getName={(e: string): void => setSearch(e)}
+          />
+
           <div className={cls.adminProductsTable}>
             <table>
               <thead>

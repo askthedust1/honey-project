@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/_adminOrders.module.scss';
@@ -10,6 +10,7 @@ import {
   patchActiveOrders,
 } from '@/features/orderAdmin/ordersAdminThunk';
 import { selectCurrentPage, selectOrdersAdminAll } from '@/features/orderAdmin/ordersAdminSlice';
+import AdminNav from '@/components/admin/adminNav/AdminNav';
 
 const Orders: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -37,55 +38,21 @@ const Orders: MyPage = () => {
     }
   };
 
-  const handleStatusChange = async (event: ChangeEvent<HTMLSelectElement>) => {
-    const statusId = event.target.value;
-    setSelectedStatus(statusId);
-    if (currentPageState !== undefined && currentPageState !== null) {
-      const currentPage = currentPageState.toString();
-
-      if (statusId !== '') {
-        console.log({ id: statusId, page: currentPage });
-        await dispatch(fetchOrdersAdminByStatus({ id: statusId, page: currentPage }));
-      } else {
-        await dispatch(fetchOrdersAdminAll(currentPage));
-      }
-    } else {
-      console.error('currentPageState is undefined or null');
-    }
-  };
-
   return (
     <ProtectedRoute>
       <div className={cls.container}>
         <div className={cls.ordersBlock}>
           <h1 className={cls.adminOrdersMainTitle}>Заказы</h1>
-          <div className={cls.adminOrdersNav}>
-            <input
-              type="text"
-              name="findOrderName"
-              id="findOrderName"
-              placeholder="Найти по имени"
-            />
-            <input
-              type="text"
-              name="findOrderPhone"
-              id="findOrderPhone"
-              placeholder="Найти по номеру"
-            />
 
-            <select onChange={handleStatusChange}>
-              <option value="">Отфильтровать по статусу</option>
-              <option value={'true'}>Подтвержден</option>
-              <option value={'false'}>Не подтвержден</option>
-            </select>
-            <div className={cls.adminOrdersPagination}>
-              <a className={cls.arrowToLeft} href="#"></a>
-              <p>
-                Страница: <span>1</span> из <span>12</span>
-              </p>
-              <a className={cls.arrowToRight} href="#"></a>
-            </div>
-          </div>
+          <AdminNav
+            navProducts={false}
+            navBestsellers={false}
+            navCategories={false}
+            navOrders={true}
+            getStatus={(e: string): void => setSelectedStatus(e)}
+            orderPage={currentPageState}
+          />
+
           <div className={cls.adminOrdersTable}>
             <table>
               <thead>
