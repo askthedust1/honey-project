@@ -1,4 +1,5 @@
-import * as wasi from "wasi";
+// import * as wasi from "wasi";
+import assert from 'assert';
 
 interface IDataTableCalls {
   value: string
@@ -42,4 +43,24 @@ Then('I see {string} in user menu.', (logout: string) => {
   const text = `${logout}`;
 
   I.see(text);
+});
+
+const productId = ['65796edc808b3741700725be', '65796edc808b3741700725bc', '65796edc808b3741700725c5', '65796edc808b3741700725bd'];
+Given('I am on products page', () => {
+  I.amOnPage('/products/page/1');
+});
+
+When('I click on a random product link', async () => {
+  const randomProductId = productId[Math.floor(Math.random() * productId.length)];
+  const productLinkSelector = `//a[contains(@href, '/products/${randomProductId}')]`;
+  await I.waitForElement(productLinkSelector);
+  I.click(productLinkSelector);
+});
+
+Then('I should be on the product page', async () => {
+  const currentUrl = await I.grabCurrentUrl();
+  const expectedUrlPart = '/products/';
+
+  // Проверяем, что текущий URL содержит ожидаемый фрагмент URL (часть)
+  assert.ok(currentUrl.includes(expectedUrlPart), `Expected URL to include "${expectedUrlPart}", but got "${currentUrl}"`);
 });
