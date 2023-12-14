@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/adminBestsellers.module.scss';
@@ -16,6 +16,7 @@ import {
   fetchBestsellersProducts,
   patchHitProduct,
 } from '@/features/adminBestsellers/adminBestsellersThunk';
+import AdminNav from '@/components/admin/adminNav/AdminNav';
 
 const BestsellerAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +24,6 @@ const BestsellerAdminPage: MyPage = () => {
   const bestsellers = useAppSelector(selectAllBestsellers);
   const categories = useAppSelector(selectAdminCategories);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
-
   const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
@@ -34,11 +34,6 @@ const BestsellerAdminPage: MyPage = () => {
   useEffect(() => {
     dispatch(fetchBestsellersProducts({ id: selectedCategory, search }));
   }, [dispatch, search, selectedCategory]);
-
-  const categoryChangeHandle = async (event: ChangeEvent<HTMLSelectElement>) => {
-    const category = event.target.value;
-    setSelectedCategory(category);
-  };
 
   const deleteHit = async (id: string) => {
     await dispatch(patchHitProduct(id));
@@ -55,11 +50,6 @@ const BestsellerAdminPage: MyPage = () => {
     await dispatch(patchHitProduct(id));
     await dispatch(fetchBestsellers());
     await dispatch(fetchBestsellersProducts({ id: selectedCategory, search }));
-  };
-
-  const setSearchItem = async (event: ChangeEvent<HTMLInputElement>) => {
-    const item = event.target.value;
-    setSearch(item);
   };
 
   return (
@@ -84,31 +74,17 @@ const BestsellerAdminPage: MyPage = () => {
               ))
             )}
           </div>
-          <div className={cls.adminProductsNav}>
-            <h3 className={cls.bestseller_title}>Все товары</h3>
-            <select onChange={categoryChangeHandle}>
-              <option value="">Отфильтровать по категории</option>
-              {categories.map((category) => (
-                <option key={category._id} value={category._id}>
-                  {category.translations.ru.title}
-                </option>
-              ))}
-            </select>
-            <input
-              type="text"
-              name="findProduct"
-              id="findProduct"
-              placeholder="Найти по названию"
-              onChange={setSearchItem}
-            />
-            <div className={cls.adminProductsPagination}>
-              <a className={cls.arrowToLeft} href="#"></a>
-              <p>
-                Страница: <span>1</span> из <span>12</span>
-              </p>
-              <a className={cls.arrowToRight} href="#"></a>
-            </div>
-          </div>
+
+          <AdminNav
+            navProducts={false}
+            navBestsellers={true}
+            navCategories={false}
+            navOrders={false}
+            categories={categories}
+            getCategorySelectId={(e: string): void => setSelectedCategory(e)}
+            getName={(e: string): void => setSearch(e)}
+          />
+
           <div className={cls.adminBestsellersTable}>
             <table>
               <thead>
