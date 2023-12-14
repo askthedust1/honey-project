@@ -11,9 +11,12 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'http://localhost:3010',
+      url: 'http://localhost:3000',
       show: false,
-      windowSize: '1500x900'
+      windowSize: '1500x900',
+      chrome: {
+        headless: "new", // Используем новый режим Headless
+      },
     }
   },
   include: {
