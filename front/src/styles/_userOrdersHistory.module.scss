@@ -1,11 +1,5 @@
 @import "variables";
 
-.container {
-  max-width: 1170px;
-  padding: 0 15px;
-  margin: 0 auto;
-}
-
 .history {
   padding: 20px 0 50px;
 
@@ -25,7 +19,7 @@
 
   &_return {
     color: $primary;
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
     font-weight: 400;
     text-decoration-line: underline;

@@ -12,14 +12,14 @@ productRouter.get('/', async (req, res) => {
     const filterBy = req.query.filterBy;
 
     if (filterBy && filterBy === 'hit') {
-      const result = await Product.find({ isHit: true, isActive: true }).limit(4);
+      const result = await Product.find({ isHit: true, isActive: true }).limit(6);
       return res.send(result);
     }
 
     if (filterBy && filterBy === 'new') {
       const result = await Product.find({ isActive: true, isHit: false })
         .sort({ datetime: 'descending' })
-        .limit(4);
+        .limit(6);
       return res.send(result);
     }
 

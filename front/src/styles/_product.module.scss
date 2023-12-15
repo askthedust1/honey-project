@@ -4,12 +4,6 @@
 .product {
   padding: 70px 0;
 
-  .container {
-    max-width: 1170px;
-    padding: 0 15px;
-    margin: 0 auto;
-  }
-
   .row {
     display: flex;
     align-items: center;
@@ -56,6 +50,23 @@
     @include lg {
       padding: 0 15px 0;
       margin-left: 10px;
+    }
+
+    &_return {
+      color: $primary;
+      display: flex;
+      align-items: center;
+      font-weight: 400;
+      text-decoration-line: underline;
+      margin-bottom: 10px;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      &_link {
+        margin-left: 5px;
+      }
     }
 
     &_category {
