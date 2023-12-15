@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import Header from '@/components/UI/header/Header';
 import Footer from '@/components/UI/footer/Footer';
+import cls from '../../../styles/_layoutClient.module.scss';
 
 interface ClientLayoutProps {
   children: ReactNode;
@@ -8,7 +9,7 @@ interface ClientLayoutProps {
 
 export const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
   return (
-    <div>
+    <div className={cls.container}>
       <Header />
       {children}
       <Footer />

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { useAppSelector } from '@/store/hook';
 import { selectAllProducts } from '@/features/products/productsSlice';
 import ProductItem from '@/features/products/components/ProductItem';
@@ -34,4 +34,4 @@ const ProductsAll: React.FC<Props> = ({ pageName }) => {
   );
 };
 
-export default memo(ProductsAll);
+export default ProductsAll;
