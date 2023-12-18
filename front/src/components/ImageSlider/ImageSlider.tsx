@@ -26,6 +26,7 @@ const ImageSlider: React.FC<Props> = ({ images, width }) => {
     slideToScroll: 1,
     pauseOnHover: true,
     autoplay: true,
+    arrows: false,
     beforeChange: (prev: number, next: number) => {
       setCurrentSlide(next);
     },
