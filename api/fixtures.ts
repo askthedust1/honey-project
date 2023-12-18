@@ -820,13 +820,13 @@ const run = async () => {
     {
       translations: {
         ru: {
-          image: 'fixtures/landing.png',
+          image: 'fixtures/bnr1.png',
         },
         en: {
-          image: 'fixtures/banner-en1.png',
+          image: 'fixtures/bnr1en.png',
         },
         kg: {
-          image: 'fixtures/banner-kg1.png',
+          image: 'fixtures/bnr1kg.png',
         },
       },
       description: 'landing1',
@@ -836,13 +836,13 @@ const run = async () => {
     {
       translations: {
         ru: {
-          image: 'fixtures/landing2.png',
+          image: 'fixtures/bnr2.png',
         },
         en: {
-          image: 'fixtures/banner-en2.png',
+          image: 'fixtures/bnr2en.png',
         },
         kg: {
-          image: 'fixtures/banner-kg2.png',
+          image: 'fixtures/bnr2kg.png',
         },
       },
       description: 'landing2',
@@ -852,13 +852,13 @@ const run = async () => {
     {
       translations: {
         ru: {
-          image: 'fixtures/landing3.png',
+          image: 'fixtures/bnr3.png',
         },
         en: {
-          image: 'fixtures/banner-en2.png',
+          image: 'fixtures/bnr3en.png',
         },
         kg: {
-          image: 'fixtures/banner-kg2.png',
+          image: 'fixtures/bnr3kg.png',
         },
       },
       description: 'landing3',
