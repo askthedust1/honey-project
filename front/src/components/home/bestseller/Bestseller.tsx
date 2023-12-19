@@ -26,7 +26,7 @@ const Bestseller = () => {
   };
   return (
     <div className={cls.bestseller}>
-      <div className={cls.bestseller_container}>
+      <h2 className={cls.bestseller_container}>{t('bestsellerTitle')}</h2>
         <div className={cls.bestseller_btns}>
           <button
             onClick={() => switchBestseller('hit')}
@@ -50,7 +50,6 @@ const Bestseller = () => {
             <ProductItem key={el._id} product={el} />
           ))}
         </div>
-      </div>
     </div>
   );
 };
