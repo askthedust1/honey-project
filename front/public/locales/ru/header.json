@@ -5,5 +5,7 @@
   "delivery": "Доставка",
   "contacts": "Контакты",
   "login": "Войти",
-  "logout": "Выйти"
+  "logout": "Выйти",
+  "cart": "Корзина",
+  "orderHistory": "История заказов"
 }

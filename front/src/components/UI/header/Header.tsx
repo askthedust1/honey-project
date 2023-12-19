@@ -10,6 +10,7 @@ import { selectUser } from '@/features/users/usersSlice';
 import UserNav from '@/components/UI/header/UserNav';
 import AnonymousNav from '@/components/UI/header/AnonymousNav';
 import { selectCart } from '@/features/cart/cartSlice';
+import Image from 'next/image';
 
 const Header = () => {
   const user = useAppSelector(selectUser);
@@ -26,10 +27,16 @@ const Header = () => {
   const toggleNav = () => setIsShowNav(!isShowNav);
 
   return (
-    <header style={{ position: 'sticky', top: '0', zIndex: '100' }}>
+    <header style={{ position: 'sticky', top: '-1px', zIndex: '100' }}>
       <div className={cls.header}>
         <Link href={'/'}>
-          <img src={logo.src} alt={'Aman Kyrgyz Honey logo'} className={cls.logo} />
+          <Image
+            src={logo.src}
+            alt={'Aman Kyrgyz Honey logo'}
+            width={124}
+            height={46}
+            className={cls.logo}
+          />
         </Link>
         <div className={cls.rightSection}>
           <nav className={cls.nav}>
@@ -43,30 +50,27 @@ const Header = () => {
               <li className={cls.menu_item}>
                 <Link href={'/about'}>{t('about')}</Link>
               </li>
-              <li className={cls.menu_item}>
-                <Link href={'/delivery'}>{t('delivery')}</Link>
-              </li>
-              <li className={cls.menu_item}>
-                <Link href={'/contacts'}>{t('contacts')}</Link>
-              </li>
               {user ? <UserNav /> : <AnonymousNav />}
+              <li className={cls.menu_item}>
+                <Link href={'/cart'} className={cls.basket}>
+                  {t('cart')}
+                  {typeof window !== 'undefined' && cart && isClient ? (
+                    <span className={cls.basket_item}>
+                      {cart.reduce((total, item) => total + item.amount, 0)}
+                    </span>
+                  ) : (
+                    <span></span>
+                  )}
+                </Link>
+              </li>
             </ul>
           </nav>
           <div className={cls.multilingualOne}>
             <LanguageSwitcher />
           </div>
           <div className={cls.contact}>
-            <a href="tel:+99655555555">+996 555 55 55 55</a>
+            <a href="tel:+99655555555">+996 555 555 555</a>
           </div>
-          <Link href={'/cart'} className={cls.basket}>
-            {typeof window !== 'undefined' && cart && isClient ? (
-              <span className={cls.basket_item}>
-                {cart.reduce((total, item) => total + item.amount, 0)}
-              </span>
-            ) : (
-              <span></span>
-            )}
-          </Link>
         </div>
       </div>
       <div className={`${cls.hamburger_menu} ${isShowNav ? cls.hamburger_menu_show : ''}`}>
@@ -74,6 +78,9 @@ const Header = () => {
           <span></span>
         </button>
         <ul className={cls.menu__box}>
+          <li className={cls.multilingualTwo}>
+            <LanguageSwitcher />
+          </li>
           <li>
             <Link onClick={toggleNav} className={cls.menu__item} href={'/'}>
               {t('home')}
@@ -100,9 +107,6 @@ const Header = () => {
             </Link>
           </li>
           {user ? <UserNav /> : <AnonymousNav />}
-          <li className={cls.multilingualTwo}>
-            <LanguageSwitcher />
-          </li>
         </ul>
       </div>
     </header>
