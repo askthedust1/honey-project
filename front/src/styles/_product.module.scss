@@ -1,6 +1,7 @@
 @import "variables";
 @import 'mixin';
 
+
 .product {
   padding: 70px 0;
 
@@ -113,6 +114,12 @@
   }
 
   &_btns {
+    @include lg {
+      text-align: center;
+    }
+  }
+
+  .btn_in_cart {
     @include lg {
       text-align: center;
     }

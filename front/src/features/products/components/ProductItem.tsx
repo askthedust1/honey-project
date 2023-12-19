@@ -29,17 +29,18 @@ const ProductItem: React.FC<Props> = ({ product }) => {
           <div className={cls.imgContainer}>
             <img className={cls.cardImg} src={picture} alt={product.title} />
           </div>
-          <div className={cls.content}>
-            <h3 className={cls.title}>{product.title}</h3>
+          <div className={cls.info}>
+            <h3 className={cls.title}><span>{product.title}</span></h3>
             <p className={cls.price}>{product.actualPrice} сом</p>
           </div>
         </div>
       </Link>
-      <div className={isInCart ? cls.btn_block_in_cart : cls.btn_block}>
-        <button onClick={handleToggleCart} type="button" className={cls.btn_prod}>
+      <div className={cls.btn_prod}>
+        <button onClick={handleToggleCart} type="button" className={isInCart ? cls.btn_block_in_cart : cls.btn_block}>
           {isInCart ? t('remove-from-basket') : t('add-to-basket')}
         </button>
       </div>
+
     </div>
   );
 };
