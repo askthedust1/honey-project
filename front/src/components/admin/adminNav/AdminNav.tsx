@@ -1,13 +1,13 @@
 import React, { ChangeEvent } from 'react';
 import cls from '@/styles/_adminNav.module.scss';
 import plusIcon from '@/assets/images/plusIcon.png';
-import Link from 'next/link';
 import { IAdminCategory } from '@/types';
 import { useAppDispatch } from '@/store/hook';
 import {
   fetchOrdersAdminAll,
   fetchOrdersAdminByStatus,
 } from '@/features/orderAdmin/ordersAdminThunk';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 
 interface Props {
   navProducts: boolean;
@@ -85,7 +85,7 @@ const AdminNav: React.FC<Props> = (props) => {
       </div>
       <button className={cls.addAdminNavBtn}>
         <img src={plusIcon.src} alt="plusIcon" />
-        <Link href={'/admin/addProduct'}> Добавить продукт</Link>
+        <ButtonUi text={'Добавить продукт'} link={'/admin/addProduct'} />
       </button>
     </>
   );
@@ -163,7 +163,7 @@ const AdminNav: React.FC<Props> = (props) => {
       <input type="text" name="findProduct" id="findProduct" placeholder="Найти по названию" />
       <button className={cls.addAdminNavBtn}>
         <img src={plusIcon.src} alt="plusIcon" />
-        <Link href={'/admin/createCategories'}>Добавить категорию</Link>
+        <ButtonUi text={'Добавить категорию'} link={'/admin/createCategories'} />
       </button>
     </>
   );

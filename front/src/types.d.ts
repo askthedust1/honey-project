@@ -141,7 +141,7 @@ export interface IProductMutation {
 }
 
 export interface IProductMutationNew {
-  _id: string;
+  _id?: string;
   category: string;
   oldPrice: number;
   actualPrice: number;
