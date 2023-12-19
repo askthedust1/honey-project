@@ -24,7 +24,7 @@ productRouter.get('/', async (req, res) => {
     }
 
     let page = 1;
-    const perPage = 4;
+    const perPage = 9;
     const totalProducts = await Product.countDocuments();
     const totalPages = Math.ceil(totalProducts / perPage);
 
@@ -44,7 +44,7 @@ productRouter.get('/', async (req, res) => {
     }
 
     if (req.query.categoryId && req.query.categoryPage) {
-      const categoryPerPage = 4;
+      const categoryPerPage = 9;
       let pageCategory = 1;
 
       pageCategory = +req.query.categoryPage;

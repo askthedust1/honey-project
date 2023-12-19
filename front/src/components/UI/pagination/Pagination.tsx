@@ -14,7 +14,7 @@ const Pagination: React.FC<Props> = (props) => {
   const currentPageState = useAppSelector(selectCurrentPage);
   const totalPageState = useAppSelector(selectTotalPages);
 
-  const productsTsx = (
+    const productsTsx = (
     <>
       {currentPageState > 1 ? (
         <div className={cls.circle_left}>
