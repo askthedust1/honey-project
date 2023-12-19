@@ -2,7 +2,8 @@ import express from 'express';
 import Product from '../models/Product';
 import Category from '../models/Category';
 import User from '../models/User';
-
+//НЕ ВКЛЮЧАТЬ ПРОВЕРКУ ПРИТИРА И ИСПРАВЛЕНИЯ!
+// ТУТ ВСЕ ПРАВИЛЬНО, ЕСЛИ ОН ПОСТАВИТ СВОИ ЛИШНИЕ ЗАПЯТЫЕ, ЗАПРОСЫ ПОЛОМАЮТСЯ! СПАСИБО)
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {

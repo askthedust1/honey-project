@@ -101,10 +101,23 @@
       }
     }
 
-    &_price {
+    &_prices {
+      display: flex;
+      align-items: center;
+    }
+
+    &_actualPrice {
       font-size: 22px;
       color: $text-color;
       margin-bottom: 26px;
+    }
+
+    &_oldPrice {
+      font-size: 22px;
+      color: $text-color;
+      margin-bottom: 26px;
+      text-decoration: line-through;
+      margin-right: 30px;
     }
 
     &_description {
