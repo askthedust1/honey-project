@@ -1,5 +1,6 @@
 @import '@/styles/_variables.scss';
 
+
 .btn-primary {
   display: inline-block;
   padding: 16px 34px;
@@ -14,6 +15,27 @@
 
   &:hover {
     background: $primary-hover;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.btn_in_cart {
+  display: inline-block;
+  padding: 16px 34px;
+  border-radius: 12px;
+  background: #934300;
+  color: $white;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  transition: .3s;
+
+  &:hover {
+    background: #612d01;
   }
 
   &:active {
