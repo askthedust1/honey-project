@@ -35,11 +35,12 @@ const ProductItem: React.FC<Props> = ({ product }) => {
           </div>
         </div>
       </Link>
-      <div className={isInCart ? cls.btn_block_in_cart : cls.btn_block}>
-        <button onClick={handleToggleCart} type="button" className={cls.btn_prod}>
+      <div className={cls.btn_prod}>
+        <button onClick={handleToggleCart} type="button" className={isInCart ? cls.btn_block_in_cart : cls.btn_block}>
           {isInCart ? t('remove-from-basket') : t('add-to-basket')}
         </button>
       </div>
+
     </div>
   );
 };
