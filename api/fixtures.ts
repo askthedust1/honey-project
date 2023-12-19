@@ -166,7 +166,7 @@ const run = async () => {
     {
       category: honey._id,
       oldPrice: 500,
-      actualPrice: 500,
+      actualPrice: 400,
       amount: 20,
       image: 'fixtures/honey.svg',
       isHit: true,
@@ -264,7 +264,7 @@ const run = async () => {
     {
       category: honey._id,
       oldPrice: 400,
-      actualPrice: 400,
+      actualPrice: 250,
       amount: 20,
       image: 'fixtures/honey3.png',
       translations: {
@@ -288,7 +288,7 @@ const run = async () => {
     {
       category: honey._id,
       oldPrice: 300,
-      actualPrice: 300,
+      actualPrice: 200,
       amount: 20,
       image: 'fixtures/White-honey.svg',
       translations: {
@@ -435,6 +435,7 @@ const run = async () => {
       oldPrice: 400,
       actualPrice: 400,
       amount: 20,
+      isHit: true,
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {

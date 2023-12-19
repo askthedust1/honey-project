@@ -2,58 +2,66 @@
 @import "variables";
 
 .bestseller {
+  padding: 40px;
   text-transform: uppercase;
-  background: #FCF8F5;
-  padding-bottom: 43px;
-  @include mix.xxl {
-    padding-bottom: 0;
-  }
+
   button {
     border: none;
   }
-  &_container {
-    max-width: 1624px;
-    margin: 0 auto;
+
+  &_title {
+    color: $text-color;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 40px;
+
+    @include mix.md {
+      margin-bottom: 30px;
+      font-size: 30px;
+    }
+
+    @include mix.sm {
+      margin-bottom: 25px;
+      font-size: 25px;
+    }
   }
   &_btns {
-    margin: 114px 0 63px;
+    margin: 40px 0 65px;
     text-align: center;
     @include mix.lg {
-      margin: 74px 0 53px;
+      margin: 0 0 53px;
     }
   }
   &_btn {
-    border-radius: 16px;
+    border-radius: 7px;
     background: $white;
     box-shadow: 0 4px 4px 0 rgba($black, 0.25);
-    padding: 16px 32px;
+    padding: 10px 32px;
     color: $text-color;
     font-size: 18px;
     font-weight: 600;
-    margin: 0 20px;
-    //@include mix.lg {
-    //  padding: 8px 18px;
-    //  font-size: 30px;
-    //}
-    //@include mix.sm {
-    //  padding: 9px 20px;
-    //  font-size: 27px;
-    //  margin: 0 15px 0;
-    //}
-    //@include mix.xs {
-    //  font-size: 24px;
-    //}
+    margin: 0 20px 20px;
+    @include mix.lg {
+      padding: 8px 18px;
+    }
+    @include mix.sm {
+      padding: 7px 15px;
+      margin: 0;
+    }
+    @include mix.xs {
+    }
 
     &:hover {
       background: rgba($text-color, 0.05);
     }
 
     &_active {
-      background: $primary;
+      background: $text-color;
       color: $white;
 
       &:hover {
-        background: $primary;
+        background: $text-color;
       }
     }
   }
