@@ -9,27 +9,36 @@ $color-card-border: #e2e2e2;
 $color-icon-inCart: #934300;
 
 .container {
-  display: flex;
   @include mix.md2 {
     flex-direction: column;
   }
 }
 
 .box {
-  margin: 0 auto 0 240px;
+  display: flex;
+  justify-content: flex-start;
+  @include mix.md2 {
+    flex-direction: column;
+  }
 }
 
 .list {
+  max-width: 870px;
+  margin: 0 0 60px auto;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   color: $color-text;
-  margin-bottom: 60px;
 }
 
 .content {
+  display: flex;
+  align-items: center;
   position: relative;
-  margin-bottom: 20px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 15px 0 20px;
 }
 
 .titleBnr {
@@ -53,8 +62,7 @@ $color-icon-inCart: #934300;
 }
 
 .bnr {
-  max-width: 1100px;
-  margin-top: 15px;
+  width: 100%;
 }
 
 .card_block {
@@ -68,8 +76,8 @@ $color-icon-inCart: #934300;
 .card {
   display: flex;
   flex-direction: column;
-  width: 295px;
-  height: 375px;
+  width: 255px;
+  height: 335px;
   margin: 0 10px;
 }
 
@@ -90,11 +98,11 @@ $color-icon-inCart: #934300;
     border: none;
     cursor: pointer;
     text-decoration: none;
-    padding: 6px 0;
+    padding: 6px 0 6px 20px;
     border-radius: 12px;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
-    line-height: 28px;
+    line-height: 24px;
     letter-spacing: 1.95px;
     text-transform: uppercase;
     transition: .3s;
@@ -113,7 +121,7 @@ $color-icon-inCart: #934300;
       width: 25px;
       height: 25px;
       position: absolute;
-      left: 20px;
+      left: 25px;
       background: url("../assets/images/toCardIcon.svg") no-repeat center;
     }
   }
@@ -134,17 +142,19 @@ $color-icon-inCart: #934300;
 
 
 .imgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 39px;
   overflow: hidden;
   padding: 5px;
-  width: 295px;
-  height: auto;
+  height: 220px;
   transition: all 0.3s;
   position: relative;
 
   .cardImg {
-    width: 280px;
-    height: 340px;
+    width: 220px;
+    height: 220px;
     margin: 0 auto;
   }
 }
@@ -169,26 +179,30 @@ $color-icon-inCart: #934300;
   }
 }
 
-
-.content {
+.info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: auto;
   text-align: center;
   text-transform: uppercase;
 
   .title {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     color: $color-title;
-    font-size: 26px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 32.01px;
     text-transform: uppercase;
     margin: 5px 0;
+    height: 65px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .price {
-    font-size: 22px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 700;
     line-height: 30px;
