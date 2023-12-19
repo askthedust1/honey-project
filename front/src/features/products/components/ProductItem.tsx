@@ -24,7 +24,7 @@ const ProductItem: React.FC<Props> = ({ product }) => {
 
   return (
     <div className={cls.card_block}>
-      <Link href={`/products/${product._id}`}>
+      <Link href={`/products/${product._id}`} data-product-id={product._id}>
         <div className={cls.card}>
           <div className={cls.imgContainer}>
             <img className={cls.cardImg} src={picture} alt={product.title} />

@@ -1,5 +1,4 @@
 // import * as wasi from "wasi";
-import assert from 'assert';
 
 interface IDataTableCalls {
   value: string
@@ -55,25 +54,17 @@ Then('I see {string} in user menu', (login: string) => {
   I.see(text);
 });
 
-
-const productId = ['65796edc808b3741700725be', '65796edc808b3741700725bc', '65796edc808b3741700725c5', '65796edc808b3741700725bd'];
-Given('I am on products page', () => {
+Given('I am on the products page', () => {
   I.amOnPage('/products/page/1');
 });
 
-When('I click on a random product link', async () => {
-  const randomProductId = productId[Math.floor(Math.random() * productId.length)];
-  const productLinkSelector = `//a[contains(@href, '/products/${randomProductId}')]`;
-  await I.waitForElement(productLinkSelector);
-  I.click(productLinkSelector);
+When('I click on the product link', () => {
+  I.click('[data-product-id]');
 });
 
-Then('I should be on the product page', async () => {
-  const currentUrl = await I.grabCurrentUrl();
-  const expectedUrlPart = '/products/';
-
-  // Проверяем, что текущий URL содержит ожидаемый фрагмент URL (часть)
-  assert.ok(currentUrl.includes(expectedUrlPart), `Expected URL to include "${expectedUrlPart}", but got "${currentUrl}"`);
+Then('I see the product page and "В каталог"', async () => {
+  I.seeInCurrentUrl('/products/');
+  I.see('В каталог');
 });
 
 Given('I am on main page', () => {
