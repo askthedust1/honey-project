@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import cls from '../../../styles/_bestseller.module.scss';
+import otherCls from '../../../styles/_products.module.scss';
 import { useTranslation } from 'next-i18next';
 import { IProduct } from '@/types';
 import ProductItem from '@/features/products/components/ProductItem';
@@ -19,37 +20,44 @@ const Bestseller = () => {
 
   useEffect(() => {
     dispatch(fetchBestsellers({ type: activeBestseller, locale: i18n.language }));
-  }, [activeBestseller, dispatch]);
+  }, [activeBestseller, dispatch, i18n.language]);
 
   const switchBestseller = (query: string) => {
     dispatch(setActiveBestseller(query));
   };
   return (
     <div className={cls.bestseller}>
-      <div className={cls.bestseller_container}>
-        <div className={cls.bestseller_btns}>
-          <button
-            onClick={() => switchBestseller('hit')}
-            className={`${cls.bestseller_btn} ${
-              activeBestseller === 'hit' && cls.bestseller_btn_active
-            }`}
-          >
-            {t('bestsellerBtn1')}
-          </button>
-          <button
-            onClick={() => switchBestseller('new')}
-            className={`${cls.bestseller_btn} ${
-              activeBestseller === 'new' && cls.bestseller_btn_active
-            }`}
-          >
-            {t('bestsellerBtn2')}
-          </button>
-        </div>
-        <div className={cls.list}>
-          {bestsellers.map((el: IProduct) => (
-            <ProductItem key={el._id} product={el} />
-          ))}
-        </div>
+      <h2 className={cls.bestseller_title}>{t('bestsellerTitle')}</h2>
+      <div className={cls.bestseller_btns}>
+        <button
+          onClick={() => switchBestseller('hit')}
+          className={`${cls.bestseller_btn} ${
+            activeBestseller === 'hit' && cls.bestseller_btn_active
+          }`}
+        >
+          {t('bestsellerBtn1')}
+        </button>
+        <button
+          onClick={() => switchBestseller('new')}
+          className={`${cls.bestseller_btn} ${
+            activeBestseller === 'new' && cls.bestseller_btn_active
+          }`}
+        >
+          {t('bestsellerBtn2')}
+        </button>
+        <button
+          onClick={() => switchBestseller('offers')}
+          className={`${cls.bestseller_btn} ${
+            activeBestseller === 'offers' && cls.bestseller_btn_active
+          }`}
+        >
+          {t('offers')}
+        </button>
+      </div>
+      <div className={cls.list}>
+        {bestsellers.map((el: IProduct) => (
+          <ProductItem key={el._id} product={el} customClass={otherCls.card_block_white} />
+        ))}
       </div>
     </div>
   );

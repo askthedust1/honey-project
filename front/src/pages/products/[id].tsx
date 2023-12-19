@@ -108,9 +108,20 @@ const Product: MyPage = () => {
             </div>
 
             <p className={cls.product_info_description}>{product?.description}</p>
-            <h3 className={cls.product_info_price}>
-              {product?.actualPrice} {t('som')}
-            </h3>
+            {product?.oldPrice !== product?.actualPrice ? (
+              <div className={cls.product_info_prices}>
+                <h3 className={cls.product_info_oldPrice}>
+                  {product?.oldPrice} {t('som')}
+                </h3>
+                <h3 className={cls.product_info_actualPrice}>
+                  {product?.actualPrice} {t('som')}
+                </h3>
+              </div>
+            ) : (
+              <h3 className={cls.product_info_actualPrice}>
+                {product?.actualPrice} {t('som')}
+              </h3>
+            )}
 
             {product && product.amount > 0 && (
               <div className={cls.product_btns}>
