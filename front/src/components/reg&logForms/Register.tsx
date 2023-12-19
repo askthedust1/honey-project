@@ -6,14 +6,16 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectRegisterError, selectRegisterLoading } from '@/features/users/usersSlice';
 import acc from './form.module.scss';
 import { selectCart } from '@/features/cart/cartSlice';
-import LoadingSpinnerBtn from '@/components/UI/LoadingSpinnerBtn/LoadingSpinnerBtn';
+import { useTranslation } from 'next-i18next';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 
 interface Props {
   containerRef?: React.RefObject<HTMLDivElement>;
 }
 
-const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
+const Register: React.FC<Props> = ({ containerRef }) => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation('account');
   const error = useAppSelector(selectRegisterError);
   const loading = useAppSelector(selectRegisterLoading);
   const router = useRouter();
@@ -56,7 +58,7 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
   };
   return (
     <div className={acc.baseContainer} ref={containerRef}>
-      <div className={acc.header}>Регистрация</div>
+      <div className={acc.header}>{t('regin')}</div>
       <div className={acc.content}>
         <form className={acc.form} onSubmit={submitFormHandler}>
           <div className={acc.formGroup}>
@@ -65,7 +67,7 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
             {error && <span className={acc.error}>{getFieldError('displayName')}</span>}
           </div>
           <div className={acc.formGroup}>
-            <label htmlFor="password">Пароль*</label>
+            <label htmlFor="password">{t('password')}*</label>
             <input
               onChange={inputChangeHandler}
               type="password"
@@ -75,7 +77,7 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
             {error && <span className={acc.error}>{getFieldError('password')}</span>}
           </div>
           <div className={acc.formGroup}>
-            <label htmlFor="passwordConfirm">Повторите пароль*</label>
+            <label htmlFor="passwordConfirm">{t('passwordConfirm')}*</label>
             <input
               onChange={inputChangeHandler}
               type="password"
@@ -90,7 +92,7 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
             {error && <span className={acc.error}>{getFieldError('email')}</span>}
           </div>
           <div className={acc.formGroup}>
-            <label htmlFor="phone">Номер телефона*</label>
+            <label htmlFor="phone">{t('phone')}*</label>
             <input
               onChange={inputChangeHandler}
               type="text"
@@ -100,19 +102,12 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
             {error && <span className={acc.error}>{getFieldError('phone')}</span>}
           </div>
           <div className={acc.formGroup}>
-            <label htmlFor="address">Адрес*</label>
+            <label htmlFor="address">{t('address')}*</label>
             <input onChange={inputChangeHandler} type="text" name="address" placeholder="Адрес" />
             {error && <span className={acc.error}>{getFieldError('address')}</span>}
           </div>
           <div className={acc.footer}>
-            <button
-              style={{ display: 'flex', alignItems: 'center' }}
-              disabled={loading}
-              type="submit"
-              className={acc.btn}
-            >
-              {loading ? <LoadingSpinnerBtn /> : null} Зарегистрироваться
-            </button>
+            <ButtonUi type={'submit'} btn={'btn-primary'} text={t('register')} loading={loading} />
           </div>
         </form>
       </div>
@@ -120,4 +115,4 @@ const RegistrationPage: React.FC<Props> = ({ containerRef }) => {
   );
 };
 
-export default RegistrationPage;
+export default Register;

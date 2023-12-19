@@ -1,0 +1,11 @@
+{
+  "login": "Login",
+  "password": "Password",
+  "regin": "Registration",
+  "register": "Register",
+  "passwordConfirm": "Repeat the password",
+  "phone": "Phone number",
+  "address": "Address",
+  "acc": "Do you already have an account?",
+  "accReg": "Don't you have an account?"
+}

@@ -76,8 +76,8 @@
   font-weight: 600;
   line-height: normal;
   border: none;
-  width: 165px;
-  height: 48.445px;
+  padding: 15px 32px;
+  margin-left: auto;
 }
 
 .formBtn:disabled{
@@ -86,7 +86,11 @@
   cursor: no-drop;
 }
 
-.formWrp {
+.formBtn:hover {
+  background: $primary-hover;
+}
+
+.formWrpBtn {
   margin-top: 48px;
   text-align: right;
 }

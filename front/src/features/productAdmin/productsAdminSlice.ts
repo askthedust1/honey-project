@@ -102,4 +102,5 @@ export const selectAllProductsLoading = (state: RootState) => state.productsAdmi
 export const selectOneProductsLoading = (state: RootState) => state.productsAdmin.fetchOneLoading;
 export const selectActiveStatusLoading = (state: RootState) =>
   state.productsAdmin.patchActiveLoading;
+export const selectCreateProductsLoading = (state: RootState) => state.productsAdmin.createLoading;
 export const selectActiveHitLoading = (state: RootState) => state.productsAdmin.patchHitLoading;

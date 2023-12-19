@@ -11,6 +11,7 @@ import { selectUser } from '@/features/users/usersSlice';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 
 const Cart: MyPage = () => {
   const [isClient, setIsClient] = useState(false);
@@ -91,9 +92,12 @@ const Cart: MyPage = () => {
               </div>
               <div>
                 {cart.length ? (
-                  <button onClick={handlePageChange} className={cls.orderConfirm}>
-                    {t('checkout')}
-                  </button>
+                  <ButtonUi
+                    event={() => handlePageChange()}
+                    text={t('checkout')}
+                    type="button"
+                    btn={cls.orderConfirm}
+                  />
                 ) : (
                   <span></span>
                 )}

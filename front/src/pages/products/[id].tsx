@@ -11,6 +11,7 @@ import { addProduct, delProduct, selectCart } from '@/features/cart/cartSlice';
 import { MyPage } from '@/components/common/types';
 import axiosApi from '@/axiosApi';
 import Link from 'next/link';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 
 const Product: MyPage = () => {
   const product = useAppSelector(selectOneProduct);
@@ -113,13 +114,12 @@ const Product: MyPage = () => {
 
             {product && product.amount > 0 && (
               <div className={cls.product_btns}>
-                <button
-                  onClick={handleToggleCart}
+                <ButtonUi
+                  text={isInCart ? t('remove-from-basket') : t('add-to-basket')}
                   type="button"
-                  className={isInCart ? 'btn_in_cart' : 'btn-primary'}
-                >
-                  {isInCart ? t('remove-from-basket') : t('add-to-basket')}
-                </button>
+                  btn={isInCart ? 'btn_in_cart' : 'btn-primary'}
+                  event={() => handleToggleCart()}
+                />
               </div>
             )}
           </div>
