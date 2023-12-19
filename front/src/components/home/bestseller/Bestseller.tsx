@@ -20,7 +20,7 @@ const Bestseller = () => {
 
   useEffect(() => {
     dispatch(fetchBestsellers({ type: activeBestseller, locale: i18n.language }));
-  }, [activeBestseller, dispatch]);
+  }, [activeBestseller, dispatch, i18n.language]);
 
   const switchBestseller = (query: string) => {
     dispatch(setActiveBestseller(query));
