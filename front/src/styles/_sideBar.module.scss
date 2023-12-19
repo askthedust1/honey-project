@@ -1,16 +1,12 @@
 @use 'mixin' as mix;
 
-$color-link: #5A3733;
+$color-link: #5B5858;
 $color-title: #FF8F31;
 
 .sideBar {
   min-width: 220px;
   margin: 0;
-  position: fixed;
   z-index: 1;
-  top: 97px;
-  left: 155px;
-  background-color: #FCF8F5;
   overflow-x: hidden;
   padding-top: 20px;
 
@@ -42,16 +38,16 @@ $color-title: #FF8F31;
     width: 100%;
     display: flex;
     flex-direction: column;
-    border-right: 2px solid $color-link;
+    border-right: 1px solid $color-link;
     margin-top: 27px;
     padding: 5px 5px 5px 0;
 
     a {
       margin: 22px 0 0;
-      font-size: 20px;
+      font-size: 18px;
       font-style: normal;
-      font-weight: 700;
-      line-height: normal;
+      font-weight: 400;
+      line-height: 30.01px;
       color: $color-link;
       display: inline-block;
       white-space: normal;

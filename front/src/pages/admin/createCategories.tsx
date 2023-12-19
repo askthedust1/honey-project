@@ -5,13 +5,18 @@ import { useRouter } from 'next/router';
 import { createCategory } from '@/features/adminCategories/adminCategoriesThunk';
 import cls from '@/styles/_createCategories.module.scss';
 import { ICategoryMutation } from '@/types';
-import { selectErrorsCategoriesAdmin } from '@/features/adminCategories/adminCategoriesSlice';
+import {
+  selectCreateCategoriesLoading,
+  selectErrorsCategoriesAdmin,
+} from '@/features/adminCategories/adminCategoriesSlice';
 import { MyPage } from '@/components/common/types';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 
 const CreateCategories: MyPage = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const error = useAppSelector(selectErrorsCategoriesAdmin);
+  const loading = useAppSelector(selectCreateCategoriesLoading);
 
   const [file, setFile] = useState<File | null>();
   const [state, setState] = useState({
@@ -136,7 +141,7 @@ const CreateCategories: MyPage = () => {
               </span>
             )}
           </label>
-          <button type="submit">Сохранить</button>
+          <ButtonUi text="Сохранить" type="submit" loading={loading} />
         </form>
       </div>
     </ProtectedRoute>

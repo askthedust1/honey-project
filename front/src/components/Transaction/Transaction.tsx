@@ -8,6 +8,7 @@ import { selectOrder, selectOrderLoading } from '@/features/order/orderSlice';
 import { selectUser } from '@/features/users/usersSlice';
 import { fetchOrder } from '@/features/order/orderThunk';
 import { useRouter } from 'next/router';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 
 const Transaction = () => {
   const { t } = useTranslation('transaction');
@@ -72,7 +73,7 @@ const Transaction = () => {
                   <span>{t('cashPayment')}</span>
                 </div>
               </div>
-              <Link className={cls.historyBtn} href={'/orders/history'}>{t('purchaseHistory')}</Link>
+              <ButtonUi btn={cls.historyBtn} text={t('purchaseHistory')} link={'/orders/history'} />
             </div>
           </section>
         </div>

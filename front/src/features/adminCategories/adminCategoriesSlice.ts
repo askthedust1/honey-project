@@ -74,7 +74,7 @@ export const adminCategoriesSlice = createSlice({
 export const adminCategoriesReducer = adminCategoriesSlice.reducer;
 export const selectAdminCategories = (state: RootState) => state.adminCategories.items;
 export const selectAdminCategoryInfo = (state: RootState) => state.adminCategories.itemInfo;
-
 export const selectAdminCategoriesLoading = (state: RootState) => state.adminCategories.loading;
-
+export const selectCreateCategoriesLoading = (state: RootState) =>
+  state.adminCategories.createLoading;
 export const selectErrorsCategoriesAdmin = (state: RootState) => state.adminCategories.error;

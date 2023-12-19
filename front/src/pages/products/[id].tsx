@@ -7,18 +7,24 @@ import { apiUrl } from '@/constants';
 import cls from '../../styles/_product.module.scss';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { addProduct } from '@/features/cart/cartSlice';
+import { addProduct, delProduct, selectCart } from '@/features/cart/cartSlice';
 import { MyPage } from '@/components/common/types';
 import axiosApi from '@/axiosApi';
 import Link from 'next/link';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 
 const Product: MyPage = () => {
   const product = useAppSelector(selectOneProduct);
+  const cartState = useAppSelector(selectCart);
   const { t } = useTranslation('common');
   const dispatch = useAppDispatch();
 
-  const addToCart = () => {
-    if (product) {
+  const isInCart = cartState.some((unit) => product?._id === unit.product._id);
+
+  const handleToggleCart = () => {
+    if (isInCart && product) {
+      dispatch(delProduct(product._id));
+    } else if (product) {
       dispatch(addProduct(product));
     }
   };
@@ -107,10 +113,13 @@ const Product: MyPage = () => {
             </h3>
 
             {product && product.amount > 0 && (
-              <div onClick={() => addToCart()} className={cls.product_btns}>
-                <button type="button" className="btn-primary">
-                  {t('add-to-basket')}
-                </button>
+              <div className={cls.product_btns}>
+                <ButtonUi
+                  text={isInCart ? t('remove-from-basket') : t('add-to-basket')}
+                  type="button"
+                  btn={isInCart ? 'btn_in_cart' : 'btn-primary'}
+                  event={() => handleToggleCart()}
+                />
               </div>
             )}
           </div>

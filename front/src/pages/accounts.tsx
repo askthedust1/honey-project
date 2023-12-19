@@ -5,9 +5,11 @@ import acc from '@/components/reg&logForms/accounts.module.scss';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
+import { useTranslation } from 'next-i18next';
 
 const Accounts: MyPage = () => {
   const [isLoginActive, setIsLoginActive] = useState(false);
+  const { t } = useTranslation('account');
   let container = useRef<HTMLDivElement | null>(null);
   let currentRef = useRef<HTMLDivElement | null>(null);
   let rightSideRef = useRef<HTMLDivElement | null>(null);
@@ -29,7 +31,7 @@ const Accounts: MyPage = () => {
 
   const current = isLoginActive ? (
     <>
-      <p>У вас еще нет аккаунта?</p>
+      <p>{t('accReg')}</p>
       <br />
       <button
         style={{
@@ -41,12 +43,12 @@ const Accounts: MyPage = () => {
           fontSize: '15px',
         }}
       >
-        Зарегистрироваться!
+        {t('register')}!
       </button>
     </>
   ) : (
     <div style={{ paddingLeft: '10px' }}>
-      <p>У вас уже есть аккаунт?</p>
+      <p>{t('acc')}</p>
       <br />
       <button
         style={{
@@ -58,7 +60,7 @@ const Accounts: MyPage = () => {
           fontSize: '15px',
         }}
       >
-        Войти!
+        {t('login')}!
       </button>
     </div>
   );
@@ -108,7 +110,7 @@ const RightSide: React.FC<RightSideProps> = (props) => {
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer'])),
+      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer', 'account'])),
     },
   };
 });
