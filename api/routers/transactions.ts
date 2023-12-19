@@ -8,7 +8,6 @@ import permit from '../middleware/permit';
 
 const transactionsRouter = express.Router();
 transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
-  console.log(req.query);
   try {
     if (req.query.statusId && req.query.statusPage) {
       // console.log('statusPage router');
@@ -87,6 +86,7 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
 
 transactionsRouter.get('/history', auth, async (req, res) => {
   const user = (req as RequestWithUser).user;
+  const lang = req.headers['accept-language'] || 'ru';
   try {
     const transactions = await Transaction.find({ user: user._id }).populate({
       path: 'kits',
@@ -100,9 +100,26 @@ transactionsRouter.get('/history', auth, async (req, res) => {
         },
       },
     });
-    console.log(transactions[0].kits);
 
-    return res.send(transactions);
+    const fit = transactions.map((i) => {
+      const transaction = i.toObject();
+      return {
+        ...transaction,
+        kits: i.kits.map((k) => {
+          const kit = k.toObject();
+          return {
+            ...kit,
+            product: {
+              ...kit.product,
+              title: kit.product.translations[lang].title,
+              description: kit.product.translations[lang].description,
+            },
+          };
+        }),
+      };
+    });
+
+    return res.send(fit);
   } catch (error) {
     console.error('Error fetching orders:', error);
     return res.status(500).send('Internal Server Error');

@@ -12,15 +12,7 @@ export interface IUserApi {
 export interface IProductPost {
   category: string;
   translations: {
-    en: {
-      title: string;
-      description: string;
-    };
-    ru: {
-      title: string;
-      description: string;
-    };
-    kg: {
+    [key: string]: {
       title: string;
       description: string;
     };
@@ -51,15 +43,7 @@ export interface ITransactionPost {
 
 export interface ICategoryPost {
   translations: {
-    en: {
-      title: string;
-      description?: string;
-    };
-    ru: {
-      title: string;
-      description?: string;
-    };
-    kg: {
+    [key: string]: {
       title: string;
       description?: string;
     };

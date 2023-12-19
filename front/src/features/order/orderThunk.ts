@@ -16,7 +16,7 @@ export const fetchOrder = createAsyncThunk<
     const dateTime = order.dateOrder;
     const token = userState.user?.token;
     const orderResponse = await axiosApi.get<IOrder>(`/transactions/user/${dateTime}`, {
-      headers: { Authorization: token },
+      headers: { ...axiosApi.defaults.headers.common, Authorization: token },
     });
     return orderResponse.data;
   } catch (e) {
@@ -36,7 +36,7 @@ export const createOrder = createAsyncThunk<
     const userState = thunkAPI.getState().users;
     const token = userState.user?.token;
     const orderResponse = await axiosApi.post('/transactions', fullOrder, {
-      headers: { Authorization: token },
+      headers: { ...axiosApi.defaults.headers.common, Authorization: token },
     });
     return orderResponse.data;
   } catch (e) {
@@ -47,16 +47,16 @@ export const createOrder = createAsyncThunk<
 
 export const fetchOrdersAll = createAsyncThunk<
   IOrder[],
-  void,
+  string,
   {
     state: RootState;
   }
->('order/fetchAll', async (_, thunkAPI) => {
+>('order/fetchAll', async (lang, thunkAPI) => {
   try {
     const userState = thunkAPI.getState().users;
     const token = userState.user?.token;
     const ordersAllResponse = await axiosApi.get<IOrder[]>(`/transactions/history`, {
-      headers: { Authorization: token },
+      headers: { 'Accept-Language': lang, Authorization: token },
     });
     return ordersAllResponse.data;
   } catch (e) {
