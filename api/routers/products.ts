@@ -113,12 +113,53 @@ productRouter.get('/:id', async (req, res) => {
     if (!product) {
       return res.status(404).send({ error: 'Not found' });
     }
+
     if (
       (user && user.role === 'admin') ||
       (!user && product.isActive) ||
       (user && user.role === 'user' && product.isActive)
     ) {
       return res.send(product);
+    }
+
+    return res.status(404).send({ error: 'Not found' });
+  } catch {
+    return res.sendStatus(500);
+  }
+});
+
+productRouter.get('/:id/relatedProducts', async (req, res) => {
+  try {
+    const token = req.get('Authorization');
+    const user = await User.findOne({ token });
+
+    const productId = req.params.id;
+    const product = await Product.findById(productId);
+
+    if (!product) {
+      return res.status(404).send({ error: 'Not found' });
+    }
+
+    const relatedProducts = await Product.find({
+      category: product.category as string,
+      isActive: true,
+      _id: { $ne: productId },
+    }).limit(4).populate({
+      path: 'category',
+      select: ['translations'],
+      model: Category,
+    });
+
+    if (!relatedProducts) {
+      return res.status(404).send({ error: 'Not found' });
+    }
+
+    if (
+        (user && user.role === 'admin') ||
+        (!user && product.isActive) ||
+        (user && user.role === 'user' && product.isActive)
+    ) {
+      return res.send(relatedProducts);
     }
 
     return res.status(404).send({ error: 'Not found' });
