@@ -1,39 +1,121 @@
 @use 'mixin' as mix;
 
 .footer {
-  background-color: #5A3733;
-  padding-bottom: 36px;
+  padding-bottom: 23px;
+  position: relative;
 
+  .logo_block {
+    background-color: #D3A863;
+    border-radius: 50%;
+  }
+
+  .flower_left {
+    position: absolute;
+    top: -4px;
+    left: -278px;
+    z-index: 0;
+    width: 380px;
+    height: 317px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../assets/images/flowers.png") ;
+    @include mix.xl {
+      top: auto;
+      left: -239px;
+      z-index: 0;
+      width: 380px;
+      height: 100%;
+    }
+    @include mix.sm {
+      left: -317px;
+      width: 420px;
+    }
+  }
+  .flower_right {
+    position: absolute;
+    top: -121px;
+    right: -216px;
+    z-index: 0;
+    width: 548px;
+    height: 434px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-image: url("../assets/images/flowers.png");
+    @include mix.xl {
+      top: -105px;
+      right: -216px;
+      z-index: 0;
+      width: 554px;
+      height: -webkit-fill-available;
+    }
+    @include mix.md {
+      top: -105px;
+      right: -209px;
+      z-index: 0;
+      width: 494px;
+    }
+    @include mix.sm {
+      display: none;
+    }
+  }
   &_inner {
-    max-width: 1585px;
+    max-width: 1170px;
+    position: relative;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 36px 26px 15px;
-    border-bottom: 1px solid #F5F5F580;
     @include mix.sm {
-      padding: 36px 0 15px;
+      justify-content: space-between;
     }
 
     &_logo {
-      width: 180px;
-      height: 72px;
+      width: 163px;
+      height: 152px;
       flex-shrink: 0;
       cursor: pointer;
+      background-color: #D3A863;
+      border-radius: 65%;
+      display: block;
+      position: absolute;
+      bottom: 74%;
+      left: 43%;
       @include mix.md {
-        width: 40%;
+        left: 36%;
+        bottom: 73%;
+      }
+      @include mix.md2 {
+        width: 154px;
+        height: 144px;
+        bottom: 70%;
+        left: 34%;
       }
       @include mix.sm {
-        width: 54%;
-        margin: 0 auto 20px;
+        bottom: 78%;
+        left: 30%;
       }
       @include mix.xs {
-        width: 74%;
+        bottom: 79%;
+        left: 30%;
       }
       img {
-        @include mix.md {
-          width: auto;
+        position: absolute;
+        bottom: 83px;
+        left: 9%;
+        width: 126px;
+        height: 46px;
+        @include mix.md2 {
+          bottom: 87px;
+          left: 9%;
+          width: 116px;
+          height: 37px;
+        }
+        @include mix.xs {
+          bottom: 95px;
+          left: 10%;
+          width: 112px;
+          height: 34px;
         }
       }
     }
@@ -41,6 +123,10 @@
     &_box_links {
       display: flex;
       flex-direction: column;
+      &:nth-child(4) {
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      }
       &:nth-child(5) {
         @include mix.xl {
           margin: 0 56px 10px auto;
@@ -60,41 +146,36 @@
       }
 
       h3 {
-        color: #FFB931;
+        color: #000000;
         margin: 0;
         font-size: 20px;
         font-style: normal;
-        font-weight: 700;
+        text-transform: uppercase;
+        font-weight: bold;
         line-height: normal;
         @include mix.lg {
-          font-size: 25px;
-        }
-        @include mix.lm {
-          font-size: 21px;
+          font-size: 16px;
         }
         @include mix.md {
-          font-size: 18px;
+          font-size: 14px;
         }
       }
 
       a {
-        color: #FFFFFF;
+        color: #000000;
         margin: 14px 0 0;
         font-feature-settings: 'clig' off, 'liga' off;
         font-size: 16px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 500;
         line-height: normal;
         cursor: pointer;
         transition: 0.2s;
         @include mix.lg {
-          font-size: 18px;
-        }
-        @include mix.lm {
-          font-size: 17px;
+          font-size: 14px;
         }
         @include mix.md {
-          font-size: 15px;
+          font-size: 12px;
         }
       }
 
@@ -129,21 +210,31 @@
 
       &_icons {
         display: flex;
-        justify-content: space-between;
+        margin: 0 auto;
         align-items: center;
 
         a {
-          width: 28px;
-          height: 28px;
+          background-color: #FFB606;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
           cursor: pointer;
           transition: 0.2s;
           text-align: center;
           display: flex;
+          margin: 0 10px;
+          @include mix.md {
+            width: 32px;
+            height: 32px;
+          }
 
           svg {
             margin: auto 0;
-            width: 50px;
-            height: 50px;
+            color: #ffffff;
+            width: 60%;
+            height: 60%;
             @include mix.md {
               width: auto;
               height: auto;
@@ -152,7 +243,7 @@
         }
 
         a:hover svg {
-          fill: #FFB931;
+          fill: #ffffff;
         }
 
         path {
@@ -163,7 +254,7 @@
   }
 
   &_reserved_text {
-    color: #FFFFFF;
+    color: #000000;
     font-weight: 300;
     text-align: center;
     font-size: 15px;
