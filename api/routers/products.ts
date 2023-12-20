@@ -64,7 +64,7 @@ productRouter.get('/', async (req, res) => {
     }
 
     if (req.query.categoryId && req.query.categoryPage) {
-      const categoryPerPage = 9;
+      const categoryPerPage = 4;
       let pageCategory = 1;
 
       pageCategory = +req.query.categoryPage;
