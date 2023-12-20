@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { LoginMutation } from '@/types';
 import { useRouter } from 'next/navigation';
-import acc from '@/components/reg&logForms/form.module.scss';
+import acc from '@/styles/form.module.scss';
 import { login } from '@/features/users/usersThunk';
 import { selectLoginError, selectLoginLoading } from '@/features/users/usersSlice';
 import { useTranslation } from 'next-i18next';
