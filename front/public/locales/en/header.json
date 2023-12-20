@@ -5,5 +5,7 @@
   "delivery": "Delivery",
   "contacts": "Contacts",
   "login": "Login",
-  "logout": "Logout"
+  "logout": "Logout",
+  "cart": "Cart",
+  "orderHistory": "View Order History"
 }

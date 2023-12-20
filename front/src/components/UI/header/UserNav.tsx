@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch } from '@/store/hook';
 import { logout } from '@/features/users/usersThunk';
 import cls from '../../../styles/_header.module.scss';
@@ -14,10 +14,28 @@ const UserNav = () => {
   };
   const { t } = useTranslation('header');
 
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
   return (
-    <li onClick={handleLogout} className={cls.menu_item}>
-      {t('logout')}
-    </li>
+    <>
+      <li className={cls.menu_item} onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+        <span className={cls.user_icon}></span>
+        {showDropdown && (
+          <div className={cls.dropdown}>
+            <ul className={cls.dropdown_content}>
+              <li onClick={handleLogout}>{t('logout')}</li>
+              <li>
+                <a href="/order-history">{t('orderHistory')}</a>
+              </li>
+            </ul>
+          </div>
+        )}
+      </li>
+    </>
   );
 };
 
