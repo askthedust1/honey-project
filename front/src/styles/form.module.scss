@@ -1,3 +1,5 @@
+@use 'mixin' as mix;
+
 .baseContainer {
   width: 100%;
   display: flex;
@@ -49,6 +51,10 @@
           border: 0;
           border-radius: 4px;
           transition: all 250ms ease-in-out;
+
+          @include mix.md {
+            background-color: white;
+          }
           &:hover {
             background-color: #ffffff;
             box-shadow: 0 0 14px 0.3px rgba(255, 99, 0, 0.8);

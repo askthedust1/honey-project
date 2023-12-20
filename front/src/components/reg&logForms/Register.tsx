@@ -4,7 +4,7 @@ import { RegisterMutation } from '@/types';
 import { register } from '@/features/users/usersThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectRegisterError, selectRegisterLoading } from '@/features/users/usersSlice';
-import acc from './form.module.scss';
+import acc from '@/styles/form.module.scss';
 import { selectCart } from '@/features/cart/cartSlice';
 import { useTranslation } from 'next-i18next';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
