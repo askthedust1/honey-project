@@ -6,11 +6,16 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { MyPage } from '@/components/common/types';
 import axiosApi from '@/axiosApi';
+import Pagination from "@/components/UI/pagination/Pagination";
+import {useAppSelector} from "@/store/hook";
+import {selectTotalPages} from "@/features/products/productsSlice";
 
 const ProductPage: MyPage = () => {
+  const totalPagesState = useAppSelector(selectTotalPages);
   return (
     <>
       <ProductsAll />
+      {totalPagesState > 0 ? <Pagination productsActive={true} categoriesActive={false} /> : <></>}
     </>
   );
 };

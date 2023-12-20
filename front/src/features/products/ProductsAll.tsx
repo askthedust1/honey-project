@@ -16,7 +16,6 @@ interface Props {
 const ProductsAll: React.FC<Props> = ({ pageName }) => {
   const products = useAppSelector(selectAllProducts);
   const { t } = useTranslation('common');
-  const totalPagesState = useAppSelector(selectTotalPages);
 
   return (
     <div className={cls.container}>
@@ -32,7 +31,6 @@ const ProductsAll: React.FC<Props> = ({ pageName }) => {
                       <ProductItem key={el._id} product={el} />
                   ))}
               </div>
-              {totalPagesState > 0 ? <Pagination productsActive={true} categoriesActive={false} /> : <></>}
           </div>
 
       </div>
