@@ -2,7 +2,8 @@ import express from 'express';
 import Product from '../models/Product';
 import Category from '../models/Category';
 import User from '../models/User';
-
+//НЕ ВКЛЮЧАТЬ ПРОВЕРКУ ПРИТИРА И ИСПРАВЛЕНИЯ!
+// ТУТ ВСЕ ПРАВИЛЬНО, ЕСЛИ ОН ПОСТАВИТ СВОИ ЛИШНИЕ ЗАПЯТЫЕ, ЗАПРОСЫ ПОЛОМАЮТСЯ! СПАСИБО)
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
@@ -12,14 +13,33 @@ productRouter.get('/', async (req, res) => {
     const filterBy = req.query.filterBy;
 
     if (filterBy && filterBy === 'hit') {
-      const result = await Product.find({ isHit: true, isActive: true }).limit(6);
+      const result = await Product.find({
+        $and: [
+          { $expr: { $eq: ['$oldPrice', '$actualPrice'] } },
+          { isHit: true },
+          { isActive: true },
+        ]
+      }).limit(6);
       return res.send(result);
     }
 
     if (filterBy && filterBy === 'new') {
-      const result = await Product.find({ isActive: true, isHit: false })
+      const result = await Product.find({
+        $and: [
+          { $expr: { $eq: ['$oldPrice', '$actualPrice'] } },
+          { isHit: false },
+          { isActive: true },
+        ]
+      })
         .sort({ datetime: 'descending' })
         .limit(6);
+      return res.send(result);
+    }
+
+    if (filterBy && filterBy === 'offers') {
+      const result = await Product.find({
+        $and: [{ $expr: { $ne: ['$oldPrice', '$actualPrice'] } }, { isActive: true }]
+      }).limit(6);
       return res.send(result);
     }
 

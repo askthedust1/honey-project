@@ -1,7 +1,8 @@
-Feature: product
-  We have a product info page.
+@watchOneProductInfo
+Feature: Product
+  We have product info page.
 
-  Scenario: Product info
-    Given I am on products page
-    When I click on a random product link
-    Then I should be on the product page
+  Scenario: Navigate to Product Page
+    Given I am on the products page
+    When I click on the product link
+    Then I see the product page and "В каталог"

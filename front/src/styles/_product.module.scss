@@ -54,7 +54,7 @@
     }
 
     &_return {
-      color: $primary;
+      color: $text-color;
       display: flex;
       align-items: center;
       font-weight: 400;
@@ -101,10 +101,23 @@
       }
     }
 
-    &_price {
+    &_prices {
+      display: flex;
+      align-items: center;
+    }
+
+    &_actualPrice {
+      color: $text-color;
+      font-size: 22px;
+      margin-bottom: 26px;
+    }
+
+    &_oldPrice {
       font-size: 22px;
       color: $text-color;
       margin-bottom: 26px;
+      text-decoration: line-through;
+      margin-right: 30px;
     }
 
     &_description {
