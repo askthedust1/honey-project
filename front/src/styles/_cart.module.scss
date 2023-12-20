@@ -1,5 +1,5 @@
 .container {
-  margin: 50px auto;
+  margin: 50px auto 100px auto;
   overflow: auto;
   border-radius: 30px;
   padding: 20px 5px;
@@ -48,7 +48,6 @@
         padding: 0 15px;
         border-bottom: 1px solid #ddd;
         overflow: hidden;
-        white-space: nowrap;
         text-overflow: ellipsis;
       }
       th {
@@ -70,15 +69,15 @@
         }
         .name {
           color:  #17183B;
-          font-size: 20px;
+          font-size: 14px;
           font-weight: 800;
           margin-bottom: 12px;
         }
         .delete {
           color: #E14B4B;
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 500;
-          line-height: 24px;
+          line-height: 14px;
           padding-left: 31px;
           background: url("../assets/images/iconDeleteProduct.png") no-repeat center left;
           cursor: pointer;
@@ -95,10 +94,11 @@
       .amount {
         display: flex;
         align-items: center;
-        justify-content: end;
+        justify-content: flex-end;
         border-radius: 4px;
         border: 1px solid #A2A3B1;
         background: #FFF;
+        white-space: nowrap;
         width: 124px;
         height: 40px;
         span {
@@ -114,16 +114,18 @@
       }
       .price {
         color: #17183B;
-        font-size: 16px;;
+        font-size: 14px;;
         font-weight: 400;
         line-height: 24px;
+        white-space: nowrap;
       }
       .cost {
         color: #17183B;
         text-align: right;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 800;
         line-height: 24px;
+        white-space: nowrap;
       }
     }
     .orderInfo {

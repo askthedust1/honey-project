@@ -35,9 +35,8 @@ $color-icon-inCart: #934300;
   display: flex;
   align-items: center;
   position: relative;
-  height: 100px;
+  height: 230px;
   overflow: hidden;
-  border-radius: 10px;
   margin: 15px 0 20px;
 }
 
@@ -114,7 +113,7 @@ $color-icon-inCart: #934300;
     margin: auto 0 7px;
 
     &:hover {
-      background: $color-text;
+      background: #D3A863;
       border-radius: 20px;
       color: white;
     }
