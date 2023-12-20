@@ -29,7 +29,7 @@ const UserNav = () => {
             <ul className={cls.dropdown_content}>
               <li onClick={handleLogout}>{t('logout')}</li>
               <li>
-                <a href="/order-history">{t('orderHistory')}</a>
+                <a href="/orders/history">{t('orderHistory')}</a>
               </li>
             </ul>
           </div>
