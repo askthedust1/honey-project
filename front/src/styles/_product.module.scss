@@ -141,7 +141,17 @@
 
 .relatedWrap {
   display: flex;
+  justify-content: space-between;
   margin-bottom: 30px;
+
+  @include xl {
+    flex-wrap: wrap;
+  }
+
+  @include lg {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
 }
 
 .relatedText {
