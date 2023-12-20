@@ -10,12 +10,16 @@ interface Props {
 const RelatedProducts: React.FC<Props> = ({ products }) => {
   return (
     <div>
-      <h4 className={cls.relatedText}>Похожие товары:</h4>
-      <div className={cls.relatedWrap}>
-        {products.map((el: IProduct) => (
-          <ProductItem key={el._id} product={el} />
-        ))}
-      </div>
+      {products.length === 0 ? null : (
+        <div>
+          <h4 className={cls.relatedText}>Похожие товары:</h4>
+          <div className={cls.relatedWrap}>
+            {products.map((el: IProduct) => (
+              <ProductItem key={el._id} product={el} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
