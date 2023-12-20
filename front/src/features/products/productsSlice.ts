@@ -11,6 +11,7 @@ interface ProductsState {
   currentPage: number;
   fetchLoading: boolean;
   oneProduct: IProductView | null;
+  relatedProducts: IProduct[];
   fetchOneLoading: boolean;
   bestsellers: IProduct[];
   fetchBestsellersLoading: boolean;
@@ -22,6 +23,7 @@ const initialState: ProductsState = {
   totalPages: 1,
   currentPage: 1,
   oneProduct: null,
+  relatedProducts: [],
   fetchLoading: false,
   fetchOneLoading: false,
   bestsellers: [],
@@ -73,7 +75,8 @@ export const productsSlice = createSlice({
     });
     builder.addCase(getProduct.fulfilled, (state, { payload: product }) => {
       state.fetchOneLoading = false;
-      state.oneProduct = product;
+      state.oneProduct = product.oneProduct;
+      state.relatedProducts = product.relatedProducts;
     });
     builder.addCase(getProduct.rejected, (state) => {
       state.fetchOneLoading = false;
@@ -96,6 +99,7 @@ export const selectAllProducts = (state: RootState) => state.products.items;
 export const selectTotalPages = (state: RootState) => state.products.totalPages;
 export const selectCurrentPage = (state: RootState) => state.products.currentPage;
 export const selectOneProduct = (state: RootState) => state.products.oneProduct;
+export const selectRelatedProducts = (state: RootState) => state.products.relatedProducts;
 export const selectBestsellers = (state: RootState) => state.products.bestsellers;
 export const selectActiveBestsellers = (state: RootState) => state.products.activeBestseller;
 export const selectAllProductsLoading = (state: RootState) => state.products.fetchLoading;

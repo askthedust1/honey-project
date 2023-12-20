@@ -70,8 +70,11 @@ $color-icon-inCart: #934300;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 39px;
+  &_white {
+    background-color: $color-card-bg;
+  }
 }
-
 
 .card {
   display: flex;
@@ -90,6 +93,7 @@ $color-icon-inCart: #934300;
 .btn_prod {
   margin-top: auto;
   width: 90%;
+
   button {
     position: relative;
     display: inline-block;
@@ -108,14 +112,17 @@ $color-icon-inCart: #934300;
     transition: .3s;
     width: 100%;
     margin: auto 0 7px;
+
     &:hover {
       background: $color-text;
       border-radius: 20px;
       color: white;
     }
+
     &:active {
       transform: scale(0.95);
     }
+
     &::before {
       content: '';
       width: 25px;
@@ -125,20 +132,20 @@ $color-icon-inCart: #934300;
       background: url("../assets/images/toCardIcon.svg") no-repeat center;
     }
   }
+
   .btn_block {
     color: $color-title;
   }
 
   .btn_block_in_cart {
     color: $color-icon-inCart;
+
     &::before {
       background-image: url("../assets/images/iconDeleteProduct.png");
     }
   }
 
 }
-
-
 
 
 .imgContainer {
@@ -202,12 +209,28 @@ $color-icon-inCart: #934300;
   }
 
   .price {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 30px;
-    color: $color-icon-price;
-    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &_actualPrice {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 30px;
+      color: $color-icon-price;
+      margin: 0;
+    }
+
+    &_oldPrice {
+      text-decoration: line-through;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 30px;
+      color: $color-icon-price;
+      margin: 0 25px 0 0;
+    }
   }
 }
 

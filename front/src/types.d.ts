@@ -91,6 +91,8 @@ export interface IProductOneView {
       description: string;
     };
   };
+  title: string;
+  description?: string;
   isActive: boolean;
   isHit: boolean;
   datetime: string;

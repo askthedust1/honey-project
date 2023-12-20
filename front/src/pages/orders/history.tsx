@@ -7,22 +7,25 @@ import cls from '@/styles/_userOrdersHistory.module.scss';
 import Link from 'next/link';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const History: MyPage = () => {
+  const { t, i18n } = useTranslation('ordersHistory');
+  const currentLang = i18n.language || 'ru';
   const orders = useAppSelector(selectUserOrders);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchOrdersAll());
-  }, [dispatch]);
+    dispatch(fetchOrdersAll(currentLang));
+  }, [currentLang, dispatch]);
 
   return (
     <div className={cls.history}>
-      <h1 className={cls.history_mainTitle}>История покупок</h1>
+      <h1 className={cls.history_mainTitle}>{t('title')}</h1>
       {!orders.length ? (
         <div>
-          <h2 className={cls.history_title}>Заказов еще нет</h2>
+          <h2 className={cls.history_title}>{t('noOrders')}</h2>
           <div className={cls.history_return}>
-            <Link href={'/products/page/1'}>Заказать</Link>
+            <Link href={'/products/page/1'}>{t('orderBtn')}</Link>
           </div>
         </div>
       ) : (
@@ -30,12 +33,12 @@ const History: MyPage = () => {
           <table>
             <thead>
               <tr>
-                <th>Номер заказа</th>
-                <th>Адрес</th>
-                <th>Дата</th>
-                <th>Заказ</th>
-                <th>Общая сумма</th>
-                <th>Статус</th>
+                <th>{t('numberOrder')}</th>
+                <th>{t('address')}</th>
+                <th>{t('date')}</th>
+                <th>{t('orderList')}</th>
+                <th>{t('total')}</th>
+                <th>{t('status')}</th>
               </tr>
             </thead>
             <tbody className={cls.adminBestsellersTable_body}>
@@ -58,13 +61,18 @@ const History: MyPage = () => {
                     {order.kits.map((i) => (
                       <ul key={i.product._id} className={cls.list}>
                         <li>
-                          {i.product.translations.ru.title} - <span>{i.amount} шт.</span>
+                          {i.product.title} -{' '}
+                          <span>
+                            {i.amount} {t('piece')}
+                          </span>
                         </li>
                       </ul>
                     ))}
                   </td>
-                  <td>{order.totalPrice} сом</td>
-                  <td>{order.status ? 'Оплачено' : 'Не подтвержден'}</td>
+                  <td>
+                    {order.totalPrice} {t('som')}
+                  </td>
+                  <td>{order.status ? t('statusYes') : t('statusNo')}</td>
                 </tr>
               ))}
             </tbody>
@@ -78,11 +86,9 @@ const History: MyPage = () => {
 History.Layout = 'Main';
 
 export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
-  // const lang = locale ?? 'ru';
-  // axiosApi.defaults.headers.common['Accept-Language'] = lang;
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer'])),
+      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'ordersHistory', 'footer'])),
     },
   };
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from './pagination.module.scss';
+import cls from '../../../styles/pagination.module.scss';
 import Link from 'next/link';
 import { useAppSelector } from '@/store/hook';
 import { selectCurrentPage, selectTotalPages } from '@/features/products/productsSlice';

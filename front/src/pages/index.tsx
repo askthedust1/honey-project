@@ -16,8 +16,8 @@ const Home: MyPage = () => {
     <>
       <main>
         <HomePage />
-        <CategoriesList />
         <Bestseller />
+        <CategoriesList />
         <BenefitsOfHoney />
       </main>
     </>

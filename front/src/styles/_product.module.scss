@@ -3,7 +3,7 @@
 
 
 .product {
-  padding: 70px 0;
+  padding: 30px 0 70px 0;
 
   .row {
     display: flex;
@@ -46,28 +46,11 @@
   }
 
   &_info {
-    padding: 0 40px 0;
+    padding: 30px 40px 0;
 
     @include lg {
       padding: 0 15px 0;
       margin-left: 10px;
-    }
-
-    &_return {
-      color: $primary;
-      display: flex;
-      align-items: center;
-      font-weight: 400;
-      text-decoration-line: underline;
-      margin-bottom: 10px;
-
-      &:hover {
-        text-decoration: none;
-      }
-
-      &_link {
-        margin-left: 5px;
-      }
     }
 
     &_category {
@@ -101,10 +84,23 @@
       }
     }
 
-    &_price {
+    &_prices {
+      display: flex;
+      align-items: center;
+    }
+
+    &_actualPrice {
+      color: $text-color;
+      font-size: 22px;
+      margin-bottom: 26px;
+    }
+
+    &_oldPrice {
       font-size: 22px;
       color: $text-color;
       margin-bottom: 26px;
+      text-decoration: line-through;
+      margin-right: 30px;
     }
 
     &_description {
@@ -124,4 +120,42 @@
       text-align: center;
     }
   }
+}
+
+.product_info_return {
+  color: $text-color;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  text-decoration-line: underline;
+  margin: 30px 0 0 0;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &_link {
+    margin-left: 5px;
+  }
+}
+
+.relatedWrap {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  @include xl {
+    flex-wrap: wrap;
+  }
+
+  @include lg {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+.relatedText {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 30px;
 }

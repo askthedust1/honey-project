@@ -1,4 +1,5 @@
-$circle-size: 70px;
+@use 'mixin' as mix;
+$circle-size: 40px;
 $inner-circle-size: 50px;
 $inner-circle-color: white;
 
@@ -7,14 +8,21 @@ $inner-circle-color: white;
   justify-content: center;
   width: 100%;
   margin-bottom: 30px;
+  padding-left: 320px;
+  @include mix.md2 {
+    padding-left: 0;
+  }
 
   .pagination_inner {
     display: flex;
     justify-content: space-between;
     max-width: 460px;
-    width: 100%;
+    width: 70%;
     align-items: center;
     align-self: center;
+    @include mix.md {
+      width: 90%;
+    }
 
     .circle_transparent {
       width: $circle-size;
@@ -23,20 +31,20 @@ $inner-circle-color: white;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.5em;
+      font-size: 50px;
       color: transparent;
     }
 
     .span_text {
-      font-size: 74px;
+      font-size: 50px;
     }
 
     .previous, .next{
       display: inline-block;
       color: white;
       font-weight: bold;
-      font-size: 74px;
-      line-height: 55px;
+      font-size: 50px;
+      line-height: 32px;
       text-align: center;
 
       width: $circle-size;
@@ -61,14 +69,14 @@ $inner-circle-color: white;
 
 
     .circle {
-      width: 110px;
-      height: 110px;
+      width: 80px;
+      height: 80px;
       background-color: #FF8F31;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 46px;
+      font-size: 30px;
       font-weight: bold;
       color: $inner-circle-color;
 

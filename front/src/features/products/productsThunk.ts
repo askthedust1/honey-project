@@ -42,10 +42,17 @@ export const fetchBestsellers = createAsyncThunk<IProduct[], { type: string; loc
   },
 );
 
-export const getProduct = createAsyncThunk<IProductView, { id: string; locale: string }>(
+export const getProduct = createAsyncThunk(
   'products/getOne',
-  async (query) => {
-    const response = await axiosApi<IProductView>(`/products/${query.id}`);
-    return useProductTranslation(response.data, query.locale);
+  async (query: { id: string; locale: string }) => {
+    const [productResponse, relatedProductsResponse] = await Promise.all([
+      axiosApi<IProductView>(`/products/${query.id}`),
+      axiosApi<IProduct[]>(`/products/${query.id}/relatedProducts`),
+    ]);
+
+    const product = useProductTranslation(productResponse.data, query.locale);
+    const relatedProductsOne = useProductsTranslation(relatedProductsResponse.data, query.locale);
+
+    return { oneProduct: product, relatedProducts: relatedProductsOne };
   },
 );
