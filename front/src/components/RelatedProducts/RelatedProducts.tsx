@@ -2,7 +2,6 @@ import React from 'react';
 import { IProduct } from '@/types';
 import ProductItem from '@/features/products/components/ProductItem';
 import cls from '../../styles/_product.module.scss';
-import otherCls from '@/styles/_products.module.scss';
 
 interface Props {
   products: IProduct[];
@@ -16,7 +15,7 @@ const RelatedProducts: React.FC<Props> = ({ products }) => {
           <h4 className={cls.relatedText}>Похожие товары:</h4>
           <div className={cls.relatedWrap}>
             {products.map((el: IProduct) => (
-              <ProductItem key={el._id} product={el} customClass={otherCls.card_block_white} />
+              <ProductItem key={el._id} product={el} />
             ))}
           </div>
         </div>

@@ -77,10 +77,6 @@ const Cart: MyPage = () => {
                 <span>{getTotalPrice()} сом</span>
               </div>
               <div className={cls.item}>
-                <span>{t('discount')}</span>
-                <span>0</span>
-              </div>
-              <div className={cls.item}>
                 <span>{t('delivery')}</span>
                 <span className={cls.free}>{t('free')}</span>
               </div>
