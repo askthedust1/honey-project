@@ -12,11 +12,19 @@ import plata_kg from '@/assets/images/partners/plata_kg.png';
 import usaid from '@/assets/images/partners/usaid.png';
 import { useTranslation } from 'next-i18next';
 import { MyPage } from '@/components/common/types';
+import Head from 'next/head';
 
 const About: MyPage = () => {
   const { t } = useTranslation('common');
   return (
     <div className={cls.about}>
+      <div>
+        <Head>
+          <title>{t('about')}</title>
+          <meta name="description" content="О нас" />
+          <meta name="keywords" content="производство меда, мед бишкек, аман мед" />
+        </Head>
+      </div>
       <div className={cls.container}>
         <h1 className={cls.about_title}>{t('about')}</h1>
         <div className={cls.row}>

@@ -7,5 +7,6 @@
   "phone": "Phone number",
   "address": "Address",
   "acc": "Do you already have an account?",
-  "accReg": "Don't you have an account?"
+  "accReg": "Don't you have an account?",
+  "title": "Login|Registration"
 }

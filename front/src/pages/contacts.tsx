@@ -6,11 +6,19 @@ import { useTranslation } from 'next-i18next';
 import shop from '@/assets/images/shop_honey.jpeg';
 import Link from 'next/link';
 import { MyPage } from '@/components/common/types';
+import Head from 'next/head';
 
 const Contacts: MyPage = () => {
   const { t } = useTranslation('common');
   return (
     <div className={cls.contacts}>
+      <div>
+        <Head>
+          <title>{t('contacts')}</title>
+          <meta name="description" content="Контактная информация" />
+          <meta name="keywords" content="номер телефона дома меда, email, адрес дома меда," />
+        </Head>
+      </div>
       <div className={cls.row}>
         <div className={cls.col_50}>
           <div className={cls.contacts_media}>

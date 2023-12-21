@@ -14,6 +14,7 @@ import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import Head from 'next/head';
 
 const Order: MyPage = () => {
   const router = useRouter();
@@ -86,6 +87,13 @@ const Order: MyPage = () => {
     <>
       {isClient && user && !loading ? (
         <div className={cls.container}>
+          <div>
+            <Head>
+              <title>{t('basket')}</title>
+              <meta name="description" content="Корзина с товарами" />
+            </Head>
+          </div>
+
           <section className={cls.title}>
             <h3>{t('basket')}</h3>
             <div className={cls.return}>

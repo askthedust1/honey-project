@@ -6,6 +6,7 @@ import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
 import { useTranslation } from 'next-i18next';
+import Head from 'next/head';
 
 const Accounts: MyPage = () => {
   const [isLoginActive, setIsLoginActive] = useState(false);
@@ -58,6 +59,12 @@ const Accounts: MyPage = () => {
 
   return (
     <div className={acc.App}>
+      <div>
+        <Head>
+          <title>{t('title')}</title>
+          <meta name="description" content="Описание страницы" />
+        </Head>
+      </div>
       <Mobile
         current={current}
         currentActive={currentActive}
