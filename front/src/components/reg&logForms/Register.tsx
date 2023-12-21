@@ -107,7 +107,7 @@ const Register: React.FC<Props> = ({ containerRef }) => {
             {error && <span className={acc.error}>{getFieldError('address')}</span>}
           </div>
           <div className={acc.footer}>
-            <ButtonUi type={'submit'} btn={'btn-primary'} text={t('register')} loading={loading} />
+            <ButtonUi type={'submit'} btn={acc.btn} text={t('register')} loading={loading} />
           </div>
         </form>
       </div>

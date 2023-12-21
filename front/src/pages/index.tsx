@@ -5,15 +5,27 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import BenefitsOfHoney from '@/components/home/benefitsOfHoney/BenefitsOfHoney';
 import Bestseller from '@/components/home/bestseller/Bestseller';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { fetchBanners } from '@/features/banners/bannersThunk';
 import axiosApi from '@/axiosApi';
 import { fetchBestsellers } from '@/features/products/productsThunk';
 import { MyPage } from '@/components/common/types';
+import Mission from '@/components/home/mission/Mission';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 
 const Home: MyPage = () => {
+  useEffect(() => {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+
+    return () => {
+      firstScriptTag.parentNode?.removeChild(tag);
+    };
+  }, []);
+
   const { t } = useTranslation('header');
   return (
     <>
@@ -27,6 +39,7 @@ const Home: MyPage = () => {
         </div>
         <HomePage />
         <Bestseller />
+        <Mission />
         <CategoriesList />
         <BenefitsOfHoney />
       </main>
@@ -52,7 +65,13 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   return {
     props: {
       name: 'Products',
-      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'home', 'header', 'footer'])),
+      ...(await serverSideTranslations(locale ?? 'ru', [
+        'common',
+        'home',
+        'header',
+        'footer',
+        'mission',
+      ])),
     },
   };
 });

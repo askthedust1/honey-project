@@ -1,3 +1,4 @@
+@use 'mixin' as mix;
 .container {
   margin: 50px auto 100px auto;
   overflow: auto;
@@ -30,6 +31,12 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+
+    @include mix.xl {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
     .nullOrder {
       display: flex;
       align-items: center;
@@ -44,11 +51,20 @@
       border-radius: 30px;
       padding: 20px;
       border-collapse: collapse;
+
+      @include mix.xl {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
       th, td {
         padding: 0 15px;
         border-bottom: 1px solid #ddd;
         overflow: hidden;
         text-overflow: ellipsis;
+        @include mix.md {
+          padding: 0 5px;
+        }
       }
       th {
         padding-bottom: 10px;
@@ -61,17 +77,26 @@
       .productInfo {
         display: flex;
         align-items: center;
+        @include mix.lm {
+          flex-direction: column-reverse;
+        }
         .img {
           max-width: 110px;
           vertical-align: middle;
           border-radius: 4px;
           margin-right: 37px;
+          @include mix.lm {
+            margin-right: 0;
+          }
         }
         .name {
           color:  #17183B;
           font-size: 14px;
           font-weight: 800;
           margin-bottom: 12px;
+          @include mix.lm {
+            margin: 10px 0 2px;
+          }
         }
         .delete {
           color: #E14B4B;
@@ -81,6 +106,9 @@
           padding-left: 31px;
           background: url("../assets/images/iconDeleteProduct.png") no-repeat center left;
           cursor: pointer;
+          @include mix.lm {
+            display: none;
+          }
           &:hover {
             color: #fda400;
             background-image: url("../assets/images/iconDeleteProductHover.png");
@@ -118,6 +146,9 @@
         font-weight: 400;
         line-height: 24px;
         white-space: nowrap;
+        @include mix.md {
+          display: none;
+        }
       }
       .cost {
         color: #17183B;
@@ -178,6 +209,11 @@
         font-weight: 700;
         line-height: 20px;
         letter-spacing: 0.1px;
+        @include mix.xl {
+          width: 80%;
+          margin: 0 auto;
+        }
+
         &:hover {
           background: #c75a00;
         }
@@ -185,6 +221,28 @@
           background: red;
         }
       }
+    }
+  }
+  .deleteMobileContainer {
+    display: none;
+    @include mix.lm {
+      display: table-cell;
+    }
+  }
+
+  .deleteMobile {
+    background: url("../assets/images/iconDeleteProduct.png") no-repeat center;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    &:active {
+      background-image: url("../assets/images/iconDeleteProductActive.png");
+    }
+  }
+  .priceHead {
+    @include mix.md {
+      display: none;
     }
   }
 

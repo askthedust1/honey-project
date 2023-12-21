@@ -139,7 +139,7 @@
       visibility: visible;
       left: 0;
       height: auto;
-      padding: 20px 0 100px;
+      padding: 20px 0;
     }
     .menu__btn > span {
       transform: rotate(45deg);
@@ -219,6 +219,9 @@
   position: relative;
   color: #3C3C3C;
   text-transform: uppercase;
+  @include mix.lm {
+    font-size: 10px;
+  }
   &:hover {
     background-color: #CFD8DC;
   }
