@@ -17,6 +17,7 @@ import {
   patchHitProduct,
 } from '@/features/adminBestsellers/adminBestsellersThunk';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
+import Head from 'next/head';
 
 const BestsellerAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -55,6 +56,9 @@ const BestsellerAdminPage: MyPage = () => {
   return (
     <ProtectedRoute>
       <div className={cls.container}>
+        <Head>
+          <title>Хиты</title>
+        </Head>
         <div className={cls.bestseller}>
           <h1 className={cls.bestseller_mainTitle}>Хиты</h1>
           <div className={cls.bestseller_activeBest}>

@@ -6,14 +6,24 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { MyPage } from '@/components/common/types';
 import axiosApi from '@/axiosApi';
-import Pagination from "@/components/UI/pagination/Pagination";
-import {useAppSelector} from "@/store/hook";
-import {selectTotalPages} from "@/features/products/productsSlice";
+import Pagination from '@/components/UI/pagination/Pagination';
+import { useAppSelector } from '@/store/hook';
+import { selectTotalPages } from '@/features/products/productsSlice';
+import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 
 const ProductPage: MyPage = () => {
   const totalPagesState = useAppSelector(selectTotalPages);
+  const { t } = useTranslation('common');
   return (
     <>
+      <div>
+        <Head>
+          <title>{t('products')}</title>
+          <meta name="description" content="Вся продукция" />
+          <meta name="keywords" content="мед, сухофрукты, лечебные травы и сборы" />
+        </Head>
+      </div>
       <ProductsAll />
       {totalPagesState > 0 ? <Pagination productsActive={true} categoriesActive={false} /> : <></>}
     </>

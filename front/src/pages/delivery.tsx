@@ -15,6 +15,7 @@ import pay from '@/assets/images/pay.png';
 import pay1 from '@/assets/images/pay1.png';
 import pay2 from '@/assets/images/pay2.png';
 import DeliveryItms from '@/components/DelivetyItm/DeliveryItms';
+import Head from 'next/head';
 
 const Delivery: MyPage = () => {
   const { t } = useTranslation('common');
@@ -40,6 +41,13 @@ const Delivery: MyPage = () => {
 
   return (
     <div className={cls.delivery}>
+      <div>
+        <Head>
+          <title>{t('delivery')}</title>
+          <meta name="description" content="Доставка" />
+          <meta name="keywords" content="доставка меда, доставка аман" />
+        </Head>
+      </div>
       <h1 className={cls.delivery_title}>{t('delivery')}</h1>
       <h3 className={cls.delivery_subtitle}>{t('deliveryProcess')}</h3>
       <p className={cls.delivery_info}>{t('inform')}</p>

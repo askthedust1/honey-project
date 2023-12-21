@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import Head from 'next/head';
 
 const Cart: MyPage = () => {
   const [isClient, setIsClient] = useState(false);
@@ -39,6 +40,11 @@ const Cart: MyPage = () => {
     <>
       {isClient ? (
         <div className={cls.container}>
+          <div>
+            <Head>
+              <title>{t('basket')}</title>
+            </Head>
+          </div>
           <section className={cls.titleContainer}>
             <h3>{t('basket')}</h3>
             <div className={cls.return}>

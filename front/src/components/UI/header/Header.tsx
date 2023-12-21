@@ -65,6 +65,19 @@ const Header = () => {
               </li>
             </ul>
           </nav>
+          <div className={cls.cartBlock}>
+            <div className={cls.menu_item}>
+              <Link href={'/cart'} className={cls.basket}>
+                {typeof window !== 'undefined' && cart && isClient ? (
+                  <span className={cls.basket_item}>
+                    {cart.reduce((total, item) => total + item.amount, 0)}
+                  </span>
+                ) : (
+                  <span></span>
+                )}
+              </Link>
+            </div>
+          </div>
           <div className={cls.multilingualOne}>
             <LanguageSwitcher />
           </div>

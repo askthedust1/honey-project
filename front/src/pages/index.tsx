@@ -11,8 +11,11 @@ import axiosApi from '@/axiosApi';
 import { fetchBestsellers } from '@/features/products/productsThunk';
 import { MyPage } from '@/components/common/types';
 import Mission from '@/components/home/mission/Mission';
+import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 
 const Home: MyPage = () => {
+  const { t } = useTranslation('header');
   useEffect(() => {
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
@@ -27,9 +30,14 @@ const Home: MyPage = () => {
   return (
     <>
       <main>
+        <Head>
+          <title>{t('home')}</title>
+          <meta name="description" content="Описание страницы" />
+          <meta name="keywords" content="мёд, мед бишкек, Мед купить" />
+        </Head>
         <HomePage />
-        <Bestseller />
         <Mission />
+        <Bestseller />
         <CategoriesList />
         <BenefitsOfHoney />
       </main>

@@ -24,5 +24,7 @@
   "deliveryProcess": "The delivery process",
   "deliveryM": "Shipping Methods",
   "payment": "Payment methods",
-  "for": "For your convenience, we offer several payment methods. You can choose the one that you find more convenient:"
+  "for": "For your convenience, we offer several payment methods. You can choose the one that you find more convenient:",
+  "sideBarTitle": "Categories",
+  "main": "Main"
 }
