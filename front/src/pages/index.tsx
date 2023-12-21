@@ -29,8 +29,8 @@ const Home: MyPage = () => {
       <main>
         <HomePage />
         <Bestseller />
-        <CategoriesList />
         <Mission />
+        <CategoriesList />
         <BenefitsOfHoney />
       </main>
     </>
