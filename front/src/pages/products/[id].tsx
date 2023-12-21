@@ -23,7 +23,6 @@ import Image from 'next/image';
 const Product: MyPage = () => {
   const product = useAppSelector(selectOneProduct);
   const products = useAppSelector(selectRelatedProducts);
-  const oneProductLoader = useAppSelector(selectFetchOneLoad);
   const cartState = useAppSelector(selectCart);
   const { t } = useTranslation('common');
   const dispatch = useAppDispatch();
