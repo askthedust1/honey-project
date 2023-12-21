@@ -5,11 +5,19 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import cls from '@/styles/_delivery.module.scss';
 import { useTranslation } from 'next-i18next';
 import { MyPage } from '@/components/common/types';
+import Head from 'next/head';
 
 const Delivery: MyPage = () => {
   const { t } = useTranslation('common');
   return (
     <div className={cls.delivery}>
+      <div>
+        <Head>
+          <title>{t('delivery')}</title>
+          <meta name="description" content="Доставка" />
+          <meta name="keywords" content="доставка меда, доставка аман" />
+        </Head>
+      </div>
       <h1 className={cls.delivery_title}>{t('delivery')}</h1>
       <p className={cls.delivery_info}>Тут пока пусто, но есть переход на страницу)</p>
       <div className={cls.delivery_media}>

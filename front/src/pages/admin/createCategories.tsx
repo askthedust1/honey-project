@@ -11,6 +11,7 @@ import {
 } from '@/features/adminCategories/adminCategoriesSlice';
 import { MyPage } from '@/components/common/types';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import Head from 'next/head';
 
 const CreateCategories: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -74,6 +75,9 @@ const CreateCategories: MyPage = () => {
 
   return (
     <ProtectedRoute>
+      <Head>
+        <title>Создание категорий</title>
+      </Head>
       <div className={cls.createCategory}>
         <h2>Форма создания категории</h2>
         <form className={cls.createCategory_form} onSubmit={submitFormHandler}>
