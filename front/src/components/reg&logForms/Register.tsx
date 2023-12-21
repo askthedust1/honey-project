@@ -4,7 +4,7 @@ import { RegisterMutation } from '@/types';
 import { register } from '@/features/users/usersThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectRegisterError, selectRegisterLoading } from '@/features/users/usersSlice';
-import acc from './form.module.scss';
+import acc from '@/styles/form.module.scss';
 import { selectCart } from '@/features/cart/cartSlice';
 import { useTranslation } from 'next-i18next';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
@@ -107,7 +107,7 @@ const Register: React.FC<Props> = ({ containerRef }) => {
             {error && <span className={acc.error}>{getFieldError('address')}</span>}
           </div>
           <div className={acc.footer}>
-            <ButtonUi type={'submit'} btn={'btn-primary'} text={t('register')} loading={loading} />
+            <ButtonUi type={'submit'} btn={acc.btn} text={t('register')} loading={loading} />
           </div>
         </form>
       </div>

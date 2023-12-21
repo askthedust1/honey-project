@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import Head from 'next/head';
 
 const History: MyPage = () => {
   const { t, i18n } = useTranslation('ordersHistory');
@@ -20,6 +21,10 @@ const History: MyPage = () => {
 
   return (
     <div className={cls.history}>
+      <Head>
+        <title>{t('title')}</title>
+        <meta name="description" content="История покупок" />
+      </Head>
       <h1 className={cls.history_mainTitle}>{t('title')}</h1>
       {!orders.length ? (
         <div>

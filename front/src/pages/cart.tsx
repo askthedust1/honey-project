@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@/store/hook';
-import { selectCart } from '@/features/cart/cartSlice';
+import {selectCart} from '@/features/cart/cartSlice';
 import cls from '../styles/_cart.module.scss';
 import { ICart } from '@/types';
 import CartItem from '@/components/CartItem/CartItem';
@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import Head from 'next/head';
 
 const Cart: MyPage = () => {
   const [isClient, setIsClient] = useState(false);
@@ -39,6 +40,11 @@ const Cart: MyPage = () => {
     <>
       {isClient ? (
         <div className={cls.container}>
+          <div>
+            <Head>
+              <title>{t('basket')}</title>
+            </Head>
+          </div>
           <section className={cls.titleContainer}>
             <h3>{t('basket')}</h3>
             <div className={cls.return}>
@@ -53,8 +59,9 @@ const Cart: MyPage = () => {
                     <tr>
                       <th className={cls.productHead}>{t('product')}</th>
                       <th>{t('quantity')}</th>
-                      <th>{t('price')}</th>
+                      <th className={cls.priceHead}>{t('price')}</th>
                       <th>{t('total')}</th>
+                      <th className={cls.deleteMobileContainer}></th>
                     </tr>
                   </thead>
                   <tbody className={cls.tableBodyBlock}>

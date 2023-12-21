@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next';
 import cls from '../../styles/_products.module.scss';
 import SideBar from '@/components/UI/sideBar/SideBar';
 import bnr from '@/assets/images/prodBannner.png';
+import Image from 'next/image';
 
 interface Props {
   pageName?: string;
@@ -19,7 +20,8 @@ const ProductsAll: React.FC<Props> = ({ pageName }) => {
   return (
     <div className={cls.container}>
       <div className={cls.content}>
-        <img className={cls.bnr} src={bnr.src} alt="prod" />
+        <Image width={1000} height={230} className={cls.bnr} src={bnr} alt={'prod'} />
+        {/*<img className={cls.bnr} src={bnr.src} alt="prod" />*/}
         <h2 className={cls.titleBnr}>{pageName ? pageName : t('products')}</h2>
       </div>
       <div className={cls.box}>

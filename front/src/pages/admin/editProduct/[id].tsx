@@ -11,6 +11,7 @@ import { useParams } from 'next/navigation';
 import { selectOneProductForAdmin } from '@/features/productAdmin/productsAdminSlice';
 import { fetchOneProductForAdmin, putProduct } from '@/features/productAdmin/productsAdminThunk';
 import { apiUrl } from '@/constants';
+import Head from 'next/head';
 
 const EditProduct: MyPage = () => {
   const { id } = useParams() || {};
@@ -124,6 +125,9 @@ const EditProduct: MyPage = () => {
   return (
     <ProtectedRoute>
       <div className={cls.createCategory}>
+        <Head>
+          <title>Редактировать продукт</title>
+        </Head>
         <h2>Редактировать продукт</h2>
         <form className={cls.createCategory_form} onSubmit={submitFormHandler}>
           <div className={cls.nameProductsBlock}>

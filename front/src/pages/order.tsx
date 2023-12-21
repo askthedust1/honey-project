@@ -15,6 +15,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import Loading from '@/components/UI/loading/loading';
+import Head from 'next/head';
 
 const Order: MyPage = () => {
   const router = useRouter();
@@ -33,7 +34,7 @@ const Order: MyPage = () => {
     setIsClient(true);
     setLoading(false);
     if ((!user && !loading) || (!cart.length && !loading)) {
-      router.push('/');
+      router.push('/').then(r => console.log(r));
     }
   }, [loading, router, user]);
 
@@ -87,6 +88,13 @@ const Order: MyPage = () => {
     <>
       {isClient && user && !loading ? (
         <div className={cls.container}>
+          <div>
+            <Head>
+              <title>{t('basket')}</title>
+              <meta name="description" content="Корзина с товарами" />
+            </Head>
+          </div>
+
           <section className={cls.title}>
             <h3>{t('basket')}</h3>
             <div className={cls.return}>

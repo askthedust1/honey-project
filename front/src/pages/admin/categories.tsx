@@ -8,10 +8,11 @@ import { selectAdminCategories } from '@/features/adminCategories/adminCategorie
 import cls from '../../styles/_categories.module.scss';
 import { apiUrl } from '@/constants';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MyPage } from '@/components/common/types';
 import ModalEditCategories from '@/components/UI/modalEditCategories/ModalEditCategories';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
+import Head from 'next/head';
 
 const CategoriesAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -40,6 +41,9 @@ const CategoriesAdminPage: MyPage = () => {
   return (
     <ProtectedRoute>
       <div className={cls.categories_page}>
+        <Head>
+          <title>Категории</title>
+        </Head>
         <div>
           <h2>Категории</h2>
           <AdminNav

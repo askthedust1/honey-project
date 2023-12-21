@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { LoginMutation } from '@/types';
 import { useRouter } from 'next/navigation';
-import acc from '@/components/reg&logForms/form.module.scss';
+import acc from '@/styles/form.module.scss';
 import { login } from '@/features/users/usersThunk';
 import { selectLoginError, selectLoginLoading } from '@/features/users/usersSlice';
 import { useTranslation } from 'next-i18next';
@@ -61,7 +61,7 @@ const Login: React.FC<Props> = ({ containerRef }) => {
             />
           </div>
           <div className={acc.footer}>
-            <ButtonUi type={'submit'} btn={'btn-primary'} text={t('login')} loading={loading} />
+            <ButtonUi type={'submit'} btn={acc.btn} text={t('login')} loading={loading} />
           </div>
         </form>
       </div>

@@ -11,6 +11,7 @@ import {
 } from '@/features/orderAdmin/ordersAdminThunk';
 import { selectCurrentPage, selectOrdersAdminAll } from '@/features/orderAdmin/ordersAdminSlice';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
+import Head from 'next/head';
 
 const Orders: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -40,6 +41,9 @@ const Orders: MyPage = () => {
 
   return (
     <ProtectedRoute>
+      <Head>
+        <title>Заказы</title>
+      </Head>
       <div className={cls.container}>
         <div className={cls.ordersBlock}>
           <h1 className={cls.adminOrdersMainTitle}>Заказы</h1>

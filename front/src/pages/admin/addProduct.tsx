@@ -10,6 +10,7 @@ import { selectAdminCategories } from '@/features/adminCategories/adminCategorie
 import { createProduct } from '@/features/productAdmin/productsAdminThunk';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import { selectCreateProductsLoading } from '@/features/productAdmin/productsAdminSlice';
+import Head from 'next/head';
 
 const AddProductForm: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -90,6 +91,9 @@ const AddProductForm: MyPage = () => {
   return (
     <ProtectedRoute>
       <div className={cls.createCategory}>
+        <Head>
+          <title>Создать новый продукт</title>
+        </Head>
         <h2>Создать новый продукт</h2>
         <form className={cls.createCategory_form} onSubmit={submitFormHandler}>
           <div className={cls.nameProductsBlock}>

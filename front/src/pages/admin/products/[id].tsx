@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { fetchOneProductForAdmin } from '@/features/productAdmin/productsAdminThunk';
 import { selectOneProductForAdmin } from '@/features/productAdmin/productsAdminSlice';
 import { apiUrl } from '@/constants';
+import Head from 'next/head';
 
 const ProductInfo: MyPage = () => {
   const { id } = useParams() || {};
@@ -24,6 +25,9 @@ const ProductInfo: MyPage = () => {
     <ProtectedRoute>
       {product && (
         <div className={cls.productsContainer}>
+          <Head>
+            <title>{product.translations.ru.title}</title>
+          </Head>
           <h2>Информация о продукте</h2>
           <div className={cls.productInfoBlock}>
             <div className={cls.photoBlock}>

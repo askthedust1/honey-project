@@ -13,6 +13,7 @@ import Link from 'next/link';
 import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
 import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
+import Head from 'next/head';
 
 const ProductsAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -36,6 +37,9 @@ const ProductsAdminPage: MyPage = () => {
 
   return (
     <ProtectedRoute>
+      <Head>
+        <title>Продукты</title>
+      </Head>
       <div className={cls.container}>
         <div className={cls.productsBlock}>
           <h1 className={cls.adminProductsMainTitle}>Продукты</h1>

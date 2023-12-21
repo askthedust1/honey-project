@@ -12,6 +12,7 @@ import { fetchCategories } from '@/features/categories/categoriesThunk';
 import axiosApi from '@/axiosApi';
 import { selectCategories } from '@/features/categories/categoriesSlice';
 import { MyPage } from '@/components/common/types';
+import Head from 'next/head';
 
 const ProductByCategoryPage: MyPage = () => {
   const router = useRouter();
@@ -22,6 +23,12 @@ const ProductByCategoryPage: MyPage = () => {
 
   return (
     <>
+      <div>
+        <Head>
+          <title>{category?.title}</title>
+          <meta name="keywords" content={category?.title} />
+        </Head>
+      </div>
       <ProductsAll pageName={category?.title} />
       {totalPagesState > 0 ? (
         <Pagination
