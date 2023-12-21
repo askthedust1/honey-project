@@ -139,7 +139,7 @@
       visibility: visible;
       left: 0;
       height: auto;
-      padding: 20px 0;
+      padding: 20px 0 60px;
     }
     .menu__btn > span {
       transform: rotate(45deg);
@@ -262,6 +262,9 @@
   width: 300px;
   background-color: white;
   padding: 10px;
+  @include mix.lm {
+    padding: 5px 0 10px;
+  }
 }
 
 
@@ -270,6 +273,10 @@
   width: 100%;
   margin: 0 auto;
   list-style-type: disc;
+  @include mix.lm {
+    list-style-type: none;
+    padding: 0 14px;
+  }
   li {
     margin-top: 10px;
     cursor: pointer;
@@ -280,6 +287,9 @@
     position: relative;
     color: #3C3C3C;
     text-transform: uppercase;
+    @include mix.lm {
+      font-size: 10px;
+    }
   }
   li:hover {
     color: #FF8F31;
