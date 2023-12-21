@@ -8,11 +8,14 @@ import { MyPage } from '@/components/common/types';
 import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
 import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
 import { createProduct } from '@/features/productAdmin/productsAdminThunk';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import { selectCreateProductsLoading } from '@/features/productAdmin/productsAdminSlice';
 
 const AddProductForm: MyPage = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const categories = useAppSelector(selectAdminCategories);
+  const loading = useAppSelector(selectCreateProductsLoading);
   const [file, setFile] = useState<File | null>();
   const [state, setState] = useState({
     titleEN: '',
@@ -227,7 +230,7 @@ const AddProductForm: MyPage = () => {
               </label>
             </div>
           </div>
-          <button type="submit">Создать новый продукт</button>
+          <ButtonUi text="Создать новый продукт" loading={loading} type="submit" />
         </form>
       </div>
     </ProtectedRoute>

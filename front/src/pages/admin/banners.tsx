@@ -13,6 +13,7 @@ import { IBannerPost } from '@/types';
 import FileUpload from '@/components/UI/FileUpload/FileUpload';
 import cls from '@/styles/_bannersAdmin.module.scss';
 import { useRouter } from 'next/router';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 
 const BannersAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -145,10 +146,8 @@ const BannersAdminPage: MyPage = () => {
               <p className={cls.formTitle}>Загрузите изображение с разрешением 1624px х 698px:</p>
               <FileUpload onChange={filesInputChangeHandler} name="image" label="image" />
             </div>
-            <div className={cls.formWrp}>
-              <button disabled={loading} className={cls.formBtn} type="submit">
-                Отправить
-              </button>
+            <div className={cls.formWrpBtn}>
+              <ButtonUi text="Отправить" loading={loading} type={'submit'} btn={cls.formBtn} />
             </div>
           </form>
         </div>

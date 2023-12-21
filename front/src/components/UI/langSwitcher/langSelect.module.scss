@@ -1,12 +1,15 @@
 @import '@/styles/_variables.scss';
 
 .lang_select {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
-  color: $text-color;
-  border: 2px solid $text-color;
+  font-family: 'Open Sans', sans-serif;
+  color: #3C3C3C;
+  border: 2px solid #3C3C3C;
   border-radius: 4px;
-  background-color: $white;
+  background-color: white;
+  display: block;
+  margin: -9px 0 0 0;
 }
 
 .lang_select:focus {

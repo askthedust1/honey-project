@@ -91,6 +91,8 @@ export interface IProductOneView {
       description: string;
     };
   };
+  title: string;
+  description?: string;
   isActive: boolean;
   isHit: boolean;
   datetime: string;
@@ -139,7 +141,7 @@ export interface IProductMutation {
 }
 
 export interface IProductMutationNew {
-  _id: string;
+  _id?: string;
   category: string;
   oldPrice: number;
   actualPrice: number;

@@ -5,5 +5,7 @@
   "delivery": "Жеткирүү",
   "contacts": "Байланыштар",
   "login": "Кирүү",
-  "logout": "Чыгуу"
+  "logout": "Чыгуу",
+  "cart": "Себет",
+  "orderHistory": "Заказдардын тарыхы"
 }

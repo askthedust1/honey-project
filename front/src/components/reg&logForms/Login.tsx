@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { LoginMutation } from '@/types';
 import { useRouter } from 'next/navigation';
-import acc from '@/components/reg&logForms/form.module.scss';
+import acc from '@/styles/form.module.scss';
 import { login } from '@/features/users/usersThunk';
-import { selectLoginError, selectLoginLoading } from "@/features/users/usersSlice";
-import LoadingSpinnerBtn from "@/components/UI/LoadingSpinnerBtn/LoadingSpinnerBtn";
+import { selectLoginError, selectLoginLoading } from '@/features/users/usersSlice';
+import { useTranslation } from 'next-i18next';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 
 interface Props {
   containerRef?: React.RefObject<HTMLDivElement>;
@@ -13,6 +14,7 @@ interface Props {
 
 const Login: React.FC<Props> = ({ containerRef }) => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation('account');
   const loading = useAppSelector(selectLoginLoading);
   const error = useAppSelector(selectLoginError);
   const [state, setState] = useState<LoginMutation>({
@@ -41,7 +43,7 @@ const Login: React.FC<Props> = ({ containerRef }) => {
 
   return (
     <div className={acc.baseContainer} ref={containerRef}>
-      <div className={acc.header}>Войти в аккаунт</div>
+      <div className={acc.header}>{t('login')}</div>
       <div className={acc.content}>
         {error && <div style={{ color: 'red', fontWeight: 'bold' }}>{error.error}</div>}
         <form className={acc.form} onSubmit={submitFormHandler}>
@@ -50,7 +52,7 @@ const Login: React.FC<Props> = ({ containerRef }) => {
             <input onChange={inputChangeHandler} type="text" name="email" placeholder="Email" />
           </div>
           <div className={acc.formGroup}>
-            <label htmlFor="password">Пароль</label>
+            <label htmlFor="password">{t('password')}</label>
             <input
               onChange={inputChangeHandler}
               type="password"
@@ -59,14 +61,7 @@ const Login: React.FC<Props> = ({ containerRef }) => {
             />
           </div>
           <div className={acc.footer}>
-            <button
-              style={{ display: 'flex', alignItems: 'center' }}
-              disabled={loading}
-              type="submit"
-              className={acc.btn}
-            >
-              {loading ? <LoadingSpinnerBtn /> : null}Войти в аккаунт
-            </button>
+            <ButtonUi type={'submit'} btn={acc.btn} text={t('login')} loading={loading} />
           </div>
         </form>
       </div>

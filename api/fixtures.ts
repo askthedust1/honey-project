@@ -48,12 +48,12 @@ const run = async () => {
       displayName: 'Administrator',
       phone: '0555 55-55-55',
       address: 'Some street 3',
-    },
+    }
   );
 
   const [honey, herbs, driedFruits] = await Category.create(
     {
-      image: 'fixtures/honey2.jpeg',
+      image: 'fixtures/honey2.jpg',
       isActive: true,
       translations: {
         en: {
@@ -74,8 +74,8 @@ const run = async () => {
       },
     },
     {
-      image: 'fixtures/herbs_category.svg',
-      isActive: false,
+      image: 'fixtures/herbs_category.jpg',
+      isActive: true,
       translations: {
         en: {
           title: 'Herbs',
@@ -95,8 +95,8 @@ const run = async () => {
       },
     },
     {
-      image: 'fixtures/fruits_category.svg',
-      isActive: false,
+      image: 'fixtures/fruits_category.jpg',
+      isActive: true,
       translations: {
         en: {
           title: 'Dried fruits',
@@ -115,6 +115,69 @@ const run = async () => {
         },
       },
     },
+    {
+      image: 'fixtures/present.jpg',
+      isActive: true,
+      translations: {
+        en: {
+          title: 'Gift Baskets',
+          description:
+            'En Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+        ru: {
+          title: 'Подарочные наборы',
+          description:
+            'Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+        kg: {
+          title: 'Белек себеттери',
+          description:
+            'Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+      },
+    },
+    {
+      image: 'fixtures/honeyWith.jpg',
+      isActive: true,
+      translations: {
+        en: {
+          title: 'Honey with additives',
+          description:
+            'En Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+        ru: {
+          title: 'Мед с добавками',
+          description:
+            'Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+        kg: {
+          title: 'Кошумчалары менен бал',
+          description:
+            'Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+      },
+    },
+    {
+      image: 'fixtures/sota.jpg',
+      isActive: true,
+      translations: {
+        en: {
+          title: 'Honeycomb',
+          description:
+            'En Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+        ru: {
+          title: 'Соты',
+          description:
+            'Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+        kg: {
+          title: 'Бал уюк',
+          description:
+            'Мед - это натуральное сладкое вещество, производимое пчелами из цветочного нектара. Он имеет густую консистенцию с характерным золотистым цветом и сладким, цветочным вкусом.',
+        },
+      },
+    }
   );
 
   const [
@@ -166,7 +229,7 @@ const run = async () => {
     {
       category: honey._id,
       oldPrice: 500,
-      actualPrice: 500,
+      actualPrice: 400,
       amount: 20,
       image: 'fixtures/honey.svg',
       isHit: true,
@@ -264,7 +327,7 @@ const run = async () => {
     {
       category: honey._id,
       oldPrice: 400,
-      actualPrice: 400,
+      actualPrice: 250,
       amount: 20,
       image: 'fixtures/honey3.png',
       translations: {
@@ -288,7 +351,7 @@ const run = async () => {
     {
       category: honey._id,
       oldPrice: 300,
-      actualPrice: 300,
+      actualPrice: 200,
       amount: 20,
       image: 'fixtures/White-honey.svg',
       translations: {
@@ -435,6 +498,7 @@ const run = async () => {
       oldPrice: 400,
       actualPrice: 400,
       amount: 20,
+      isHit: true,
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {
@@ -599,7 +663,7 @@ const run = async () => {
             'Биздин "Жемиш Шалбаасы" мөмө-жемиш чайыбыз менен жаркыраган жана жыпар жыттуу даамдардын майрамынан ырахат алыңыз, мында ширелүү мөмөлөр жана жыпар жыттуу жемиштер ар бир ууртамда уникалдуу ырахаттын букетин жаратат.',
         },
       },
-    },
+    }
   );
 
   await Transaction.create(
@@ -813,7 +877,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1700,
-    },
+    }
   );
 
   await Banner.create(
@@ -864,7 +928,7 @@ const run = async () => {
       description: 'landing3',
       page: '/products/page/1',
       priority: 3,
-    },
+    }
   );
 
   await db.close();

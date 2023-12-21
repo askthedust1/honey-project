@@ -1,185 +1,233 @@
-@use 'mixin' as mix;
+@import "./variables";
+@import './mixin';
 
-.categories {
-  background-color: #5A3733;
-  padding-top: 51px;
-  @include mix.xxl {
-    padding-top: 41px;
-  }
-  @include mix.xl {
-    padding-top: 30px;
-  }
+.catalog {
+  padding-bottom: 60px;
+  padding-top: 49px;
+  position: relative;
+  margin-top: 20px;
+  z-index: 1;
 
-  &_inner {
-    max-width: 1585px;
+  &_container {
+    max-width: 1170px;
+    padding: 0 15px;
     margin: 0 auto;
-    padding: 0 19px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    @include mix.md {
-      padding: 0 4px;
+
+    h3 {
+      color: $text-color;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 55.01px;
+      text-transform: uppercase;
+      margin: 5px 0 15px;
+      position: relative;
+      z-index: 1;
+
+      @include lg {
+        font-size: 32px;
+      }
+
+      @include lm {
+        font-size: 30px;
+      }
+
+      @include sm {
+        font-size: 26px;
+      }
+    }
+
+    p {
+      color: $text-color;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 30px;
+      text-transform: uppercase;
+      display: block;
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+
+      @include sm {
+        font-size: 14px;
+      }
     }
   }
 
   &_list {
-    max-width: 1020px;
-    margin: 0 auto;
+    margin: 54px 0 0;
     display: flex;
-    gap: 2.2rem;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    scroll-behavior: smooth;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     position: relative;
-    @include mix.xxl {
-      gap: 0.5rem;
-    }
-    @include mix.sm {
-      gap: 1.3rem;
+
+    &_item {
+      display: flex;
+      flex-direction: column;
+      margin: 15px;
+      transition: 0.3s;
+      position: relative;
+      z-index: 1;
+
+      @include lg {
+        margin: 10px;
+      }
+
+      img {
+        border-radius: 10px;
+        width: 315px;
+        height: 168px;
+        transition: 0.2s;
+        background-color: #F7F3F0;
+
+        @include xl {
+          width: 260px;
+          height: 139px;
+        }
+
+        @include lg {
+          width: 235px;
+          height: 125px;
+        }
+
+        @include lm {
+          width: 290px;
+          height: 155px;
+        }
+
+        @include md {
+          width: 238px;
+          height: 127px;
+        }
+
+        @include md2 {
+          width: 210px;
+          height: 112px;
+        }
+
+        @include sm {
+          width: 315px;
+          height: 168px;
+        }
+      }
+
+      span {
+        color: $text-color;
+        text-align: center;
+        margin: 5px auto 0;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 32.01px;
+        text-transform: uppercase;
+
+        @include sm {
+          font-size: 14px;
+        }
+      }
+
+      &:hover img {
+        box-shadow: 0 0 3px 2px rgba(125, 125, 125, 0.84);
+        transform: scale(1.05);
+      }
     }
   }
+}
 
-  &_list::-webkit-scrollbar {
+.topLineBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("../assets/images/catalogTopLineBg.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 70px;
+  width: 100%;
+  display: block;
+}
+
+.bottomLineBg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-image: url("../assets/images/catalogBottomLineBg.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 70px;
+  width: 100%;
+  display: block;
+}
+
+.bgLeft {
+  position: absolute;
+  top: -100px;
+  left: -20px;
+  z-index: 0;
+  width: 500px;
+  height: 340px;
+  background-image: url("../assets/images/catalogOrangeBg1.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  @include xl {
+    width: 360px;
+    height: 340px;
+    top: -80px;
+    left: 0;
+  }
+
+  @include lm {
+    top: -70px;
+    left: 0;
+    width: 420px;
+    height: 340px;
+  }
+
+  @include md2 {
+    bottom: -70px;
+    left: 0;
+    width: 360px;
+    height: 340px;
+  }
+
+  @include sm {
     display: none;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
   }
 }
 
-.category_item {
-  width: 312px;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 5px 2px 24px;
-  @include mix.xxl {
-    width: 280px;
-  }
-  @include mix.xl {
-    width: 248px;
-  }
-  @include mix.lg {
-    width: 205px;
-  }
-  @include mix.md {
-    width: 140px;
-  }
-  @include mix.sm {
-    width: 100%;
-    margin: 5px 0 24px;
+.bgRight {
+  position: absolute;
+  bottom: -80px;
+  right: -20px;
+  z-index: 0;
+  width: 500px;
+  height: 370px;
+  background-image: url("../assets/images/catalogOrangeBg2.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  @include xl {
+    width: 360px;
+    height: 340px;
   }
 
-  img {
-    width: 312px;
-    height: 312px;
-    border: 7px solid #FFB931;
-    border-radius: 50%;
-    transition: 0.2s;
-    object-fit: cover;
-    @include mix.xxl {
-      width: 280px;
-      height: 280px;
-    }
-    @include mix.xl {
-      width: 248px;
-      height: 248px;
-    }
-    @include mix.lg {
-      width: 187px;
-      height: 187px;
-    }
-    @include mix.md {
-      width: 130px;
-      height: 130px;
-      border: 5px solid #FFB931;
-    }
-    @include mix.sm {
-      width: auto;
-      height: auto;
-    }
+  @include lm {
+    bottom: -70px;
+    right: 0;
+    width: 420px;
+    height: 340px;
   }
 
-  p {
-    white-space: normal;
-    color: #FFFFFF;
-    text-align: center;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 20px 0 0;
-    transition: 0.2s;
-    @include mix.xl {
-      font-size: 22px;
-    }
-    @include mix.lg {
-      font-size: 20px;
-    }
-    @include mix.md {
-      font-size: 18px;
-      margin: 9px 0 0;
-    }
-    @include mix.sm {
-      font-size: 24px;
-      margin: 15px 0 0;
-    }
+  @include md2 {
+    bottom: -70px;
+    right: 0;
+    width: 360px;
+    height: 340px;
   }
 
-  &:hover img {
-    border-color: #FFFFFF;
-    box-shadow: 0 0 2px 2px #FFFFFF;
-  }
-
-  &:hover p {
-    color: #FFB931;
+  @include sm {
+    display: none;
   }
 }
-
-.btn_carousel {
-  width: 66px;
-  height: 66px;
-  border-radius: 50%;
-  background-color: rgba(217, 217, 217, 0.50);
-  outline: none;
-  border: none;
-  padding: 0 14px;
-  transition: 0.2s;
-  display: flex;
-  @include mix.xxl {
-    margin: auto 0;
-    width: 53px;
-    height: 53px;
-  }
-  @include mix.xl {
-    margin: 84px 3px auto;
-    width: 46px;
-    height: 46px;
-  }
-  @include mix.md {
-    margin: 52px 3px auto;
-    width: 44px;
-    height: 44px;
-  }
-  @include mix.sm {
-    margin: auto 10px;
-  }
-
-  &:hover {
-    background-color: rgba(217, 217, 217, 0.75);
-  }
-
-  &:active {
-    box-shadow: 0 0 2px 2px #FFB931;
-  }
-
-  svg {
-    margin: auto;
-  }
-
-  &:nth-child(1) {
-    transform: rotate(180deg);
-  }
-}
-

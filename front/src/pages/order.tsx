@@ -13,6 +13,7 @@ import { useTranslation } from 'next-i18next';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 
 const Order: MyPage = () => {
   const router = useRouter();
@@ -31,7 +32,7 @@ const Order: MyPage = () => {
     setIsClient(true);
     setLoading(false);
     if ((!user && !loading) || (!cart.length && !loading)) {
-      router.push('/');
+      router.push('/').then(r => console.log(r));
     }
   }, [loading, router, user]);
 
@@ -138,9 +139,7 @@ const Order: MyPage = () => {
                     <span>{user.email}</span>
                   </div>
                 </div>
-                <button type={'submit'} className={cls.btnBuy}>
-                  {t('buy')}
-                </button>
+                <ButtonUi text={t('buy')} type={'submit'} btn={cls.btnBuy} />
               </div>
             </form>
 

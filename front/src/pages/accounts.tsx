@@ -1,19 +1,22 @@
 import React, { useRef, useState } from 'react';
 import Login from '@/components/reg&logForms/Login';
 import Register from '@/components/reg&logForms/Register';
-import acc from '@/components/reg&logForms/accounts.module.scss';
+import acc from '@/styles/accounts.module.scss';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
+import { useTranslation } from 'next-i18next';
 
 const Accounts: MyPage = () => {
   const [isLoginActive, setIsLoginActive] = useState(false);
+  const { t } = useTranslation('account');
   let container = useRef<HTMLDivElement | null>(null);
   let currentRef = useRef<HTMLDivElement | null>(null);
   let rightSideRef = useRef<HTMLDivElement | null>(null);
 
   if (isLoginActive) {
     rightSideRef.current?.classList.add(acc.right);
+    rightSideRef.current?.classList.add(acc.logMobile);
   }
 
   const changeState = () => {
@@ -27,45 +30,41 @@ const Accounts: MyPage = () => {
     setIsLoginActive(!isLoginActive);
   };
 
+  const changeStateMobile = () => {
+    if (isLoginActive) {
+      rightSideRef.current?.classList.remove(acc.logMobile);
+      rightSideRef.current?.classList.add(acc.regMobile);
+    } else {
+      rightSideRef.current?.classList.remove(acc.regMobile);
+      rightSideRef.current?.classList.add(acc.logMobile);
+    }
+    setIsLoginActive(!isLoginActive);
+  };
+
   const current = isLoginActive ? (
-    <>
-      <p>У вас еще нет аккаунта?</p>
+    <div className={acc.wrapBtn}>
+      <p>{t('accReg')}</p>
       <br />
-      <button
-        style={{
-          background: 'white',
-          border: 'none',
-          borderRadius: '10px',
-          color: 'orange',
-          padding: '10px',
-          fontSize: '15px',
-        }}
-      >
-        Зарегистрироваться!
-      </button>
-    </>
+      <button className={acc.btnOn}>{t('register')}!</button>
+    </div>
   ) : (
-    <div style={{ paddingLeft: '10px' }}>
-      <p>У вас уже есть аккаунт?</p>
+    <div className={acc.wrapBtn}>
+      <p>{t('acc')}</p>
       <br />
-      <button
-        style={{
-          background: 'white',
-          border: 'none',
-          borderRadius: '10px',
-          color: 'orange',
-          padding: '10px',
-          fontSize: '15px',
-        }}
-      >
-        Войти!
-      </button>
+      <button className={acc.btnOn}>{t('login')}!</button>
     </div>
   );
   const currentActive = isLoginActive ? 'login' : 'register';
 
   return (
     <div className={acc.App}>
+      <Mobile
+        current={current}
+        currentActive={currentActive}
+        containerRef={rightSideRef}
+        onClick={changeStateMobile}
+        isLog={isLoginActive}
+      />
       <div className={acc.login}>
         <div className={acc.container} ref={container}>
           {isLoginActive && <Login containerRef={currentRef} />}
@@ -105,10 +104,24 @@ const RightSide: React.FC<RightSideProps> = (props) => {
   );
 };
 
+const Mobile: React.FC<RightSideProps> = (props) => {
+  return (
+    <div
+      className={props.isLog ? acc.logMobile : acc.regMobile}
+      ref={props.containerRef}
+      onClick={props.onClick}
+    >
+      <div className={acc.innerContainer}>
+        <div className={acc.text}>{props.current}</div>
+      </div>
+    </div>
+  );
+};
+
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer'])),
+      ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer', 'account'])),
     },
   };
 });

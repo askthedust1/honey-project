@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from './pagination.module.scss';
+import cls from '../../../styles/pagination.module.scss';
 import Link from 'next/link';
 import { useAppSelector } from '@/store/hook';
 import { selectCurrentPage, selectTotalPages } from '@/features/products/productsSlice';
@@ -14,7 +14,7 @@ const Pagination: React.FC<Props> = (props) => {
   const currentPageState = useAppSelector(selectCurrentPage);
   const totalPageState = useAppSelector(selectTotalPages);
 
-  const productsTsx = (
+    const productsTsx = (
     <>
       {currentPageState > 1 ? (
         <div className={cls.circle_left}>

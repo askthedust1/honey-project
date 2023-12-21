@@ -28,8 +28,8 @@ const Home: MyPage = () => {
     <>
       <main>
         <HomePage />
-        <CategoriesList />
         <Bestseller />
+        <CategoriesList />
         <Mission />
         <BenefitsOfHoney />
       </main>

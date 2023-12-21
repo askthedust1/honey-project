@@ -1,3 +1,5 @@
+@use 'mixin' as mix;
+
 .baseContainer {
   width: 100%;
   display: flex;
@@ -10,17 +12,17 @@
   }
 
   .content {
-    display: flex;
-    flex-direction: column;
-
-    .image {
-      margin: 0 auto;
-      width: 100px;
-      height: 100px;
-      img {
-        width: 100%;
-        height: 100%;
-      }
+    @include mix.md{
+      width: 600px;
+    }
+    @include mix.md2 {
+      width: 500px;
+    }
+    @include mix.sm{
+      width: 400px;
+    }
+    @include mix.xs {
+      width: 360px;
     }
 
     .form {
@@ -35,8 +37,17 @@
         align-items: flex-start;
         width: fit-content;
         margin-bottom: 15px;
+        @include mix.md {
+          width: 100%;
+        }
         label {
           font-size: 20px;
+          @include mix.md {
+            font-size: 16px;
+          }
+          @include mix.xs {
+            font-size: 14px;
+          }
         }
         input {
           margin-top: 6px;
@@ -49,6 +60,20 @@
           border: 0;
           border-radius: 4px;
           transition: all 250ms ease-in-out;
+
+          @include mix.md {
+            background-color: white;
+            width: 600px;
+          }
+          @include mix.md2 {
+            width: 500px;
+          }
+          @include mix.sm{
+            width: 400px;
+          }
+          @include mix.xs {
+            width: 360px;
+          }
           &:hover {
             background-color: #ffffff;
             box-shadow: 0 0 14px 0.3px rgba(255, 99, 0, 0.8);
@@ -82,6 +107,11 @@
     &:focus {
       outline: none;
     }
+      @include mix.xs {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+
   }
   }
 }

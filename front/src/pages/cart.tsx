@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@/store/hook';
-import { selectCart } from '@/features/cart/cartSlice';
+import {selectCart} from '@/features/cart/cartSlice';
 import cls from '../styles/_cart.module.scss';
 import { ICart } from '@/types';
 import CartItem from '@/components/CartItem/CartItem';
@@ -11,6 +11,7 @@ import { selectUser } from '@/features/users/usersSlice';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 
 const Cart: MyPage = () => {
   const [isClient, setIsClient] = useState(false);
@@ -52,8 +53,9 @@ const Cart: MyPage = () => {
                     <tr>
                       <th className={cls.productHead}>{t('product')}</th>
                       <th>{t('quantity')}</th>
-                      <th>{t('price')}</th>
+                      <th className={cls.priceHead}>{t('price')}</th>
                       <th>{t('total')}</th>
+                      <th className={cls.deleteMobileContainer}></th>
                     </tr>
                   </thead>
                   <tbody className={cls.tableBodyBlock}>
@@ -76,10 +78,6 @@ const Cart: MyPage = () => {
                 <span>{getTotalPrice()} сом</span>
               </div>
               <div className={cls.item}>
-                <span>{t('discount')}</span>
-                <span>0</span>
-              </div>
-              <div className={cls.item}>
                 <span>{t('delivery')}</span>
                 <span className={cls.free}>{t('free')}</span>
               </div>
@@ -91,9 +89,12 @@ const Cart: MyPage = () => {
               </div>
               <div>
                 {cart.length ? (
-                  <button onClick={handlePageChange} className={cls.orderConfirm}>
-                    {t('checkout')}
-                  </button>
+                  <ButtonUi
+                    event={() => handlePageChange()}
+                    text={t('checkout')}
+                    type="button"
+                    btn={cls.orderConfirm}
+                  />
                 ) : (
                   <span></span>
                 )}
