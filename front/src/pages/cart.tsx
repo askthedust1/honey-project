@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@/store/hook';
-import { selectCart } from '@/features/cart/cartSlice';
+import {selectCart} from '@/features/cart/cartSlice';
 import cls from '../styles/_cart.module.scss';
 import { ICart } from '@/types';
 import CartItem from '@/components/CartItem/CartItem';
@@ -53,8 +53,9 @@ const Cart: MyPage = () => {
                     <tr>
                       <th className={cls.productHead}>{t('product')}</th>
                       <th>{t('quantity')}</th>
-                      <th>{t('price')}</th>
+                      <th className={cls.priceHead}>{t('price')}</th>
                       <th>{t('total')}</th>
+                      <th className={cls.deleteMobileContainer}></th>
                     </tr>
                   </thead>
                   <tbody className={cls.tableBodyBlock}>
