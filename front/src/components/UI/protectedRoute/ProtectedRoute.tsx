@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectRole, selectRoleLoading } from '@/features/users/usersSlice';
 import NotFound404 from '../notFound404/NotFound404';
 import { roleCheck } from '@/features/users/usersThunk';
+import Loading from "@/components/UI/loading/loading";
 
 interface Props {
   children: ReactNode;
@@ -28,7 +29,7 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
   }, [loading, role, role?.userCheck, router]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!role.userCheck) {

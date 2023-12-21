@@ -7,4 +7,9 @@ const nextConfig = {
   reactStrictMode: false,
 };
 
+module.exports = {
+  images: {
+    domains: ['http://localhost:8000'],
+  },
+};
 module.exports = nextConfig;

@@ -4,6 +4,7 @@ import { logout } from '@/features/users/usersThunk';
 import cls from '../../../styles/_header.module.scss';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const UserNav = () => {
   const dispatch = useAppDispatch();
@@ -29,7 +30,7 @@ const UserNav = () => {
             <ul className={cls.dropdown_content}>
               <li onClick={handleLogout}>{t('logout')}</li>
               <li>
-                <a href="/orders/history">{t('orderHistory')}</a>
+                <Link href="/orders/history">{t('orderHistory')}</Link>
               </li>
             </ul>
           </div>

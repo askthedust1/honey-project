@@ -14,6 +14,7 @@ import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import Loading from "@/components/UI/loading/loading";
 
 const Order: MyPage = () => {
   const router = useRouter();
@@ -79,7 +80,7 @@ const Order: MyPage = () => {
   };
 
   if (cart.length === 0) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

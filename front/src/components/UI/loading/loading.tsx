@@ -1,7 +1,7 @@
 import React from 'react';
-import cls from '@/components/UI/loader/_loader.module.scss';
+import cls from '@/components/UI/loading/_loading.module.scss';
 
-const Loader = () => {
+const Loading = () => {
   return (
     <div className={cls.loader_wrap}>
       <div className={cls.loader}>
@@ -15,4 +15,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default Loading;

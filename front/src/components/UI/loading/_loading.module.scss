@@ -1,13 +1,13 @@
 .loader_wrap {
-  //position: fixed;
-  //left: 50%;
-  //top: 50%;
-  //z-index: 55;
-  //transform: translate(-50%, -50%);
-  margin: 50px auto;
-  display: flex;
-  justify-content: center;
-  padding: 50px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 55;
+  transform: translate(-50%, -50%);
+  //margin: 50px auto;
+  //display: flex;
+  //justify-content: center;
+  //padding: 50px;
 }
 
 .loader {
