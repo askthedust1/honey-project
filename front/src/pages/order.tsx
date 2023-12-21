@@ -32,7 +32,7 @@ const Order: MyPage = () => {
     setIsClient(true);
     setLoading(false);
     if ((!user && !loading) || (!cart.length && !loading)) {
-      router.push('/');
+      router.push('/').then(r => console.log(r));
     }
   }, [loading, router, user]);
 
