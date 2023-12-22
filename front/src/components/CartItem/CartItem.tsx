@@ -4,7 +4,7 @@ import { apiUrl } from '@/constants';
 import { ICart } from '@/types';
 import { useAppDispatch } from '@/store/hook';
 import { addProduct, decreaseProduct, delProduct } from '@/features/cart/cartSlice';
-import {useTranslation} from "next-i18next";
+import { useTranslation } from 'next-i18next';
 
 interface Props {
   item: ICart;
@@ -12,7 +12,7 @@ interface Props {
 
 const CartItem: React.FC<Props> = ({ item }) => {
   const dispatch = useAppDispatch();
-    const { t } = useTranslation('cart');
+  const { t } = useTranslation('cart');
   return (
     <tr key={item.product._id}>
       <td className={cls.productInfo}>
@@ -42,9 +42,12 @@ const CartItem: React.FC<Props> = ({ item }) => {
       </td>
       <td className={cls.price}>{item.product.actualPrice} KGS</td>
       <td className={cls.cost}>{item.product.actualPrice * item.amount} KGS</td>
-        <td className={cls.deleteMobileContainer}>
-            <div className={cls.deleteMobile} onClick={() => dispatch(delProduct(item.product._id))}></div>
-        </td>
+      <td className={cls.deleteMobileContainer}>
+        <div
+          className={cls.deleteMobile}
+          onClick={() => dispatch(delProduct(item.product._id))}
+        ></div>
+      </td>
     </tr>
   );
 };

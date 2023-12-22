@@ -41,7 +41,7 @@ const Product: MyPage = () => {
 
   const imagePath = product?.image ? apiUrl + '/' + product.image : '';
   return (
-    <div>
+    <>
       <div>
         <Head>
           <title>{product?.title}</title>
@@ -61,28 +61,32 @@ const Product: MyPage = () => {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             width="15px"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
             />
           </svg>
           <Link href={'/products/page/1'} className={cls.product_info_return_link}>
-            В каталог
+            {t('catalog')}
           </Link>
         </div>
         <div className={cls.product}>
           <div className={cls.row}>
             <div className={cls.col_50}>
               <div className={cls.product_media}>
-                <img
-                  src={apiUrl + '/' + product?.image}
+                <Image
+                  width={100}
+                  height={100}
+                  src={imagePath}
                   className={cls.product_media_wrapper}
-                  alt={product?.title}
+                  alt={product ? product.title : 'Продукция Aman Kyrgyz Honey'}
+                  layout="responsive"
+                  objectFit="cover"
                 />
               </div>
             </div>
@@ -90,45 +94,6 @@ const Product: MyPage = () => {
               <div className={cls.product_info}>
                 <span className={cls.product_info_category}>{product?.category.title}</span>
                 <h1 className={cls.product_info_title}>{product?.title}</h1>
-    <div className={wrp.container}>
-      <div className={cls.product_info_return}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          width="15px"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-          />
-        </svg>
-        <Link href={'/products/page/1'} className={cls.product_info_return_link}>
-          В каталог
-        </Link>
-      </div>
-      <div className={cls.product}>
-        <div className={cls.row}>
-          <div className={cls.col_50}>
-            <div className={cls.product_media}>
-              <Image
-                width={100}
-                height={100}
-                src={imagePath}
-                className={cls.product_media_wrapper}
-                alt={product ? product.title : 'Продукция Aman Kyrgyz Honey'}
-                layout="responsive"
-                objectFit="cover"
-              />
-            </div>
-          </div>
-          <div className={cls.col_50}>
-            <div className={cls.product_info}>
-              <span className={cls.product_info_category}>{product?.category.title}</span>
-              <h1 className={cls.product_info_title}>{product?.title}</h1>
 
                 <div className={`${cls.product_info_marker} ${availableClass}`}>
                   {product && product.amount > 0 ? (
@@ -200,7 +165,7 @@ const Product: MyPage = () => {
         </div>
         <RelatedProducts products={products} />
       </div>
-    </div>
+    </>
   );
 };
 

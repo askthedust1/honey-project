@@ -39,7 +39,7 @@
     "@types/react-slick": "^0.23.12",
     "@types/uuid": "^9.0.7",
     "@types/youtube": "^0.0.50",
-    "eslint": "^8",
+    "eslint": "^8.56.0",
     "eslint-config-next": "14.0.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
