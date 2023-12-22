@@ -59,12 +59,12 @@ Given('I am on the products page', () => {
 });
 
 When('I click on the product link', () => {
-  I.click('[data-product-id]');
+  I.click('[data-product-id]:first-child');
 });
 
 Then('I see the product page and "В каталог"', async () => {
-  I.seeInCurrentUrl('/products/');
-  I.see('В каталог');
+  await I.seeInCurrentUrl('/products/');
+  await I.see('В каталог');
 });
 
 Given('I am on main page', () => {

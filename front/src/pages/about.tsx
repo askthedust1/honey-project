@@ -25,7 +25,7 @@ const About: MyPage = () => {
           <meta name="keywords" content="производство меда, мед бишкек, аман мед" />
         </Head>
       </div>
-      <div className={cls.container}>
+      <div>
         <h1 className={cls.about_title}>{t('about')}</h1>
         <div className={cls.row}>
           <div className={cls.col_50}>

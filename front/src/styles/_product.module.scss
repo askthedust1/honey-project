@@ -1,9 +1,12 @@
 @import "variables";
 @import 'mixin';
 
-
 .product {
   padding: 30px 0 70px 0;
+
+  @include md {
+    padding: 30px 0 50px 0;
+  }
 
   .row {
     display: flex;
@@ -51,6 +54,10 @@
     @include lg {
       padding: 0 15px 0;
       margin-left: 10px;
+    }
+
+    @include md {
+      margin-left: 0;
     }
 
     &_category {
@@ -156,6 +163,6 @@
 
 .relatedText {
   font-size: 20px;
-  text-align: center;
+  padding: 0 15px;
   margin-bottom: 30px;
 }

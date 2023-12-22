@@ -2,26 +2,43 @@
 @import './mixin';
 
 .contacts {
-  padding: 30px 0;
+  padding: 40px 0 30px;
+
+  @include lg {
+    padding-bottom: 100px;
+  }
+
+  @include md {
+    padding-bottom: 80px;
+  }
+
+  @include sm {
+    padding-bottom: 60px;
+  }
 
   &_title {
     text-transform: uppercase;
     margin-bottom: 50px;
+    font-style: normal;
+    font-weight: 800;
 
     @include lg {
       margin-bottom: 20px;
     }
 
-    @include md {
+    @include lm {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    @include lg {
       text-align: center;
-      font-size: 28px;
     }
   }
 
   .row {
     display: flex;
     justify-content: center;
-    //align-items: center;
 
     @include md {
       flex-wrap: wrap;
@@ -83,6 +100,8 @@
 
       @include md {
         justify-content: center;
+        margin-bottom: 10px;
+        font-size: 13px;
       }
     }
   }
