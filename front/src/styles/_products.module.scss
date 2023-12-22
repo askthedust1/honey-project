@@ -83,7 +83,7 @@ $color-icon-inCart: #934300;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 39px;
+  border-radius: 15px;
   &_white {
     background-color: $color-card-bg;
   }
@@ -100,7 +100,7 @@ $color-icon-inCart: #934300;
 .card_block:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 6px 0 #00000060;
-  border-radius: 39px;
+  border-radius: 15px;
 }
 
 .btn_prod {

@@ -14,6 +14,7 @@ import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import Loading from '@/components/UI/loading/loading';
 import Head from 'next/head';
 
 const Order: MyPage = () => {
@@ -80,7 +81,7 @@ const Order: MyPage = () => {
   };
 
   if (cart.length === 0) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
@@ -186,7 +187,7 @@ const Order: MyPage = () => {
 
 export default Order;
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer', 'order'])),
