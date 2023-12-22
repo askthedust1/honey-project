@@ -10,7 +10,6 @@
   "about": "About us",
   "about-why": "Why choose us?",
   "delivery": "Delivery and payment",
-  "sideBarTitle": "Categories",
   "inform": "Delivery in Bishkek is carried out on the day of receipt of the order and is negotiated with the store manager.",
   "money": "Payment in cash",
   "pay": "Transfer to an online wallet M-BANK, ELSOM",
@@ -25,12 +24,13 @@
   "deliveryM": "Shipping Methods",
   "payment": "Payment methods",
   "for": "For your convenience, we offer several payment methods. You can choose the one that you find more convenient:",
-  "main": "Main",
+  "sideBarTitle": "Categories",
   "faq": "How to place an order?",
   "faq1": "How to add a product to the cart?",
   "faq2": "How to complete an order?",
   "faq3": "Where can I view my order history?",
   "faq4": "How to pay for an order?",
   "faq5": "When will my order be delivered?",
+  "main": "Main",
   "catalog": "In catalog"
 }
