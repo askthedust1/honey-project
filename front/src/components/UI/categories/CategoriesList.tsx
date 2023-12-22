@@ -5,6 +5,7 @@ import { selectCategories } from '@/features/categories/categoriesSlice';
 import { apiUrl } from '@/constants';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
 
 const CatalogCategories = () => {
   const categories = useAppSelector(selectCategories);
@@ -27,7 +28,13 @@ const CatalogCategories = () => {
               key={item._id}
               className={cls.catalog_list_item}
             >
-              <img src={apiUrl + '/' + item.image} alt={item.title} />
+              <Image
+                className={cls.catalog_list_item_img}
+                src={apiUrl + '/' + item.image}
+                alt={item.title}
+                width={315}
+                height={168}
+              />
               <span>{item.title}</span>
             </Link>
           ))}
