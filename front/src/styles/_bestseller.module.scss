@@ -25,12 +25,20 @@
       margin-bottom: 25px;
       font-size: 25px;
     }
+
+    @include mix.xs {
+      font-size: 20px;
+    }
   }
   &_btns {
     margin: 40px 0 65px;
     text-align: center;
     @include mix.lg {
       margin: 0 0 53px;
+    }
+
+    @include mix.sm {
+      margin-bottom: 40px;
     }
   }
   &_btn {
@@ -46,11 +54,17 @@
     @include mix.lg {
       padding: 8px 18px;
     }
-    @include mix.sm {
+    @include mix.md {
       padding: 7px 15px;
+      margin: 0 10px;
+    }
+    @include mix.sm {
       margin: 0;
+      font-size: 12px;
+      padding: 8px 15px;
     }
     @include mix.xs {
+      font-size: 11px;
     }
 
     &:hover {
