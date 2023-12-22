@@ -27,6 +27,9 @@
   @include mix.lg {
     padding-right: 80px;
   }
+  @include mix.sm {
+    padding-right: 105px;
+  }
 }
 
 .nav {
@@ -91,7 +94,7 @@
   font-weight: 700;
   position: relative;
   margin: -11px 0 0 0;
-  @include mix.xs {
+  @include mix.sm {
     display: none;
   }
 }
@@ -136,7 +139,7 @@
       visibility: visible;
       left: 0;
       height: auto;
-      padding: 20px 0 100px;
+      padding: 20px 0 60px;
     }
     .menu__btn > span {
       transform: rotate(45deg);
@@ -216,6 +219,9 @@
   position: relative;
   color: #3C3C3C;
   text-transform: uppercase;
+  @include mix.lm {
+    font-size: 10px;
+  }
   &:hover {
     background-color: #CFD8DC;
   }
@@ -256,6 +262,9 @@
   width: 300px;
   background-color: white;
   padding: 10px;
+  @include mix.lm {
+    padding: 5px 0 10px;
+  }
 }
 
 
@@ -264,6 +273,10 @@
   width: 100%;
   margin: 0 auto;
   list-style-type: disc;
+  @include mix.lm {
+    list-style-type: none;
+    padding: 0 14px;
+  }
   li {
     margin-top: 10px;
     cursor: pointer;
@@ -274,9 +287,19 @@
     position: relative;
     color: #3C3C3C;
     text-transform: uppercase;
+    @include mix.lm {
+      font-size: 10px;
+    }
   }
   li:hover {
     color: #FF8F31;
+  }
+}
+.cartBlock {
+  display: none;
+  @include mix.lg{
+    display: block;
+    margin: 12px -24px 0px 0;
   }
 }
 

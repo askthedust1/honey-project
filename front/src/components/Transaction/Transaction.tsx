@@ -9,6 +9,8 @@ import { selectUser } from '@/features/users/usersSlice';
 import { fetchOrder } from '@/features/order/orderThunk';
 import { useRouter } from 'next/router';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import Loading from '@/components/UI/loading/loading';
+import Head from 'next/head';
 
 const Transaction = () => {
   const { t } = useTranslation('transaction');
@@ -43,10 +45,14 @@ const Transaction = () => {
     <>
       {user && transaction && transaction.user && transaction.user._id === user._id ? (
         <div className={cls.container}>
+          <Head>
+            <title>{t('basket')}</title>
+            <meta name="description" content="Описание страницы" />
+          </Head>
           <section className={cls.title}>
             <h3>{t('basket')}</h3>
             <div className={cls.return}>
-              <Link href={'/cart'}>{t('returnToStore')}</Link>
+              <Link href={'/products/page/1'}>{t('returnToStore')}</Link>
             </div>
           </section>
           <section className={cls.content}>
@@ -78,7 +84,7 @@ const Transaction = () => {
           </section>
         </div>
       ) : (
-        <div>Loading...</div>
+        <Loading />
       )}
     </>
   );

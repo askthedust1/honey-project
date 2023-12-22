@@ -24,9 +24,8 @@ const Footer = () => {
       <div className={cls.footer_inner}>
         <div className={cls.footer_inner_box_links}>
           <h3>{t('customers')}</h3>
-          <Link href={'/'}>{t('order')}</Link>
+          <Link href={'/faq'}>{t('order')}</Link>
           <Link href={'/delivery'}>{t('delivery')}</Link>
-          <Link href={'/'}>{t('pay')}</Link>
         </div>
 
         <div className={cls.footer_inner_box_links}>

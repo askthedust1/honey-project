@@ -9,6 +9,7 @@ import { appWithTranslation } from 'next-i18next';
 import React from 'react';
 import { Layouts } from '@/components/common/Layouts';
 import { MyAppProps } from '@/components/common/types';
+import NextNProgress from 'nextjs-progressbar';
 
 const App = ({ Component, ...rest }: MyAppProps) => {
   const Layout = Layouts[Component.Layout] ?? ((page: any) => page);
@@ -17,6 +18,7 @@ const App = ({ Component, ...rest }: MyAppProps) => {
   return (
     <Provider store={store}>
       <Layout>
+        <NextNProgress color={'#FF8F31'} />
         <Component {...props.pageProps} />
       </Layout>
     </Provider>

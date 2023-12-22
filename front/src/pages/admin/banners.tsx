@@ -14,6 +14,7 @@ import FileUpload from '@/components/UI/FileUpload/FileUpload';
 import cls from '@/styles/_bannersAdmin.module.scss';
 import { useRouter } from 'next/router';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import Head from 'next/head';
 
 const BannersAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -73,6 +74,9 @@ const BannersAdminPage: MyPage = () => {
   return (
     <ProtectedRoute>
       <div className={cls.wrapper}>
+        <Head>
+          <title>Баннеры</title>
+        </Head>
         <h2>Предпросмотр баннера</h2>
         <ImageSlider images={banners} width={'1000px'} />
         <h2 className={cls.addTitle}>Добавить баннер</h2>

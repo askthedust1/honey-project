@@ -61,7 +61,7 @@ const Login: React.FC<Props> = ({ containerRef }) => {
             />
           </div>
           <div className={acc.footer}>
-            <ButtonUi type={'submit'} btn={'btn-primary'} text={t('login')} loading={loading} />
+            <ButtonUi type={'submit'} btn={acc.btn} text={t('login')} loading={loading} />
           </div>
         </form>
       </div>

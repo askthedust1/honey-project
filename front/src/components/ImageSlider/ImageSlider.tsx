@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Slider from 'react-slick';
 import { IBanner } from '@/types';
 import { apiUrl } from '@/constants';
-import stl from './imgSlider.module.css';
+import stl from '../../styles/imgSlider.module.scss';
 import Link from 'next/link';
 
 interface Props {
