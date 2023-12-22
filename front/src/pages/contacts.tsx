@@ -7,6 +7,7 @@ import shop from '@/assets/images/shop_honey.jpeg';
 import Link from 'next/link';
 import { MyPage } from '@/components/common/types';
 import Head from 'next/head';
+import Image from 'next/image';
 
 const Contacts: MyPage = () => {
   const { t } = useTranslation('common');
@@ -22,7 +23,14 @@ const Contacts: MyPage = () => {
       <div className={cls.row}>
         <div className={cls.col_50}>
           <div className={cls.contacts_media}>
-            <img src={shop.src} alt={'Shop Picture'} />
+            <Image
+              src={shop.src}
+              alt={'Shop Picture'}
+              width={100}
+              height={100}
+              layout="responsive"
+              objectFit="cover"
+            />
           </div>
         </div>
         <div className={cls.col_50}>

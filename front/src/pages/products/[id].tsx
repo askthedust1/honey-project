@@ -14,6 +14,7 @@ import Link from 'next/link';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import wrp from '@/styles/_layoutClient.module.scss';
 import RelatedProducts from '@/components/RelatedProducts/RelatedProducts';
+import Image from 'next/image';
 import Head from 'next/head';
 
 const Product: MyPage = () => {
@@ -37,8 +38,10 @@ const Product: MyPage = () => {
     product && product.amount > 0
       ? cls.product_info_marker_available
       : cls.product_info_marker_unavailable;
+
+  const imagePath = product?.image ? apiUrl + '/' + product.image : '';
   return (
-    <div>
+    <>
       <div>
         <Head>
           <title>{product?.title}</title>
@@ -58,28 +61,32 @@ const Product: MyPage = () => {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             width="15px"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
             />
           </svg>
           <Link href={'/products/page/1'} className={cls.product_info_return_link}>
-            В каталог
+            {t('catalog')}
           </Link>
         </div>
         <div className={cls.product}>
           <div className={cls.row}>
             <div className={cls.col_50}>
               <div className={cls.product_media}>
-                <img
-                  src={apiUrl + '/' + product?.image}
+                <Image
+                  width={100}
+                  height={100}
+                  src={imagePath}
                   className={cls.product_media_wrapper}
-                  alt={product?.title}
+                  alt={product ? product.title : 'Продукция Aman Kyrgyz Honey'}
+                  layout="responsive"
+                  objectFit="cover"
                 />
               </div>
             </div>
@@ -158,7 +165,7 @@ const Product: MyPage = () => {
         </div>
         <RelatedProducts products={products} />
       </div>
-    </div>
+    </>
   );
 };
 
