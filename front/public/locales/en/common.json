@@ -25,6 +25,11 @@
   "deliveryM": "Shipping Methods",
   "payment": "Payment methods",
   "for": "For your convenience, we offer several payment methods. You can choose the one that you find more convenient:",
-  "sideBarTitle": "Categories",
-  "main": "Main"
+  "main": "Main",
+  "faq": "How to place an order?",
+  "faq1": "How to add a product to the cart?",
+  "faq2": "How to complete an order?",
+  "faq3": "Where can I view my order history?",
+  "faq4": "How to pay for an order?",
+  "faq5": "When will my order be delivered?"
 }
