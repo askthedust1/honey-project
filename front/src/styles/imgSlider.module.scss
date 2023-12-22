@@ -1,9 +1,14 @@
+@use 'mixin' as mix;
+
 .image__slider__container{
     margin: 0 auto;
     border-radius: 10px;
     overflow: hidden;
     padding: 0 30px;
     position: relative;
+    @include mix.lg {
+        padding: 0;
+    }
 }
 
 .image__slider__container .slick-dots{

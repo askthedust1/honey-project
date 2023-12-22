@@ -12,7 +12,15 @@ const DeliveryItm: React.FC<Props> = ({ item, bg }) => {
   return (
     <div style={stl} className={cls.delivery_media_card}>
       <div className={cls.delivery_media_card_img}>
-        <Image src={item.img} alt={item.text} layout="fill" objectFit="contain" />
+        <Image
+          style={{ objectFit: 'contain' }}
+          src={item.img}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority
+          quality={80}
+          alt={item.text}
+          fill
+        />
       </div>
       <p className={cls.delivery_media_card_text}>{item.text}</p>
     </div>

@@ -38,11 +38,15 @@
       align-items: center;
     }
     .nullOrder {
+      margin-top: 150px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-grow: 1;
       font-size: 25px;
+      @include mix.xl {
+        margin-top: 20px;
+      }
     }
     .table {
       width: 90%;
