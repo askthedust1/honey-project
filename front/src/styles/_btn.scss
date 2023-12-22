@@ -1,4 +1,5 @@
 @import '@/styles/_variables.scss';
+@import 'mixin';
 
 
 .btn-primary {
@@ -20,6 +21,10 @@
   &:active {
     transform: scale(0.95);
   }
+
+  @include sm {
+    padding: 14px 25px;
+  }
 }
 
 .btn_in_cart {
@@ -40,5 +45,9 @@
 
   &:active {
     transform: scale(0.95);
+  }
+
+  @include sm {
+    padding: 14px 25px;
   }
 }
