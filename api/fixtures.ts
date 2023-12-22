@@ -305,7 +305,7 @@ const run = async () => {
       oldPrice: 500,
       actualPrice: 500,
       amount: 20,
-      image: 'fixtures/honey3.png',
+      image: 'fixtures/honey.svg',
       translations: {
         ru: {
           title: 'Каштановый мед',
@@ -329,7 +329,7 @@ const run = async () => {
       oldPrice: 400,
       actualPrice: 250,
       amount: 20,
-      image: 'fixtures/honey3.png',
+      image: 'fixtures/White-honey.svg',
       translations: {
         ru: {
           title: 'Цветочный мед',
