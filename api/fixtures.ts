@@ -257,7 +257,6 @@ const run = async () => {
       actualPrice: 400,
       amount: 20,
       image: 'fixtures/White-honey.svg',
-      isHit: true,
       translations: {
         ru: {
           title: 'Гречишный мед',

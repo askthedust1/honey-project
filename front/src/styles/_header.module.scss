@@ -54,6 +54,9 @@
     padding-bottom: 5px;
     color: #3C3C3C;
     text-transform: uppercase;
+    @include mix.lm {
+      font-size: 10px;
+    }
 
     &:hover {
       color: #FF8F31;

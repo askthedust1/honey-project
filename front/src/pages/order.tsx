@@ -16,6 +16,8 @@ import { MyPage } from '@/components/common/types';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import Loading from '@/components/UI/loading/loading';
 import Head from 'next/head';
+import axiosApi from '@/axiosApi';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
 
 const Order: MyPage = () => {
   const router = useRouter();
@@ -34,9 +36,9 @@ const Order: MyPage = () => {
     setIsClient(true);
     setLoading(false);
     if ((!user && !loading) || (!cart.length && !loading)) {
-      router.push('/').then(r => console.log(r));
+      router.push('/').then((r) => console.log(r));
     }
-  }, [loading, router, user]);
+  }, [loading, router, user, cart.length]);
 
   const getTotalPrice = () => {
     return cart.reduce((total: number, item: ICart) => {
@@ -187,7 +189,11 @@ const Order: MyPage = () => {
 
 export default Order;
 
-export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+  const lang = locale ?? 'ru';
+  axiosApi.defaults.headers.common['Accept-Language'] = lang;
+
+  await store.dispatch(fetchCategories(lang));
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer', 'order'])),

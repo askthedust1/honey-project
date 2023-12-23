@@ -16,6 +16,8 @@ import pay1 from '@/assets/images/pay1.png';
 import pay2 from '@/assets/images/pay2.png';
 import DeliveryItms from '@/components/DelivetyItm/DeliveryItms';
 import Head from 'next/head';
+import axiosApi from '@/axiosApi';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
 
 const Delivery: MyPage = () => {
   const { t } = useTranslation('common');
@@ -63,7 +65,11 @@ const Delivery: MyPage = () => {
 
 Delivery.Layout = 'Main';
 
-export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+  const lang = locale ?? 'ru';
+  axiosApi.defaults.headers.common['Accept-Language'] = lang;
+
+  await store.dispatch(fetchCategories(lang));
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),

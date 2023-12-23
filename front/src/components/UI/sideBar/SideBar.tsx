@@ -4,7 +4,6 @@ import { useAppSelector } from '@/store/hook';
 import { selectCategories } from '@/features/categories/categoriesSlice';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
-import {selectTotalPages} from "@/features/products/productsSlice";
 
 const SideBar = () => {
   const categories = useAppSelector(selectCategories);

@@ -1,5 +1,4 @@
 .categories_page {
-  background-color: #FCF8F5;
   padding: 0 28px 60px;
   box-sizing: border-box;
   display: flex;
@@ -74,7 +73,7 @@
             img {
               border-radius: 15px;
               border: 1px solid rgba(90, 55, 51, 0.11);
-              width: 132px;
+              width: 209px;
               height: 132px;
             }
 
@@ -85,6 +84,7 @@
               font-weight: 500;
               line-height: 21px;
               letter-spacing: 0.25px;
+              padding-left: 10px;
             }
 
             button {

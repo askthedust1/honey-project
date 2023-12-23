@@ -10,9 +10,7 @@ const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className={cls.mainAdminLayout}>
       <SidebarAdmin />
-        <div className={cls.mainAdminLayoutContainer}>
-            {children}
-        </div>
+      <div className={cls.mainAdminLayoutContainer}>{children}</div>
     </div>
   );
 };

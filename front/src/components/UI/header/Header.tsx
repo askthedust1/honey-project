@@ -11,9 +11,11 @@ import UserNav from '@/components/UI/header/UserNav';
 import AnonymousNav from '@/components/UI/header/AnonymousNav';
 import { selectCart } from '@/features/cart/cartSlice';
 import Image from 'next/image';
+import { selectCategories } from '@/features/categories/categoriesSlice';
 
 const Header = () => {
   const user = useAppSelector(selectUser);
+  const categories = useAppSelector(selectCategories);
   const [isShowNav, setIsShowNav] = useState<boolean>(false);
 
   useEffect(() => {
@@ -23,8 +25,12 @@ const Header = () => {
   const { t } = useTranslation('header');
   const cart = useAppSelector(selectCart);
   const [isClient, setIsClient] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleNav = () => setIsShowNav(!isShowNav);
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
 
   return (
     <header style={{ position: 'sticky', top: '-1px', zIndex: '100' }}>
@@ -44,8 +50,30 @@ const Header = () => {
               <li className={cls.menu_item}>
                 <Link href={'/'}>{t('home')}</Link>
               </li>
-              <li className={cls.menu_item}>
+              <li
+                className={cls.menu_item}
+                onMouseEnter={toggleDropdown}
+                onMouseLeave={toggleDropdown}
+              >
                 <Link href={'/products/page/1'}>{t('products')}</Link>
+                {showDropdown && (
+                  <div className={cls.dropdown}>
+                    <ul className={cls.dropdown_content}>
+                      {categories.map((item) => (
+                        <li key={item._id}>
+                          <Link
+                            href={{
+                              pathname: '/category/page/path',
+                              query: { cId: item._id, cPage: '1' },
+                            }}
+                          >
+                            {item.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </li>
               <li className={cls.menu_item}>
                 <Link href={'/about'}>{t('about')}</Link>

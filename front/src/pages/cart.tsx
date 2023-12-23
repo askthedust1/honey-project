@@ -13,6 +13,8 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import Head from 'next/head';
+import axiosApi from '@/axiosApi';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
 
 const Cart: MyPage = () => {
   const [isClient, setIsClient] = useState(false);
@@ -118,6 +120,10 @@ const Cart: MyPage = () => {
 Cart.Layout = 'Main';
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+  const lang = locale ?? 'ru';
+  axiosApi.defaults.headers.common['Accept-Language'] = lang;
+
+  await store.dispatch(fetchCategories(lang));
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer', 'cart'])),
