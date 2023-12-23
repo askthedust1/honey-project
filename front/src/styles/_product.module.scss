@@ -97,14 +97,14 @@
     }
 
     &_actualPrice {
-      color: $text-color;
+      color: #C74817;
       font-size: 22px;
       margin-bottom: 26px;
     }
 
     &_oldPrice {
-      font-size: 22px;
-      color: $text-color;
+      font-size: 18px;
+      color: #999999;
       margin-bottom: 26px;
       text-decoration: line-through;
       margin-right: 30px;

@@ -2,11 +2,11 @@
 
 $color-title: #131313;
 $color-icon-price: #C74817;
-
 $color-text: #5A3733;
 $color-card-bg: #FFFFFF;
 $color-card-border: #e2e2e2;
 $color-icon-inCart: #934300;
+$color-old-price: #999999;
 
 .container {
   @include mix.md2 {
@@ -237,7 +237,7 @@ $color-icon-inCart: #934300;
       font-style: normal;
       font-weight: 700;
       line-height: 28px;
-      color: $color-icon-price;
+      color: $color-old-price;
       margin: 0 25px 0 0;
     }
   }

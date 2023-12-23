@@ -88,4 +88,7 @@
   flex-wrap: wrap;
   color: $text-color;
   margin-bottom: 60px;
+  @include mix.sm {
+    margin-bottom: 0;
+  }
 }

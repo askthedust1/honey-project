@@ -11,6 +11,7 @@
   padding-bottom: 40px;
   position: relative;
   z-index: 1;
+  margin-bottom: 60px;
 
   @include xl {
     background-size: 22%;
@@ -45,6 +46,9 @@
     @include lg {
       display: flex;
       flex-direction: column;
+    }
+    @include xs {
+      padding: 0;
     }
 
     h3 {
@@ -204,6 +208,7 @@
         }
 
         @include md2 {
+          margin: 0 15px 0 20px;
           min-width: 70px;
           height: 39px;
         }
@@ -220,7 +225,7 @@
         &::before {
           content: '';
           position: absolute;
-          top: -25px;
+          top: -24px;
           border-left: 45px solid transparent;
           border-right: 45px solid transparent;
           border-bottom: 25px solid #D3A863;
@@ -242,13 +247,13 @@
         &::after {
           content: '';
           position: absolute;
-          bottom: -25px;
+          bottom: -24px;
           border-left: 45px solid transparent;
           border-right: 45px solid transparent;
           border-top: 25px solid #D3A863;
 
           @include xl {
-            bottom: -22px;
+            bottom: -21px;
             border-left: 40px solid transparent;
             border-right: 40px solid transparent;
             border-top: 22px solid #D3A863;
@@ -280,7 +285,7 @@
     }
 
     @include sm {
-      margin-bottom: 150px;
+      margin-bottom: 170px;
     }
   }
 

@@ -14,22 +14,14 @@ productRouter.get('/', async (req, res) => {
 
     if (filterBy && filterBy === 'hit') {
       const result = await Product.find({
-        $and: [
-          { $expr: { $eq: ['$oldPrice', '$actualPrice'] } },
-          { isHit: true },
-          { isActive: true },
-        ]
+        $and: [{ isHit: true }, { isActive: true }]
       }).limit(6);
       return res.send(result);
     }
 
     if (filterBy && filterBy === 'new') {
       const result = await Product.find({
-        $and: [
-          { $expr: { $eq: ['$oldPrice', '$actualPrice'] } },
-          { isHit: false },
-          { isActive: true },
-        ]
+        $and: [{ isHit: false }, { isActive: true }]
       })
         .sort({ datetime: 'descending' })
         .limit(6);

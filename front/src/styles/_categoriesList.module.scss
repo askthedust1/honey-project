@@ -17,6 +17,9 @@
     max-width: 1170px;
     padding: 0 15px;
     margin: 0 auto;
+    @include xs {
+      padding: 0;
+    }
 
     h3 {
       color: $text-color;
@@ -57,7 +60,7 @@
       z-index: 1;
 
       @include sm {
-        font-size: 10px;
+        font-size: 12px;
         max-width: 340px;
         line-height: 18px;
         font-weight: 500;
