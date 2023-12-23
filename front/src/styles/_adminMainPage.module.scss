@@ -1,5 +1,5 @@
 .main {
-  background: #FCF8F5;
+  margin-top: 20px;
   &_title {
     color: #5A3733;
     font-size: 30px;
@@ -14,7 +14,8 @@
     width: 100%;
     li {
       position: relative;
-      width: 200px;
+      width: 190px;
+      margin: 0 5px 0;
       border-radius: 15px;
       background: #FFF center left 11px no-repeat;
       box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.43);
@@ -49,7 +50,7 @@
     }
   }
   .hit {
-    margin-top: 34px;
+    margin: 34px 5px 0;
     padding: 14px 30px;
     border-radius: 15px;
     background: #FFF;

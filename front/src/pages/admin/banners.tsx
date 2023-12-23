@@ -147,7 +147,7 @@ const BannersAdminPage: MyPage = () => {
               />
             </div>
             <div>
-              <p className={cls.formTitle}>Загрузите изображение с разрешением 1624px х 698px:</p>
+              <p className={cls.formTitle}>Загрузите изображение с разрешением 1014px х 520px:</p>
               <FileUpload onChange={filesInputChangeHandler} name="image" label="image" />
             </div>
             <div className={cls.formWrpBtn}>

@@ -7,11 +7,21 @@ import { logout } from '@/features/users/usersThunk';
 import { selectRole } from '@/features/users/usersSlice';
 import { selectAdminNewTransactions } from '@/features/adminNewMessages/adminNewTransactionSlice';
 import { fetchAdminHewTransaction } from '@/features/adminNewMessages/adminNewTransactionThunk';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const SidebarAdmin = () => {
   const dispatch = useAppDispatch();
   const role = useAppSelector(selectRole);
-  const handleLogout = () => dispatch(logout());
+  const router = useRouter();
+  const handleLogout = async () => {
+    try {
+      await dispatch(logout()).unwrap();
+      router.push('/');
+    } catch {
+      // nothing
+    }
+  };
   const [isShowExit, setIsShowExit] = useState<boolean>(false);
   const [isShowProduct, setIsShowProduct] = useState<boolean>(false);
   const [isShowCategory, setIsShowCategory] = useState<boolean>(false);
@@ -37,7 +47,7 @@ const SidebarAdmin = () => {
     <div style={{ display: role && role.userCheck ? 'block' : 'none' }} className={cls.sidebar}>
       <header className={cls.sidebar_header}>
         <Link className={cls.logo} href={'/admin'}>
-          <img src={logo.src} alt={'logo'} />
+          <Image src={logo.src} alt={'logo'} width={140} height={56} />
         </Link>
         <div className={cls.box}>
           <span>Admin</span>

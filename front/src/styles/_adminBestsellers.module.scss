@@ -3,12 +3,12 @@
 .bestseller {
   max-width: 1073px;
   height: auto;
-  background-color: $admin-white-color;
 
   &_mainTitle {
     font-weight: 500;
     font-size: 30px;
     margin-left: 20px;
+    margin-top: 20px;
   }
 
   &_title {

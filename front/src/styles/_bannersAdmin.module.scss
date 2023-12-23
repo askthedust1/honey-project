@@ -2,6 +2,9 @@
 
 .wrapper {
   padding: 10px 20px;
+  h2{
+    margin: 10px 0 15px 33px;
+  }
 }
 
 .wrapperBottom {
@@ -9,7 +12,7 @@
   background: #FFF;
   display: flex;
   flex-direction: column;
-  width: 1056px;
+  width: 1005px;
   padding: 27px 125px 13px 124px;
   justify-content: center;
   align-items: flex-start;
@@ -17,7 +20,7 @@
 
 .formTitle {
   color: #5A3733;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
