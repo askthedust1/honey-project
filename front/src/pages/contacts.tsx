@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { MyPage } from '@/components/common/types';
 import Head from 'next/head';
 import Image from 'next/image';
+import MapGoogle from '@/components/Map/Map';
 
 const Contacts: MyPage = () => {
   const { t } = useTranslation('common');
@@ -132,6 +133,9 @@ const Contacts: MyPage = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className={cls.contacts_map}>
+        <MapGoogle />
       </div>
     </div>
   );

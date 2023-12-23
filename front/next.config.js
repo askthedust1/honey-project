@@ -10,9 +10,4 @@ const nextConfig = {
   },
 };
 
-module.exports = {
-  images: {
-    domains: ['localhost:8000'],
-  },
-};
 module.exports = nextConfig;
