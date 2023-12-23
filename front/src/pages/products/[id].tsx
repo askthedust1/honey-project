@@ -16,6 +16,7 @@ import wrp from '@/styles/_layoutClient.module.scss';
 import RelatedProducts from '@/components/RelatedProducts/RelatedProducts';
 import Image from 'next/image';
 import Head from 'next/head';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
 
 const Product: MyPage = () => {
   const product = useAppSelector(selectOneProduct);
@@ -176,6 +177,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     async ({ locale, params }) => {
       const lang = locale ?? 'ru';
       axiosApi.defaults.headers.common['Accept-Language'] = lang;
+      await store.dispatch(fetchCategories(lang));
 
       const id = params?.id;
       if (!id || Array.isArray(id)) {

@@ -9,6 +9,8 @@ import { MyPage } from '@/components/common/types';
 import Head from 'next/head';
 import Image from 'next/image';
 import MapGoogle from '@/components/Map/Map';
+import axiosApi from '@/axiosApi';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
 
 const Contacts: MyPage = () => {
   const { t } = useTranslation('common');
@@ -143,7 +145,11 @@ const Contacts: MyPage = () => {
 
 Contacts.Layout = 'Main';
 
-export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+  const lang = locale ?? 'ru';
+  axiosApi.defaults.headers.common['Accept-Language'] = lang;
+
+  await store.dispatch(fetchCategories(lang));
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),

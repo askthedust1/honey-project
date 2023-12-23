@@ -13,6 +13,8 @@ import usaid from '@/assets/images/partners/usaid.png';
 import { useTranslation } from 'next-i18next';
 import { MyPage } from '@/components/common/types';
 import Head from 'next/head';
+import axiosApi from '@/axiosApi';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
 
 const About: MyPage = () => {
   const { t } = useTranslation('common');
@@ -244,6 +246,10 @@ const About: MyPage = () => {
 About.Layout = 'Main';
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+  const lang = locale ?? 'ru';
+  axiosApi.defaults.headers.common['Accept-Language'] = lang;
+
+  await store.dispatch(fetchCategories(lang));
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),

@@ -7,6 +7,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
 import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
+import axiosApi from '@/axiosApi';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
 
 const Accounts: MyPage = () => {
   const [isLoginActive, setIsLoginActive] = useState(false);
@@ -126,6 +128,10 @@ const Mobile: React.FC<RightSideProps> = (props) => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+  const lang = locale ?? 'ru';
+  axiosApi.defaults.headers.common['Accept-Language'] = lang;
+
+  await store.dispatch(fetchCategories(lang));
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ru', ['header', 'footer', 'account'])),
