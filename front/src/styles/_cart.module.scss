@@ -4,6 +4,10 @@
   overflow: auto;
   border-radius: 30px;
   padding: 20px 5px;
+  @include mix.sm {
+    padding: 5px;
+    margin: 10px auto 100px auto;
+  }
   .titleContainer {
     text-align: center;
     h3 {
@@ -15,6 +19,10 @@
       line-height: 57.6px;
       letter-spacing: -0.9px;
       margin: 10px;
+      @include mix.sm {
+        font-size: 24px;
+        margin: 5px;
+      }
     }
     .return {
       color: #FF8F31;
@@ -25,6 +33,9 @@
       line-height: 25.6px;
       letter-spacing: -0.9px;
       text-decoration-line: underline;
+      @include mix.sm {
+        font-size: 16px;
+      }
     }
   }
   .contentContainer {
@@ -47,6 +58,9 @@
       @include mix.xl {
         margin-top: 20px;
       }
+      @include mix.sm {
+        font-size: 18px;
+      }
     }
     .table {
       width: 90%;
@@ -55,6 +69,10 @@
       border-radius: 30px;
       padding: 20px;
       border-collapse: collapse;
+      @include mix.sm {
+        padding: 20px 7px;
+        margin: 20px 0;
+      }
 
       @include mix.xl {
         width: 100%;
@@ -72,6 +90,9 @@
       }
       th {
         padding-bottom: 10px;
+        @include mix.sm {
+          font-size: 14px;
+        }
       }
       .productHead {
         text-align: start;
@@ -89,8 +110,10 @@
           vertical-align: middle;
           border-radius: 4px;
           margin-right: 37px;
+
           @include mix.lm {
             margin-right: 0;
+            max-width: 60px;
           }
         }
         .name {
@@ -100,6 +123,9 @@
           margin-bottom: 12px;
           @include mix.lm {
             margin: 10px 0 2px;
+          }
+          @include mix.sm {
+            font-size: 12px;
           }
         }
         .delete {
@@ -133,8 +159,16 @@
         white-space: nowrap;
         width: 124px;
         height: 40px;
+        @include mix.sm {
+          font-size: 12px;
+          width: 102px;
+          height: 34px;
+        }
         span {
           padding: 0 18px;
+          @include mix.sm {
+            padding: 0 12px;
+          }
         }
         &_btn {
           border: none;
@@ -142,6 +176,9 @@
           margin: 0 13px;
           font-size: 26px;
           font-weight: 500;
+          @include mix.sm {
+            margin: 0 10px;
+          }
         }
       }
       .price {
@@ -152,6 +189,9 @@
         white-space: nowrap;
         @include mix.md {
           display: none;
+        }
+        @include mix.sm {
+          font-size: 12px;
         }
       }
       .cost {
@@ -181,6 +221,9 @@
         margin-bottom: 32px;
         display: flex;
         justify-content: space-between;
+        @include mix.sm {
+          margin-bottom: 20px;
+        }
       }
       .free {
         color: #FF8F31;
@@ -193,6 +236,9 @@
         color: #17183B;
         font-weight: 700;
         line-height: 24px;
+        @include mix.sm {
+          padding: 20px 0;
+        }
         span {
           font-size: 18px;
           text-transform: uppercase;
@@ -204,6 +250,7 @@
       .orderConfirm {
         width: 100%;
         display: block;
+        text-align: center;
         border: none;
         border-radius: 4px;
         background: #FF8F31;
@@ -216,6 +263,10 @@
         @include mix.xl {
           width: 80%;
           margin: 0 auto;
+        }
+        @include mix.sm {
+          width: 60%;
+          padding: 14px 27px;
         }
 
         &:hover {
