@@ -110,10 +110,16 @@
           letter-spacing: 0.1px;
           margin-left:80px;
           @include mix.md {
-            display: block;
+            justify-content: center;
             margin: 10px 0;
-            padding: 18px;
-            width: 60%;
+            padding: 13px;
+            width: 30%;
+          }
+          @include mix.sm {
+            width: 40%;
+          }
+          @include mix.xs {
+            width: 50%;
           }
           &:hover {
             background: #c75a00;

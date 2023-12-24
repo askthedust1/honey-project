@@ -8,7 +8,6 @@ interface Props {
 }
 
 const TransactionItem: React.FC<Props> = ({ item }) => {
-    console.log(item);
     return (
     <div className={cls.productItem}>
         <img className={cls.img} src={apiUrl + '/' + item.product.image} alt={item.product.title} />

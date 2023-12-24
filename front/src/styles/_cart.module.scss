@@ -210,6 +210,9 @@
       background: white;
       border-radius: 2px;
       border: 1px solid #D1D1D8;
+      @include mix.sm {
+        width: 320px;
+      }
       h4 {
         color: #17183B;
         font-size: 24px;
@@ -254,7 +257,7 @@
         border: none;
         border-radius: 4px;
         background: #FF8F31;
-        padding: 18px 55px;
+        padding: 18px 57px;
         color: #FFF;
         font-size: 16px;
         font-weight: 700;
@@ -265,8 +268,9 @@
           margin: 0 auto;
         }
         @include mix.sm {
-          width: 60%;
-          padding: 14px 27px;
+          font-size: 14px;
+          width: 70%;
+          padding: 12px 30px;
         }
 
         &:hover {
