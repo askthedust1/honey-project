@@ -25,12 +25,12 @@ const Transaction = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!loading && !user && !transaction) {
+    if (!user && !transaction) {
       router.push('/');
-    } else if (!loading && user && transaction && transaction.user._id !== user._id) {
+    } else if (user && transaction && transaction.user._id !== user._id) {
       router.push('/');
     }
-  }, [loading, router, transaction, user]);
+  }, [router, transaction, user]);
 
   let formattedStr = 'sometime';
   if (transaction) {
