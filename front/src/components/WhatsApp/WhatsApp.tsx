@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from './wa.module.scss';
+import cls from '../../styles/wa.module.scss';
 
 const WhatsApp = () => {
   return (

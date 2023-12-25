@@ -4,7 +4,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';
 import Transaction from '@/components/Transaction/Transaction';
 import axiosApi from '@/axiosApi';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
 
 const TransactionPage: MyPage = () => {
   return (
@@ -19,7 +18,6 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   const lang = locale ?? 'ru';
   axiosApi.defaults.headers.common['Accept-Language'] = lang;
 
-  await store.dispatch(fetchCategories(lang));
   return {
     props: {
       name: 'Transaction',

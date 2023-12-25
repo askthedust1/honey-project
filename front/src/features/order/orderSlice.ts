@@ -52,7 +52,8 @@ export const orderSlice = createSlice({
     builder.addCase(createOrder.pending, (state) => {
       state.dataLoaded = true;
     });
-    builder.addCase(createOrder.fulfilled, (state) => {
+    builder.addCase(createOrder.fulfilled, (state, { payload: order }) => {
+      state.transaction = order;
       state.dataLoaded = false;
     });
     builder.addCase(createOrder.rejected, (state) => {
