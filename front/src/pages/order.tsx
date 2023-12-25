@@ -71,8 +71,8 @@ const Order: MyPage = () => {
       };
       dispatch(changeDate(fullOrder.dateTime));
       await dispatch(createOrder(fullOrder));
-      dispatch(resetCart());
       await router.push(`/transaction`);
+      dispatch(resetCart());
     } catch (e) {
       console.log(e);
     }

@@ -9,7 +9,7 @@ const HomeOpener = () => {
 
   return (
     <div className={cls.opener}>
-      <ImageSlider images={banners} width={'1074px'} />
+      <ImageSlider images={banners} width={1074} />
     </div>
   );
 };

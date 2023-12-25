@@ -15,6 +15,7 @@ import { MyPage } from '@/components/common/types';
 import Head from 'next/head';
 import axiosApi from '@/axiosApi';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
+import Image from 'next/image';
 
 const About: MyPage = () => {
   const { t } = useTranslation('common');
@@ -32,7 +33,16 @@ const About: MyPage = () => {
         <div className={cls.row}>
           <div className={cls.col_50}>
             <div className={cls.about_media}>
-              <img src={about1.src} alt={'About1'} />
+              <Image
+                width="0"
+                height="0"
+                sizes="100vw"
+                priority
+                style={{ width: '100%', height: 'auto' }}
+                quality={100}
+                src={about1.src}
+                alt={'About1'}
+              />
             </div>
           </div>
           <div className={cls.col_50}>
@@ -207,7 +217,16 @@ const About: MyPage = () => {
           </div>
           <div className={cls.col_50}>
             <div className={cls.about_media}>
-              <img src={about2.src} alt={'About2'} />
+              <Image
+                width="0"
+                height="0"
+                sizes="100vw"
+                priority
+                style={{ width: '100%', height: 'auto' }}
+                quality={100}
+                src={about2.src}
+                alt={'About2'}
+              />
             </div>
           </div>
         </div>
@@ -215,26 +234,82 @@ const About: MyPage = () => {
           <h3 className={cls.about_advantages_title}>Partners</h3>
           <div className={cls.about_partners_row}>
             <div className={cls.about_partners_media}>
-              <img
+              <Image
+                width="0"
+                height="0"
+                sizes="100vw"
+                priority
+                style={{ width: '100%', height: 'auto' }}
+                quality={100}
                 src={european_bank.src}
-                className={cls.about_partners_media_img}
                 alt={'About2'}
+                className={cls.about_partners_media_img}
               />
             </div>
             <div className={cls.about_partners_media}>
-              <img src={german.src} className={cls.about_partners_media_img} alt={'About2'} />
+              <Image
+                width="0"
+                height="0"
+                sizes="100vw"
+                priority
+                style={{ width: '100%', height: 'auto' }}
+                quality={100}
+                src={german.src}
+                alt={'About2'}
+                className={cls.about_partners_media_img}
+              />
             </div>
             <div className={cls.about_partners_media}>
-              <img src={jica.src} className={cls.about_partners_media_img} alt={'About2'} />
+              <Image
+                width="0"
+                height="0"
+                sizes="100vw"
+                priority
+                style={{ width: '100%', height: 'auto' }}
+                quality={100}
+                src={jica.src}
+                alt={'About2'}
+                className={cls.about_partners_media_img}
+              />
             </div>
             <div className={cls.about_partners_media}>
-              <img src={jia.src} className={cls.about_partners_media_img} alt={'About2'} />
+              <Image
+                width="0"
+                height="0"
+                sizes="100vw"
+                priority
+                style={{ width: '100%', height: 'auto' }}
+                quality={100}
+                src={jia.src}
+                alt={'About2'}
+                className={cls.about_partners_media_img}
+              />
             </div>
             <div className={cls.about_partners_media}>
-              <img src={plata_kg.src} className={cls.about_partners_media_img} alt={'About2'} />
+              <Image
+                width="0"
+                height="0"
+                sizes="100vw"
+                priority
+                style={{ width: '100%', height: 'auto' }}
+                quality={100}
+                src={plata_kg.src}
+                alt={'About2'}
+                className={cls.about_partners_media_img}
+              />
             </div>
             <div className={cls.about_partners_media}>
-              <img src={usaid.src} className={cls.about_partners_media_img} alt={'About2'} />
+              <Image
+                width="0"
+                height="0"
+                sizes="100vw"
+                priority
+                style={{ width: '100%', height: 'auto' }}
+                quality={100}
+                src={usaid.src}
+                alt={'About2'}
+                className={cls.about_partners_media_img}
+              />
             </div>
           </div>
         </div>

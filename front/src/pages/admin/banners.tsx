@@ -78,7 +78,7 @@ const BannersAdminPage: MyPage = () => {
           <title>Баннеры</title>
         </Head>
         <h2>Предпросмотр баннера</h2>
-        <ImageSlider images={banners} width={'1000px'} />
+        <ImageSlider images={banners} width={1000} />
         <h2 className={cls.addTitle}>Добавить баннер</h2>
         <div className={cls.wrapperBottom}>
           <div className={cls.formWrap}>
