@@ -14,4 +14,3 @@ Feature: Hits
     Then I click on "Управление хитами" in sidebar
     And I am on admin hits page
     When I click on "Добавить в хиты" button
-    Then I see
