@@ -140,7 +140,7 @@ const History: MyPage = () => {
 
 History.Layout = 'Main';
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
   axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
 
   return {
