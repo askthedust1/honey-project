@@ -23,7 +23,7 @@ const ProductsAdminPage: MyPage = () => {
   const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
-    dispatch(fetchAdminCategories());
+    dispatch(fetchAdminCategories(''));
   }, [dispatch]);
 
   useEffect(() => {

@@ -14,7 +14,7 @@
   }
 
   &_inner {
-    width: 589px;
+    width: 700px;
     margin: 0 auto 0 0;
     padding: 0 0 10px;
     box-sizing: border-box;
@@ -41,24 +41,25 @@
         }
 
         th:nth-child(1) {
-          width: 172px;
+          width: 202px;
           text-align: left;
           padding-left: 11px;
           box-sizing: border-box;
         }
 
         th:nth-child(2) {
-          width: 182px;
+          width: 222px;
           text-align: left;
+          padding-left: 20px;
         }
 
         th:nth-child(3) {
-          width: 120px;
+          width: 150px;
           text-align: center;
         }
 
         th:nth-child(4) {
-          width: 115px;
+          width: 126px;
           text-align: right;
           padding-right: 9px;
           box-sizing: border-box;
@@ -84,11 +85,12 @@
               font-weight: 500;
               line-height: 21px;
               letter-spacing: 0.25px;
-              padding-left: 10px;
+              padding-left: 20px;
+              text-align: left;
             }
 
             button {
-              width: 100%;
+              width: 80%;
               border-radius: 8px;
               font-size: 13px;
               font-style: normal;
@@ -98,6 +100,7 @@
               border: none;
               outline: none;
               transition: 0.3s;
+              margin: 0 0 0 15px;
             }
 
             span {

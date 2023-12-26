@@ -25,12 +25,12 @@ const Transaction = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!user && !transaction) {
-      router.push('/');
-    } else if (user && transaction && transaction.user._id !== user._id) {
-      router.push('/');
+    if (!loading) {
+      if (!transaction) {
+        void router.push('/');
+      }
     }
-  }, [router, transaction, user]);
+  }, [loading, router, transaction, user]);
 
   let formattedStr = 'sometime';
   if (transaction) {
@@ -41,9 +41,13 @@ const Transaction = () => {
     formattedStr = `${day}. ${month}. ${year}`;
   }
 
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <>
-      {user && transaction && transaction.user && transaction.user._id === user._id ? (
+      {transaction && user && !loading ? (
         <div className={cls.container}>
           <Head>
             <title>{t('basket')}</title>

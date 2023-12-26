@@ -13,20 +13,22 @@ import { MyPage } from '@/components/common/types';
 import ModalEditCategories from '@/components/UI/modalEditCategories/ModalEditCategories';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
 import Head from 'next/head';
+import Image from 'next/image';
 
 const CategoriesAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectAdminCategories);
 
   const [isOpen, setOpen] = useState(false);
+  const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
-    dispatch(fetchAdminCategories());
-  }, [dispatch]);
+    dispatch(fetchAdminCategories(search));
+  }, [search, dispatch]);
 
   const categoryPatch = async (id: string) => {
     await dispatch(patchCategory(id));
-    await dispatch(fetchAdminCategories());
+    await dispatch(fetchAdminCategories(search));
   };
 
   const getInfoAndIsOpen = (isOpen: boolean, id: string) => {
@@ -52,6 +54,7 @@ const CategoriesAdminPage: MyPage = () => {
             navCategories={true}
             navOrders={false}
             categories={categories}
+            getName={(e: string): void => setSearch(e)}
           />
 
           <div className={cls.categories_page_inner}>
@@ -77,7 +80,12 @@ const CategoriesAdminPage: MyPage = () => {
                 {categories.map((item) => (
                   <tr key={item._id}>
                     <td>
-                      <img src={apiUrl + '/' + item.image} alt="image" />
+                      <Image
+                        src={apiUrl + '/' + item.image}
+                        alt={item.translations.ru.title}
+                        width={209}
+                        height={132}
+                      />
                     </td>
                     <td>
                       <p>{item.translations.ru.title}</p>

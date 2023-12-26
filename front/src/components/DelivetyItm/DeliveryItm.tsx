@@ -17,7 +17,7 @@ const DeliveryItm: React.FC<Props> = ({ item, bg }) => {
           src={item.img}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority
-          quality={80}
+          quality={100}
           alt={item.text}
           fill
         />

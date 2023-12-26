@@ -58,6 +58,7 @@ const FaqPage: MyPage = () => {
           <Image
             src={pic}
             alt="faq"
+            priority
             width="0"
             height="0"
             sizes="100vw"

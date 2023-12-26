@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { IProduct } from '@/types';
 import { addProduct, delProduct, selectCart } from '@/features/cart/cartSlice';
 import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
 
 interface Props {
   product: IProduct;
@@ -32,7 +33,16 @@ const ProductItem: React.FC<Props> = ({ product, customClass }) => {
       <Link href={`/products/${product._id}`} data-product-id={product._id}>
         <div className={cls.card}>
           <div className={cls.imgContainer}>
-            <img className={cls.cardImg} src={picture} alt={product.title} />
+            <Image
+              style={{ objectFit: 'contain' }}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority
+              quality={80}
+              fill
+              className={cls.cardImg}
+              src={picture}
+              alt={product.title}
+            />
           </div>
           <div className={cls.info}>
             <h3 className={cls.title}>

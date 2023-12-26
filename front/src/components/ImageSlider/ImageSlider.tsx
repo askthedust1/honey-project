@@ -4,10 +4,11 @@ import { IBanner } from '@/types';
 import { apiUrl } from '@/constants';
 import stl from '../../styles/imgSlider.module.scss';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Props {
   images: IBanner[];
-  width: string;
+  width: number;
 }
 
 const ImageSlider: React.FC<Props> = ({ images, width }) => {
@@ -19,6 +20,7 @@ const ImageSlider: React.FC<Props> = ({ images, width }) => {
 
   const settings = {
     dots: true,
+    infinite: true,
     dotsClass: stl.dots,
     speed: 3000,
     autoplaySpeed: 5000,
@@ -45,11 +47,20 @@ const ImageSlider: React.FC<Props> = ({ images, width }) => {
   };
 
   return (
-    <div className={stl.image__slider__container} style={{ maxWidth: width }}>
+    <div className={stl.image__slider__container} style={{ maxWidth: `${width}px` }}>
       <Slider {...settings}>
         {images.map((image) => (
           <Link key={image._id} href={image.page}>
-            <img src={apiUrl + '/' + image.image} alt={image.description} />
+            <Image
+              width="0"
+              height="0"
+              sizes="100vw"
+              loading="lazy"
+              style={{ width: '100%', height: 'auto' }}
+              quality={100}
+              src={apiUrl + '/' + image.image}
+              alt={image.description}
+            />
           </Link>
         ))}
       </Slider>

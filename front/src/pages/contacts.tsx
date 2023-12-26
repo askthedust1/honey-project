@@ -29,10 +29,12 @@ const Contacts: MyPage = () => {
             <Image
               src={shop.src}
               alt={'Shop Picture'}
-              width={100}
-              height={100}
-              layout="responsive"
-              objectFit="cover"
+              width="0"
+              height="0"
+              sizes="100vw"
+              priority
+              style={{ width: '100%', height: 'auto' }}
+              quality={100}
             />
           </div>
         </div>

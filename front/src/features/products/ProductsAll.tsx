@@ -20,8 +20,17 @@ const ProductsAll: React.FC<Props> = ({ pageName }) => {
   return (
     <div className={cls.container}>
       <div className={cls.content}>
-        <Image width={1000} height={230} className={cls.bnr} src={bnr} alt={'prod'} />
-        {/*<img className={cls.bnr} src={bnr.src} alt="prod" />*/}
+        <Image
+          width="0"
+          height="0"
+          sizes="100vw"
+          loading="lazy"
+          style={{ width: '100%', height: '230px' }}
+          quality={100}
+          className={cls.bnr}
+          src={bnr}
+          alt={'prod'}
+        />
         <h2 className={cls.titleBnr}>{pageName ? pageName : t('products')}</h2>
       </div>
       <div className={cls.box}>

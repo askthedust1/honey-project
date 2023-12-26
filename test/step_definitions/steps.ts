@@ -23,7 +23,13 @@ Given('I am on accounts page', () => {
 });
 
 Given('I click the {string} button', (text: string) => {
-  I.click(`//button[contains(text(), '${text}')]`);
+  I.executeScript((locator) => {
+    const element = document.querySelector(locator);
+
+    element.click();
+
+  }, text);
+
 });
 
 When('I enter form fields:', (userData: IDataTable) => {
@@ -35,17 +41,40 @@ When('I enter form fields:', (userData: IDataTable) => {
 });
 
 When('I click {string} button', (text: string) => {
-  I.click(`//button[contains(text(), '${text}')]`);
+  I.executeScript((locator) => {
+    const element = document.querySelector(locator);
+
+    element.click();
+  }, text);
 });
 
-Then('I see {string} in user menu.', (logout: string) => {
-  const text = `${logout}`;
-
-  I.see(text);
+Then('I see main page', () => {
+  I.wait(5);
+  I.seeInCurrentUrl('/');
 });
+
+When('I see main page', () => {
+  I.wait(5);
+  I.seeInCurrentUrl('/');
+});
+
+When('I move mouse to {string} in user menu', (text: string) => {
+  I.moveCursorTo(text);
+});
+
 
 When('I click {string} in user menu', (text: string) => {
-  I.click(`//li[contains(text(), '${text}')]`);
+  I.executeScript((locator) => {
+    const element = document.querySelector(locator);
+
+    element.click();
+  }, text);
+});
+
+Then('I see main page and {string}', async (text: string) => {
+  I.wait(5);
+  I.seeInCurrentUrl('/');
+  I.seeElement(text);
 });
 
 Then('I see {string} in user menu', (login: string) => {

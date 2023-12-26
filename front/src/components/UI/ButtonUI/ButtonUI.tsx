@@ -9,9 +9,10 @@ interface IProps {
   btn?: string;
   event?: () => void;
   link?: string;
+  id?: string;
 }
 
-const ButtonUi: React.FC<IProps> = ({ link, event, loading, type, text, btn }) => {
+const ButtonUi: React.FC<IProps> = ({ id, link, event, loading, type, text, btn }) => {
   const styledBtn = {
     display: 'flex',
     alignItems: 'center',
@@ -26,7 +27,7 @@ const ButtonUi: React.FC<IProps> = ({ link, event, loading, type, text, btn }) =
   }
 
   return (
-    <button onClick={event} style={styledBtn} className={btn} type={type} disabled={loading}>
+    <button id={id} onClick={event} style={styledBtn} className={btn} type={type} disabled={loading}>
       {loading ? <LoadingSpinnerBtn /> : null} {text}
     </button>
   );
