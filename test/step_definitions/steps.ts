@@ -23,8 +23,8 @@ Given('I am on accounts page', () => {
     I.amOnPage('/accounts');
 });
 
-Given('I click the {string} button', (text: string) => {
-    I.executeScript((locator) => {
+Given('I click the {string} button', async(text: string) => {
+    await I.executeScript((locator) => {
         const element = document.querySelector(locator);
 
         element.click();
@@ -166,4 +166,15 @@ Then('I see {string}', (text: string) => {
     I.see(`${text}`);
 });
 
+Given('I am on admin hits page', () => {
+    I.amOnPage('/admin/bestseller');
+});
+
+When('I click on {string} button', () => {
+    // const element =`//button[@type="button"]`
+    // I.click(element);
+    I.click('[data-product-id]:first-child');
+});
+
+Then()
 

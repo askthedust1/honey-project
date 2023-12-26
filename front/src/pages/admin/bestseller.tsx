@@ -18,6 +18,7 @@ import {
 } from '@/features/adminBestsellers/adminBestsellersThunk';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
 import Head from 'next/head';
+import Image from 'next/image';
 
 const BestsellerAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -104,17 +105,31 @@ const BestsellerAdminPage: MyPage = () => {
                 {products.map((product) => (
                   <tr key={product._id}>
                     <td className={cls.imageTd}>
-                      <img src={apiUrl + '/' + product.image} alt="image" />
+                      <Image
+                        width={69}
+                        height={69}
+                        src={apiUrl + '/' + product.image}
+                        alt="image"
+                      />
                     </td>
-                    <td className={cls.adminBestsellersTable_body_title}>{product.title}</td>
+                    <td
+                      className={cls.adminBestsellersTable_body_title}
+                      data-product-title={product.title}
+                    >
+                      {product.title}
+                    </td>
                     <td>{product.category.title}</td>
                     <td>{product.actualPrice}</td>
                     <td>
                       <button
+                        type="button"
+                        data-product-id={product._id}
                         className={cls.adminBestsellersTable_addBtn}
                         onClick={() => addHit(product._id)}
                       >
-                        <img src={plusIcon.src} alt="Plus Icon" />
+                        {' '}
+                        Добавить в хиты
+                        {/*<Image width={14} height={14} src={plusIcon.src} alt="Plus Icon" />*/}
                       </button>
                     </td>
                   </tr>

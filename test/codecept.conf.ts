@@ -11,7 +11,7 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'http://localhost:3010',
+      url: 'http://localhost:3000',
       show: true,
       windowSize: '1500x1500',
       chrome: {
