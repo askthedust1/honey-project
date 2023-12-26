@@ -23,12 +23,19 @@ const UserNav = () => {
 
   return (
     <>
-      <li className={cls.menu_item} onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+      <li
+        id={'user-drop'}
+        className={cls.menu_item}
+        onMouseEnter={toggleDropdown}
+        onMouseLeave={toggleDropdown}
+      >
         <span className={cls.user_icon}></span>
         {showDropdown && (
-          <div className={cls.dropdown}>
+          <div id={'dropdown'} className={cls.dropdown}>
             <ul className={cls.dropdown_content}>
-              <li onClick={handleLogout}>{t('logout')}</li>
+              <li id={'user-logout'} onClick={handleLogout}>
+                {t('logout')}
+              </li>
               <li>
                 <Link href="/orders/history">{t('orderHistory')}</Link>
               </li>

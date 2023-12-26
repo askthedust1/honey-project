@@ -6,9 +6,11 @@ import { useTranslation } from 'next-i18next';
 const AnonymousNav = () => {
   const { t } = useTranslation('header');
   return (
-    <li className={cls.menu_item}>
+    <li id={'accLog'} className={cls.menu_item}>
       <span className={cls.user_icon}></span>
-      <Link href={'/accounts'}>{t('login')}</Link>
+      <Link href={'/accounts'}>
+        {t('login')}
+      </Link>
     </li>
   );
 };
