@@ -6,14 +6,17 @@ import { isAxiosError } from 'axios';
 
 export const fetchAdminCategories = createAsyncThunk<
   IAdminCategory[],
-  void,
+  string,
   {
     state: RootState;
   }
->('adminCategories/fetchAdminCategories', async (_, thunkApi) => {
+>('adminCategories/fetchAdminCategories', async (search, thunkApi) => {
   const userState = thunkApi.getState().users;
   const token = userState.user?.token;
-  const response = await axiosApi.get('/adminCategories', { headers: { Authorization: token } });
+  const searchQuery = search ? `search=${search}&` : '';
+  const response = await axiosApi.get(`/adminCategories/?${searchQuery}`, {
+    headers: { Authorization: token },
+  });
   return response.data;
 });
 
