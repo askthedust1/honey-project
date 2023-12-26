@@ -100,11 +100,22 @@ Given('I am on main page', () => {
   I.amOnPage('/');
 });
 
-Given('I click on {string} button', (text: string) => {
+Given('I click on {string} link', (text: string) => {
   I.click(`//a[contains(text(), '${text}')]`);
 });
 
-Then('I see products page', () => {
+Then('I am on products page', () => {
   I.amOnPage('/products/page/1');
 });
+
+Then('I am on about us page', () => {
+  I.amOnPage('/about');
+  I.see('О нас');
+});
+
+Then('I am on cart page', () => {
+  I.amOnPage('/cart');
+  I.see('Корзина');
+});
+
 
