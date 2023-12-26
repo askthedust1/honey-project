@@ -6,17 +6,19 @@ import permit from '../middleware/permit';
 import Product from '../models/Product';
 import { imagesUpload } from '../multer';
 import { Error } from 'mongoose';
-import category from '../models/Category';
 
 const categoriesAdminRouter = express.Router();
 
 categoriesAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
+  const qSearch = req.query.search as string;
   try {
-    const categories = await Category.find();
-
-    return res.send(categories);
+    const result = await Category.find({
+      'translations.ru.title': { $regex: new RegExp(qSearch, 'i') },
+    });
+    return res.send(result);
   } catch (e) {
-    return res.sendStatus(500);
+    console.error('Error fetching categories:', e);
+    return res.status(500).send('Internal Server Error');
   }
 });
 
@@ -55,7 +57,7 @@ categoriesAdminRouter.post(
       }
       return next(e);
     }
-  },
+  }
 );
 
 categoriesAdminRouter.put(
@@ -84,7 +86,7 @@ categoriesAdminRouter.put(
       }
       return next(error);
     }
-  },
+  }
 );
 
 categoriesAdminRouter.delete('/:id', auth, permit('admin'), async (req, res, next) => {
