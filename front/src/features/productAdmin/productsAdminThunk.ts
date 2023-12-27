@@ -24,6 +24,14 @@ export const fetchOneProductForAdmin = createAsyncThunk<IProductOneView, string>
   },
 );
 
+export const fetchProductsAnalyticsAdmin = createAsyncThunk<IProductView[]>(
+  'adminProducts/fetchAnalyticsAdmin',
+  async () => {
+    const productsResponse = await axiosApi.get<IProductView[]>(`/admin/click`);
+    return useProductsAdminTranslation(productsResponse.data, 'ru');
+  },
+);
+
 export const patchActiveProducts = createAsyncThunk<void, string>(
   'adminProducts/patchProducts',
   async (id) => {

@@ -105,6 +105,8 @@ productRouter.get('/:id', async (req, res) => {
     if (!product) {
       return res.status(404).send({ error: 'Not found' });
     }
+    product.click = (product.click || 0) + 1;
+    await product.save();
 
     if (
       (user && user.role === 'admin') ||

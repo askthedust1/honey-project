@@ -32,7 +32,7 @@ const AddProductForm: MyPage = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchAdminCategories());
+    dispatch(fetchAdminCategories(''));
   }, [dispatch]);
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
