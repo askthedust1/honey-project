@@ -10,7 +10,6 @@ const transactionsRouter = express.Router();
 transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
   try {
     if (req.query.statusId && req.query.statusPage) {
-      // console.log('statusPage router');
       let page = 1;
       const perPage = 20;
       page = parseInt(req.query.statusPage as string);
@@ -243,9 +242,7 @@ transactionsRouter.patch('/:id/toggleStatus', auth, permit('admin'), async (req,
   console.log('orderToggle');
   try {
     const id = req.params.id;
-    console.log(id);
     const transaction = await Transaction.findById(id);
-    console.log(transaction);
 
     if (!transaction) {
       return res.status(404).send('Not found!');
