@@ -88,6 +88,11 @@ const ProductSchema = new Schema({
       },
     },
   },
+  click: {
+    type: Number,
+    default: 0,
+    required: false,
+  },
 });
 
 const Product = mongoose.model('Product', ProductSchema);
