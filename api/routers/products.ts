@@ -56,7 +56,7 @@ productRouter.get('/', async (req, res) => {
     }
 
     if (req.query.categoryId && req.query.categoryPage) {
-      const categoryPerPage = 4;
+      const categoryPerPage = 9;
       let pageCategory = 1;
 
       pageCategory = +req.query.categoryPage;
@@ -105,6 +105,8 @@ productRouter.get('/:id', async (req, res) => {
     if (!product) {
       return res.status(404).send({ error: 'Not found' });
     }
+    product.click = (product.click || 0) + 1;
+    await product.save();
 
     if (
       (user && user.role === 'admin') ||

@@ -115,7 +115,7 @@ const SidebarAdmin = () => {
           {/*  </Link>*/}
           {/*</li>*/}
           <li className={cls.analytics}>
-            <Link className={cls.list_link} href={'/admin'}>
+            <Link className={cls.list_link} href={'/admin/analytics'}>
               Аналитика
             </Link>
           </li>

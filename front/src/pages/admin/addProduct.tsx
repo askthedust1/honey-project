@@ -32,7 +32,7 @@ const AddProductForm: MyPage = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchAdminCategories());
+    dispatch(fetchAdminCategories(''));
   }, [dispatch]);
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -180,7 +180,7 @@ const AddProductForm: MyPage = () => {
               <select onChange={handleCategoryChange}>
                 <option value="">Выберите категорию</option>
                 {categories.map((category) => (
-                  <option key={category._id} value={category._id}>
+                  <option key={category._id} value={category._id} data-category-id={category._id}>
                     {category.translations.ru.title}
                   </option>
                 ))}
