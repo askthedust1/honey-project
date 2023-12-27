@@ -3,6 +3,7 @@ import { IOrder, IOrderAdminView } from '@/types';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
 import {
+  fetchOrderOneAdmin,
   fetchOrdersAdminAll,
   fetchOrdersAdminByStatus,
 } from '@/features/orderAdmin/ordersAdminThunk';
@@ -55,6 +56,17 @@ export const orderAdminSlice = createSlice({
       state.dataLoaded = false;
     });
 
+    builder.addCase(fetchOrderOneAdmin.pending, (state) => {
+      state.dataLoaded = true;
+    });
+    builder.addCase(fetchOrderOneAdmin.fulfilled, (state, { payload: order }) => {
+      state.dataLoaded = false;
+      state.orderAdminOne = order;
+    });
+    builder.addCase(fetchOrderOneAdmin.rejected, (state) => {
+      state.dataLoaded = false;
+    });
+
     builder.addCase(fetchOrdersAdminByStatus.pending, (state) => {
       state.dataLoaded = true;
     });
@@ -70,7 +82,7 @@ export const orderAdminSlice = createSlice({
   },
 });
 
-export const selectOrder = (state: RootState) => state.orderAdmin.orderAdminOne;
+export const selectOrderOneAdmin = (state: RootState) => state.orderAdmin.orderAdminOne;
 export const selectOrdersAdminAll = (state: RootState) => state.orderAdmin.ordersAdminAll;
 export const selectCurrentPage = (state: RootState) => state.orderAdmin.currentPage;
 export const selectTotalPages = (state: RootState) => state.orderAdmin.totalPages;

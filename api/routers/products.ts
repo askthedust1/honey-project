@@ -14,14 +14,14 @@ productRouter.get('/', async (req, res) => {
 
     if (filterBy && filterBy === 'hit') {
       const result = await Product.find({
-        $and: [{ isHit: true }, { isActive: true }]
+        $and: [{ isHit: true }, { isActive: true }],
       }).limit(6);
       return res.send(result);
     }
 
     if (filterBy && filterBy === 'new') {
       const result = await Product.find({
-        $and: [{ isHit: false }, { isActive: true }]
+        $and: [{ isHit: false }, { isActive: true }],
       })
         .sort({ datetime: 'descending' })
         .limit(6);
@@ -30,7 +30,7 @@ productRouter.get('/', async (req, res) => {
 
     if (filterBy && filterBy === 'offers') {
       const result = await Product.find({
-        $and: [{ $expr: { $ne: ['$oldPrice', '$actualPrice'] } }, { isActive: true }]
+        $and: [{ $expr: { $ne: ['$oldPrice', '$actualPrice'] } }, { isActive: true }],
       }).limit(6);
       return res.send(result);
     }
@@ -138,20 +138,22 @@ productRouter.get('/:id/relatedProducts', async (req, res) => {
       category: product.category as string,
       isActive: true,
       _id: { $ne: productId },
-    }).limit(4).populate({
-      path: 'category',
-      select: ['translations'],
-      model: Category,
-    });
+    })
+      .limit(4)
+      .populate({
+        path: 'category',
+        select: ['translations'],
+        model: Category,
+      });
 
     if (!relatedProducts) {
       return res.status(404).send({ error: 'Not found' });
     }
 
     if (
-        (user && user.role === 'admin') ||
-        (!user && product.isActive) ||
-        (user && user.role === 'user' && product.isActive)
+      (user && user.role === 'admin') ||
+      (!user && product.isActive) ||
+      (user && user.role === 'user' && product.isActive)
     ) {
       return res.send(relatedProducts);
     }
