@@ -208,6 +208,7 @@ const run = async () => {
       amount: 20,
       image: 'fixtures/honey.svg',
       isHit: true,
+      click: 10,
       translations: {
         ru: {
           title: 'Связистый мед',
@@ -233,6 +234,7 @@ const run = async () => {
       amount: 20,
       image: 'fixtures/honey.svg',
       isHit: true,
+      click: 15,
       translations: {
         ru: {
           title: 'Акациевый мед',
@@ -256,6 +258,7 @@ const run = async () => {
       oldPrice: 400,
       actualPrice: 400,
       amount: 20,
+      click: 20,
       image: 'fixtures/White-honey.svg',
       translations: {
         ru: {

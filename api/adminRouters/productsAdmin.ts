@@ -43,6 +43,22 @@ productAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
   }
 });
 
+productAdminRouter.get('/click', auth, permit('admin'), async (req, res) => {
+  try {
+    const result = await Product.find()
+      .sort({ click: -1 })
+      .populate({
+        path: 'category',
+        select: ['translations'],
+        model: Category,
+      });
+    return res.send(result);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return res.status(500).send('Internal Server Error');
+  }
+});
+
 productAdminRouter.get('/:id', auth, permit('admin'), async (req, res) => {
   try {
     const productId = req.params.id;
@@ -99,7 +115,7 @@ productAdminRouter.post(
       }
       return next(e);
     }
-  },
+  }
 );
 
 productAdminRouter.put(
@@ -147,7 +163,7 @@ productAdminRouter.put(
     } catch (e) {
       return res.status(500).send('error');
     }
-  },
+  }
 );
 
 productAdminRouter.patch('/:id', auth, permit('admin'), async (req, res) => {

@@ -65,6 +65,7 @@ export interface IProductView {
   isActive: boolean;
   isHit: boolean;
   datetime: string;
+  click?: number;
 }
 
 export interface IProductOneView {

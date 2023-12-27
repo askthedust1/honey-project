@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductsAll from '@/features/products/ProductsAll';
 import { wrapper } from '@/store/store';
-import { fetchProducts } from '@/features/products/productsThunk';
+import {fetchProducts, fetchProductsPromotion} from '@/features/products/productsThunk';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { MyPage } from '@/components/common/types';
@@ -32,15 +32,16 @@ const ProductPage: MyPage = () => {
 
 ProductPage.Layout = 'Main';
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
-  const currentPage = context.params?.page;
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale, query }) => {
+  const currentPage = query.page as string;
+  const promotion = query.promotion as string;
 
-  const { locale } = context;
   const lang = locale ?? 'ru';
   axiosApi.defaults.headers.common['Accept-Language'] = lang;
   await store.dispatch(fetchCategories(lang));
-
-  await store.dispatch(fetchProducts({ query: currentPage as string, locale: lang }));
+  !promotion ? await store.dispatch(fetchProducts({ query: currentPage as string, locale: lang }))
+      :
+      await store.dispatch(fetchProductsPromotion({ query: currentPage as string, locale: lang }));
   return {
     props: {
       name: 'Products',

@@ -10,7 +10,6 @@ const transactionsRouter = express.Router();
 transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
   try {
     if (req.query.statusId && req.query.statusPage) {
-      // console.log('statusPage router');
       let page = 1;
       const perPage = 20;
       page = parseInt(req.query.statusPage as string);
@@ -39,7 +38,6 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.orderPage) {
-      // console.log('orderPage router');
       let page = 1;
       page = parseInt(req.query.orderPage as string);
       console.log(page);
@@ -72,8 +70,6 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
       return res.send(ordersWithPages);
     }
 
-    // console.log('orderPage ALL router');
-
     const transactions = await Transaction.find()
       .populate('user', 'displayName')
       .populate('kits.product', 'title');
@@ -81,6 +77,31 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
   } catch (error) {
     console.error('Error fetching orders:', error);
     return res.status(500).send('Internal Server Error');
+  }
+});
+
+transactionsRouter.get('/:id', auth, permit('admin'), async (req, res) => {
+  try {
+    const order = await Transaction.findById(req.params.id)
+      .populate('user', 'displayName phone email')
+      .populate({
+        path: 'kits',
+        populate: {
+          path: 'product',
+          model: 'Product',
+          populate: {
+            path: 'translations.ru',
+            model: 'Product',
+            select: 'title',
+          },
+        },
+      });
+    if (!order) {
+      return res.sendStatus(404);
+    }
+    return res.send(order);
+  } catch {
+    return res.sendStatus(500);
   }
 });
 
@@ -221,9 +242,7 @@ transactionsRouter.patch('/:id/toggleStatus', auth, permit('admin'), async (req,
   console.log('orderToggle');
   try {
     const id = req.params.id;
-    console.log(id);
     const transaction = await Transaction.findById(id);
-    console.log(transaction);
 
     if (!transaction) {
       return res.status(404).send('Not found!');
@@ -234,7 +253,7 @@ transactionsRouter.patch('/:id/toggleStatus', auth, permit('admin'), async (req,
       {
         status: !transaction.status,
       },
-      { new: true },
+      { new: true }
     );
 
     return res.send(updatedTransaction);

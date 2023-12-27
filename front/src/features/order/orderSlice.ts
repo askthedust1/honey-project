@@ -78,6 +78,6 @@ export const selectOrder = (state: RootState) => state.order.transaction;
 export const selectDateOrder = (state: RootState) => state.order.dateOrder;
 export const selectUserOrders = (state: RootState) => state.order.userOrders;
 export const selectUserOrdersLoad = (state: RootState) => state.order.userOrdersLoading;
-export const { resetOrder, changeDate } = orderSlice.actions;
+export const { changeDate } = orderSlice.actions;
 export const selectProductsDataLoaded = (state: RootState) => state.order.dataLoaded;
 export const selectOrderLoading = (state: RootState) => state.order.orderLoading;

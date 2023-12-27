@@ -12,6 +12,7 @@ import {
 import { selectCurrentPage, selectOrdersAdminAll } from '@/features/orderAdmin/ordersAdminSlice';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const Orders: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -94,8 +95,9 @@ const Orders: MyPage = () => {
                     </td>
 
                     <td>
-                      <button className={cls.viewMoreBtn}></button>
-                      <button className={cls.editBtn}></button>
+                      <Link href={`/admin/orders/` + item._id}>
+                        <button className={cls.viewMoreBtn}></button>
+                      </Link>
                     </td>
                   </tr>
                 ))}

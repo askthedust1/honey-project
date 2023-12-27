@@ -10,6 +10,15 @@ $color-title: #FF8F31;
   overflow-x: hidden;
   padding-top: 20px;
 
+  @include mix.lm {
+    min-width: 200px;
+    margin-right: 10px;
+  }
+
+  @include mix.md {
+    min-width: 200px;
+  }
+
   @include mix.md2 {
     margin: 0 auto;
     padding-bottom: 30px;
