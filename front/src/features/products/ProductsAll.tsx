@@ -8,14 +8,18 @@ import cls from '../../styles/_products.module.scss';
 import SideBar from '@/components/UI/sideBar/SideBar';
 import bnr from '@/assets/images/prodBannner.png';
 import Image from 'next/image';
+import {useRouter} from "next/router";
 
 interface Props {
   pageName?: string;
 }
 
 const ProductsAll: React.FC<Props> = ({ pageName }) => {
+    let title = 'products';
+    const router = useRouter();
+    if (router.query && router.query.promotion === 'promotion') title = 'promotion';
   const products = useAppSelector(selectAllProducts);
-  const { t } = useTranslation('common');
+    const { t } = useTranslation('common');
 
   return (
     <div className={cls.container}>
@@ -31,7 +35,7 @@ const ProductsAll: React.FC<Props> = ({ pageName }) => {
           src={bnr}
           alt={'prod'}
         />
-        <h2 className={cls.titleBnr}>{pageName ? pageName : t('products')}</h2>
+        <h2 className={cls.titleBnr}>{pageName ? pageName : t(title)}</h2>
       </div>
       <div className={cls.box}>
         <SideBar />
