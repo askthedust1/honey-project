@@ -11,6 +11,7 @@ Feature: Hits
     And I click "#logBtn" button
     Then I see main page
     Then I am on admin page
-    Then I click on "Управление хитами" in sidebar
+    Then I click on "Управление хитами" link
     And I am on admin hits page
-    When I click on "Добавить в хиты" button
+    When I click on plus button
+    Then I see a product name in upper block

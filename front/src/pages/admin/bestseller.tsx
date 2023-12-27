@@ -62,7 +62,7 @@ const BestsellerAdminPage: MyPage = () => {
         </Head>
         <div className={cls.bestseller}>
           <h1 className={cls.bestseller_mainTitle}>Хиты</h1>
-          <div className={cls.bestseller_activeBest}>
+          <div className={cls.bestseller_activeBest} data-hits={'hits'}>
             {!bestsellers.length ? (
               <span className={cls.bestseller_hit_title}>
                 В данном разделе пока нет хитов! Вы можете добавить, нажав на плюсик.
@@ -114,7 +114,6 @@ const BestsellerAdminPage: MyPage = () => {
                     </td>
                     <td
                       className={cls.adminBestsellersTable_body_title}
-                      data-product-title={product.title}
                     >
                       {product.title}
                     </td>
@@ -123,13 +122,13 @@ const BestsellerAdminPage: MyPage = () => {
                     <td>
                       <button
                         type="button"
-                        data-product-id={product._id}
+                        data-product-button={product.title}
                         className={cls.adminBestsellersTable_addBtn}
                         onClick={() => addHit(product._id)}
                       >
                         {' '}
-                        Добавить в хиты
-                        {/*<Image width={14} height={14} src={plusIcon.src} alt="Plus Icon" />*/}
+                        {/*Добавить в хиты*/}
+                        <Image width={14} height={14} src={plusIcon.src} alt="Plus Icon" />
                       </button>
                     </td>
                   </tr>
