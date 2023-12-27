@@ -8,12 +8,12 @@
 
   &_form {
     border: 2px solid #7d7d7d;
-    margin: 20px auto 0;
+    margin: 15px auto 0;
     background-color: #FFFFFF;
     border-radius: 21px;
     position: relative;
     max-width: 800px;
-    padding: 20px 45px;
+    padding: 15px 45px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -26,12 +26,12 @@
       font-weight: 500;
       line-height: normal;
       text-align: center;
-      margin: 15px 0;
+      margin: 10px 0;
     }
 
     button {
       width: 180px;
-      margin: 30px auto 0 auto;
+      margin: 20px auto 0 auto;
       font-size: 20px;
       padding: 8px 12px;
       border: none;
@@ -73,7 +73,7 @@
   &_imagesBlock {
     display: flex;
     flex-wrap: nowrap;
-    padding: 70px 75px 10px;
+    padding: 30px 75px 10px;
     position: relative;
 
     img {
@@ -91,8 +91,8 @@
       color: #27AE60;
       font-size: 16px;
       font-weight: 700;
-      top: 40px;
-      left: 80px;
+      top: 0;
+      left: 71px;
     }
   }
 

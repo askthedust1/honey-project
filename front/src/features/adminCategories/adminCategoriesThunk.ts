@@ -61,7 +61,6 @@ export const createCategory = createAsyncThunk<
 
 export const fetchOneCategoryForAdmin = createAsyncThunk<TAdminCategory | null, string>(
   'adminCategories/fetchOneCategoryByAdmin',
-  // @ts-ignore
   async (id) => {
     const { data } = await axiosApi<IAdminCategory | null>(`/adminCategories/${id}`);
 
@@ -70,6 +69,7 @@ export const fetchOneCategoryForAdmin = createAsyncThunk<TAdminCategory | null, 
         translations: data.translations,
         image: data.image,
         _id: data._id,
+        isActive: data.isActive,
       };
     }
 
