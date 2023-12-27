@@ -4,23 +4,15 @@ Feature: Users
 
   Scenario: User login
     Given I am on accounts page
-    Given I click the "Войти!" button
+    Given I click the "#button-log" button
     When I enter form fields:
       | email | sam@gmail.com |
       | password | user |
-    And I click "Войти в аккаунт" button
-    Then I see "Выйти" in user menu.
-
-  Scenario: User logout
-    Given I am on accounts page
-    Given I click the "Войти!" button
-    When I enter form fields:
-      | email | sam@gmail.com |
-      | password | user |
-    And I click "Войти в аккаунт" button
-    Then I see "Выйти" in user menu.
-    When I click "Выйти" in user menu
-    Then I see "Войти" in user menu
+    And I click "#logBtn" button
+    Then I see main page
+    When I move mouse to "#user-drop" in user menu
+    And I click "#user-logout" in user menu
+    Then I see main page and "#accLog"
 
   Scenario: User register
     Given I am on accounts page
@@ -31,5 +23,8 @@ Feature: Users
       | displayName | User |
       | phone | +996555555555 |
       | address | street Chy |
-    And I click "Зарегистрироваться" button
-    Then I see "Выйти" in user menu.
+    And I click "#regBtn" button
+    Then I see main page
+    When I move mouse to "#user-drop" in user menu
+    And I click "#user-logout" in user menu
+    Then I see main page and "#accLog"

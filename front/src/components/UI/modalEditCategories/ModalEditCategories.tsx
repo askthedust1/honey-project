@@ -5,6 +5,7 @@ import { selectAdminCategoryInfo } from '@/features/adminCategories/adminCategor
 import { ICategoryMutation } from '@/types';
 import { apiUrl } from '@/constants';
 import { fetchAdminCategories, putCategory } from '@/features/adminCategories/adminCategoriesThunk';
+import Image from 'next/image';
 
 interface Props {
   isOpen: boolean;
@@ -70,7 +71,7 @@ const ModalEditCategories: React.FC<Props> = (props) => {
       };
 
       await dispatch(putCategory(categoryMutation)).unwrap();
-      await dispatch(fetchAdminCategories());
+      await dispatch(fetchAdminCategories(''));
       props.closeModalAfterPut(false);
       setFile(null);
     } catch {
@@ -119,7 +120,7 @@ const ModalEditCategories: React.FC<Props> = (props) => {
         </div>
 
         <div className={cls.modalEdit_imagesBlock}>
-          <img src={apiUrl + '/' + state.image} alt="image" />
+          <Image src={apiUrl + '/' + state.image} alt="Изображение" width={260} height={260} />
 
           <input
             className={cls.modalEdit_fileInput}
@@ -130,7 +131,12 @@ const ModalEditCategories: React.FC<Props> = (props) => {
           />
           <label className={cls.modalEdit_fileInputLabel} htmlFor="fileModuleCategory">
             {file ? (
-              <img src={file ? URL.createObjectURL(file) : ''} alt="" />
+              <Image
+                src={file ? URL.createObjectURL(file) : ''}
+                alt="Изображение"
+                width={260}
+                height={260}
+              />
             ) : (
               <span>Загрузить новое изображение</span>
             )}

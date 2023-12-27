@@ -8,6 +8,7 @@ import {
   fetchOrdersAdminByStatus,
 } from '@/features/orderAdmin/ordersAdminThunk';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import Image from 'next/image';
 
 interface Props {
   navProducts: boolean;
@@ -84,7 +85,7 @@ const AdminNav: React.FC<Props> = (props) => {
         <a className={cls.arrowToRight} href="#"></a>
       </div>
       <button className={cls.addAdminNavBtn}>
-        <img src={plusIcon.src} alt="plusIcon" />
+        <Image src={plusIcon.src} alt="plusIcon" width={14} height={14} />
         <ButtonUi text={'Добавить продукт'} link={'/admin/addProduct'} />
       </button>
     </>
@@ -160,9 +161,15 @@ const AdminNav: React.FC<Props> = (props) => {
 
   const navForCategories = (
     <>
-      <input type="text" name="findProduct" id="findProduct" placeholder="Найти по названию" />
+      <input
+        type="text"
+        name="findCategory"
+        id="findCategory"
+        placeholder="Найти по названию"
+        onChange={setSearchItem}
+      />
       <button className={cls.addAdminNavBtn}>
-        <img src={plusIcon.src} alt="plusIcon" />
+        <Image src={plusIcon.src} alt="plusIcon" width={14} height={14} />
         <ButtonUi text={'Добавить категорию'} link={'/admin/createCategories'} />
       </button>
     </>
@@ -173,7 +180,7 @@ const AdminNav: React.FC<Props> = (props) => {
       className={cls.adminNav}
       style={{
         margin: props.navCategories ? '20px 0 16px' : '20px 15px 16px',
-        maxWidth: props.navCategories ? '589px' : '',
+        maxWidth: props.navCategories ? '700px' : '',
         boxShadow: props.navBestsellers ? 'none' : 'rgba(90, 55, 51, 0.25)',
         background: props.navBestsellers ? 'none' : '#fff',
       }}

@@ -28,7 +28,7 @@ const BestsellerAdminPage: MyPage = () => {
   const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
-    dispatch(fetchAdminCategories());
+    dispatch(fetchAdminCategories(''));
     dispatch(fetchBestsellers());
   }, [dispatch]);
 

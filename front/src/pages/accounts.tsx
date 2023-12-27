@@ -48,13 +48,17 @@ const Accounts: MyPage = () => {
     <div className={acc.wrapBtn}>
       <p>{t('accReg')}</p>
       <br />
-      <button className={acc.btnOn}>{t('register')}!</button>
+      <button data-acc-id={'button-reg'} className={acc.btnOn}>
+        {t('register')}
+      </button>
     </div>
   ) : (
     <div className={acc.wrapBtn}>
       <p>{t('acc')}</p>
       <br />
-      <button className={acc.btnOn}>{t('login')}!</button>
+      <button id={'button-log'} className={acc.btnOn}>
+        {t('login')}
+      </button>
     </div>
   );
   const currentActive = isLoginActive ? 'login' : 'register';

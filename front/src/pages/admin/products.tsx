@@ -14,6 +14,7 @@ import { fetchAdminCategories } from '@/features/adminCategories/adminCategories
 import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
 import Head from 'next/head';
+import Image from 'next/image';
 
 const ProductsAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +24,7 @@ const ProductsAdminPage: MyPage = () => {
   const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
-    dispatch(fetchAdminCategories());
+    dispatch(fetchAdminCategories(''));
   }, [dispatch]);
 
   useEffect(() => {
@@ -74,7 +75,12 @@ const ProductsAdminPage: MyPage = () => {
                 {products.map((product) => (
                   <tr key={product._id}>
                     <td className={cls.imageTd}>
-                      <img src={apiUrl + '/' + product.image} alt="image" />
+                      <Image
+                        width={69}
+                        height={69}
+                        src={apiUrl + '/' + product.image}
+                        alt="image"
+                      />
                     </td>
                     <td>{product.title}</td>
                     <td>{product.category.title}</td>
@@ -107,7 +113,7 @@ const ProductsAdminPage: MyPage = () => {
                     </td>
                     <td>{new Date(product.datetime).toLocaleDateString()}</td>
                     <td>
-                      <Link href={`/admin/products/` + product._id}>
+                      <Link href={`/admin/products/` + product._id} data-product-id={product._id}>
                         <button className={cls.viewMoreBtn}></button>
                       </Link>
                       <Link href={`/admin/editProduct/` + product._id}>
