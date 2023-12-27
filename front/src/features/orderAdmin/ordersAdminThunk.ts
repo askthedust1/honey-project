@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
-import { IOrder, IOrderAdminFullResponse } from '@/types';
+import { IOrder, IOrderAdminFullResponse, IOrderAdminView } from '@/types';
 import { RootState } from '@/store/store';
 
 export const fetchOrdersAdminAll = createAsyncThunk<
@@ -25,6 +25,19 @@ export const fetchOrdersAdminAll = createAsyncThunk<
     throw e;
   }
 });
+
+export const fetchOrderOneAdmin = createAsyncThunk<IOrderAdminView, string>(
+  'orderAdmin/fetchOneAdmin',
+  async (id) => {
+    try {
+      const orderOneResponse = await axiosApi.get<IOrderAdminView>(`/transactions/${id}`);
+      return orderOneResponse.data;
+    } catch (e) {
+      //nothing
+      throw e;
+    }
+  },
+);
 
 export const patchActiveOrders = createAsyncThunk<void, string>(
   'orderAdmin/patchStatus',

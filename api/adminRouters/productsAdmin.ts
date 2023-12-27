@@ -99,7 +99,7 @@ productAdminRouter.post(
       }
       return next(e);
     }
-  },
+  }
 );
 
 productAdminRouter.put(
@@ -147,7 +147,7 @@ productAdminRouter.put(
     } catch (e) {
       return res.status(500).send('error');
     }
-  },
+  }
 );
 
 productAdminRouter.patch('/:id', auth, permit('admin'), async (req, res) => {
