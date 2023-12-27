@@ -56,3 +56,16 @@ export const getProduct = createAsyncThunk(
     return { oneProduct: product, relatedProducts: relatedProductsOne };
   },
 );
+
+export const fetchProductsPromotion = createAsyncThunk<IProductsOfPage, { query: string; locale: string }>(
+    'products/fetchPromotion',
+    async (query) => {
+        const productsResponse = await axiosApi.get<IProductsOfPage>(`/products/promotion?page=${query.query}`);
+        const { productsOfPage, totalPages, currentPage } = productsResponse.data;
+        return {
+            productsOfPage: useProductsTranslation(productsOfPage, query.locale),
+            totalPages,
+            currentPage,
+        };
+    },
+);

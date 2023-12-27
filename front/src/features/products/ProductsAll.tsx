@@ -15,7 +15,8 @@ interface Props {
 
 const ProductsAll: React.FC<Props> = ({ pageName }) => {
   const products = useAppSelector(selectAllProducts);
-  const { t } = useTranslation('common');
+    console.log(products.length);
+    const { t } = useTranslation('common');
 
   return (
     <div className={cls.container}>
