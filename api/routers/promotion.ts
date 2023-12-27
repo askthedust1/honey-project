@@ -5,7 +5,6 @@ const promotionRouter = express.Router();
 
 promotionRouter.get('/', async (req, res) => {
     try {
-        console.log('promotion');
         let page1 = 1;
         const perPage = 9;
         const totalProducts = await Product.find({

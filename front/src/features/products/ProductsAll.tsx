@@ -17,7 +17,6 @@ interface Props {
 const ProductsAll: React.FC<Props> = ({ pageName }) => {
     let title = 'products';
     const router = useRouter();
-    console.log(router.query);
     if (router.query && router.query.promotion === 'promotion') title = 'promotion';
   const products = useAppSelector(selectAllProducts);
     const { t } = useTranslation('common');
