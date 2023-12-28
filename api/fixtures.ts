@@ -509,6 +509,7 @@ const run = async () => {
       oldPrice: 400,
       actualPrice: 400,
       amount: 20,
+      isHit: true,
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {
