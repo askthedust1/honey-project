@@ -37,7 +37,7 @@ productRouter.get('/', async (req, res) => {
 
     let page = 1;
     const perPage = 9;
-    const totalProducts = await Product.countDocuments();
+    const totalProducts = await Product.find({ isActive: true }).countDocuments();
     const totalPages = Math.ceil(totalProducts / perPage);
 
     if (req.query.page) {

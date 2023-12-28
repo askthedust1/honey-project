@@ -180,7 +180,30 @@ productAdminRouter.patch('/:id', auth, permit('admin'), async (req, res) => {
       isActive: !product.isActive,
     });
 
-    return res.send(product);
+    const productsCount = await Product.find({
+      isActive: true,
+      category: product.category,
+    }).countDocuments();
+
+    const category = await Category.findById(product.category);
+
+    if (!category) {
+      return res.status(404).send('Not found!');
+    }
+
+    if (productsCount === 0) {
+      await Category.findByIdAndUpdate(product.category, {
+        isActive: false,
+      });
+
+      return res.send(product);
+    } else if (productsCount > 0) {
+      await Category.findByIdAndUpdate(product.category, {
+        isActive: true,
+      });
+
+      return res.send(product);
+    }
   } catch (e) {
     return res.status(500).send('error');
   }

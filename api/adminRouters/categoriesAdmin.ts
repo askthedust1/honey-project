@@ -125,11 +125,25 @@ categoriesAdminRouter.patch('/:id', auth, permit('admin'), async (req, res) => {
       return res.status(404).send('Not found!');
     }
 
-    await Category.findByIdAndUpdate(id, {
-      isActive: !category.isActive,
-    });
+    const productsCount = await Product.find({ category: id, isActive: true }).countDocuments();
 
-    return res.send(category);
+    if (productsCount > 0 && category.isActive === true) {
+      return res.send(category);
+    } else if (productsCount === 0 && category.isActive === false) {
+      return res.send(category);
+    } else if (productsCount > 0 && category.isActive === false) {
+      await Category.findByIdAndUpdate(id, {
+        isActive: !category.isActive,
+      });
+
+      return res.send(category);
+    } else if (productsCount === 0 && category.isActive === true) {
+      await Category.findByIdAndUpdate(id, {
+        isActive: !category.isActive,
+      });
+
+      return res.send(category);
+    }
   } catch (e) {
     return res.status(500).send('error');
   }
