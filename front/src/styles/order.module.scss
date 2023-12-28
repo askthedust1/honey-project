@@ -49,6 +49,7 @@
         width: 100%;
         margin-bottom: 31px;
         padding: 40px 24px;
+        position: relative;
         h4 {
           color: #000;
           font-size: 20px;
@@ -168,6 +169,7 @@
       .client {
         display: flex;
         align-items: center;
+        position: relative;
         @include mix.md {
           flex-direction: column;
         }
@@ -236,5 +238,13 @@
       }
 
     }
+  }
+
+  .requiredAddress {
+    position: absolute;
+    display: inline-block;
+    bottom: 13px;
+    left: 35px;
+    font-size: 14px;
   }
 }

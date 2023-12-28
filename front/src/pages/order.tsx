@@ -29,7 +29,6 @@ const Order: MyPage = () => {
   const cart = useAppSelector(selectCart);
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -63,19 +62,22 @@ const Order: MyPage = () => {
 
   const submitFormHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-    try {
-      const fullOrder = {
-        kits: fullOrderArr,
-        address: state.address ? state.address : 'defaultAddress',
-        dateTime: new Date().toISOString(),
-      };
-      dispatch(changeDate(fullOrder.dateTime));
-      await dispatch(createOrder(fullOrder));
-      await router.push(`/transaction`);
-      dispatch(resetCart());
-    } catch (e) {
-      console.log(e);
+    if (state.address.length) {
+      try {
+        const fullOrder = {
+          kits: fullOrderArr,
+          address: state.address ? state.address : 'defaultAddress',
+          dateTime: new Date().toISOString(),
+        };
+        dispatch(changeDate(fullOrder.dateTime));
+        await dispatch(createOrder(fullOrder));
+        await router.push(`/transaction`);
+        dispatch(resetCart());
+      } catch (e) {
+        console.log(e);
+      }
     }
+
   };
   const [choice, setChoice] = useState<boolean>(false);
   const changeSelection = () => {
@@ -110,10 +112,14 @@ const Order: MyPage = () => {
                 <span className={cls.addressTitle}>{t('addressDetails')}</span>
                 <input
                   onChange={inputChangeHandler}
+                  required={true}
                   type="text"
                   name="address"
                   placeholder={t('yourAddress')}
                 />
+                {
+                    !state.address.length && <div className={cls.requiredAddress}>Вы не ввели адрес, введите обязательно!</div>
+                }
               </div>
               <div className={cls.order_leftBlock_item}>
                 <h4>{t('selectPaymentMethod')}:</h4>
