@@ -18,5 +18,6 @@
   "deliveryLabel": "Жеткирүү",
   "deliveryValue": "тегерек",
   "totalLabel": "Жалпы",
-  "buy": "Сатып алу"
+  "buy": "Сатып алу",
+  "requiredAddress": "Дарегини киргизбеген чын эмес, киргизиңиз!"
 }
