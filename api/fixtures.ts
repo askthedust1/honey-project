@@ -435,7 +435,6 @@ const run = async () => {
       actualPrice: 300,
       amount: 20,
       image: 'fixtures/herbs.svg',
-      isHit: true,
       translations: {
         ru: {
           title: 'Березовый сбор для очищения',
@@ -510,7 +509,6 @@ const run = async () => {
       oldPrice: 400,
       actualPrice: 400,
       amount: 20,
-      isHit: true,
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {

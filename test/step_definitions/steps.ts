@@ -176,9 +176,26 @@ When('I click on plus button', async () => {
     await I.click('[data-product-button]:first-child');
 });
 
-Then('I see a product name in upper block', (productNameInOtherDiv) => {
-    productNameInOtherDiv = productName;
+Then('I see a product name in upper block', () => {
     const hitsDiv = '[data-hits]';
     I.waitForVisible(hitsDiv);
-    I.see(productNameInOtherDiv, hitsDiv);
+    I.see(productName, hitsDiv);
+});
+
+let hitName;
+When('I click on delete button', async () => {
+    hitName = await I.grabAttributeFrom('[data-hit-button]', 'data-hit-button');
+    await I.click('[data-hit-button]');
+});
+
+Then('I don\'t see a product name in upper block', async() => {
+    const hitsDiv = '[data-hits]';
+    await I.waitForVisible(hitsDiv);
+    I.dontSee(hitName, hitsDiv);
+});
+
+Then('I see a product name in the table', async () => {
+    const productsTable = '[data-products-table]';
+    await I.waitForVisible(productsTable);
+    I.see(hitName, productsTable);
 });

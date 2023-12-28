@@ -72,6 +72,8 @@ const BestsellerAdminPage: MyPage = () => {
                 <div className={cls.bestseller_hit} key={i._id}>
                   <span className={cls.bestseller_hit_title}>{i.title}</span>
                   <button
+                    type="button"
+                    data-hit-button={i.title}
                     onClick={() => deleteHit(i._id)}
                     className={cls.bestseller_hit_btn}
                   ></button>
@@ -91,7 +93,7 @@ const BestsellerAdminPage: MyPage = () => {
           />
 
           <div className={cls.adminBestsellersTable}>
-            <table>
+            <table data-products-table={'table'}>
               <thead>
                 <tr>
                   <th>Фотография</th>
