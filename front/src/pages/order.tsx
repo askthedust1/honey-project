@@ -118,7 +118,7 @@ const Order: MyPage = () => {
                   placeholder={t('yourAddress')}
                 />
                 {
-                    !state.address.length && <div className={cls.requiredAddress}>Вы не ввели адрес, введите обязательно!</div>
+                    !state.address.length && <div className={cls.requiredAddress}>{t('requiredAddress')}</div>
                 }
               </div>
               <div className={cls.order_leftBlock_item}>
