@@ -54,7 +54,6 @@ const run = async () => {
   const [honey, herbs, driedFruits] = await Category.create(
     {
       image: 'fixtures/honey2.jpg',
-      isActive: true,
       translations: {
         en: {
           title: 'Honey',
@@ -75,7 +74,6 @@ const run = async () => {
     },
     {
       image: 'fixtures/herbs_category.jpg',
-      isActive: true,
       translations: {
         en: {
           title: 'Herbs',
@@ -96,7 +94,6 @@ const run = async () => {
     },
     {
       image: 'fixtures/fruits_category.jpg',
-      isActive: true,
       translations: {
         en: {
           title: 'Dried fruits',
@@ -117,7 +114,6 @@ const run = async () => {
     },
     {
       image: 'fixtures/present.jpg',
-      isActive: true,
       translations: {
         en: {
           title: 'Gift Baskets',
@@ -138,7 +134,6 @@ const run = async () => {
     },
     {
       image: 'fixtures/honeyWith.jpg',
-      isActive: true,
       translations: {
         en: {
           title: 'Honey with additives',
@@ -208,6 +203,7 @@ const run = async () => {
       amount: 20,
       image: 'fixtures/honey.svg',
       isHit: true,
+      click: 10,
       translations: {
         ru: {
           title: 'Связистый мед',
@@ -233,6 +229,7 @@ const run = async () => {
       amount: 20,
       image: 'fixtures/honey.svg',
       isHit: true,
+      click: 15,
       translations: {
         ru: {
           title: 'Акациевый мед',
@@ -256,6 +253,7 @@ const run = async () => {
       oldPrice: 400,
       actualPrice: 400,
       amount: 20,
+      click: 20,
       image: 'fixtures/White-honey.svg',
       translations: {
         ru: {

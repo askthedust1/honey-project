@@ -44,7 +44,7 @@ const ProductSchema = new Schema({
   isActive: {
     type: Boolean,
     required: true,
-    default: true,
+    default: false,
   },
   isHit: {
     type: Boolean,
@@ -87,6 +87,11 @@ const ProductSchema = new Schema({
         required: true,
       },
     },
+  },
+  click: {
+    type: Number,
+    default: 0,
+    required: false,
   },
 });
 

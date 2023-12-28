@@ -55,9 +55,13 @@ const Bestseller = () => {
         </button>
       </div>
       <div className={cls.list}>
-        {bestsellers.map((el: IProduct) => (
-          <ProductItem key={el._id} product={el} customClass={otherCls.card_block_white} />
-        ))}
+        {!!bestsellers.length ? (
+          bestsellers.map((el: IProduct) => (
+            <ProductItem key={el._id} product={el} customClass={otherCls.card_block_white} />
+          ))
+        ) : (
+          <h3>В этом разделе товары временно отсутствуют...</h3>
+        )}
       </div>
     </div>
   );
