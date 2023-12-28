@@ -18,5 +18,6 @@
   "deliveryLabel": "Delivery",
   "deliveryValue": "free",
   "totalLabel": "Total",
-  "buy": "Buy"
+  "buy": "Buy",
+  "requiredAddress": "You haven't entered the address, please enter it!"
 }

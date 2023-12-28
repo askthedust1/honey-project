@@ -30,7 +30,7 @@ export const fetchOrderOneAdmin = createAsyncThunk<IOrderAdminView, string>(
   'orderAdmin/fetchOneAdmin',
   async (id) => {
     try {
-      const orderOneResponse = await axiosApi.get<IOrderAdminView>(`/transactions/${id}`);
+      const orderOneResponse = await axiosApi.get<IOrderAdminView>(`/transactions/one/${id}`);
       return orderOneResponse.data;
     } catch (e) {
       //nothing

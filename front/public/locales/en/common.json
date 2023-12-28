@@ -1,7 +1,7 @@
 {
   "products": "Products",
   "all-products": "All products",
-  "som": "som",
+  "som": "kgs",
   "available": "Available",
   "unavailable": "Unavailable",
   "add-to-basket": "Add to Basket",
@@ -33,5 +33,6 @@
   "faq5": "When will my order be delivered?",
   "main": "Main",
   "catalog": "In catalog",
-  "promotion": "Promotions"
+  "promotion": "Promotions",
+  "copy": "Link copied to clipboard!"
 }

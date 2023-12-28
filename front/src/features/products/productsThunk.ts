@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
 import { IProduct, IProductsOfPage, IProductView, IQueryObjectCategory } from '@/types';
-import { useProductsTranslation, useProductTranslation } from '@/features/products/productHook';
 
 export const fetchProducts = createAsyncThunk<IProductsOfPage, { query: string; locale: string }>(
   'products/fetchAll',
@@ -9,7 +8,7 @@ export const fetchProducts = createAsyncThunk<IProductsOfPage, { query: string; 
     const productsResponse = await axiosApi.get<IProductsOfPage>(`/products?page=${query.query}`);
     const { productsOfPage, totalPages, currentPage } = productsResponse.data;
     return {
-      productsOfPage: useProductsTranslation(productsOfPage, query.locale),
+      productsOfPage: productsOfPage,
       totalPages,
       currentPage,
     };
@@ -28,7 +27,7 @@ export const fetchProductsByCategory = createAsyncThunk<
   );
   const { productsOfPage, totalPages, currentPage } = productsResponse.data;
   return {
-    productsOfPage: useProductsTranslation(productsOfPage, query.locale),
+    productsOfPage: productsOfPage,
     totalPages,
     currentPage,
   };
@@ -37,8 +36,10 @@ export const fetchProductsByCategory = createAsyncThunk<
 export const fetchBestsellers = createAsyncThunk<IProduct[], { type: string; locale: string }>(
   'products/fetchByFilter',
   async (query) => {
-    const productsResponse = await axiosApi.get<IProduct[]>(`/products?filterBy=${query.type}`);
-    return useProductsTranslation(productsResponse.data, query.locale);
+    const productsResponse = await axiosApi.get<IProduct[]>(`/products?filterBy=${query.type}`, {
+      headers: { 'Accept-Language': query.locale },
+    });
+    return productsResponse.data;
   },
 );
 
@@ -50,22 +51,22 @@ export const getProduct = createAsyncThunk(
       axiosApi<IProduct[]>(`/products/${query.id}/relatedProducts`),
     ]);
 
-    const product = useProductTranslation(productResponse.data, query.locale);
-    const relatedProductsOne = useProductsTranslation(relatedProductsResponse.data, query.locale);
+    const product = productResponse.data;
+    const relatedProductsOne = relatedProductsResponse.data;
 
     return { oneProduct: product, relatedProducts: relatedProductsOne };
   },
 );
 
-export const fetchProductsPromotion = createAsyncThunk<IProductsOfPage, { query: string; locale: string }>(
-    'products/fetchPromotion',
-    async (query) => {
-        const productsResponse = await axiosApi.get<IProductsOfPage>(`/promotion?page=${query.query}`);
-        const { productsOfPage, totalPages, currentPage } = productsResponse.data;
-        return {
-            productsOfPage: useProductsTranslation(productsOfPage, query.locale),
-            totalPages,
-            currentPage,
-        };
-    },
-);
+export const fetchProductsPromotion = createAsyncThunk<
+  IProductsOfPage,
+  { query: string; locale: string }
+>('products/fetchPromotion', async (query) => {
+  const productsResponse = await axiosApi.get<IProductsOfPage>(`/promotion?page=${query.query}`);
+  const { productsOfPage, totalPages, currentPage } = productsResponse.data;
+  return {
+    productsOfPage: productsOfPage,
+    totalPages,
+    currentPage,
+  };
+});

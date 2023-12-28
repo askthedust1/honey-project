@@ -10,7 +10,13 @@ export interface IUserApi {
 }
 
 export interface IProductPost {
-  category: string;
+  category: {
+    translations: {
+      [key: string]: {
+        title: string;
+      };
+    };
+  };
   translations: {
     [key: string]: {
       title: string;

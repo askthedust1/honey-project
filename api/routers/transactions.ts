@@ -80,7 +80,7 @@ transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
   }
 });
 
-transactionsRouter.get('/:id', auth, permit('admin'), async (req, res) => {
+transactionsRouter.get('/one/:id', auth, permit('admin'), async (req, res) => {
   try {
     const order = await Transaction.findById(req.params.id)
       .populate('user', 'displayName phone email')

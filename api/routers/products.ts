@@ -2,12 +2,12 @@ import express from 'express';
 import Product from '../models/Product';
 import Category from '../models/Category';
 import User from '../models/User';
-//НЕ ВКЛЮЧАТЬ ПРОВЕРКУ ПРИТИРА И ИСПРАВЛЕНИЯ!
-// ТУТ ВСЕ ПРАВИЛЬНО, ЕСЛИ ОН ПОСТАВИТ СВОИ ЛИШНИЕ ЗАПЯТЫЕ, ЗАПРОСЫ ПОЛОМАЮТСЯ! СПАСИБО)
+import { IProductPost } from '../types';
+
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
-  // const lang = req.headers['accept-language'] || 'ru';
+  const lang = req.headers['accept-language'] || 'ru';
 
   try {
     const filterBy = req.query.filterBy;
@@ -16,7 +16,15 @@ productRouter.get('/', async (req, res) => {
       const result = await Product.find({
         $and: [{ isHit: true }, { isActive: true }],
       }).limit(6);
-      return res.send(result);
+
+      const fit = result.map((i) => {
+        const product = i.toObject() as IProductPost;
+        return {
+          ...product,
+          title: product.translations[lang]?.title,
+        };
+      });
+      return res.send(fit);
     }
 
     if (filterBy && filterBy === 'new') {
@@ -25,14 +33,30 @@ productRouter.get('/', async (req, res) => {
       })
         .sort({ datetime: 'descending' })
         .limit(6);
-      return res.send(result);
+
+      const fit = result.map((i) => {
+        const product = i.toObject() as IProductPost;
+        return {
+          ...product,
+          title: product.translations[lang]?.title,
+        };
+      });
+      return res.send(fit);
     }
 
     if (filterBy && filterBy === 'offers') {
       const result = await Product.find({
         $and: [{ $expr: { $ne: ['$oldPrice', '$actualPrice'] } }, { isActive: true }],
       }).limit(6);
-      return res.send(result);
+
+      const fit = result.map((i) => {
+        const product = i.toObject() as IProductPost;
+        return {
+          ...product,
+          title: product.translations[lang]?.title,
+        };
+      });
+      return res.send(fit);
     }
 
     let page = 1;
@@ -47,8 +71,17 @@ productRouter.get('/', async (req, res) => {
         .populate('category', 'title description')
         .skip((page - 1) * perPage)
         .limit(perPage);
+
+      const fit = products.map((i) => {
+        const product = i.toObject() as IProductPost;
+        return {
+          ...product,
+          title: product.translations[lang].title,
+        };
+      });
+
       const productsWithPages = {
-        productsOfPage: products,
+        productsOfPage: fit,
         currentPage: page,
         totalPages,
       };
@@ -76,8 +109,16 @@ productRouter.get('/', async (req, res) => {
 
       const totalPages = Math.ceil(productsTotal / categoryPerPage);
 
+      const fit = products.map((i) => {
+        const product = i.toObject() as IProductPost;
+        return {
+          ...product,
+          title: product.translations[lang].title,
+        };
+      });
+
       const productsWithPages = {
-        productsOfPage: products,
+        productsOfPage: fit,
         currentPage: pageCategory,
         totalPages,
       };
@@ -91,6 +132,8 @@ productRouter.get('/', async (req, res) => {
 });
 
 productRouter.get('/:id', async (req, res) => {
+  const lang = req.headers['accept-language'] || 'ru';
+
   try {
     const token = req.get('Authorization');
     const user = await User.findOne({ token });
@@ -113,7 +156,18 @@ productRouter.get('/:id', async (req, res) => {
       (!user && product.isActive) ||
       (user && user.role === 'user' && product.isActive)
     ) {
-      return res.send(product);
+      const productFormed = product.toObject() as IProductPost;
+      const fit = {
+        ...productFormed,
+        title: productFormed.translations[lang].title,
+        description: productFormed.translations[lang].description,
+        category: {
+          ...productFormed.category,
+          title: productFormed.category.translations[lang].title,
+        },
+      };
+
+      return res.send(fit);
     }
 
     return res.status(404).send({ error: 'Not found' });
@@ -123,6 +177,8 @@ productRouter.get('/:id', async (req, res) => {
 });
 
 productRouter.get('/:id/relatedProducts', async (req, res) => {
+  const lang = req.headers['accept-language'] || 'ru';
+
   try {
     const token = req.get('Authorization');
     const user = await User.findOne({ token });
@@ -155,7 +211,15 @@ productRouter.get('/:id/relatedProducts', async (req, res) => {
       (!user && product.isActive) ||
       (user && user.role === 'user' && product.isActive)
     ) {
-      return res.send(relatedProducts);
+      const fit = relatedProducts.map((i) => {
+        const product = i.toObject() as IProductPost;
+        return {
+          ...product,
+          title: product.translations[lang].title,
+        };
+      });
+
+      return res.send(fit);
     }
 
     return res.status(404).send({ error: 'Not found' });

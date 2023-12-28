@@ -116,8 +116,8 @@ const History: MyPage = () => {
                   <span className={cls.ordersCards_card_marker}>{t('status')}:</span>{' '}
                   {order.status ? t('statusYes') : t('statusNo')}
                 </p>
-                <p className={cls.ordersCards_card_order}>
-                  <span className={cls.ordersCards_card_marker}>{t('orderList')}:</span>{' '}
+                <div className={cls.ordersCards_card_order}>
+                  <span className={cls.ordersCards_card_marker}>{t('orderList')}:</span>
                   {order.kits.map((i) => (
                     <ul key={i.product._id} className={cls.list}>
                       <li>
@@ -128,7 +128,7 @@ const History: MyPage = () => {
                       </li>
                     </ul>
                   ))}
-                </p>
+                </div>
               </div>
             ))}
           </div>
