@@ -112,11 +112,7 @@ const BestsellerAdminPage: MyPage = () => {
                         alt="image"
                       />
                     </td>
-                    <td
-                      className={cls.adminBestsellersTable_body_title}
-                    >
-                      {product.title}
-                    </td>
+                    <td className={cls.adminBestsellersTable_body_title}>{product.title}</td>
                     <td>{product.category.title}</td>
                     <td>{product.actualPrice}</td>
                     <td>
@@ -126,8 +122,6 @@ const BestsellerAdminPage: MyPage = () => {
                         className={cls.adminBestsellersTable_addBtn}
                         onClick={() => addHit(product._id)}
                       >
-                        {' '}
-                        {/*Добавить в хиты*/}
                         <Image width={14} height={14} src={plusIcon.src} alt="Plus Icon" />
                       </button>
                     </td>

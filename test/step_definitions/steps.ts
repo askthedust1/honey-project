@@ -1,7 +1,5 @@
 // import * as wasi from "wasi";
 
-import assert from "assert";
-
 interface IDataTableCalls {
     value: string
 }
