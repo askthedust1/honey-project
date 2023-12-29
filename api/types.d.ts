@@ -76,3 +76,26 @@ export interface IBanner {
   image?: string;
   description: string;
 }
+
+export interface Category {
+  _id: Types.ObjectId;
+}
+
+export interface ProductTranslations {
+  [key: string]: {
+    title: string;
+    description: string;
+  } | undefined;
+}
+
+export interface IProduct {
+  category: Types.ObjectId | Category;
+  oldPrice: number;
+  actualPrice: number;
+  image: string;
+  amount: number;
+  isActive: boolean;
+  isHit: boolean;
+  datetime: string;
+  translations: ProductTranslations;
+}

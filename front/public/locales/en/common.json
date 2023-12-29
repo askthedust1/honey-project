@@ -34,5 +34,10 @@
   "main": "Main",
   "catalog": "In catalog",
   "promotion": "Promotions",
-  "copy": "Link copied to clipboard!"
+  "copy": "Link copied to clipboard!",
+  "filter1": "By date of addition",
+  "filter2": "By price (high > low)",
+  "filter3": "By price (low > high)",
+  "filter4": "Sorting by",
+  "search": "Search"
 }

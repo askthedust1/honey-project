@@ -9,7 +9,7 @@ const SideBar = () => {
   const categories = useAppSelector(selectCategories);
   const { t } = useTranslation('common');
 
-    return (
+  return (
     <div className={cls.sideBar}>
       <div className={cls.sideBar_list}>
         <h3 className={cls.sideBar_title}>{t('sideBarTitle')}:</h3>
@@ -27,10 +27,13 @@ const SideBar = () => {
             {item.title}
           </Link>
         ))}
-        <Link className={cls.category_item} href={{
-          pathname: '/products/page/1',
-          query: {promotion: 'promotion'},
-        }}>
+        <Link
+          className={cls.category_item}
+          href={{
+            pathname: '/products/page/1',
+            query: { promotion: 'promotion' },
+          }}
+        >
           {t('promotion')}
         </Link>
       </div>
