@@ -10,6 +10,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
 import axiosApi from '@/axiosApi';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
 
 const History: MyPage = () => {
   const { t, i18n } = useTranslation('ordersHistory');
@@ -140,9 +141,12 @@ const History: MyPage = () => {
 
 History.Layout = 'Main';
 
-export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
+  const lang = locale ?? 'ru';
+  axiosApi.defaults.headers.common['Accept-Language'] = lang;
 
+  await store.dispatch(fetchCategories(lang));
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ru', ['header', 'ordersHistory', 'footer'])),
