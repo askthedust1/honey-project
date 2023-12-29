@@ -65,7 +65,6 @@ export interface IProductView {
   isActive: boolean;
   isHit: boolean;
   datetime: string;
-  click?: number;
 }
 
 export interface IProductOneView {
@@ -232,6 +231,12 @@ export interface IBannerPost {
 export interface IQueryObjectCategory {
   categoryId: string;
   categoryPage: string;
+}
+
+export interface IQueryObjectCategoryFilter {
+  categoryId: string;
+  categoryPage: string;
+  sort: string;
 }
 
 export interface ICart {

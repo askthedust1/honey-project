@@ -2,19 +2,76 @@ import express from 'express';
 import Product from '../models/Product';
 import Category from '../models/Category';
 import User from '../models/User';
-import { IProductPost } from '../types';
-
+import {IProduct, IProductPost} from "../types";
+//НЕ ВКЛЮЧАТЬ ПРОВЕРКУ ПРИТИРА И ИСПРАВЛЕНИЯ!
+// ТУТ ВСЕ ПРАВИЛЬНО, ЕСЛИ ОН ПОСТАВИТ СВОИ ЛИШНИЕ ЗАПЯТЫЕ, ЗАПРОСЫ ПОЛОМАЮТСЯ! СПАСИБО)
 const productRouter = express.Router();
 
-productRouter.get('/', async (req, res) => {
-  const lang = req.headers['accept-language'] || 'ru';
+interface ProductQuery {
+  isActive: boolean;
+  category?: string;
+}
 
+const getProductsQuery = (isActive: boolean, categoryId?: string): ProductQuery => ({
+  isActive,
+  ...(categoryId && { category: categoryId }),
+});
+
+const getSortQuery = (sortType?: string): Record<string, 1 | -1> => {
+  switch (sortType) {
+    case 'priceDown':
+      return { actualPrice: -1 };
+    case 'priceUp':
+      return { actualPrice: 1 };
+    case 'title':
+      return { datetime: -1 };
+    default:
+      return {};
+  }
+};
+
+async function getProductsWithPages(
+    query: ProductQuery,
+    page: number,
+    perPage: number,
+    lang: string,
+    sortType?: string,
+): Promise<{ productsOfPage: IProduct[]; currentPage: number; totalPages: number }> {
+  const totalProducts = await Product.countDocuments(query);
+  const totalPages = Math.ceil(totalProducts / perPage);
+
+  const products = await Product.find(query)
+      .populate('category', 'title description')
+      .sort(getSortQuery(sortType))
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .lean();
+
+  const fit = products.map(product => {
+    const translations = product.translations as Record<string, { title: string; description: string } | undefined>;
+    const title = translations[lang]?.title ?? 'Default Title';
+    return {
+      ...product,
+      title,
+    };
+  });
+
+  return { productsOfPage: fit as IProduct[], currentPage: page, totalPages };
+}
+
+productRouter.get('/', async (req, res) => {
   try {
-    const filterBy = req.query.filterBy;
+    const lang = req.headers['accept-language'] || 'ru';
+    const { filterBy, categoryId } = req.query;
+    const perPage = 9;
+
+    const sort = req.query.sort as string;
+    const page = typeof req.query.page === 'string' ? parseInt(req.query.page) : 1;
+    const categoryPage = typeof req.query.categoryPage === 'string' ? parseInt(req.query.categoryPage) : 1;
 
     if (filterBy && filterBy === 'hit') {
       const result = await Product.find({
-        $and: [{ isHit: true }, { isActive: true }],
+        $and: [{ isHit: true }, { isActive: true }]
       }).limit(6);
 
       const fit = result.map((i) => {
@@ -24,15 +81,16 @@ productRouter.get('/', async (req, res) => {
           title: product.translations[lang]?.title,
         };
       });
+
       return res.send(fit);
     }
 
     if (filterBy && filterBy === 'new') {
       const result = await Product.find({
-        $and: [{ isHit: false }, { isActive: true }],
+        $and: [{ isHit: false }, { isActive: true }]
       })
-        .sort({ datetime: 'descending' })
-        .limit(6);
+          .sort({ datetime: 'descending' })
+          .limit(6);
 
       const fit = result.map((i) => {
         const product = i.toObject() as IProductPost;
@@ -41,12 +99,13 @@ productRouter.get('/', async (req, res) => {
           title: product.translations[lang]?.title,
         };
       });
+
       return res.send(fit);
     }
 
     if (filterBy && filterBy === 'offers') {
       const result = await Product.find({
-        $and: [{ $expr: { $ne: ['$oldPrice', '$actualPrice'] } }, { isActive: true }],
+        $and: [{ $expr: { $ne: ['$oldPrice', '$actualPrice'] } }, { isActive: true }]
       }).limit(6);
 
       const fit = result.map((i) => {
@@ -56,27 +115,55 @@ productRouter.get('/', async (req, res) => {
           title: product.translations[lang]?.title,
         };
       });
+
       return res.send(fit);
     }
 
-    let page = 1;
-    const perPage = 9;
-    const totalProducts = await Product.find({ isActive: true }).countDocuments();
-    const totalPages = Math.ceil(totalProducts / perPage);
+    const categoryIdStr = typeof categoryId === 'string' ? categoryId : undefined;
 
-    if (req.query.page) {
-      page = parseInt(req.query.page as string);
+    if (categoryIdStr) {
+      const query = getProductsQuery(true, categoryIdStr);
+      const productsWithPages = await getProductsWithPages(query, categoryPage, perPage, lang, sort);
+      return res.send(productsWithPages);
+    }
 
-      const products = await Product.find({ isActive: true })
-        .populate('category', 'title description')
-        .skip((page - 1) * perPage)
-        .limit(perPage);
+    const query = getProductsQuery(true);
+    const productsWithPages = await getProductsWithPages(query, page, perPage, lang, sort);
+    return res.send(productsWithPages);
 
-      const fit = products.map((i) => {
-        const product = i.toObject() as IProductPost;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+productRouter.get('/search', async (req, res) => {
+  try {
+    const lang = req.headers['accept-language'] || 'ru';
+    const search = req.query.q as string;
+    const regex = new RegExp(search, 'i');
+
+    const productPerPage = 9;
+    const page = parseInt(req.query.page as string) || 1;
+
+    if (search) {
+      const searchField = `translations.${lang}.title`;
+      const query = { [searchField]: regex };
+
+      const productsTotal = await Product.countDocuments(query);
+      const totalPages = Math.ceil(productsTotal / productPerPage);
+
+      const products = await Product.find(query)
+          .skip((page - 1) * productPerPage)
+          .limit(productPerPage)
+          .lean();
+
+      const fit = products.map(product => {
+        const translations = product.translations as Record<string, { title: string; description: string } | undefined>;
+        const title = translations[lang]?.title ?? 'Default Title';
         return {
           ...product,
-          title: product.translations[lang].title,
+          title,
         };
       });
 
@@ -85,52 +172,148 @@ productRouter.get('/', async (req, res) => {
         currentPage: page,
         totalPages,
       };
-      return res.send(productsWithPages);
-    }
-
-    if (req.query.categoryId && req.query.categoryPage) {
-      const categoryPerPage = 9;
-      let pageCategory = 1;
-
-      pageCategory = +req.query.categoryPage;
-
-      const products = await Product.find({
-        category: req.query.categoryId as string,
-        isActive: true,
-      })
-        .populate('category', 'title description')
-        .skip((pageCategory - 1) * categoryPerPage)
-        .limit(categoryPerPage);
-
-      const productsTotal = await Product.find({
-        category: req.query.categoryId as string,
-        isActive: true,
-      }).countDocuments();
-
-      const totalPages = Math.ceil(productsTotal / categoryPerPage);
-
-      const fit = products.map((i) => {
-        const product = i.toObject() as IProductPost;
-        return {
-          ...product,
-          title: product.translations[lang].title,
-        };
-      });
-
-      const productsWithPages = {
-        productsOfPage: fit,
-        currentPage: pageCategory,
-        totalPages,
-      };
 
       return res.send(productsWithPages);
     }
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    return res.status(500).send('Internal Server Error');
+  } catch {
+    return res.sendStatus(500);
   }
 });
 
+
+// import express from 'express';
+// import Product from '../models/Product';
+// import Category from '../models/Category';
+// import User from '../models/User';
+// import { IProductPost } from '../types';
+//
+// const productRouter = express.Router();
+//
+// productRouter.get('/', async (req, res) => {
+//   const lang = req.headers['accept-language'] || 'ru';
+//
+//   try {
+//     const filterBy = req.query.filterBy;
+//
+//     if (filterBy && filterBy === 'hit') {
+//       const result = await Product.find({
+//         $and: [{ isHit: true }, { isActive: true }],
+//       }).limit(6);
+//
+//       const fit = result.map((i) => {
+//         const product = i.toObject() as IProductPost;
+//         return {
+//           ...product,
+//           title: product.translations[lang]?.title,
+//         };
+//       });
+//       return res.send(fit);
+//     }
+//
+//     if (filterBy && filterBy === 'new') {
+//       const result = await Product.find({
+//         $and: [{ isHit: false }, { isActive: true }],
+//       })
+//         .sort({ datetime: 'descending' })
+//         .limit(6);
+//
+//       const fit = result.map((i) => {
+//         const product = i.toObject() as IProductPost;
+//         return {
+//           ...product,
+//           title: product.translations[lang]?.title,
+//         };
+//       });
+//       return res.send(fit);
+//     }
+//
+//     if (filterBy && filterBy === 'offers') {
+//       const result = await Product.find({
+//         $and: [{ $expr: { $ne: ['$oldPrice', '$actualPrice'] } }, { isActive: true }],
+//       }).limit(6);
+//
+//       const fit = result.map((i) => {
+//         const product = i.toObject() as IProductPost;
+//         return {
+//           ...product,
+//           title: product.translations[lang]?.title,
+//         };
+//       });
+//       return res.send(fit);
+//     }
+//
+//     let page = 1;
+//     const perPage = 9;
+//     const totalProducts = await Product.find({ isActive: true }).countDocuments();
+//     const totalPages = Math.ceil(totalProducts / perPage);
+//
+//     if (req.query.page) {
+//       page = parseInt(req.query.page as string);
+//
+//       const products = await Product.find({ isActive: true })
+//         .populate('category', 'title description')
+//         .skip((page - 1) * perPage)
+//         .limit(perPage);
+//
+//       const fit = products.map((i) => {
+//         const product = i.toObject() as IProductPost;
+//         return {
+//           ...product,
+//           title: product.translations[lang].title,
+//         };
+//       });
+//
+//       const productsWithPages = {
+//         productsOfPage: fit,
+//         currentPage: page,
+//         totalPages,
+//       };
+//       return res.send(productsWithPages);
+//     }
+//
+//     if (req.query.categoryId && req.query.categoryPage) {
+//       const categoryPerPage = 9;
+//       let pageCategory = 1;
+//
+//       pageCategory = +req.query.categoryPage;
+//
+//       const products = await Product.find({
+//         category: req.query.categoryId as string,
+//         isActive: true,
+//       })
+//         .populate('category', 'title description')
+//         .skip((pageCategory - 1) * categoryPerPage)
+//         .limit(categoryPerPage);
+//
+//       const productsTotal = await Product.find({
+//         category: req.query.categoryId as string,
+//         isActive: true,
+//       }).countDocuments();
+//
+//       const totalPages = Math.ceil(productsTotal / categoryPerPage);
+//
+//       const fit = products.map((i) => {
+//         const product = i.toObject() as IProductPost;
+//         return {
+//           ...product,
+//           title: product.translations[lang].title,
+//         };
+//       });
+//
+//       const productsWithPages = {
+//         productsOfPage: fit,
+//         currentPage: pageCategory,
+//         totalPages,
+//       };
+//
+//       return res.send(productsWithPages);
+//     }
+//   } catch (error) {
+//     console.error('Error fetching products:', error);
+//     return res.status(500).send('Internal Server Error');
+//   }
+// });
+//
 productRouter.get('/:id', async (req, res) => {
   const lang = req.headers['accept-language'] || 'ru';
 

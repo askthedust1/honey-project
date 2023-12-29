@@ -1,6 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
-import { IProduct, IProductsOfPage, IProductView, IQueryObjectCategory } from '@/types';
+import {
+  IProduct,
+  IProductsOfPage,
+  IProductView,
+  IQueryObjectCategory,
+  IQueryObjectCategoryFilter,
+} from '@/types';
 
 export const fetchProducts = createAsyncThunk<IProductsOfPage, { query: string; locale: string }>(
   'products/fetchAll',
@@ -15,6 +21,36 @@ export const fetchProducts = createAsyncThunk<IProductsOfPage, { query: string; 
   },
 );
 
+export const fetchProductsFilter = createAsyncThunk<
+  IProductsOfPage,
+  { query: { sort: string; page: string }; locale: string }
+>('products/fetchAllFilter', async (query) => {
+  const productsResponse = await axiosApi.get<IProductsOfPage>(
+    `/products?page=${query.query.page}&sort=${query.query.sort}`,
+  );
+  const { productsOfPage, totalPages, currentPage } = productsResponse.data;
+  return {
+    productsOfPage: productsOfPage,
+    totalPages,
+    currentPage,
+  };
+});
+
+export const fetchProductsSearch = createAsyncThunk<
+  IProductsOfPage,
+  { query: { q: string; page: string }; locale: string }
+>('products/fetchAllSearch', async (query) => {
+  const productsResponse = await axiosApi.get<IProductsOfPage>(
+    `/products/search?page=${query.query.page}&q=${query.query.q}`,
+  );
+  const { productsOfPage, totalPages, currentPage } = productsResponse.data;
+  return {
+    productsOfPage: productsOfPage,
+    totalPages,
+    currentPage,
+  };
+});
+
 export const fetchProductsByCategory = createAsyncThunk<
   IProductsOfPage,
   {
@@ -24,6 +60,24 @@ export const fetchProductsByCategory = createAsyncThunk<
 >('products/fetchByCategory', async (query) => {
   const productsResponse = await axiosApi.get<IProductsOfPage>(
     `/products?categoryId=${query.query.categoryId}&categoryPage=${query.query.categoryPage}`,
+  );
+  const { productsOfPage, totalPages, currentPage } = productsResponse.data;
+  return {
+    productsOfPage: productsOfPage,
+    totalPages,
+    currentPage,
+  };
+});
+
+export const fetchProductsByCategoryFiler = createAsyncThunk<
+  IProductsOfPage,
+  {
+    query: IQueryObjectCategoryFilter;
+    locale: string;
+  }
+>('products/fetchByCategoryFilter', async (query) => {
+  const productsResponse = await axiosApi.get<IProductsOfPage>(
+    `/products?categoryId=${query.query.categoryId}&categoryPage=${query.query.categoryPage}&sort=${query.query.sort}`,
   );
   const { productsOfPage, totalPages, currentPage } = productsResponse.data;
   return {
