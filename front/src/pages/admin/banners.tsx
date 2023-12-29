@@ -15,11 +15,14 @@ import cls from '@/styles/_bannersAdmin.module.scss';
 import { useRouter } from 'next/router';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import Head from 'next/head';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
+import { selectCategories } from '@/features/categories/categoriesSlice';
 
 const BannersAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const banners = useAppSelector(selectBanners);
+  const categories = useAppSelector(selectCategories);
   const loading = useAppSelector(selectBannersPutLoading);
   const error = useAppSelector(selectBannerError);
   const [state, setState] = useState<IBannerPost>({
@@ -32,6 +35,7 @@ const BannersAdminPage: MyPage = () => {
 
   useEffect(() => {
     dispatch(fetchBannersAdmin(state.translations));
+    dispatch(fetchCategories('ru'));
   }, [dispatch, state.translations]);
 
   const submitFormHandler = async (e: React.FormEvent) => {
@@ -131,8 +135,16 @@ const BannersAdminPage: MyPage = () => {
                 </option>
                 <option value="/products/page/1">Товары</option>
                 <option value="/about">О нас</option>
-                <option value="/">Конструктор наборов</option>
                 <option value="/delivery">Доставка</option>
+                <option value="/products/page/1?promotion=promotion">Акции</option>
+                {categories.map((category) => (
+                  <option
+                    key={category._id}
+                    value={`category/page/path?cId=${category._id}&cPage=1`}
+                  >
+                    {category.title}
+                  </option>
+                ))}
               </select>
             </div>
             <div className={cls.formWrap}>
