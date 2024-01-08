@@ -57,7 +57,7 @@ export const orderAdminSlice = createSlice({
       state.dataLoaded = true;
     });
     builder.addCase(fetchOrdersAdminAll.fulfilled, (state, { payload: orders }) => {
-      console.log(orders);
+      // console.log(orders);
       state.dataLoaded = false;
       state.ordersAdminAll = orders.ordersOfPage;
       state.currentPage = orders.currentPage;
