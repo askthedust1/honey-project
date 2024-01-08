@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { MyPage } from '@/components/common/types';
 import { useParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { selectOrderOneAdmin } from '@/features/orderAdmin/ordersAdminSlice';
+import {
+  changeCurrentPage,
+  resetTotalPages,
+  selectOrderOneAdmin,
+} from '@/features/orderAdmin/ordersAdminSlice';
 import { fetchOrderOneAdmin } from '@/features/orderAdmin/ordersAdminThunk';
 import cls from '../../../styles/_adminOneOrder.module.scss';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
@@ -32,12 +36,17 @@ const OrderInfo: MyPage = () => {
     timeZoneName: 'short',
   };
 
+  const onClick = async () => {
+    dispatch(changeCurrentPage(1));
+    dispatch(resetTotalPages);
+  };
+
   return (
     <ProtectedRoute>
       {orderOne && (
         <div className={cls.orderContainer}>
-          <Link className={cls.back} href={`/admin/orders/`}>
-            Назад
+          <Link className={cls.back} href={`/admin/orders/`} onClick={onClick}>
+            Вернуться в заказы
           </Link>
           <h1 className={cls.adminOrdersMainTitle}>Информация о заказе</h1>
           <h2>Заказ №: {orderOne.indexNumber}</h2>
