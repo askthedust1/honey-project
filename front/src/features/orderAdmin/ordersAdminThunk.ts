@@ -1,27 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
 import { IOrder, IOrderAdminFullResponse, IOrderAdminView } from '@/types';
-import { RootState } from '@/store/store';
 
 export const fetchOrdersAdminAll = createAsyncThunk<
   IOrderAdminFullResponse,
-  string,
-  {
-    state: RootState;
-  }
->('orderAdmin/fetchAll', async (page, thunkAPI) => {
+  { page: string; id?: string; name?: string; phone?: string }
+>('orderAdmin/fetchByStatus', async (dataInfo) => {
   try {
-    const userState = thunkAPI.getState().users;
-    const token = userState.user?.token;
-    const ordersAllResponse = await axiosApi.get<IOrderAdminFullResponse>(
-      `/transactions/?orderPage=${page}`,
-      {
-        headers: { Authorization: token },
-      },
+    const ordersResponse = await axiosApi.get<IOrderAdminFullResponse>(
+      `/adminOrder/?camePage=${dataInfo.page}${dataInfo.id ? `&statusId=${dataInfo.id}` : ''}${
+        dataInfo.name ? `&search=${dataInfo.name}` : ''
+      }${dataInfo.phone ? `&searchNum=${dataInfo.phone}` : ''}`,
     );
-    return ordersAllResponse.data;
+    return ordersResponse.data;
   } catch (e) {
-    //nothing
+    // Обработка ошибок
     throw e;
   }
 });
@@ -30,7 +23,7 @@ export const fetchOrderOneAdmin = createAsyncThunk<IOrderAdminView, string>(
   'orderAdmin/fetchOneAdmin',
   async (id) => {
     try {
-      const orderOneResponse = await axiosApi.get<IOrderAdminView>(`/transactions/one/${id}`);
+      const orderOneResponse = await axiosApi.get<IOrderAdminView>(`/transactions/${id}`);
       return orderOneResponse.data;
     } catch (e) {
       //nothing
@@ -50,18 +43,3 @@ export const patchActiveOrders = createAsyncThunk<void, string>(
     }
   },
 );
-
-export const fetchOrdersAdminByStatus = createAsyncThunk<
-  IOrderAdminFullResponse,
-  { id: string; page: string }
->('orderAdmin/fetchByStatus', async (dataInfo) => {
-  try {
-    const ordersResponse = await axiosApi.get<IOrderAdminFullResponse>(
-      `/transactions/?statusId=${dataInfo.id}&statusPage=${dataInfo.page}`,
-    );
-    return ordersResponse.data;
-  } catch (e) {
-    //nothing
-    throw e;
-  }
-});

@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 
 import { fetchOrdersAdminAll, patchActiveOrders } from '@/features/orderAdmin/ordersAdminThunk';
 import {
-  changeCurrentPage,
   selectCurrentPage,
   selectCurrentStatus,
   selectOrdersAdminAll,
@@ -20,7 +19,6 @@ const Orders: MyPage = () => {
   const dispatch = useAppDispatch();
   const ordersAllState = useAppSelector(selectOrdersAdminAll);
   const currentPageState = useAppSelector(selectCurrentPage);
-  const totalPageState = useAppSelector(selectTotalOrderPages);
   const [selectedStatus, setSelectedStatus] = useState('');
   const [search, setSearch] = useState<string>('');
   const [searchPhone, setSearchPhone] = useState<string>('');
@@ -58,10 +56,10 @@ const Orders: MyPage = () => {
       if (selectedStatus) {
         dispatch(fetchOrdersAdminAll({ id: selectedStatus, page: currentPage }));
       } else if (search.length > 0) {
-        console.log('dispatch by name');
+        // console.log('dispatch by name');
         dispatch(fetchOrdersAdminAll({ page: currentPage, name: search }));
       } else {
-        console.log('dispatch by ALL FULL');
+        // console.log('dispatch by ALL FULL');
         dispatch(fetchOrdersAdminAll({ page: currentPage }));
       }
     } else {
