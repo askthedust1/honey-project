@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import logo from '@/assets/images/logo.svg';
 import cls from '../../../styles/_sideBarAdmin.module.scss';
