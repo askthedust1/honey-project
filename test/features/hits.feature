@@ -2,8 +2,7 @@
 Feature: Hits
 
   Scenario: To add a hit
-    Given I am on main page
-    Given I click on "Войти" link
+    Given I am on accounts page
     Given I click the "#button-log" button
     When I enter form fields:
       | email    | admin@gmail.com |
@@ -17,8 +16,7 @@ Feature: Hits
     Then I see a product name in upper block
 
   Scenario: To delete a hit
-    Given I am on main page
-    Given I click on "Войти" link
+    Given I am on accounts page
     Given I click the "#button-log" button
     When I enter form fields:
       | email    | admin@gmail.com |
