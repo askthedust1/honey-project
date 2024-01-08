@@ -120,6 +120,11 @@
     @include lg {
       text-align: center;
     }
+    span {
+      @include sm {
+        font-size: 12px;
+      }
+    }
   }
 
   .btn_in_cart {
@@ -165,4 +170,26 @@
   font-size: 20px;
   padding: 0 15px;
   margin-bottom: 30px;
+}
+.socialBtns {
+  margin: 20px 0 0 ;
+  display: flex;
+  button {
+    margin-right: 10px;
+    width: 41px;
+    height: 41px;
+  }
+  .facebook {
+    background: url("../assets/images/icons8-facebook.svg") center no-repeat;
+  }
+  .telegram {
+    background: url("../assets/images/icons8-telegram-app.svg") center no-repeat;
+  }
+  .whatsapp {
+    background: url("../assets/images/icons8-whatsapp.svg") center no-repeat;
+  }
+  .copy {
+    border: none;
+    background: url("../assets/images/icons8-copy-24.png") center no-repeat;
+  }
 }

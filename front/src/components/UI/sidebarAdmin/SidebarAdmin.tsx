@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import logo from '@/assets/images/logo.svg';
 import cls from '../../../styles/_sideBarAdmin.module.scss';
@@ -9,7 +9,6 @@ import { selectAdminNewTransactions } from '@/features/adminNewMessages/adminNew
 import { fetchAdminHewTransaction } from '@/features/adminNewMessages/adminNewTransactionThunk';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { changeCurrentPage, resetTotalPages } from '@/features/orderAdmin/ordersAdminSlice';
 
 const SidebarAdmin = () => {
   const dispatch = useAppDispatch();
@@ -44,12 +43,6 @@ const SidebarAdmin = () => {
       dispatch(fetchAdminHewTransaction());
     }, 15000);
   }, [dispatch]);
-
-  const onClick = async () => {
-    dispatch(changeCurrentPage(1));
-    dispatch(resetTotalPages);
-  };
-
   return (
     <div style={{ display: role && role.userCheck ? 'block' : 'none' }} className={cls.sidebar}>
       <header className={cls.sidebar_header}>
@@ -112,7 +105,7 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li className={cls.order}>
-            <Link className={cls.list_link} href={'/admin/orders'} onClick={onClick}>
+            <Link className={cls.list_link} href={'/admin/orders'}>
               Заказы
             </Link>
           </li>

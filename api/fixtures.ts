@@ -53,6 +53,7 @@ const run = async () => {
 
   const [honey, herbs, driedFruits] = await Category.create(
     {
+      isActive: true,
       image: 'fixtures/honey2.jpg',
       translations: {
         en: {
@@ -73,6 +74,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       image: 'fixtures/herbs_category.jpg',
       translations: {
         en: {
@@ -93,6 +95,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       image: 'fixtures/fruits_category.jpg',
       translations: {
         en: {
@@ -154,7 +157,6 @@ const run = async () => {
     },
     {
       image: 'fixtures/sota.jpg',
-      isActive: true,
       translations: {
         en: {
           title: 'Honeycomb',
@@ -197,6 +199,7 @@ const run = async () => {
     driedFruits5,
   ] = await Product.create(
     {
+      isActive: true,
       category: honey._id,
       oldPrice: 300,
       actualPrice: 300,
@@ -223,6 +226,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: honey._id,
       oldPrice: 500,
       actualPrice: 400,
@@ -249,6 +253,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: honey._id,
       oldPrice: 400,
       actualPrice: 400,
@@ -274,6 +279,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: honey._id,
       oldPrice: 300,
       actualPrice: 300,
@@ -298,6 +304,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: honey._id,
       oldPrice: 500,
       actualPrice: 500,
@@ -322,6 +329,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: honey._id,
       oldPrice: 400,
       actualPrice: 250,
@@ -346,6 +354,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: honey._id,
       oldPrice: 300,
       actualPrice: 200,
@@ -370,6 +379,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: herbs._id,
       oldPrice: 200,
       actualPrice: 200,
@@ -394,6 +404,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: herbs._id,
       oldPrice: 200,
       actualPrice: 200,
@@ -418,12 +429,12 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: herbs._id,
       oldPrice: 300,
       actualPrice: 300,
       amount: 20,
       image: 'fixtures/herbs.svg',
-      isHit: true,
       translations: {
         ru: {
           title: 'Березовый сбор для очищения',
@@ -443,6 +454,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: herbs._id,
       oldPrice: 300,
       actualPrice: 300,
@@ -467,6 +479,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: herbs._id,
       oldPrice: 300,
       actualPrice: 300,
@@ -491,6 +504,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: herbs._id,
       oldPrice: 400,
       actualPrice: 400,
@@ -516,6 +530,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: herbs._id,
       oldPrice: 300,
       actualPrice: 300,
@@ -540,6 +555,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: driedFruits._id,
       oldPrice: 300,
       actualPrice: 300,
@@ -565,6 +581,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: driedFruits._id,
       oldPrice: 350,
       actualPrice: 350,
@@ -589,6 +606,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: driedFruits._id,
       oldPrice: 400,
       actualPrice: 400,
@@ -613,6 +631,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: driedFruits._id,
       oldPrice: 300,
       actualPrice: 300,
@@ -638,6 +657,7 @@ const run = async () => {
       },
     },
     {
+      isActive: true,
       category: driedFruits._id,
       oldPrice: 500,
       actualPrice: 500,

@@ -4,14 +4,12 @@ import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/_adminOrders.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 
-import { fetchOrdersAdminAll, patchActiveOrders } from '@/features/orderAdmin/ordersAdminThunk';
 import {
-  changeCurrentPage,
-  selectCurrentPage,
-  selectCurrentStatus,
-  selectOrdersAdminAll,
-  selectTotalOrderPages,
-} from '@/features/orderAdmin/ordersAdminSlice';
+  fetchOrdersAdminAll,
+  fetchOrdersAdminByStatus,
+  patchActiveOrders,
+} from '@/features/orderAdmin/ordersAdminThunk';
+import { selectCurrentPage, selectOrdersAdminAll } from '@/features/orderAdmin/ordersAdminSlice';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -20,41 +18,12 @@ const Orders: MyPage = () => {
   const dispatch = useAppDispatch();
   const ordersAllState = useAppSelector(selectOrdersAdminAll);
   const currentPageState = useAppSelector(selectCurrentPage);
-  const totalPageState = useAppSelector(selectTotalOrderPages);
   const [selectedStatus, setSelectedStatus] = useState('');
-  const [search, setSearch] = useState<string>('');
-  const [searchPhone, setSearchPhone] = useState<string>('');
-  const statusStore = useAppSelector(selectCurrentStatus);
-
-  // dispatch(changeCurrentPage(1))
-
-  // useEffect(() => {
-  //   dispatch(changeCurrentPage(1));
-  // }, []);
 
   useEffect(() => {
     const currentPage = currentPageState?.toString();
-
-    if (statusStore != null && !search.length && !searchPhone.length) {
-      // console.log('dispatch by status');
-      dispatch(fetchOrdersAdminAll({ page: currentPage, id: statusStore }));
-    } else if (search.length > 0 && !statusStore) {
-      // console.log('dispatch by name');
-      dispatch(fetchOrdersAdminAll({ page: currentPage, name: search }));
-    } else if (search.length > 0 && statusStore != null) {
-      // console.log('dispatch by name && status && page');
-      dispatch(fetchOrdersAdminAll({ page: currentPage, name: search, id: statusStore }));
-    } else if (searchPhone.length > 0 && !statusStore) {
-      // console.log('dispatch by phone');
-      dispatch(fetchOrdersAdminAll({ page: currentPage, phone: searchPhone }));
-    } else if (searchPhone.length > 0 && statusStore != null) {
-      // console.log('dispatch by phone && status && page');
-      dispatch(fetchOrdersAdminAll({ page: currentPage, phone: searchPhone, id: statusStore }));
-    } else {
-      // console.log('dispatch by ALL FULL');
-      dispatch(fetchOrdersAdminAll({ page: currentPage }));
-    }
-  }, [dispatch, currentPageState, search, searchPhone, statusStore]);
+    dispatch(fetchOrdersAdminAll(currentPage));
+  }, [dispatch]);
 
   const onStatusActive = async (id: string) => {
     if (currentPageState !== undefined && currentPageState !== null) {
@@ -62,13 +31,9 @@ const Orders: MyPage = () => {
       await dispatch(patchActiveOrders(id));
 
       if (selectedStatus) {
-        dispatch(fetchOrdersAdminAll({ id: selectedStatus, page: currentPage }));
-      } else if (search.length > 0) {
-        console.log('dispatch by name');
-        dispatch(fetchOrdersAdminAll({ page: currentPage, name: search }));
+        dispatch(fetchOrdersAdminByStatus({ id: selectedStatus, page: currentPage }));
       } else {
-        console.log('dispatch by ALL FULL');
-        dispatch(fetchOrdersAdminAll({ page: currentPage }));
+        await dispatch(fetchOrdersAdminAll(currentPage));
       }
     } else {
       console.error('currentPageState is undefined or null');
@@ -91,8 +56,6 @@ const Orders: MyPage = () => {
             navOrders={true}
             getStatus={(e: string): void => setSelectedStatus(e)}
             orderPage={currentPageState}
-            getDisplayName={(e: string): void => setSearch(e)}
-            getPhone={(e: string): void => setSearchPhone(e)}
           />
 
           <div className={cls.adminOrdersTable}>

@@ -7,10 +7,80 @@ import auth, { RequestWithUser } from '../middleware/auth';
 import permit from '../middleware/permit';
 
 const transactionsRouter = express.Router();
+transactionsRouter.get('/', auth, permit('admin'), async (req, res) => {
+  try {
+    if (req.query.statusId && req.query.statusPage) {
+      let page = 1;
+      const perPage = 20;
+      page = parseInt(req.query.statusPage as string);
 
-console.log('transactions.ts is loaded');
+      const ordersTotal = await Transaction.find({
+        status: req.query.statusId as string,
+      }).countDocuments();
 
-transactionsRouter.get('/:id', auth, permit('admin'), async (req, res) => {
+      const ordersByStatus = await Transaction.find({
+        status: req.query.statusId as string,
+      })
+        .populate('user', 'displayName phone email')
+        .populate('kits.product', 'title')
+        .skip((page - 1) * perPage)
+        .limit(perPage)
+        .sort({ indexNumber: 1 });
+      const totalPages = Math.ceil(ordersTotal / perPage);
+
+      const ordersWithPages = {
+        ordersOfPage: ordersByStatus,
+        currentPage: page,
+        totalPages,
+      };
+
+      return res.send(ordersWithPages);
+    }
+
+    if (req.query.orderPage) {
+      let page = 1;
+      page = parseInt(req.query.orderPage as string);
+      console.log(page);
+      const perPage = 20;
+      const totalOrders = await Transaction.countDocuments();
+      //общее количество заказов в базе данных с использованием метода countDocuments
+      const totalPages = Math.ceil(totalOrders / perPage);
+      //общее количество страниц
+
+      const ordersByThisPage = await Transaction.find()
+        .populate('user', 'displayName phone email')
+        .populate('kits.product', 'title')
+        .skip((page - 1) * perPage)
+        .limit(perPage)
+        .sort({ indexNumber: 1 });
+
+      //skip((page - 1) * perPage):
+      // page - текущая страница, которую хотим получить.
+      // perPage - количество элементов на одной странице.
+      // (page - 1) * perPage вычисляет, сколько документов следует пропустить, чтобы начать с нужной страницы
+
+      console.log(ordersByThisPage);
+
+      const ordersWithPages = {
+        ordersOfPage: ordersByThisPage,
+        currentPage: page,
+        totalPages,
+      };
+
+      return res.send(ordersWithPages);
+    }
+
+    const transactions = await Transaction.find()
+      .populate('user', 'displayName')
+      .populate('kits.product', 'title');
+    return res.send(transactions);
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    return res.status(500).send('Internal Server Error');
+  }
+});
+
+transactionsRouter.get('/one/:id', auth, permit('admin'), async (req, res) => {
   try {
     const order = await Transaction.findById(req.params.id)
       .populate('user', 'displayName phone email')
@@ -78,7 +148,6 @@ transactionsRouter.get('/history', auth, async (req, res) => {
 });
 
 transactionsRouter.get('/new', auth, permit('admin'), async (req, res) => {
-  console.log('get request for transaction new');
   try {
     const transactions = await Transaction.find({ status: false })
       .populate('user', 'displayName phone')
@@ -170,6 +239,7 @@ transactionsRouter.post('/', auth, async (req, res, next) => {
 });
 
 transactionsRouter.patch('/:id/toggleStatus', auth, permit('admin'), async (req, res) => {
+  console.log('orderToggle');
   try {
     const id = req.params.id;
     const transaction = await Transaction.findById(id);
