@@ -10,7 +10,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
   try {
     if (req.query.statusId && req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
-      console.log('into by status and name search');
+      // console.log('into by status and name search');
       let page = 1;
       const perPage = 20;
       page = parseInt(req.query.camePage as string);
@@ -18,7 +18,6 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
       const ordersTotal = await Transaction.find({ status: req.query.statusId }).populate({
         path: 'user',
         match: { displayName: { $regex: new RegExp(qSearch, 'i') } },
-        // match: { displayName: 'Administrator' },
         select: 'displayName',
       });
 
@@ -37,7 +36,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .limit(perPage)
         .sort({ indexNumber: -1 });
       const totalPages = Math.ceil(countCollection / perPage);
-      console.log(`totalpages by status=${totalPages}`);
+
+      // console.log(`totalpages by status=${totalPages}`);
 
       const filteredTransactions = ordersByStatus.filter(
         (ordersByStatus) => ordersByStatus.user !== null
@@ -53,7 +53,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.statusId && req.query.camePage && req.query.searchNum) {
       const nSearch = req.query.searchNum as string;
-      console.log('into by status and Number search');
+      // console.log('into by status and Number search');
       let page = 1;
       const perPage = 20;
       page = parseInt(req.query.camePage as string);
@@ -79,7 +79,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .limit(perPage)
         .sort({ indexNumber: -1 });
       const totalPages = Math.ceil(countCollection / perPage);
-      console.log(`totalpages by status=${totalPages}`);
+
+      // console.log(`totalpages by status=${totalPages}`);
 
       const filteredTransactions = ordersByStatus.filter(
         (ordersByStatus) => ordersByStatus.user !== null
@@ -94,23 +95,20 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && req.query.search) {
-      console.log(req.query.search);
-      console.log('into only by search');
+      // console.log(req.query.search);
+      // console.log('into only by search');
 
       let page = 1;
       const perPage = 4;
       page = parseInt(req.query.camePage as string);
 
-      // Находим пользователей по критериям поиска
       const userQuery = { displayName: { $regex: new RegExp(req.query.search as string, 'i') } };
       const userResults = await User.find(userQuery).select('_id');
 
-      // Находим общее количество записей
       const countCollection = await Transaction.countDocuments({
         $or: [{ user: { $in: userResults } }, { 'kits.product': { $in: userResults } }],
       });
 
-      // Находим записи с пагинацией и пополняем связанные данные
       const ordersByStatus = await Transaction.find({
         $or: [{ user: { $in: userResults } }, { 'kits.product': { $in: userResults } }],
       })
@@ -125,7 +123,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .sort({ indexNumber: 1 });
 
       const totalPages = Math.ceil(countCollection / perPage);
-      console.log(`totalpages search=${totalPages}`);
+
+      // console.log(`totalpages search=${totalPages}`);
 
       const filteredTransactions = ordersByStatus.filter((order) => order.user !== null);
 
@@ -140,22 +139,19 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.camePage && req.query.searchNum) {
       // const nSearch = req.query.searchNum as string;
-      console.log(req.query.searchNum);
-      console.log('into only by search Number');
+      // console.log(req.query.searchNum);
+      // console.log('into only by search Number');
       let page = 1;
       const perPage = 4;
       page = parseInt(req.query.camePage as string);
 
-      // Находим пользователей по критериям поиска
       const userQuery = { phone: { $regex: new RegExp(req.query.searchNum as string, 'i') } };
       const userResults = await User.find(userQuery).select('_id');
 
-      // Находим общее количество записей
       const countCollection = await Transaction.countDocuments({
         $or: [{ user: { $in: userResults } }, { 'kits.product': { $in: userResults } }],
       });
 
-      // Находим записи с пагинацией и пополняем связанные данные
       const ordersByStatus = await Transaction.find({
         $or: [{ user: { $in: userResults } }, { 'kits.product': { $in: userResults } }],
       })
@@ -170,7 +166,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .sort({ indexNumber: 1 });
 
       const totalPages = Math.ceil(countCollection / perPage);
-      console.log(`totalpages search=${totalPages}`);
+
+      // console.log(`totalpages search=${totalPages}`);
 
       const filteredTransactions = ordersByStatus.filter((order) => order.user !== null);
 
@@ -184,7 +181,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.statusId && req.query.camePage) {
-      console.log('into by only status');
+      // console.log('into by only status');
       let page = 1;
       const perPage = 4;
       page = parseInt(req.query.camePage as string);
@@ -214,8 +211,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
-      console.log(req.query.search);
-      console.log('into only by search');
+      // console.log(req.query.search);
+      // console.log('into only by search');
       let page = 1;
       const perPage = 4;
       page = parseInt(req.query.camePage as string);
@@ -241,7 +238,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .limit(perPage)
         .sort({ indexNumber: 1 });
       const totalPages = Math.ceil(countCollection / perPage);
-      console.log(`totalpages search=${totalPages}`);
+
+      // console.log(`totalpages search=${totalPages}`);
 
       const filteredTransactions = ordersByStatus.filter(
         (ordersByStatus) => ordersByStatus.user !== null
@@ -256,14 +254,12 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && !req.query.search) {
-      console.log('into only by some page');
+      // console.log('into only by some page');
       let page = 1;
       page = parseInt(req.query.camePage as string);
       const perPage = 20;
       const totalOrders = await Transaction.countDocuments();
-      //общее количество заказов в базе данных с использованием метода countDocuments
       const totalPages = Math.ceil(totalOrders / perPage);
-      //общее количество страниц
 
       const ordersByThisPage = await Transaction.find()
         .populate('user', 'displayName phone email')
@@ -286,7 +282,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
       return res.send(ordersWithPages);
     }
 
-    console.log('into by ALL FULL');
+    // console.log('into by ALL FULL');
+
     const transactions = await Transaction.find()
       .populate('user', 'displayName')
       .populate('kits.product', 'title');
