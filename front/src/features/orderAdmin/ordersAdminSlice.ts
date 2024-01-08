@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IOrder, IOrderAdminView } from '@/types';
+import { IOrderAdminView } from '@/types';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
 import { fetchOrderOneAdmin, fetchOrdersAdminAll } from '@/features/orderAdmin/ordersAdminThunk';
@@ -57,6 +57,7 @@ export const orderAdminSlice = createSlice({
       state.dataLoaded = true;
     });
     builder.addCase(fetchOrdersAdminAll.fulfilled, (state, { payload: orders }) => {
+      console.log(orders);
       state.dataLoaded = false;
       state.ordersAdminAll = orders.ordersOfPage;
       state.currentPage = orders.currentPage;
