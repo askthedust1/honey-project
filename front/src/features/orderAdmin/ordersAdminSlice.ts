@@ -44,6 +44,9 @@ export const orderAdminSlice = createSlice({
     resetTotalPages: (state) => {
       state.totalPages = null;
     },
+    resetCurrentStatus: (state) => {
+      state.currentStatus = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase<typeof HYDRATE, PayloadAction<RootState, typeof HYDRATE>>(
@@ -86,5 +89,5 @@ export const selectCurrentPage = (state: RootState) => state.orderAdmin.currentP
 export const selectTotalOrderPages = (state: RootState) => state.orderAdmin.totalPages;
 export const selectCurrentStatus = (state: RootState) => state.orderAdmin.currentStatus;
 
-export const { counterPlus, counterMinus, changeStatus, changeCurrentPage, resetTotalPages } =
+export const { counterPlus, counterMinus, changeStatus, changeCurrentPage, resetTotalPages, resetCurrentStatus } =
   orderAdminSlice.actions;

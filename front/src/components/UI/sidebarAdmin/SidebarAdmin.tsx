@@ -9,7 +9,11 @@ import { selectAdminNewTransactions } from '@/features/adminNewMessages/adminNew
 import { fetchAdminHewTransaction } from '@/features/adminNewMessages/adminNewTransactionThunk';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { changeCurrentPage, resetTotalPages } from '@/features/orderAdmin/ordersAdminSlice';
+import {
+  changeCurrentPage,
+  resetCurrentStatus,
+  resetTotalPages,
+} from '@/features/orderAdmin/ordersAdminSlice';
 
 const SidebarAdmin = () => {
   const dispatch = useAppDispatch();
@@ -47,7 +51,8 @@ const SidebarAdmin = () => {
 
   const onClick = async () => {
     dispatch(changeCurrentPage(1));
-    dispatch(resetTotalPages);
+    dispatch(resetTotalPages());
+    dispatch(resetCurrentStatus());
   };
 
   return (

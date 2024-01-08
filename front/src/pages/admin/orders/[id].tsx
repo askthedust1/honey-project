@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import {
   changeCurrentPage,
+  resetCurrentStatus,
   resetTotalPages,
   selectOrderOneAdmin,
 } from '@/features/orderAdmin/ordersAdminSlice';
@@ -38,7 +39,8 @@ const OrderInfo: MyPage = () => {
 
   const onClick = async () => {
     dispatch(changeCurrentPage(1));
-    dispatch(resetTotalPages);
+    dispatch(resetTotalPages());
+    dispatch(resetCurrentStatus());
   };
 
   return (
