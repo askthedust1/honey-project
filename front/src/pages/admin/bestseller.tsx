@@ -18,7 +18,6 @@ import {
 } from '@/features/adminBestsellers/adminBestsellersThunk';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
 import Head from 'next/head';
-import Image from 'next/image';
 
 const BestsellerAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -62,7 +61,7 @@ const BestsellerAdminPage: MyPage = () => {
         </Head>
         <div className={cls.bestseller}>
           <h1 className={cls.bestseller_mainTitle}>Хиты</h1>
-          <div className={cls.bestseller_activeBest} data-hits={'hits'}>
+          <div className={cls.bestseller_activeBest}>
             {!bestsellers.length ? (
               <span className={cls.bestseller_hit_title}>
                 В данном разделе пока нет хитов! Вы можете добавить, нажав на плюсик.
@@ -72,8 +71,6 @@ const BestsellerAdminPage: MyPage = () => {
                 <div className={cls.bestseller_hit} key={i._id}>
                   <span className={cls.bestseller_hit_title}>{i.title}</span>
                   <button
-                    type="button"
-                    data-hit-button={i.title}
                     onClick={() => deleteHit(i._id)}
                     className={cls.bestseller_hit_btn}
                   ></button>
@@ -93,7 +90,7 @@ const BestsellerAdminPage: MyPage = () => {
           />
 
           <div className={cls.adminBestsellersTable}>
-            <table data-products-table={'table'}>
+            <table>
               <thead>
                 <tr>
                   <th>Фотография</th>
@@ -107,24 +104,17 @@ const BestsellerAdminPage: MyPage = () => {
                 {products.map((product) => (
                   <tr key={product._id}>
                     <td className={cls.imageTd}>
-                      <Image
-                        width={69}
-                        height={69}
-                        src={apiUrl + '/' + product.image}
-                        alt="image"
-                      />
+                      <img src={apiUrl + '/' + product.image} alt="image" />
                     </td>
                     <td className={cls.adminBestsellersTable_body_title}>{product.title}</td>
                     <td>{product.category.title}</td>
                     <td>{product.actualPrice}</td>
                     <td>
                       <button
-                        type="button"
-                        data-product-button={product.title}
                         className={cls.adminBestsellersTable_addBtn}
                         onClick={() => addHit(product._id)}
                       >
-                        <Image width={14} height={14} src={plusIcon.src} alt="Plus Icon" />
+                        <img src={plusIcon.src} alt="Plus Icon" />
                       </button>
                     </td>
                   </tr>

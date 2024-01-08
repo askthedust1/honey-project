@@ -54,7 +54,6 @@
     padding-bottom: 5px;
     color: #3C3C3C;
     text-transform: uppercase;
-    transition-duration: 0.3s;
     @include mix.lm {
       font-size: 10px;
     }
@@ -71,7 +70,7 @@
       right: 0;
       height: 2px;
       background-color: transparent;
-      transition: background-color 0.4s;
+      transition: background-color 0.3s;
     }
 
     &:hover::after {
@@ -291,7 +290,6 @@
     position: relative;
     color: #3C3C3C;
     text-transform: uppercase;
-    transition-duration: 0.3s;
     @include mix.lm {
       font-size: 10px;
     }

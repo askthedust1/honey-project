@@ -1,11 +1,7 @@
 import React from 'react';
 import ProductsAll from '@/features/products/ProductsAll';
 import { wrapper } from '@/store/store';
-import {
-  fetchProducts,
-  fetchProductsFilter,
-  fetchProductsPromotion, fetchProductsSearch
-} from "@/features/products/productsThunk";
+import {fetchProducts, fetchProductsPromotion} from '@/features/products/productsThunk';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { MyPage } from '@/components/common/types';
@@ -15,16 +11,10 @@ import { useAppSelector } from '@/store/hook';
 import { selectTotalPages } from '@/features/products/productsSlice';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
 
 const ProductPage: MyPage = () => {
-  const router = useRouter();
   const totalPagesState = useAppSelector(selectTotalPages);
   const { t } = useTranslation('common');
-  const sort = router.query.sort as string;
-  const promotion = router.query.promotion as string;
-  const search = router.query.q as string;
-
   return (
     <>
       <div>
@@ -35,74 +25,29 @@ const ProductPage: MyPage = () => {
         </Head>
       </div>
       <ProductsAll />
-      {totalPagesState > 0 ? (
-        <Pagination
-          promotion={promotion}
-          sort={sort}
-          search={search}
-          productsActive={true}
-          categoriesActive={false}
-        />
-      ) : (
-        <></>
-      )}
+      {totalPagesState > 0 ? <Pagination productsActive={true} categoriesActive={false} /> : <></>}
     </>
   );
 };
 
 ProductPage.Layout = 'Main';
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) =>
-    async ({ locale, query }) => {
-      const currentPage = query.page as string;
-      const promotion = query.promotion as string;
-      const sort = query.sort as string;
-      const search = query.q as string;
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale, query }) => {
+  const currentPage = query.page as string;
+  const promotion = query.promotion as string;
 
-      const lang = locale ?? 'ru';
-      axiosApi.defaults.headers.common['Accept-Language'] = lang;
-      await store.dispatch(fetchCategories(lang));
-
-      if (!promotion && !sort) {
-        await store.dispatch(fetchProducts({ query: currentPage as string, locale: lang }));
-      }
-
-      if (promotion) {
-        await store.dispatch(
-          fetchProductsPromotion({ query: currentPage as string, locale: lang }),
-        );
-      }
-
-      if (sort) {
-        const iQueryObject: { sort: string; page: string } = {
-          sort: sort,
-          page: currentPage,
-        };
-        await store.dispatch(fetchProductsFilter({ query: iQueryObject, locale: lang }));
-      }
-
-      if (search) {
-        const iQueryObject: { q: string; page: string } = {
-          q: search,
-          page: currentPage,
-        };
-        await store.dispatch(fetchProductsSearch({ query: iQueryObject, locale: lang }));
-      }
-
-      // !promotion
-      //   ? await store.dispatch(fetchProducts({ query: currentPage as string, locale: lang }))
-      //   : await store.dispatch(
-      //       fetchProductsPromotion({ query: currentPage as string, locale: lang }),
-      //     );
-
-      return {
-        props: {
-          name: 'Products',
-          ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),
-        },
-      };
+  const lang = locale ?? 'ru';
+  axiosApi.defaults.headers.common['Accept-Language'] = lang;
+  await store.dispatch(fetchCategories(lang));
+  !promotion ? await store.dispatch(fetchProducts({ query: currentPage as string, locale: lang }))
+      :
+      await store.dispatch(fetchProductsPromotion({ query: currentPage as string, locale: lang }));
+  return {
+    props: {
+      name: 'Products',
+      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'header', 'footer'])),
     },
-);
+  };
+});
 
 export default ProductPage;

@@ -1,11 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  fetchBestsellers,
-  fetchProducts,
-  fetchProductsByCategory, fetchProductsByCategoryFiler,
-  fetchProductsFilter,
-  fetchProductsPromotion, fetchProductsSearch
-} from "./productsThunk";
+import {fetchBestsellers, fetchProducts, fetchProductsByCategory, fetchProductsPromotion} from './productsThunk';
 import { IProduct, IProductView } from '@/types';
 import { getProduct } from '@/features/products/productsThunk';
 import { RootState } from '@/store/store';
@@ -63,32 +57,6 @@ export const productsSlice = createSlice({
       state.fetchLoading = false;
     });
 
-    builder.addCase(fetchProductsFilter.pending, (state) => {
-      state.fetchLoading = true;
-    });
-    builder.addCase(fetchProductsFilter.fulfilled, (state, { payload: products }) => {
-      state.fetchLoading = false;
-      state.items = products.productsOfPage;
-      state.totalPages = products.totalPages;
-      state.currentPage = products.currentPage;
-    });
-    builder.addCase(fetchProductsFilter.rejected, (state) => {
-      state.fetchLoading = false;
-    });
-
-    builder.addCase(fetchProductsSearch.pending, (state) => {
-      state.fetchLoading = true;
-    });
-    builder.addCase(fetchProductsSearch.fulfilled, (state, { payload: products }) => {
-      state.fetchLoading = false;
-      state.items = products.productsOfPage;
-      state.totalPages = products.totalPages;
-      state.currentPage = products.currentPage;
-    });
-    builder.addCase(fetchProductsSearch.rejected, (state) => {
-      state.fetchLoading = false;
-    });
-
     builder.addCase(fetchProductsByCategory.pending, (state) => {
       state.fetchLoading = true;
     });
@@ -99,19 +67,6 @@ export const productsSlice = createSlice({
       state.currentPage = products.currentPage;
     });
     builder.addCase(fetchProductsByCategory.rejected, (state) => {
-      state.fetchLoading = false;
-    });
-
-    builder.addCase(fetchProductsByCategoryFiler.pending, (state) => {
-      state.fetchLoading = true;
-    });
-    builder.addCase(fetchProductsByCategoryFiler.fulfilled, (state, { payload: products }) => {
-      state.fetchLoading = false;
-      state.items = products.productsOfPage;
-      state.totalPages = products.totalPages;
-      state.currentPage = products.currentPage;
-    });
-    builder.addCase(fetchProductsByCategoryFiler.rejected, (state) => {
       state.fetchLoading = false;
     });
 

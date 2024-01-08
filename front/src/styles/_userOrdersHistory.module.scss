@@ -57,8 +57,7 @@
   background-color: $white;
   box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
   border-radius: 17px;
-  padding: 10px 0;
-  margin-bottom: 50px;
+  padding: 5px 0;
 
   @include lm {
     display: none;
@@ -67,7 +66,6 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    height: 200px;
   }
 
   tr:nth-child(even) {

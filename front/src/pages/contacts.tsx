@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { MyPage } from '@/components/common/types';
 import Head from 'next/head';
 import Image from 'next/image';
+import MapGoogle from '@/components/Map/Map';
 import axiosApi from '@/axiosApi';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 
@@ -136,6 +137,9 @@ const Contacts: MyPage = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className={cls.contacts_map}>
+        <MapGoogle />
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
 import axiosApi from '@/axiosApi';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
 
 const History: MyPage = () => {
   const { t, i18n } = useTranslation('ordersHistory');
@@ -117,8 +116,8 @@ const History: MyPage = () => {
                   <span className={cls.ordersCards_card_marker}>{t('status')}:</span>{' '}
                   {order.status ? t('statusYes') : t('statusNo')}
                 </p>
-                <div className={cls.ordersCards_card_order}>
-                  <span className={cls.ordersCards_card_marker}>{t('orderList')}:</span>
+                <p className={cls.ordersCards_card_order}>
+                  <span className={cls.ordersCards_card_marker}>{t('orderList')}:</span>{' '}
                   {order.kits.map((i) => (
                     <ul key={i.product._id} className={cls.list}>
                       <li>
@@ -129,7 +128,7 @@ const History: MyPage = () => {
                       </li>
                     </ul>
                   ))}
-                </div>
+                </p>
               </div>
             ))}
           </div>
@@ -141,12 +140,9 @@ const History: MyPage = () => {
 
 History.Layout = 'Main';
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps(() => async ({ locale }) => {
   axiosApi.defaults.headers.common['Accept-Language'] = locale ?? 'ru';
-  const lang = locale ?? 'ru';
-  axiosApi.defaults.headers.common['Accept-Language'] = lang;
 
-  await store.dispatch(fetchCategories(lang));
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ru', ['header', 'ordersHistory', 'footer'])),

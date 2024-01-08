@@ -50,17 +50,11 @@ const ProductItem: React.FC<Props> = ({ product, customClass }) => {
             </h3>
             {product.oldPrice !== product.actualPrice ? (
               <div className={cls.price}>
-                <p className={cls.price_oldPrice}>
-                  {product.oldPrice} {t('som')}
-                </p>
-                <p className={cls.price_actualPrice}>
-                  {product.actualPrice} {t('som')}
-                </p>
+                <p className={cls.price_oldPrice}>{product.oldPrice} сом</p>
+                <p className={cls.price_actualPrice}>{product.actualPrice} сом</p>
               </div>
             ) : (
-              <p className={cls.price_actualPrice}>
-                {product.actualPrice} {t('som')}
-              </p>
+              <p className={cls.price_actualPrice}>{product.actualPrice} сом</p>
             )}
           </div>
         </div>

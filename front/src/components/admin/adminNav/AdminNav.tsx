@@ -1,14 +1,18 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import cls from '@/styles/_adminNav.module.scss';
 import plusIcon from '@/assets/images/plusIcon.png';
 import { IAdminCategory } from '@/types';
-import { useAppDispatch } from '@/store/hook';
-import {
-  fetchOrdersAdminAll,
-  fetchOrdersAdminByStatus,
-} from '@/features/orderAdmin/ordersAdminThunk';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import Image from 'next/image';
+import {
+  changeCurrentPage,
+  changeStatus,
+  counterMinus,
+  counterPlus,
+  selectCurrentPage,
+  selectTotalOrderPages,
+} from '@/features/orderAdmin/ordersAdminSlice';
 
 interface Props {
   navProducts: boolean;
@@ -18,6 +22,8 @@ interface Props {
   categories?: IAdminCategory[];
   getCategorySelectId?: (e: string) => void;
   getName?: (e: string) => void;
+  getDisplayName?: (e: string) => void;
+  getPhone?: (e: string) => void;
   getStatus?: (e: string) => void;
   orderPage?: number;
 }
@@ -25,12 +31,17 @@ interface Props {
 const AdminNav: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
 
+  const [searchName, setSearchNameState] = useState<string>('');
+  const [searchPhone, setSearchPhoneState] = useState<string>('');
+
+  const currentPageSate = useAppSelector(selectCurrentPage);
+  const totalPagesState = useAppSelector(selectTotalOrderPages);
+
   const handleCategoryChange = async (event: ChangeEvent<HTMLSelectElement>) => {
     const categoryId = event.target.value;
     if (props.getCategorySelectId) {
       props.getCategorySelectId(categoryId);
     }
-    console.log(categoryId);
   };
 
   const setSearchItem = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +51,31 @@ const AdminNav: React.FC<Props> = (props) => {
     }
   };
 
+  const setSearchName = async (event: ChangeEvent<HTMLInputElement>) => {
+    const item = event.target.value;
+    setSearchNameState(item);
+    if (item.length > 0) {
+      setSearchPhoneState('');
+    }
+    if (props.getDisplayName) {
+      props.getDisplayName(item);
+    }
+  };
+
+  const setSearchPhone = async (event: ChangeEvent<HTMLInputElement>) => {
+    const item = event.target.value;
+    setSearchPhoneState(item);
+    if (item.length > 0) {
+      setSearchNameState('');
+    }
+    if (props.getPhone) {
+      props.getPhone(item);
+    }
+  };
+
+  const isInputPhoneDisabled = searchName.length > 0;
+  const isInputNameDisabled = searchPhone.length > 0;
+
   const handleStatusChangeForOrders = async (event: ChangeEvent<HTMLSelectElement>) => {
     const statusId = event.target.value;
 
@@ -48,13 +84,26 @@ const AdminNav: React.FC<Props> = (props) => {
       const currentPage = props.orderPage.toString();
 
       if (statusId !== '') {
-        console.log({ id: statusId, page: currentPage });
-        await dispatch(fetchOrdersAdminByStatus({ id: statusId, page: currentPage }));
+        // console.log({ id: statusId, page: currentPage });
+        dispatch(changeStatus(statusId));
       } else {
-        await dispatch(fetchOrdersAdminAll(currentPage));
+        dispatch(changeStatus(null));
+        dispatch(changeCurrentPage(1));
       }
     } else {
       console.error('currentPageState is undefined or null');
+    }
+  };
+
+  const getPlus = async () => {
+    if (currentPageSate && totalPagesState && currentPageSate < totalPagesState) {
+      await dispatch(counterPlus());
+    }
+  };
+
+  const getMinus = async () => {
+    if (currentPageSate && currentPageSate > 1) {
+      await dispatch(counterMinus());
     }
   };
 
@@ -127,34 +176,50 @@ const AdminNav: React.FC<Props> = (props) => {
   const navForOrders = (
     <>
       <input
-        style={{ minWidth: '250px', margin: '0 22px 0 0' }}
+        style={{
+          minWidth: '250px',
+          margin: '0 22px 0 0',
+          opacity: searchPhone.length > 0 ? '0.4' : '1',
+        }}
         type="text"
         name="findOrderName"
         id="findOrderName"
         placeholder="Найти по имени"
+        onChange={setSearchName}
+        disabled={isInputNameDisabled}
       />
       <input
-        style={{ margin: '0 22px 0 0' }}
+        style={{
+          margin: '0 22px 0 0',
+          opacity: searchName.length > 0 ? '0.4' : '1',
+        }}
         type="text"
         name="findOrderPhone"
         id="findOrderPhone"
         placeholder="Найти по номеру"
+        onChange={setSearchPhone}
+        disabled={isInputPhoneDisabled}
       />
 
       <select
-        style={{ width: '250px', margin: '0 19px 0 0' }}
+        style={{
+          width: '250px',
+          margin: '0 19px 0 0',
+        }}
         onChange={handleStatusChangeForOrders}
       >
         <option value="">Отфильтровать по статусу</option>
+        <option value="">Все заказы</option>
         <option value={'true'}>Подтвержден</option>
         <option value={'false'}>Не подтвержден</option>
       </select>
       <div className={cls.adminNavPagination}>
-        <a className={cls.arrowToLeft} href="#"></a>
+        <button onClick={getMinus} className={cls.arrowToLeft}></button>
         <p>
-          Страница: <span>1</span> из <span>12</span>
+          Страница: <span>{currentPageSate}</span> из <span>{totalPagesState}</span>
         </p>
-        <a className={cls.arrowToRight} href="#"></a>
+
+        <button onClick={getPlus} className={cls.arrowToRight}></button>
       </div>
     </>
   );

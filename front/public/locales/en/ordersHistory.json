@@ -6,7 +6,7 @@
   "orderList": "Order",
   "total": "Total Amount",
   "status": "Status",
-  "som": "kgs",
+  "som": "som",
   "statusYes": "Confirmed",
   "statusNo": "Not Confirmed",
   "noOrders": "No orders yet",

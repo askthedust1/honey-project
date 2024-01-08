@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { wrapper } from '@/store/store';
 import { getProduct } from '@/features/products/productsThunk';
@@ -17,7 +17,6 @@ import RelatedProducts from '@/components/RelatedProducts/RelatedProducts';
 import Image from 'next/image';
 import Head from 'next/head';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
-import { FacebookShareButton, TelegramShareButton, WhatsappShareButton } from 'react-share';
 
 const Product: MyPage = () => {
   const product = useAppSelector(selectOneProduct);
@@ -27,16 +26,6 @@ const Product: MyPage = () => {
   const dispatch = useAppDispatch();
 
   const isInCart = cartState.some((unit) => product?._id === unit.product._id);
-  const [copied, setCopied] = useState(false);
-  const productUrl = typeof window !== 'undefined' ? window.location.href : '';
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(productUrl);
-    setCopied(true);
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
-  };
 
   const handleToggleCart = () => {
     if (isInCart && product) {
@@ -169,38 +158,6 @@ const Product: MyPage = () => {
                       btn={isInCart ? 'btn_in_cart' : 'btn-primary'}
                       event={() => handleToggleCart()}
                     />
-                    <div className={cls.socialBtns}>
-                      <FacebookShareButton
-                        className={cls.facebook}
-                        url={productUrl}
-                        windowWidth={800}
-                        windowHeight={600}
-                      >
-                        <span></span>
-                      </FacebookShareButton>
-
-                      <TelegramShareButton
-                        className={cls.telegram}
-                        url={productUrl}
-                        title={product?.title}
-                        windowWidth={800}
-                        windowHeight={600}
-                      >
-                        <span></span>
-                      </TelegramShareButton>
-
-                      <WhatsappShareButton
-                        className={cls.whatsapp}
-                        url={productUrl}
-                        title={product?.title}
-                        windowWidth={800}
-                        windowHeight={600}
-                      >
-                        <span></span>
-                      </WhatsappShareButton>
-                      <button className={cls.copy} onClick={copyToClipboard}></button>
-                    </div>
-                    {copied && <span>{t('copy')}</span>}
                   </div>
                 )}
               </div>

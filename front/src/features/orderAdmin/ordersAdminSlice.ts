@@ -2,11 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IOrder, IOrderAdminView } from '@/types';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
-import {
-  fetchOrderOneAdmin,
-  fetchOrdersAdminAll,
-  fetchOrdersAdminByStatus,
-} from '@/features/orderAdmin/ordersAdminThunk';
+import { fetchOrderOneAdmin, fetchOrdersAdminAll } from '@/features/orderAdmin/ordersAdminThunk';
 
 interface OrderAdminState {
   ordersAdminAll: IOrderAdminView[] | null;
@@ -14,6 +10,7 @@ interface OrderAdminState {
   dataLoaded: boolean;
   currentPage: number;
   totalPages: number | null;
+  currentStatus: string | null;
 }
 
 const initialState: OrderAdminState = {
@@ -22,6 +19,7 @@ const initialState: OrderAdminState = {
   dataLoaded: false,
   currentPage: 1,
   totalPages: null,
+  currentStatus: null,
 };
 
 export const orderAdminSlice = createSlice({
@@ -31,9 +29,21 @@ export const orderAdminSlice = createSlice({
     resetOrder: (state) => {
       state.orderAdminOne = null;
     },
-    // changeDate: (state, action) => {
-    //   state.dateOrder = action.payload;
-    // },
+    counterPlus: (state) => {
+      state.currentPage = state.currentPage + 1;
+    },
+    counterMinus: (state) => {
+      state.currentPage = state.currentPage - 1;
+    },
+    changeCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+    changeStatus: (state, action) => {
+      state.currentStatus = action.payload;
+    },
+    resetTotalPages: (state) => {
+      state.totalPages = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase<typeof HYDRATE, PayloadAction<RootState, typeof HYDRATE>>(
@@ -66,24 +76,20 @@ export const orderAdminSlice = createSlice({
     builder.addCase(fetchOrderOneAdmin.rejected, (state) => {
       state.dataLoaded = false;
     });
-
-    builder.addCase(fetchOrdersAdminByStatus.pending, (state) => {
-      state.dataLoaded = true;
-    });
-    builder.addCase(fetchOrdersAdminByStatus.fulfilled, (state, { payload: orders }) => {
-      state.dataLoaded = false;
-      state.ordersAdminAll = orders.ordersOfPage;
-      state.currentPage = orders.currentPage;
-      state.totalPages = orders.totalPages;
-    });
-    builder.addCase(fetchOrdersAdminByStatus.rejected, (state) => {
-      state.dataLoaded = false;
-    });
   },
 });
 
 export const selectOrderOneAdmin = (state: RootState) => state.orderAdmin.orderAdminOne;
 export const selectOrdersAdminAll = (state: RootState) => state.orderAdmin.ordersAdminAll;
 export const selectCurrentPage = (state: RootState) => state.orderAdmin.currentPage;
-export const selectTotalPages = (state: RootState) => state.orderAdmin.totalPages;
-export const { resetOrder } = orderAdminSlice.actions;
+export const selectTotalOrderPages = (state: RootState) => state.orderAdmin.totalPages;
+export const selectCurrentStatus = (state: RootState) => state.orderAdmin.currentStatus;
+
+export const {
+  resetOrder,
+  counterPlus,
+  counterMinus,
+  changeStatus,
+  changeCurrentPage,
+  resetTotalPages,
+} = orderAdminSlice.actions;

@@ -12,7 +12,6 @@ import { selectOneProductForAdmin } from '@/features/productAdmin/productsAdminS
 import { fetchOneProductForAdmin, putProduct } from '@/features/productAdmin/productsAdminThunk';
 import { apiUrl } from '@/constants';
 import Head from 'next/head';
-import Link from 'next/link';
 
 const EditProduct: MyPage = () => {
   const { id } = useParams() || {};
@@ -42,7 +41,7 @@ const EditProduct: MyPage = () => {
         dispatch(fetchOneProductForAdmin(id));
       }
     }
-    dispatch(fetchAdminCategories(''));
+    dispatch(fetchAdminCategories());
   }, [dispatch, id]);
 
   useEffect(() => {
@@ -129,9 +128,6 @@ const EditProduct: MyPage = () => {
         <Head>
           <title>Редактировать продукт</title>
         </Head>
-        <Link className={cls.back} href={`/admin/products/`}>
-          Назад
-        </Link>
         <h2>Редактировать продукт</h2>
         <form className={cls.createCategory_form} onSubmit={submitFormHandler}>
           <div className={cls.nameProductsBlock}>

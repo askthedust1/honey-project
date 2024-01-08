@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAppSelector } from '@/store/hook';
 import { selectAllProducts } from '@/features/products/productsSlice';
 import ProductItem from '@/features/products/components/ProductItem';
@@ -9,26 +9,17 @@ import SideBar from '@/components/UI/sideBar/SideBar';
 import bnr from '@/assets/images/prodBannner.png';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
-import FilterBar from '@/components/FilterBar/FilterBar';
 
 interface Props {
   pageName?: string;
-  id?: string;
 }
 
-const ProductsAll: React.FC<Props> = ({ pageName, id }) => {
+const ProductsAll: React.FC<Props> = ({ pageName }) => {
   let title = 'products';
   const router = useRouter();
   if (router.query && router.query.promotion === 'promotion') title = 'promotion';
   const products = useAppSelector(selectAllProducts);
   const { t } = useTranslation('common');
-
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
 
   return (
     <div className={cls.container}>
@@ -49,34 +40,13 @@ const ProductsAll: React.FC<Props> = ({ pageName, id }) => {
       <div className={cls.box}>
         <SideBar />
         <div className={cls.listContaiter}>
-          <div className={cls.filterContainer}>
-            <FilterBar categoryId={id} />
-            <div className={cls.searchContainer}>
-              <input
-                value={searchQuery}
-                onChange={handleSearchInputChange}
-                type="text"
-                placeholder="Найти по названию"
-              />
-              <Link
-                href={{
-                  pathname: '/products/page/path',
-                  query: { q: searchQuery, page: '1' },
-                }}
-              >
-                {t('search')}
-              </Link>
-            </div>
+          <div className={cls.list}>
+            {!!products.length ? (
+              products.map((el: IProduct) => <ProductItem key={el._id} product={el} />)
+            ) : (
+              <h2>В этом разделе товары временно отсутствуют...</h2>
+            )}
           </div>
-          {products.length === 0 ? (
-            <div style={{ width: '100%', textAlign: 'center', marginTop: '20px' }}>Товаров нет</div>
-          ) : (
-            <div className={cls.list}>
-              {products.map((el: IProduct) => (
-                <ProductItem key={el._id} product={el} />
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </div>

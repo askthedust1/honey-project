@@ -8,7 +8,6 @@ import cls from '../../../styles/_adminOneOrder.module.scss';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import { IProductOfKits } from '@/types';
 import OneOrderItem from '@/components/admin/oneOrder/OneOrderItem';
-import Link from 'next/link';
 
 const OrderInfo: MyPage = () => {
   const { id } = useParams() || {};
@@ -36,9 +35,6 @@ const OrderInfo: MyPage = () => {
     <ProtectedRoute>
       {orderOne && (
         <div className={cls.orderContainer}>
-          <Link className={cls.back} href={`/admin/orders/`}>
-            Назад
-          </Link>
           <h1 className={cls.adminOrdersMainTitle}>Информация о заказе</h1>
           <h2>Заказ №: {orderOne.indexNumber}</h2>
           <div className={cls.infoBlock}>

@@ -1,7 +1,7 @@
 {
   "products": "Products",
   "all-products": "All products",
-  "som": "kgs",
+  "som": "som",
   "available": "Available",
   "unavailable": "Unavailable",
   "add-to-basket": "Add to Basket",
@@ -33,11 +33,5 @@
   "faq5": "When will my order be delivered?",
   "main": "Main",
   "catalog": "In catalog",
-  "promotion": "Promotions",
-  "copy": "Link copied to clipboard!",
-  "filter1": "By date of addition",
-  "filter2": "By price (high > low)",
-  "filter3": "By price (low > high)",
-  "filter4": "Sorting by",
-  "search": "Search"
+  "promotion": "Promotions"
 }

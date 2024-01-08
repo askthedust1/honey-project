@@ -15,6 +15,7 @@ const Analytics: MyPage = () => {
   useEffect(() => {
     dispatch(fetchProductsAnalyticsAdmin());
   }, [dispatch]);
+  console.log(products);
   return (
     <ProtectedRoute>
       <div className={cls.analytic}>

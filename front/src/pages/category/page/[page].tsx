@@ -1,10 +1,10 @@
 import React from 'react';
 import ProductsAll from '@/features/products/ProductsAll';
 import { wrapper } from '@/store/store';
-import { fetchProductsByCategory, fetchProductsByCategoryFiler } from "@/features/products/productsThunk";
+import { fetchProductsByCategory } from '@/features/products/productsThunk';
 import { useAppSelector } from '@/store/hook';
 import { selectTotalPages } from '@/features/products/productsSlice';
-import { IQueryObjectCategory, IQueryObjectCategoryFilter } from "@/types";
+import { IQueryObjectCategory } from '@/types';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import Pagination from '@/components/UI/pagination/Pagination';
@@ -20,7 +20,6 @@ const ProductByCategoryPage: MyPage = () => {
   const category = categories.find((obj) => obj._id === router.query.cId);
 
   const totalPagesState = useAppSelector(selectTotalPages);
-  const sort = router.query.sort as string;
 
   return (
     <>
@@ -30,10 +29,9 @@ const ProductByCategoryPage: MyPage = () => {
           <meta name="keywords" content={category?.title} />
         </Head>
       </div>
-      <ProductsAll pageName={category?.title} id={category?._id} />
+      <ProductsAll pageName={category?.title} />
       {totalPagesState > 0 ? (
         <Pagination
-          sort={sort}
           productsActive={false}
           categoriesActive={true}
           idCategory={String(router.query.cId)}
@@ -57,10 +55,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
       const idOfCategory = query.cId as string;
       const pageNumber = query.cPage as string;
-      const sort = query.sort as string;
-
-      console.log('categ' + ' ' + sort)
-
       if (idOfCategory && pageNumber) {
         const iQueryObjectCategory: IQueryObjectCategory = {
           categoryId: idOfCategory,
@@ -68,17 +62,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
         };
         await store.dispatch(
           fetchProductsByCategory({ query: iQueryObjectCategory, locale: lang }),
-        );
-      }
-
-      if (idOfCategory && pageNumber && sort) {
-        const iQueryObjectCategory: IQueryObjectCategoryFilter = {
-          categoryId: idOfCategory,
-          categoryPage: pageNumber,
-          sort: sort,
-        };
-        await store.dispatch(
-          fetchProductsByCategoryFiler({ query: iQueryObjectCategory, locale: lang }),
         );
       }
 

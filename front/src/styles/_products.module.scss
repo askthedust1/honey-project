@@ -111,7 +111,6 @@ $color-old-price: #999999;
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
-  transition-duration: 0.3s;
   &_white {
     background-color: $color-card-bg;
   }
@@ -270,122 +269,6 @@ $color-old-price: #999999;
     }
   }
 }
-
-.filterContainer {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding-bottom: 8px;
-  @include mix.md2 {
-    display: block;
-  }
-}
-
-.dropdownMenu {
-  background-color: #ffffff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  z-index: 10;
-  padding: 0.5rem 0;
-}
-
-.dropdownMenu a {
-  padding: 0.5rem 1rem;
-  display: block;
-  color: #333;
-  font-size: 12px;
-  text-decoration: none;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: #f7f7f7;
-  }
-}
-
-.dropdownDangerToggle {
-  cursor: pointer;
-  background: none;
-  color: #5A3733;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  outline: none;
-  position: relative;
-  @include mix.md {
-    margin: 10px auto;
-    width: 100%;
-
-  }
-
-  &:hover {
-    background-color: #D3A863;
-    color: white;
-  }
-}
-
-.dropdownContainer {
-  display: block;
-  position: relative;
-  @include mix.md {
-    margin: 0 auto;
-  }
-}
-
-.searchContainer {
-  display: flex;
-  align-items: center;
-  border-radius: 4px;
-  border: #D3A863 1px solid;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  margin-left: auto;
-  margin-bottom: 10px;
-  @include mix.md {
-    margin: 0 auto;
-  }
-}
-
-.searchContainer input[type="text"] {
-  flex: 1;
-  border: none;
-  padding: 8px 12px;
-  font-size: 16px;
-  border-radius: 4px 0 0 4px;
-}
-
-.searchContainer input[type="text"]:focus {
-  outline: none;
-}
-
-.searchContainer a {
-  text-decoration: none;
-  color: #fff;
-  background-color: #D3A863;
-  padding: 8px 16px;
-  font-size: 16px;
-  border-radius: 0 3px 3px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-}
-
-.searchContainer a:hover {
-  background-color: #5A3733;
-  cursor: pointer;
-}
-
-.listContaiter {
-  width: 100%;
-}
-
-
 
 
 
