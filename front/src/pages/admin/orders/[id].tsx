@@ -38,6 +38,7 @@ const OrderInfo: MyPage = () => {
   };
 
   const onClick = async () => {
+    console.log('click exit');
     dispatch(changeCurrentPage(1));
     dispatch(resetTotalPages());
     dispatch(resetCurrentStatus());

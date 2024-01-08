@@ -6,6 +6,7 @@ import User from '../models/User';
 
 const orderAdminRouter = express.Router();
 
+console.log('In orderAdminRouter');
 orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
   try {
     if (req.query.statusId && req.query.camePage && req.query.search) {
@@ -312,26 +313,6 @@ orderAdminRouter.get('/:id', auth, permit('admin'), async (req, res) => {
     return res.sendStatus(500);
   }
 });
-
-// orderAdminRouter.get('/new', auth, permit('admin'), async (req, res) => {
-//   console.log('get request for transaction new');
-//   try {
-//     console.log('get request for transaction new');
-//     const transactions = await Transaction.find({ status: false })
-//       .populate('user', 'displayName phone')
-//       .populate({
-//         path: 'kits.product',
-//         select: 'actualPrice image translations.ru.title isHit',
-//         populate: {
-//           path: 'category',
-//           select: 'translations.ru.title',
-//         },
-//       });
-//     return res.send(transactions);
-//   } catch {
-//     return res.sendStatus(500);
-//   }
-// });
 
 orderAdminRouter.patch('/:id/toggleStatus', auth, permit('admin'), async (req, res) => {
   try {
