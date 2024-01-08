@@ -18,7 +18,6 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
       const ordersTotal = await Transaction.find({ status: req.query.statusId }).populate({
         path: 'user',
         match: { displayName: { $regex: new RegExp(qSearch, 'i') } },
-        // match: { displayName: 'Administrator' },
         select: 'displayName',
       });
 
