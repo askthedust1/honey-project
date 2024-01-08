@@ -23,8 +23,8 @@ Given('I am on accounts page', () => {
     I.amOnPage('/accounts');
 });
 
-Given('I click the {string} button', (text: string) => {
-    I.executeScript((locator) => {
+Given('I click the {string} button', async (text: string) => {
+    await I.executeScript((locator) => {
         const element = document.querySelector(locator);
 
         element.click();
@@ -41,8 +41,8 @@ When('I enter form fields:', (userData: IDataTable) => {
     });
 });
 
-When('I click {string} button', (text: string) => {
-    I.executeScript((locator) => {
+When('I click {string} button', async (text: string) => {
+    await I.executeScript((locator) => {
         const element = document.querySelector(locator);
 
         element.click();
@@ -64,8 +64,8 @@ When('I move mouse to {string} in user menu', (text: string) => {
 });
 
 
-When('I click {string} in user menu', (text: string) => {
-    I.executeScript((locator) => {
+When('I click {string} in user menu', async (text: string) => {
+    await I.executeScript((locator) => {
         const element = document.querySelector(locator);
 
         element.click();
@@ -166,4 +166,36 @@ Then('I see {string}', (text: string) => {
     I.see(`${text}`);
 });
 
+Given('I am on admin hits page', () => {
+    I.amOnPage('/admin/bestseller');
+});
 
+let productName;
+When('I click on plus button', async () => {
+    productName = await I.grabAttributeFrom('[data-product-button]:first-child', 'data-product-button');
+    await I.click('[data-product-button]:first-child');
+});
+
+Then('I see a product name in upper block', () => {
+    const hitsDiv = '[data-hits]';
+    I.waitForVisible(hitsDiv);
+    I.see(productName, hitsDiv);
+});
+
+let hitName;
+When('I click on delete button', async () => {
+    hitName = await I.grabAttributeFrom('[data-hit-button]', 'data-hit-button');
+    await I.click('[data-hit-button]');
+});
+
+Then('I don\'t see a product name in upper block', async() => {
+    const hitsDiv = '[data-hits]';
+    await I.waitForVisible(hitsDiv);
+    I.dontSee(hitName, hitsDiv);
+});
+
+Then('I see a product name in the table', async () => {
+    const productsTable = '[data-products-table]';
+    await I.waitForVisible(productsTable);
+    I.see(hitName, productsTable);
+});

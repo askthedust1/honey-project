@@ -76,7 +76,6 @@ transactionsRouter.get('/history', auth, async (req, res) => {
 });
 
 transactionsRouter.get('/new', auth, permit('admin'), async (req, res) => {
-  console.log('get request for transaction new');
   try {
     const transactions = await Transaction.find({ status: false })
       .populate('user', 'displayName phone')
