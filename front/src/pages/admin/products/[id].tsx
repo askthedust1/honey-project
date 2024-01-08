@@ -8,6 +8,7 @@ import { fetchOneProductForAdmin } from '@/features/productAdmin/productsAdminTh
 import { selectOneProductForAdmin } from '@/features/productAdmin/productsAdminSlice';
 import { apiUrl } from '@/constants';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const ProductInfo: MyPage = () => {
   const { id } = useParams() || {};
@@ -28,6 +29,9 @@ const ProductInfo: MyPage = () => {
           <Head>
             <title>{product.translations.ru.title}</title>
           </Head>
+          <Link className={cls.back} href={`/admin/products/`}>
+            Назад
+          </Link>
           <h2>Информация о продукте</h2>
           <div className={cls.productInfoBlock}>
             <div className={cls.photoBlock}>

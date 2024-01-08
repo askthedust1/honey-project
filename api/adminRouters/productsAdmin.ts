@@ -7,10 +7,12 @@ import permit from '../middleware/permit';
 import config from '../config';
 import { Error } from 'mongoose';
 import * as fs from 'fs';
+import { IProductPost } from '../types';
 
 const productAdminRouter = express.Router();
 
 productAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
+  const lang = 'ru';
   const qSearch = req.query.search as string;
   try {
     if (req.query.category) {
@@ -24,7 +26,14 @@ productAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
           select: ['translations'],
           model: Category,
         });
-      return res.send(result);
+      const fit = result.map((i) => {
+        const product = i.toObject() as IProductPost;
+        return {
+          ...product,
+          title: product.translations[lang].title,
+        };
+      });
+      return res.send(fit);
     } else {
       const result = await Product.find({
         'translations.ru.title': { $regex: new RegExp(qSearch, 'i') },
@@ -35,7 +44,18 @@ productAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
           select: ['translations'],
           model: Category,
         });
-      return res.send(result);
+      const fit = result.map((i) => {
+        const product = i.toObject() as IProductPost;
+        return {
+          ...product,
+          title: product.translations[lang].title,
+          category: {
+            ...product.category,
+            title: product.category.translations[lang].title,
+          },
+        };
+      });
+      return res.send(fit);
     }
   } catch (error) {
     console.error('Error fetching products:', error);
@@ -44,6 +64,7 @@ productAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 });
 
 productAdminRouter.get('/click', auth, permit('admin'), async (req, res) => {
+  const lang = 'ru';
   try {
     const result = await Product.find()
       .sort({ click: -1 })
@@ -52,7 +73,18 @@ productAdminRouter.get('/click', auth, permit('admin'), async (req, res) => {
         select: ['translations'],
         model: Category,
       });
-    return res.send(result);
+    const fit = result.map((i) => {
+      const product = i.toObject() as IProductPost;
+      return {
+        ...product,
+        title: product.translations[lang].title,
+        category: {
+          ...product.category,
+          title: product.category.translations[lang].title,
+        },
+      };
+    });
+    return res.send(fit);
   } catch (error) {
     console.error('Error fetching products:', error);
     return res.status(500).send('Internal Server Error');

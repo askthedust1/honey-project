@@ -11,8 +11,7 @@ import bannersRouter from './routers/banners';
 import productAdminRouter from './adminRouters/productsAdmin';
 import categoriesAdminRouter from './adminRouters/categoriesAdmin';
 import mainAdmin from './adminRouters/mainAdmin';
-import promotionRouter from './routers/promotion';
-import orderAdminRouter from './adminRouters/ordersAdmin';
+import promotionRouter from "./routers/promotion";
 
 const app = express();
 
@@ -29,7 +28,6 @@ app.use('/admin', productAdminRouter);
 app.use('/adminCategories', categoriesAdminRouter);
 app.use('/adminMain', mainAdmin);
 app.use('/promotion', promotionRouter);
-app.use('/adminOrder', orderAdminRouter);
 
 const run = async () => {
   await mongoose.connect(config.db);
