@@ -95,7 +95,6 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && req.query.search) {
-      // console.log(req.query.search);
       // console.log('into only by search');
 
       let page = 1;
@@ -267,11 +266,6 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .skip((page - 1) * perPage)
         .limit(perPage)
         .sort({ indexNumber: 1 });
-
-      //skip((page - 1) * perPage):
-      // page - текущая страница, которую хотим получить.
-      // perPage - количество элементов на одной странице.
-      // (page - 1) * perPage вычисляет, сколько документов следует пропустить, чтобы начать с нужной страницы
 
       const ordersWithPages = {
         ordersOfPage: ordersByThisPage,
