@@ -85,11 +85,5 @@ export const selectCurrentPage = (state: RootState) => state.orderAdmin.currentP
 export const selectTotalOrderPages = (state: RootState) => state.orderAdmin.totalPages;
 export const selectCurrentStatus = (state: RootState) => state.orderAdmin.currentStatus;
 
-export const {
-  resetOrder,
-  counterPlus,
-  counterMinus,
-  changeStatus,
-  changeCurrentPage,
-  resetTotalPages,
-} = orderAdminSlice.actions;
+export const { counterPlus, counterMinus, changeStatus, changeCurrentPage, resetTotalPages } =
+  orderAdminSlice.actions;

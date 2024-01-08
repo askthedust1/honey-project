@@ -10,7 +10,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
   try {
     if (req.query.statusId && req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
-      console.log('into by status and name search');
+      // console.log('into by status and name search');
       let page = 1;
       const perPage = 20;
       page = parseInt(req.query.camePage as string);
@@ -36,7 +36,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .limit(perPage)
         .sort({ indexNumber: -1 });
       const totalPages = Math.ceil(countCollection / perPage);
-      console.log(`totalpages by status=${totalPages}`);
+      // console.log(`totalpages by status=${totalPages}`);
 
       const filteredTransactions = ordersByStatus.filter(
         (ordersByStatus) => ordersByStatus.user !== null
@@ -52,7 +52,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.statusId && req.query.camePage && req.query.searchNum) {
       const nSearch = req.query.searchNum as string;
-      console.log('into by status and Number search');
+      // console.log('into by status and Number search');
       let page = 1;
       const perPage = 20;
       page = parseInt(req.query.camePage as string);

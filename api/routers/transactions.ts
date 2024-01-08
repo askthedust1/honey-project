@@ -8,8 +8,6 @@ import permit from '../middleware/permit';
 
 const transactionsRouter = express.Router();
 
-console.log('transactions.ts is loaded');
-
 transactionsRouter.get('/:id', auth, permit('admin'), async (req, res) => {
   try {
     const order = await Transaction.findById(req.params.id)

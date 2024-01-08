@@ -26,12 +26,6 @@ const Orders: MyPage = () => {
   const [searchPhone, setSearchPhone] = useState<string>('');
   const statusStore = useAppSelector(selectCurrentStatus);
 
-  // dispatch(changeCurrentPage(1))
-
-  // useEffect(() => {
-  //   dispatch(changeCurrentPage(1));
-  // }, []);
-
   useEffect(() => {
     const currentPage = currentPageState?.toString();
 

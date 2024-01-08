@@ -9,10 +9,12 @@ const AdminMain = () => {
   const dispatch = useAppDispatch();
   const info = useAppSelector(selectAdminMain);
   const hits = useAppSelector(selectAdminMainHits);
+
   useEffect(() => {
     dispatch(fetchAdminMain());
     dispatch(fetchAdminMainHit());
   }, [dispatch]);
+
   return (
     <div className={cls.main}>
       <h3 className={cls.main_title}>Главная панель</h3>
@@ -47,7 +49,7 @@ const AdminMain = () => {
               <th>Название</th>
               <th>Категория</th>
               <th>Цена</th>
-              <th>Продано товара </th>
+              <th>Продано товара</th>
               <th>Общая сумма</th>
             </tr>
           </thead>
