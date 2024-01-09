@@ -59,7 +59,7 @@ const SidebarAdmin = () => {
   return (
     <div style={{ display: role && role.userCheck ? 'block' : 'none' }} className={cls.sidebar}>
       <header className={cls.sidebar_header}>
-        <Link className={cls.logo} href={'/admin'}>
+        <Link className={cls.logo} href={'/'}>
           <Image src={logo.src} alt={'logo'} width={140} height={56} />
         </Link>
         <div className={cls.box}>
