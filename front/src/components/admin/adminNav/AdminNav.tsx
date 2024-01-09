@@ -127,13 +127,6 @@ const AdminNav: React.FC<Props> = (props) => {
         placeholder="Найти по названию"
         onChange={setSearchItem}
       />
-      <div className={cls.adminNavPagination}>
-        <a className={cls.arrowToLeft} href="#"></a>
-        <p>
-          Страница: <span>1</span> из <span>12</span>
-        </p>
-        <a className={cls.arrowToRight} href="#"></a>
-      </div>
       <button className={cls.addAdminNavBtn}>
         <Image src={plusIcon.src} alt="plusIcon" width={14} height={14} />
         <ButtonUi text={'Добавить продукт'} link={'/admin/addProduct'} />
@@ -146,7 +139,7 @@ const AdminNav: React.FC<Props> = (props) => {
       <h3 className={cls.bestseller_title} style={{ margin: '0 37px 0 -15px' }}>
         Все товары
       </h3>
-      <select style={{ minWidth: '250px', margin: '0 30px 0 0' }} onChange={handleCategoryChange}>
+      <select style={{ minWidth: '250px', margin: '0 30px 0 auto' }} onChange={handleCategoryChange}>
         <option value="">Отфильтровать по категории</option>
         {props.categories
           ? props.categories.map((category) => (
@@ -157,20 +150,13 @@ const AdminNav: React.FC<Props> = (props) => {
           : ''}
       </select>
       <input
-        style={{ width: '250px', margin: '0 67px 0 0' }}
+        style={{ width: '250px', margin: '0' }}
         type="text"
         name="findProduct"
         id="findProduct"
         placeholder="Найти по названию"
         onChange={setSearchItem}
       />
-      <div className={cls.adminNavPagination}>
-        <a className={cls.arrowToLeft} href="#"></a>
-        <p>
-          Страница: <span>1</span> из <span>12</span>
-        </p>
-        <a className={cls.arrowToRight} href="#"></a>
-      </div>
     </>
   );
 

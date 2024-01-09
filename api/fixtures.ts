@@ -28,7 +28,7 @@ const run = async () => {
       token: crypto.randomUUID(),
       role: 'user',
       displayName: 'Sam Smith ',
-      phone: '0772 77-22-77',
+      phone: '0772772277',
       address: 'Some street 1',
     },
     {
@@ -37,7 +37,7 @@ const run = async () => {
       token: crypto.randomUUID(),
       role: 'user',
       displayName: 'Oleg Mongol ',
-      phone: '0552 82-78-76',
+      phone: '0552827876',
       address: 'Some street 2',
     },
     {
@@ -46,7 +46,7 @@ const run = async () => {
       token: crypto.randomUUID(),
       role: 'admin',
       displayName: 'Administrator',
-      phone: '0555 55-55-55',
+      phone: '0555555555',
       address: 'Some street 3',
     }
   );
@@ -713,6 +713,7 @@ const run = async () => {
       ],
       totalPrice: 1100,
     },
+
     {
       user: user1._id,
       indexNumber: 2,
@@ -894,6 +895,224 @@ const run = async () => {
         },
       ],
       totalPrice: 1700,
+    },
+    {
+      user: user2._id,
+      indexNumber: 10,
+      dateTime: '2024-01-09T14:28:43.174Z',
+      address: 'Логвиненко, 34',
+      kits: [
+        {
+          product: herbs1._id,
+          amount: 1,
+          price: herbs1.actualPrice,
+        },
+        {
+          product: herbs2._id,
+          amount: 1,
+          price: herbs2.actualPrice,
+        },
+        {
+          product: herbs3._id,
+          amount: 1,
+          price: herbs3.actualPrice,
+        },
+        {
+          product: honey3._id,
+          amount: 1,
+          price: honey3.actualPrice,
+        },
+        {
+          product: herbs4._id,
+          amount: 1,
+          price: herbs4.actualPrice,
+        },
+        {
+          product: driedFruits4._id,
+          amount: 2,
+          price: driedFruits4.actualPrice,
+        },
+      ],
+      totalPrice: 1800,
+    },
+    {
+      user: user2._id,
+      indexNumber: 11,
+      dateTime: '2024-01-10T14:48:43.174Z',
+      address: 'Логвиненко, 38',
+      kits: [
+        {
+          product: herbs1._id,
+          amount: 2,
+          price: herbs1.actualPrice,
+        },
+        {
+          product: herbs2._id,
+          amount: 1,
+          price: herbs2.actualPrice,
+        },
+        {
+          product: herbs3._id,
+          amount: 1,
+          price: herbs3.actualPrice,
+        },
+        {
+          product: honey3._id,
+          amount: 1,
+          price: honey3.actualPrice,
+        },
+        {
+          product: herbs4._id,
+          amount: 1,
+          price: herbs4.actualPrice,
+        },
+        {
+          product: driedFruits4._id,
+          amount: 1,
+          price: driedFruits4.actualPrice,
+        },
+      ],
+      totalPrice: 1900,
+    },
+    {
+      user: user1._id,
+      indexNumber: 12,
+      dateTime: '2024-01-11T14:19:43.174Z',
+      address: 'ул. Малдыбаева 7/2',
+      kits: [
+        {
+          product: honey7._id,
+          amount: 2,
+          price: honey7.actualPrice,
+        },
+      ],
+      totalPrice: 1400,
+    },
+    {
+      user: user1._id,
+      indexNumber: 13,
+      dateTime: '2024-01-12T14:29:43.174Z',
+      address: 'ул. Малдыбаева 7/3',
+      kits: [
+        {
+          product: honey7._id,
+          amount: 3,
+          price: honey7.actualPrice,
+        },
+      ],
+      totalPrice: 2100,
+    },
+    {
+      user: user1._id,
+      indexNumber: 14,
+      dateTime: '2024-01-13T14:29:43.174Z',
+      address: 'ул. Малдыбаева 7/3',
+      kits: [
+        {
+          product: honey7._id,
+          amount: 3,
+          price: honey7.actualPrice,
+        },
+      ],
+      totalPrice: 2100,
+    },
+    {
+      user: user1._id,
+      indexNumber: 15,
+      dateTime: '2024-01-14T14:29:43.174Z',
+      address: 'ул. Малдыбаева 7/4',
+      kits: [
+        {
+          product: honey7._id,
+          amount: 1,
+          price: honey7.actualPrice,
+        },
+      ],
+      totalPrice: 700,
+    },
+    {
+      user: user1._id,
+      indexNumber: 15,
+      dateTime: '2024-01-14T14:29:43.174Z',
+      address: 'ул. Малдыбаева 7/4',
+      kits: [
+        {
+          product: honey7._id,
+          amount: 1,
+          price: honey7.actualPrice,
+        },
+      ],
+      totalPrice: 700,
+    },
+    {
+      user: user1._id,
+      indexNumber: 16,
+      dateTime: '2024-01-15T14:29:43.174Z',
+      address: 'ул. Малдыбаева 7/4',
+      kits: [
+        {
+          product: honey7._id,
+          amount: 2,
+          price: honey7.actualPrice,
+        },
+      ],
+      totalPrice: 1400,
+    },
+    {
+      user: user1._id,
+      indexNumber: 17,
+      dateTime: '2024-01-16T14:29:43.174Z',
+      address: 'ул. Малдыбаева 7/4',
+      kits: [
+        {
+          product: honey7._id,
+          amount: 1,
+          price: honey7.actualPrice,
+        },
+      ],
+      totalPrice: 700,
+    },
+    {
+      user: user1._id,
+      indexNumber: 18,
+      dateTime: '2024-01-17T14:29:43.174Z',
+      address: 'ул. Малдыбаева 7/4',
+      kits: [
+        {
+          product: honey7._id,
+          amount: 2,
+          price: honey7.actualPrice,
+        },
+      ],
+      totalPrice: 1400,
+    },
+    {
+      user: user1._id,
+      indexNumber: 19,
+      dateTime: '2024-01-18T14:29:43.174Z',
+      address: 'ул. Малдыбаева 7/4',
+      kits: [
+        {
+          product: honey7._id,
+          amount: 1,
+          price: honey7.actualPrice,
+        },
+      ],
+      totalPrice: 700,
+    },
+    {
+      user: user1._id,
+      indexNumber: 20,
+      dateTime: '2024-01-19T14:29:43.174Z',
+      address: 'ул. Малдыбаева 7/4',
+      kits: [
+        {
+          product: honey7._id,
+          amount: 2,
+          price: honey7.actualPrice,
+        },
+      ],
+      totalPrice: 1400,
     }
   );
 

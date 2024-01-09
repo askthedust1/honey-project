@@ -33,7 +33,7 @@ transactionsRouter.get('/:id', auth, permit('admin'), async (req, res) => {
   }
 });
 
-transactionsRouter.get('/history', auth, async (req, res) => {
+transactionsRouter.get('/new/history', auth, async (req, res) => {
   const user = (req as RequestWithUser).user;
   const lang = req.headers['accept-language'] || 'ru';
   try {
@@ -75,7 +75,7 @@ transactionsRouter.get('/history', auth, async (req, res) => {
   }
 });
 
-transactionsRouter.get('/new', auth, permit('admin'), async (req, res) => {
+transactionsRouter.get('/new/orders', auth, permit('admin'), async (req, res) => {
   try {
     const transactions = await Transaction.find({ status: false })
       .populate('user', 'displayName phone')
@@ -191,5 +191,4 @@ transactionsRouter.patch('/:id/toggleStatus', auth, permit('admin'), async (req,
 
 // findByIdAndUpdate поумолчанию возвращает документ до его обновления, а НЕ ПОСЛЕ.
 // { new: true } вернет обновленный документ, а не оригинальный.
-
 export default transactionsRouter;

@@ -34,7 +34,7 @@ export const fetchOrderOneAdmin = createAsyncThunk<IOrderAdminView, string>(
 
 export const patchActiveOrders = createAsyncThunk<void, string>(
   'orderAdmin/patchStatus',
-  async (id, thunkAPI) => {
+  async (id) => {
     try {
       await axiosApi.patch<IOrder>(`/transactions/${id}/toggleStatus`);
     } catch (e) {

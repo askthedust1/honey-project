@@ -5,6 +5,7 @@
   margin: 0 auto;
   color: #5A3733;
 }
+
 .container {
   .ordersBlock {
     width: 1073px;
@@ -14,6 +15,7 @@
       margin: 20px 0 0 30px;
       font-weight: 500;
     }
+
     .adminOrdersNav {
       display: flex;
       justify-content: space-between;
@@ -22,6 +24,7 @@
       margin: 20px 15px 16px;
       padding: 16px 20px;
       box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+
       select {
         display: flex;
         font-family: 'Montserrat', sans-serif;
@@ -37,16 +40,19 @@
         height: 40px;
         //margin: 0 21px 0 0;
       }
+
       select:focus-visible {
         border: 2px solid #5A3733;
         outline: none;
       }
+
       option {
         padding: 8px;
         font-size: 14px;
         background-color: #fff;
         color: #333;
       }
+
       option:active {
         background-color: #5A3733;
         color: #333;
@@ -56,6 +62,7 @@
         padding: 8px;
         background-color: #f0f0f0;
       }
+
       input {
         display: flex;
         width: 250px;
@@ -64,8 +71,8 @@
         padding: 8px 40px 8px 10px;
         border: 0.5px solid #5A3733;
         border-radius: 4px;
-        //margin: 0 67px 0 0;
       }
+
       input::placeholder {
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
@@ -73,31 +80,37 @@
         font-size: 13px;
         color: #5A3733;
       }
+
       input:focus-visible {
         border: 2px solid #5A3733;
         outline: none;
       }
+
       .adminOrdersPagination {
         display: flex;
         margin: 8px 0 0 0;
         font-size: 14px;
         width: 19%;
+
         .arrowToLeft {
           width: 25px;
           height: 25px;
           border-radius: 50%;
           background: url('../assets/images/arrowToLeft.svg') no-repeat center;
         }
+
         .arrowToRight {
           width: 25px;
           height: 25px;
           border-radius: 50%;
           background: url('../assets/images/arrowToRight.svg') no-repeat center;
         }
+
         p {
           margin: 5px 5px 0;
         }
       }
+
       .addNewOrderBtn {
         position: relative;
         margin: 0 0 0 auto;
@@ -110,6 +123,7 @@
         font-size: 14px;
         font-weight: bold;
         box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+
         img {
           position: absolute;
           top: 13px;
@@ -119,6 +133,7 @@
       }
 
     }
+
     .adminOrdersTable {
       max-width: 1230px;
       background-color: #FFFFFF;
@@ -132,6 +147,7 @@
         border-collapse: collapse;
         background-color: #FFFFFF;
       }
+
       th, td {
         padding: 8px;
         text-align: center;
@@ -142,11 +158,17 @@
         font-weight: 600;
         font-size: 12px;
       }
+
       .tableBodyBlock {
         td {
           font-size: 13px;
           font-weight: 500;
+
+          .innerPhoneLeft {
+            margin-right: 4px;
+          }
         }
+
         .imageTd {
           width: 69px;
           height: 69px;
@@ -158,6 +180,7 @@
             border: 1px solid rgb(25 5 5 / 12%);
           }
         }
+
         .btnActive {
           font-size: 13px;
           width: 132px;
@@ -168,6 +191,7 @@
           border: none;
           border-radius: 6px;
         }
+
         .btnInactive {
           width: 132px;
           height: 26px;
@@ -178,6 +202,7 @@
           border-radius: 6px;
           font-size: 13px;
         }
+
         .viewMoreBtn {
           border: none;
           background: url("../assets/images/adminIcon/toWatchMoreIcon.svg") no-repeat center;
@@ -185,6 +210,7 @@
           height: 18px;
           margin: 0 9px 0 0;
         }
+
         .editBtn {
           border: none;
           width: 22px;

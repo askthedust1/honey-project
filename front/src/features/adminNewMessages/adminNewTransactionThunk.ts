@@ -12,7 +12,7 @@ export const fetchAdminHewTransaction = createAsyncThunk<
 >('adminNewMessages/fetchNewTransaction', async (_, thunkApi) => {
     const userState = thunkApi.getState().users;
     const token = userState.user?.token;
-    const response = await axiosApi.get(`/transactions/new`, { headers: { Authorization: token } });
+    const response = await axiosApi.get(`/transactions/new/orders`, { headers: { Authorization: token } });
     return response.data;
 });
 
