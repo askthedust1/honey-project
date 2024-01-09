@@ -1,11 +1,11 @@
 .mainAdminLayout {
   min-height: 400px;
   display: flex;
-  color: #5A3733;
+  color: #5a3733;
   .mainAdminLayoutContainer {
     display: flex;
     justify-content: center;
-    flex-Grow: 1;
+    flex-grow: 1;
     height: 100vh;
     overflow-y: auto;
   }
@@ -22,7 +22,7 @@
     }
     .adminProductsNav {
       display: flex;
-      background-color: #FFFFFF;
+      background-color: #ffffff;
       border-radius: 15px;
       margin: 20px 15px 16px;
       padding: 16px 20px;
@@ -31,17 +31,17 @@
         font-family: 'Montserrat', sans-serif;
         padding: 11px;
         font-size: 13px;
-        color: #5A3733;
+        color: #5a3733;
         font-weight: 400;
         letter-spacing: 0.25px;
-        border: 0.5px solid #5A3733;
+        border: 0.5px solid #5a3733;
         border-radius: 4px;
         background-color: #fff;
         width: 265px;
         margin: 0 21px 0 0;
       }
       select:focus-visible {
-        border: 2px solid #5A3733;
+        border: 2px solid #5a3733;
         outline: none;
       }
       option {
@@ -51,7 +51,7 @@
         color: #333;
       }
       option:active {
-        background-color: #5A3733;
+        background-color: #5a3733;
         color: #333;
       }
 
@@ -64,7 +64,7 @@
         background: url('../assets/images/findIcon.svg') no-repeat center right 10px;
         height: 40px;
         padding: 8px 40px 8px 10px;
-        border: 0.5px solid #5A3733;
+        border: 0.5px solid #5a3733;
         border-radius: 4px;
         margin: 0 67px 0 0;
       }
@@ -73,10 +73,10 @@
         font-weight: 400;
         letter-spacing: 0.25px;
         font-size: 13px;
-        color: #5A3733;
+        color: #5a3733;
       }
       input:focus-visible {
-        border: 2px solid #5A3733;
+        border: 2px solid #5a3733;
         outline: none;
       }
       .adminProductsPagination {
@@ -102,8 +102,8 @@
       .addNewProductBtn {
         position: relative;
         margin: 0 0 0 auto;
-        background-color: #5A3733;
-        color: #FFFFFF;
+        background-color: #5a3733;
+        color: #ffffff;
         width: 180px;
         height: 40px;
         border: none;
@@ -118,11 +118,10 @@
           width: auto;
         }
       }
-
     }
     .adminProductsTable {
       max-width: 1230px;
-      background-color: #FFFFFF;
+      background-color: #ffffff;
       box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
       border-radius: 15px;
       padding: 10px 0;
@@ -131,9 +130,10 @@
       table {
         width: 100%;
         border-collapse: collapse;
-        background-color: #FFFFFF;
+        background-color: #ffffff;
       }
-      th, td {
+      th,
+      td {
         padding: 8px;
         text-align: center;
         border-bottom: 1px solid #ddd;
@@ -164,7 +164,7 @@
           width: 92px;
           height: 26px;
           padding: 5px 12px;
-          color: #27AE60;
+          color: #27ae60;
           background-color: rgb(39 174 96 / 20%);
           border: none;
           border-radius: 6px;
@@ -173,7 +173,7 @@
           width: 92px;
           height: 26px;
           padding: 5px 12px;
-          color: #AE2727;
+          color: #ae2727;
           background-color: rgba(174, 39, 39, 0.2);
           border: none;
           border-radius: 6px;
@@ -181,15 +181,15 @@
         }
         .hitActive {
           font-size: 12px;
-          color: #27AE60;
+          color: #27ae60;
         }
         .hitInactive {
           font-size: 12px;
-          color: #AE2727;
+          color: #ae2727;
         }
         .viewMoreBtn {
           border: none;
-          background: url("../assets/images/adminIcon/toWatchMoreIcon.svg") no-repeat center;
+          background: url('../assets/images/adminIcon/toWatchMoreIcon.svg') no-repeat center;
           width: 27px;
           height: 18px;
           margin: 0 9px 0 0;
@@ -198,14 +198,9 @@
           border: none;
           width: 22px;
           height: 23px;
-          background: url("../assets/images/adminIcon/editIcon.svg") no-repeat center;
+          background: url('../assets/images/adminIcon/editIcon.svg') no-repeat center;
         }
       }
     }
-
   }
 }
-
-
-
-
