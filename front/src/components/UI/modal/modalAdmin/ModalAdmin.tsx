@@ -51,18 +51,14 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, order }) => {
                   {order.kits.map((kit) => (
                     <tr key={kit.product._id}>
                       <td className={cls.imageTd}>
-                        <div style={{ position: 'relative' }}>
-                          <Image
-                            style={{ objectFit: 'contain' }}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            priority
-                            quality={80}
-                            fill
-                            src={apiUrl + '/' + kit.product.image}
-                            alt={kit.product.translations.ru.title}
-                          />
-                        </div>
-                        {/*<img src={apiUrl + '/' + kit.product.image} alt="image" />*/}
+                        <Image
+                          width={150}
+                          height={150}
+                          priority
+                          quality={80}
+                          src={apiUrl + '/' + kit.product.image}
+                          alt={kit.product.translations.ru.title}
+                        />
                       </td>
                       <td>{kit.product.translations.ru.title}</td>
                       <td>{kit.product.category.translations.ru.title}</td>
