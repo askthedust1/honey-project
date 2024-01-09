@@ -139,7 +139,10 @@ const AdminNav: React.FC<Props> = (props) => {
       <h3 className={cls.bestseller_title} style={{ margin: '0 37px 0 -15px' }}>
         Все товары
       </h3>
-      <select style={{ minWidth: '250px', margin: '0 30px 0 auto' }} onChange={handleCategoryChange}>
+      <select
+        style={{ minWidth: '250px', margin: '0 30px 0 auto' }}
+        onChange={handleCategoryChange}
+      >
         <option value="">Отфильтровать по категории</option>
         {props.categories
           ? props.categories.map((category) => (
