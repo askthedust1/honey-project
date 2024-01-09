@@ -6,14 +6,13 @@ import User from '../models/User';
 
 const orderAdminRouter = express.Router();
 
-console.log('In orderAdminRouter');
 orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
   try {
     if (req.query.statusId && req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
-      // console.log('into by status and name search');
+      console.log('inside by status and name search');
       let page = 1;
-      const perPage = 20;
+      const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
       const ordersTotal = await Transaction.find({ status: req.query.statusId }).populate({
@@ -38,8 +37,6 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .sort({ indexNumber: -1 });
       const totalPages = Math.ceil(countCollection / perPage);
 
-      // console.log(`totalpages by status=${totalPages}`);
-
       const filteredTransactions = ordersByStatus.filter(
         (ordersByStatus) => ordersByStatus.user !== null
       );
@@ -54,9 +51,9 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.statusId && req.query.camePage && req.query.searchNum) {
       const nSearch = req.query.searchNum as string;
-      // console.log('into by status and Number search');
+      console.log('inside by status and Number search');
       let page = 1;
-      const perPage = 20;
+      const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
       const ordersTotal = await Transaction.find({ status: req.query.statusId }).populate({
@@ -81,8 +78,6 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .sort({ indexNumber: -1 });
       const totalPages = Math.ceil(countCollection / perPage);
 
-      // console.log(`totalpages by status=${totalPages}`);
-
       const filteredTransactions = ordersByStatus.filter(
         (ordersByStatus) => ordersByStatus.user !== null
       );
@@ -96,10 +91,10 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && req.query.search) {
-      // console.log('into only by search');
+      console.log('inside only by search Name');
 
       let page = 1;
-      const perPage = 4;
+      const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
       const userQuery = { displayName: { $regex: new RegExp(req.query.search as string, 'i') } };
@@ -120,11 +115,9 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .populate('kits.product', 'title')
         .skip((page - 1) * perPage)
         .limit(perPage)
-        .sort({ indexNumber: 1 });
+        .sort({ indexNumber: -1 });
 
       const totalPages = Math.ceil(countCollection / perPage);
-
-      // console.log(`totalpages search=${totalPages}`);
 
       const filteredTransactions = ordersByStatus.filter((order) => order.user !== null);
 
@@ -138,11 +131,9 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && req.query.searchNum) {
-      // const nSearch = req.query.searchNum as string;
-      // console.log(req.query.searchNum);
-      // console.log('into only by search Number');
+      console.log('inside only by search Number');
       let page = 1;
-      const perPage = 4;
+      const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
       const userQuery = { phone: { $regex: new RegExp(req.query.searchNum as string, 'i') } };
@@ -163,11 +154,9 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .populate('kits.product', 'title')
         .skip((page - 1) * perPage)
         .limit(perPage)
-        .sort({ indexNumber: 1 });
+        .sort({ indexNumber: -1 });
 
       const totalPages = Math.ceil(countCollection / perPage);
-
-      // console.log(`totalpages search=${totalPages}`);
 
       const filteredTransactions = ordersByStatus.filter((order) => order.user !== null);
 
@@ -181,9 +170,9 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.statusId && req.query.camePage) {
-      // console.log('into by only status');
+      console.log('inside by only status');
       let page = 1;
-      const perPage = 4;
+      const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
       const ordersTotal = await Transaction.find({
@@ -197,7 +186,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .populate('kits.product', 'title')
         .skip((page - 1) * perPage)
         .limit(perPage)
-        .sort({ indexNumber: 1 });
+        .sort({ indexNumber: -1 });
       const totalPages = Math.ceil(ordersTotal / perPage);
 
       const ordersWithPages = {
@@ -211,10 +200,9 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
-      // console.log(req.query.search);
-      // console.log('into only by search');
+      console.log('inside only by search');
       let page = 1;
-      const perPage = 4;
+      const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
       const ordersTotal = await Transaction.find().populate({
@@ -236,10 +224,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .populate('kits.product', 'title')
         .skip((page - 1) * perPage)
         .limit(perPage)
-        .sort({ indexNumber: 1 });
+        .sort({ indexNumber: -1 });
       const totalPages = Math.ceil(countCollection / perPage);
-
-      // console.log(`totalpages search=${totalPages}`);
 
       const filteredTransactions = ordersByStatus.filter(
         (ordersByStatus) => ordersByStatus.user !== null
@@ -254,10 +240,10 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && !req.query.search) {
-      // console.log('into only by some page');
+      console.log('inside only by some page of ALL orders');
       let page = 1;
       page = parseInt(req.query.camePage as string);
-      const perPage = 20;
+      const perPage = 10;
       const totalOrders = await Transaction.countDocuments();
       const totalPages = Math.ceil(totalOrders / perPage);
 
@@ -266,7 +252,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
         .populate('kits.product', 'title')
         .skip((page - 1) * perPage)
         .limit(perPage)
-        .sort({ indexNumber: 1 });
+        .sort({ indexNumber: -1 });
 
       const ordersWithPages = {
         ordersOfPage: ordersByThisPage,
@@ -277,7 +263,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
       return res.send(ordersWithPages);
     }
 
-    // console.log('into by ALL FULL');
+    console.log('inside by ALL orders without camePage');
 
     const transactions = await Transaction.find()
       .populate('user', 'displayName')
@@ -286,54 +272,6 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
   } catch (error) {
     console.error('Error fetching orders:', error);
     return res.status(500).send('Internal Server Error');
-  }
-});
-
-orderAdminRouter.get('/:id', auth, permit('admin'), async (req, res) => {
-  try {
-    const order = await Transaction.findById(req.params.id)
-      .populate('user', 'displayName phone email')
-      .populate({
-        path: 'kits',
-        populate: {
-          path: 'product',
-          model: 'Product',
-          populate: {
-            path: 'translations.ru',
-            model: 'Product',
-            select: 'title',
-          },
-        },
-      });
-    if (!order) {
-      return res.sendStatus(404);
-    }
-    return res.send(order);
-  } catch {
-    return res.sendStatus(500);
-  }
-});
-
-orderAdminRouter.patch('/:id/toggleStatus', auth, permit('admin'), async (req, res) => {
-  try {
-    const id = req.params.id;
-    const transaction = await Transaction.findById(id);
-
-    if (!transaction) {
-      return res.status(404).send('Not found!');
-    }
-
-    const updatedTransaction = await Transaction.findByIdAndUpdate(
-      id,
-      {
-        status: !transaction.status,
-      },
-      { new: true }
-    );
-
-    return res.send(updatedTransaction);
-  } catch (e) {
-    return res.status(500).send('error');
   }
 });
 

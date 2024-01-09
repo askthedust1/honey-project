@@ -3,13 +3,11 @@ import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/_adminOrders.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-
 import { fetchOrdersAdminAll, patchActiveOrders } from '@/features/orderAdmin/ordersAdminThunk';
 import {
   selectCurrentPage,
   selectCurrentStatus,
   selectOrdersAdminAll,
-  selectTotalOrderPages,
 } from '@/features/orderAdmin/ordersAdminSlice';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
 import Head from 'next/head';
@@ -28,22 +26,16 @@ const Orders: MyPage = () => {
     const currentPage = currentPageState?.toString();
 
     if (statusStore != null && !search.length && !searchPhone.length) {
-      // console.log('dispatch by status');
       dispatch(fetchOrdersAdminAll({ page: currentPage, id: statusStore }));
     } else if (search.length > 0 && !statusStore) {
-      // console.log('dispatch by name');
       dispatch(fetchOrdersAdminAll({ page: currentPage, name: search }));
     } else if (search.length > 0 && statusStore != null) {
-      // console.log('dispatch by name && status && page');
       dispatch(fetchOrdersAdminAll({ page: currentPage, name: search, id: statusStore }));
     } else if (searchPhone.length > 0 && !statusStore) {
-      // console.log('dispatch by phone');
       dispatch(fetchOrdersAdminAll({ page: currentPage, phone: searchPhone }));
     } else if (searchPhone.length > 0 && statusStore != null) {
-      // console.log('dispatch by phone && status && page');
       dispatch(fetchOrdersAdminAll({ page: currentPage, phone: searchPhone, id: statusStore }));
     } else {
-      // console.log('dispatch by ALL FULL');
       dispatch(fetchOrdersAdminAll({ page: currentPage }));
     }
   }, [dispatch, currentPageState, search, searchPhone, statusStore]);
@@ -56,14 +48,12 @@ const Orders: MyPage = () => {
       if (selectedStatus) {
         dispatch(fetchOrdersAdminAll({ id: selectedStatus, page: currentPage }));
       } else if (search.length > 0) {
-        // console.log('dispatch by name');
         dispatch(fetchOrdersAdminAll({ page: currentPage, name: search }));
       } else {
-        // console.log('dispatch by ALL FULL');
         dispatch(fetchOrdersAdminAll({ page: currentPage }));
       }
     } else {
-      console.error('currentPageState is undefined or null');
+      // console.error('currentPageState is undefined or null');
     }
   };
 
@@ -105,7 +95,10 @@ const Orders: MyPage = () => {
                   <tr key={item._id}>
                     <td>{item.indexNumber}</td>
                     <td>{item.user.displayName}</td>
-                    <td>{item.user.phone}</td>
+                    <td>
+                      <span className={cls.innerPhoneLeft}>{item.user.phone.slice(0, 4)}</span>
+                      <span>{item.user.phone.slice(4)}</span>
+                    </td>
                     <td>{item.address}</td>
                     <td>{item.totalPrice}</td>
                     <td>
