@@ -65,6 +65,7 @@ export interface IProductView {
   isActive: boolean;
   isHit: boolean;
   datetime: string;
+  click: number;
 }
 
 export interface IProductOneView {
@@ -333,9 +334,11 @@ export interface IOrderMutation {
   totalPrice: number;
   status: boolean;
   dateTime: string;
-  kits: {
-    product: IProductMutation;
-    amount: number;
-    price: number;
-  }[];
+  kits: IKits[];
+}
+
+export interface IKits {
+  product: IProductMutation;
+  amount: number;
+  price: number;
 }

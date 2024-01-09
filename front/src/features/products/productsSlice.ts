@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchBestsellers,
   fetchProducts,
-  fetchProductsByCategory, fetchProductsByCategoryFiler,
+  fetchProductsByCategory,
+  fetchProductsByCategoryFiler,
   fetchProductsFilter,
-  fetchProductsPromotion, fetchProductsSearch
-} from "./productsThunk";
+  fetchProductsPromotion,
+  fetchProductsSearch,
+} from './productsThunk';
 import { IProduct, IProductView } from '@/types';
 import { getProduct } from '@/features/products/productsThunk';
 import { RootState } from '@/store/store';

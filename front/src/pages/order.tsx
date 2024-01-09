@@ -77,7 +77,6 @@ const Order: MyPage = () => {
         console.log(e);
       }
     }
-
   };
   const [choice, setChoice] = useState<boolean>(false);
   const changeSelection = () => {
@@ -117,9 +116,9 @@ const Order: MyPage = () => {
                   name="address"
                   placeholder={t('yourAddress')}
                 />
-                {
-                    !state.address.length && <div className={cls.requiredAddress}>{t('requiredAddress')}</div>
-                }
+                {!state.address.length && (
+                  <div className={cls.requiredAddress}>{t('requiredAddress')}</div>
+                )}
               </div>
               <div className={cls.order_leftBlock_item}>
                 <h4>{t('selectPaymentMethod')}:</h4>

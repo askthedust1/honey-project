@@ -6,7 +6,7 @@
 
   h2 {
     margin: 20px 0 14px;
-    color: #5A3733;
+    color: #5a3733;
     font-size: 30px;
     font-style: normal;
     font-weight: 500;
@@ -19,12 +19,12 @@
     padding: 0 0 10px;
     box-sizing: border-box;
     border-radius: 15px;
-    background: #FFF;
+    background: #fff;
     box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
     overflow: hidden;
 
     &_table {
-      border-collapse:collapse;
+      border-collapse: collapse;
 
       thead {
         th {
@@ -32,7 +32,7 @@
           border-bottom: 1px solid rgba(90, 55, 51, 0.11);
 
           p {
-            color: #5A3733;
+            color: #5a3733;
             font-size: 16px;
             font-style: normal;
             font-weight: 600;
@@ -79,7 +79,7 @@
             }
 
             p {
-              color: #5A3733;
+              color: #5a3733;
               font-size: 17px;
               font-style: normal;
               font-weight: 500;
@@ -107,9 +107,9 @@
               width: 37px;
               height: 35px;
               border-radius: 6px;
-              border: 1px solid #5A3733;
+              border: 1px solid #5a3733;
               display: block;
-              background-image: url("../assets/images/edit-icon.png");
+              background-image: url('../assets/images/edit-icon.png');
               background-position: center;
               background-repeat: no-repeat;
               transition: 0.3s;

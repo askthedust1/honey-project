@@ -9,6 +9,7 @@ import { selectOneProductForAdmin } from '@/features/productAdmin/productsAdminS
 import { apiUrl } from '@/constants';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const ProductInfo: MyPage = () => {
   const { id } = useParams() || {};
@@ -34,8 +35,16 @@ const ProductInfo: MyPage = () => {
           </Link>
           <h2>Информация о продукте</h2>
           <div className={cls.productInfoBlock}>
-            <div className={cls.photoBlock}>
-              <img src={apiUrl + '/' + product.image} alt="image" />
+            <div style={{ position: 'relative' }} className={cls.photoBlock}>
+              <Image
+                style={{ objectFit: 'contain' }}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority
+                quality={80}
+                fill
+                src={apiUrl + '/' + product.image}
+                alt="image"
+              />
             </div>
 
             <div className={cls.infoBlock}>
