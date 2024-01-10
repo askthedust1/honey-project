@@ -11,9 +11,6 @@ const config = {
   publicPath: path.join(rootPath, 'public'),
   port: parseInt(process.env.PORT || '8000'),
   db: process.env.DB_HOST || 'mongodb://localhost/honey',
-  google: {
-    clientId: process.env.GOOGLE_CLIENT_ID,
-  }, 
 };
 
 export default config;
