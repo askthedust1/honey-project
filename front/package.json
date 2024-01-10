@@ -11,7 +11,8 @@
     "typecheck": "tsc --noemit",
     "lint": "next lint",
     "format:check": "prettier --check .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "cd .. && npm i"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",

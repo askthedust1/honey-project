@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 import { IBanner } from '@/types';
-import { apiUrl } from '@/constants';
 import stl from '../../styles/imgSlider.module.scss';
-import Link from 'next/link';
-import Image from 'next/image';
-import Imageitem from "@/components/ImageSlider/Imageitem";
+import Imageitem from '@/components/ImageSlider/Imageitem';
 
 interface Props {
   images: IBanner[];
@@ -51,7 +48,7 @@ const ImageSlider: React.FC<Props> = ({ images, width }) => {
     <div className={stl.image__slider__container} style={{ maxWidth: `${width}px` }}>
       <Slider {...settings}>
         {images.map((image) => (
-          <Imageitem image={image} />
+          <Imageitem image={image} key={image._id} />
         ))}
       </Slider>
     </div>
