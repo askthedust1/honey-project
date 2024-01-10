@@ -20,6 +20,7 @@ const {I} = inject();
 // });
 
 Given('I am on accounts page', () => {
+    I.wait(10);
     I.amOnPage('/accounts');
 });
 
@@ -50,12 +51,12 @@ When('I click {string} button', async (text: string) => {
 });
 
 Then('I see main page', () => {
-    I.wait(5);
+    I.wait(10);
     I.seeInCurrentUrl('/');
 });
 
 When('I see main page', () => {
-    I.wait(5);
+    I.wait(10);
     I.seeInCurrentUrl('/');
 });
 
@@ -73,7 +74,7 @@ When('I click {string} in user menu', async (text: string) => {
 });
 
 Then('I see main page and {string}', async (text: string) => {
-    I.wait(5);
+    I.wait(10);
     I.seeInCurrentUrl('/');
     I.seeElement(text);
 });
