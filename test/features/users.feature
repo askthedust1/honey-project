@@ -13,3 +13,18 @@ Feature: Users
     When I move mouse to "#user-drop" in user menu
     And I click "#user-logout" in user menu
     Then I see main page and "#accLog"
+
+  Scenario: User register
+    Given I am on accounts page
+    When I enter form fields:
+      | email | test@gmail.com |
+      | password | user |
+      | passwordConfirm | user |
+      | displayName | User |
+      | phone | +996555555555 |
+      | address | street Chy |
+    And I click "#regBtn" button
+    Then I see main page
+    When I move mouse to "#user-drop" in user menu
+    And I click "#user-logout" in user menu
+    Then I see main page and "#accLog"
