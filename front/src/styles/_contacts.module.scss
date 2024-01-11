@@ -34,7 +34,10 @@
         width: 550px;
       }
       @include md2 {
-        width: 400px;
+        width: 390px;
+      }
+      @include xs {
+        width: 350px;
       }
     }
   }

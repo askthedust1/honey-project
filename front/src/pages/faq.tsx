@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import axiosApi from '@/axiosApi';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
+import Head from 'next/head';
 
 const FaqPage: MyPage = () => {
   const { t } = useTranslation('common');
@@ -52,6 +53,11 @@ const FaqPage: MyPage = () => {
 
   return (
     <div className={cls.box}>
+      <Head>
+        <title>{t('faq')}</title>
+        <meta name="description" content="Ответы на вопросы" />
+        <meta name="keywords" content="мёд, мед бишкек, Мед купить" />
+      </Head>
       <h1 className={cls.title}>{t('faq')}</h1>
       <div className={cls.wrap}>
         <div className={cls.img}>

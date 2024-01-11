@@ -42,7 +42,6 @@ const AdminNav: React.FC<Props> = (props) => {
     if (props.getCategorySelectId) {
       props.getCategorySelectId(categoryId);
     }
-    console.log(categoryId);
   };
 
   const setSearchItem = async (event: ChangeEvent<HTMLInputElement>) => {

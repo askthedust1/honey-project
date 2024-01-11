@@ -32,7 +32,7 @@ const Home: MyPage = () => {
       <main>
         <Head>
           <title>{t('home')}</title>
-          <meta name="description" content="Описание страницы" />
+          <meta name="description" content="УНИКАЛЬНЫЙ МЕД ИЗ ВЫСОКОГОРНОГО КЫРГЫЗСТАНА" />
           <meta name="keywords" content="мёд, мед бишкек, Мед купить" />
         </Head>
         <HomePage />
