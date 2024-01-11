@@ -1,0 +1,23 @@
+{
+  "basket": "Себет",
+  "returnToStore": "Дүкөнгө кайтуу",
+  "deliveryAddress": "Жеткирүү мекенин көрсөтүңүз",
+  "addressDetails": "Улица атын, дом номерин жана апартамент номерин көрсөтүңүз",
+  "yourAddress": "Сиздин мекендиңиз",
+  "selectPaymentMethod": "Төлөм түрүн тандаңыз",
+  "cashPayment": "Ачык",
+  "cardPayment": "Карта",
+  "paymentOptions": "Оптима же М-Банк карталарына ачык төлөм",
+  "contactInformation": "Байланыш маалымат",
+  "clientNameLabel": "Сатуучу:",
+  "phoneNumberLabel": "Телефон номери:",
+  "emailLabel": "Электрондук почта:",
+  "orderTitle": "Тапшыруу суммасы",
+  "priceLabel": "Баасы",
+  "discountLabel": "Жеңилик",
+  "deliveryLabel": "Жеткирүү",
+  "deliveryValue": "тегерек",
+  "totalLabel": "Жалпы",
+  "buy": "Сатып алу",
+  "requiredAddress": "Дарегини киргизбеген чын эмес, киргизиңиз!"
+}

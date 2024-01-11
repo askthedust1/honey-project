@@ -1,0 +1,59 @@
+@use 'mixin' as mix;
+
+.image__slider__container {
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 0 30px;
+  position: relative;
+  @include mix.lg {
+    padding: 0;
+  }
+}
+
+.image__slider__container .slick-dots {
+  bottom: 20px;
+}
+
+.dots {
+  display: flex !important;
+  justify-content: center !important;
+  margin: auto !important;
+  padding: 10px 0 0 0;
+}
+
+.dots div {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 3px;
+  padding: 0;
+}
+
+.dots button {
+  border: none;
+  background: #d3a863;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 15px;
+  width: 15px;
+  margin-right: 20px;
+  border-radius: 7.5px;
+}
+
+.dots div .slick-active button {
+  background-color: #5a3733;
+}
+
+.dots div button:hover,
+.dots div button:focus {
+  background: rgba(255, 99, 0, 0.8);
+  outline: 0;
+}
+
+@media (max-width: 600px) {
+  .image__slider__container {
+    max-width: 100vw;
+  }
+}

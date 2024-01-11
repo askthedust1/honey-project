@@ -1,0 +1,113 @@
+.main {
+  margin-top: 20px;
+  width: 1000px;
+  &_title {
+    color: #5a3733;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    li {
+      position: relative;
+      width: 190px;
+      margin: 0 5px 0;
+      border-radius: 15px;
+      background: #fff center left 11px no-repeat;
+      box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.43);
+      padding: 15px 3px 15px 67px;
+      display: flex;
+      flex-direction: column;
+    }
+    &_number {
+      color: #5a3733;
+      font-size: 25px;
+      font-weight: 500;
+    }
+    &_description {
+      color: #5a3733;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .user {
+      background-image: url('../assets/images/adminIcon/userQuantityIcon.png');
+    }
+    .product {
+      background-image: url('../assets/images/adminIcon/productQuantityIcon.png');
+    }
+    .category {
+      background-image: url('../assets/images/adminIcon/categoryQuantityIcon.png');
+    }
+    .order {
+      background-image: url('../assets/images/adminIcon/orderQuantityIcon.png');
+    }
+    .sum {
+      background-image: url('../assets/images/adminIcon/sumQuantityIcon.png');
+    }
+  }
+  .hit {
+    margin: 34px 5px 0;
+    padding: 14px 30px;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+    &_title {
+      color: #5a3733;
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 8px 10px;
+      border-radius: 4px;
+      margin-bottom: 26px;
+      background: rgba(90, 55, 51, 0.11);
+    }
+    .table {
+      border-collapse: separate;
+      width: 100%;
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        color: #5a3733;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 21px;
+        letter-spacing: 0.1px;
+      }
+      thead {
+        th {
+          font-size: 16px;
+          font-weight: 700;
+        }
+      }
+      tbody {
+        .imgWrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 85px;
+          border-radius: 15px;
+          border: 1px solid rgba(90, 55, 51, 0.11);
+          img {
+            height: 76px;
+            width: auto;
+          }
+        }
+        .lineBody {
+          border-bottom: 1px solid rgba(90, 55, 51, 0.11);
+          padding: 8px 20px;
+        }
+        td {
+          margin: 8px 0;
+          border-bottom: 1px solid rgba(90, 55, 51, 0.11);
+        }
+      }
+    }
+  }
+}

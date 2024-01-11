@@ -1,0 +1,312 @@
+@use 'mixin' as mix;
+.container {
+  margin: 50px auto 100px auto;
+  overflow: auto;
+  border-radius: 30px;
+  padding: 20px 5px;
+  @include mix.sm {
+    padding: 5px;
+    margin: 10px auto 100px auto;
+  }
+  .titleContainer {
+    text-align: center;
+    h3 {
+      color: #5a3733;
+      text-align: center;
+      font-feature-settings:
+        'clig' off,
+        'liga' off;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 57.6px;
+      letter-spacing: -0.9px;
+      margin: 10px;
+      @include mix.sm {
+        font-size: 24px;
+        margin: 5px;
+      }
+    }
+    .return {
+      color: #ff8f31;
+      text-align: center;
+      font-feature-settings:
+        'clig' off,
+        'liga' off;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 25.6px;
+      letter-spacing: -0.9px;
+      text-decoration-line: underline;
+      @include mix.sm {
+        font-size: 16px;
+      }
+    }
+  }
+  .contentContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+
+    @include mix.xl {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .nullOrder {
+      margin-top: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      font-size: 25px;
+      @include mix.xl {
+        margin-top: 20px;
+      }
+      @include mix.sm {
+        font-size: 18px;
+      }
+    }
+    .table {
+      width: 90%;
+      margin: 50px 0;
+      overflow: auto;
+      border-radius: 30px;
+      padding: 20px;
+      border-collapse: collapse;
+      @include mix.sm {
+        padding: 20px 7px;
+        margin: 20px 0;
+      }
+
+      @include mix.xl {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      th,
+      td {
+        padding: 0 15px;
+        border-bottom: 1px solid #ddd;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @include mix.md {
+          padding: 0 5px;
+        }
+      }
+      th {
+        padding-bottom: 10px;
+        @include mix.sm {
+          font-size: 14px;
+        }
+      }
+      .productHead {
+        text-align: start;
+        padding-left: 30px;
+      }
+
+      .productInfo {
+        display: flex;
+        align-items: center;
+        @include mix.lm {
+          flex-direction: column-reverse;
+        }
+        .img {
+          max-width: 110px;
+          vertical-align: middle;
+          border-radius: 4px;
+          margin-right: 37px;
+
+          @include mix.lm {
+            margin-right: 0;
+            max-width: 60px;
+          }
+        }
+        .name {
+          color: #17183b;
+          font-size: 14px;
+          font-weight: 800;
+          margin-bottom: 12px;
+          @include mix.lm {
+            margin: 10px 0 2px;
+          }
+          @include mix.sm {
+            font-size: 12px;
+          }
+        }
+        .delete {
+          color: #e14b4b;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 14px;
+          padding-left: 31px;
+          background: url('../assets/images/iconDeleteProduct.png') no-repeat center left;
+          cursor: pointer;
+          @include mix.lm {
+            display: none;
+          }
+          &:hover {
+            color: #fda400;
+            background-image: url('../assets/images/iconDeleteProductHover.png');
+          }
+          &:active {
+            color: #f80000;
+            background-image: url('../assets/images/iconDeleteProductActive.png');
+          }
+        }
+      }
+      .amount {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        border-radius: 4px;
+        border: 1px solid #a2a3b1;
+        background: #fff;
+        white-space: nowrap;
+        width: 124px;
+        height: 40px;
+        @include mix.sm {
+          font-size: 12px;
+          width: 102px;
+          height: 34px;
+        }
+        span {
+          padding: 0 18px;
+          @include mix.sm {
+            padding: 0 12px;
+          }
+        }
+        &_btn {
+          border: none;
+          background: inherit;
+          margin: 0 13px;
+          font-size: 26px;
+          font-weight: 500;
+          @include mix.sm {
+            margin: 0 10px;
+          }
+        }
+      }
+      .price {
+        color: #17183b;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+        white-space: nowrap;
+        @include mix.md {
+          display: none;
+        }
+        @include mix.sm {
+          font-size: 12px;
+        }
+      }
+      .cost {
+        color: #17183b;
+        text-align: right;
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 24px;
+        white-space: nowrap;
+      }
+    }
+    .orderInfo {
+      margin-top: 70px;
+      padding: 32px;
+      width: 380px;
+      background: white;
+      border-radius: 2px;
+      border: 1px solid #d1d1d8;
+      @include mix.sm {
+        width: 320px;
+      }
+      h4 {
+        color: #17183b;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 32px;
+        margin-bottom: 32px;
+      }
+      .item {
+        margin-bottom: 32px;
+        display: flex;
+        justify-content: space-between;
+        @include mix.sm {
+          margin-bottom: 20px;
+        }
+      }
+      .free {
+        color: #ff8f31;
+      }
+      .total {
+        padding: 32px 0;
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #d1d1d8;
+        color: #17183b;
+        font-weight: 700;
+        line-height: 24px;
+        @include mix.sm {
+          padding: 20px 0;
+        }
+        span {
+          font-size: 18px;
+          text-transform: uppercase;
+        }
+        &_price {
+          color: orange;
+        }
+      }
+      .orderConfirm {
+        width: 100%;
+        display: block;
+        text-align: center;
+        border: none;
+        border-radius: 4px;
+        background: #ff8f31;
+        padding: 18px 57px;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0.1px;
+        @include mix.xl {
+          width: 80%;
+          margin: 0 auto;
+        }
+        @include mix.sm {
+          font-size: 14px;
+          width: 70%;
+          padding: 12px 30px;
+        }
+
+        &:hover {
+          background: #c75a00;
+        }
+        &:active {
+          background: red;
+        }
+      }
+    }
+  }
+  .deleteMobileContainer {
+    display: none;
+    @include mix.lm {
+      display: table-cell;
+    }
+  }
+
+  .deleteMobile {
+    background: url('../assets/images/iconDeleteProduct.png') no-repeat center;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    &:active {
+      background-image: url('../assets/images/iconDeleteProductActive.png');
+    }
+  }
+  .priceHead {
+    @include mix.md {
+      display: none;
+    }
+  }
+}

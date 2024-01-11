@@ -1,0 +1,12 @@
+{
+  "basket": "Корзина",
+  "returnToStore": "Вернуться в магазин",
+  "thanksForOrder": "Спасибо за заказ!",
+  "orderPlaced": "Ваш заказ был оформлен!",
+  "managerContact": "С вами свяжется наш менеджер для уточнения данных",
+  "client": "Дата покупки",
+  "orderTotal": "Сумма заказа",
+  "paymentMethod": "Способ оплаты",
+  "cashPayment": "Наличными",
+  "purchaseHistory": "История покупок"
+}

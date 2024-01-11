@@ -1,0 +1,383 @@
+@use 'mixin' as mix;
+
+$color-title: #131313;
+$color-icon-price: #c74817;
+$color-text: #5a3733;
+$color-card-bg: #ffffff;
+$color-card-border: #e2e2e2;
+$color-icon-inCart: #934300;
+$color-old-price: #999999;
+
+.container {
+  @include mix.md2 {
+    flex-direction: column;
+  }
+}
+
+.box {
+  display: flex;
+  justify-content: flex-start;
+  @include mix.md2 {
+    flex-direction: column;
+  }
+}
+
+.list {
+  max-width: 870px;
+  margin: 0 0 60px auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  color: $color-text;
+
+  h2 {
+    text-align: center;
+    font-size: 38px;
+    margin: 40px 0 0;
+
+    @include mix.lg {
+      font-size: 35px;
+    }
+
+    @include mix.md {
+      font-size: 32px;
+    }
+
+    @include mix.md2 {
+      font-size: 26px;
+      margin: 30px 0;
+      border-radius: 30px;
+      background-color: rgba(125, 125, 125, 0.1);
+      box-shadow: 0 0 5px 1px #7d7d7d;
+      padding: 10px;
+    }
+
+    @include mix.sm {
+      font-size: 24px;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 230px;
+  overflow: hidden;
+  margin: 15px 0 20px;
+
+  @include mix.md2 {
+    height: 100px;
+    margin: 0;
+    border-bottom: #5a3733 1px solid;
+    text-align: center;
+  }
+}
+
+.titleBnr {
+  font-size: 40px;
+  color: white;
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include mix.md2 {
+    color: $color-text;
+    font-size: 30px;
+  }
+}
+
+.title {
+  margin: 20px auto 15px 40px;
+  color: $color-text;
+  text-transform: uppercase;
+  @include mix.md2 {
+    text-align: center;
+    margin: 30px auto;
+  }
+}
+
+.bnr {
+  width: 100%;
+  @include mix.md2 {
+    display: none;
+  }
+}
+
+.card_block {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  transition-duration: 0.3s;
+  &_white {
+    background-color: $color-card-bg;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 255px;
+  height: 290px;
+  margin: 0 10px;
+}
+
+.card_block:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 6px 0 #00000060;
+  border-radius: 15px;
+}
+
+.btn_prod {
+  margin-top: auto;
+  width: 90%;
+
+  button {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 6px 0 6px 20px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 1.95px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    width: 100%;
+    margin: auto 0 7px;
+
+    &:hover {
+      background: #d3a863;
+      border-radius: 20px;
+      color: white;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &::before {
+      content: '';
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      left: 25px;
+      background: url('../assets/images/toCardIcon.svg') no-repeat center;
+    }
+  }
+
+  .btn_block {
+    color: $color-title;
+  }
+
+  .btn_block_in_cart {
+    color: $color-icon-inCart;
+
+    &::before {
+      background-image: url('../assets/images/iconDeleteProduct.png');
+    }
+  }
+}
+
+.imgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 39px;
+  overflow: hidden;
+  padding: 5px;
+  height: 200px;
+  transition: all 0.3s;
+  position: relative;
+
+  .cardImg {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+  }
+}
+
+.cartIcon {
+  width: 55px;
+  height: 55px;
+  background-color: $color-icon-price;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  top: 8px;
+  right: 9px;
+
+  img {
+    padding: 12px 0 0 8px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  text-transform: uppercase;
+
+  .title {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    color: $color-title;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    text-transform: uppercase;
+    margin: 5px 0;
+    height: 45px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 5px;
+  }
+
+  .price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &_actualPrice {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 28px;
+      color: $color-icon-price;
+      margin: 0;
+    }
+
+    &_oldPrice {
+      text-decoration: line-through;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 28px;
+      color: $color-old-price;
+      margin: 0 25px 0 0;
+    }
+  }
+}
+
+.filterContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 8px;
+  @include mix.md2 {
+    display: block;
+  }
+}
+
+.dropdownMenu {
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 10;
+  padding: 0.5rem 0;
+}
+
+.dropdownMenu a {
+  padding: 0.5rem 1rem;
+  display: block;
+  color: #333;
+  font-size: 12px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #f7f7f7;
+  }
+}
+
+.dropdownDangerToggle {
+  cursor: pointer;
+  background: none;
+  color: #5a3733;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+  position: relative;
+  @include mix.md {
+    margin: 10px auto;
+    width: 100%;
+  }
+
+  &:hover {
+    background-color: #d3a863;
+    color: white;
+  }
+}
+
+.dropdownContainer {
+  display: block;
+  position: relative;
+  @include mix.md {
+    margin: 0 auto;
+  }
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  border: #d3a863 1px solid;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin-left: auto;
+  margin-bottom: 10px;
+  @include mix.md {
+    margin: 0 auto;
+  }
+}
+
+.searchContainer input[type='text'] {
+  flex: 1;
+  border: none;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 4px 0 0 4px;
+}
+
+.searchContainer input[type='text']:focus {
+  outline: none;
+}
+
+.searchContainer a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #d3a863;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 0 3px 3px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.searchContainer a:hover {
+  background-color: #5a3733;
+  cursor: pointer;
+}
+
+.listContaiter {
+  width: 100%;
+}

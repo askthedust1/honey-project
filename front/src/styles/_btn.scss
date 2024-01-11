@@ -1,0 +1,52 @@
+@import '@/styles/_variables.scss';
+@import 'mixin';
+
+.btn-primary {
+  display: inline-block;
+  padding: 16px 34px;
+  border-radius: 12px;
+  background: $primary;
+  color: $white;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+
+  &:hover {
+    background: $primary-hover;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @include sm {
+    padding: 14px 25px;
+  }
+}
+
+.btn_in_cart {
+  display: inline-block;
+  padding: 16px 34px;
+  border-radius: 12px;
+  background: #934300;
+  color: $white;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+
+  &:hover {
+    background: #612d01;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @include sm {
+    padding: 14px 25px;
+  }
+}

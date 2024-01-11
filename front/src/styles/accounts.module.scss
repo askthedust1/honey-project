@@ -1,0 +1,140 @@
+@use 'mixin' as mix;
+
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 80px 0 150px 0;
+
+  @include mix.lg {
+    flex-direction: column;
+  }
+}
+
+.login {
+  width: 35em;
+  height: 50em;
+  min-height: 44em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  position: relative;
+  z-index: 10;
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    box-shadow: 0 0 12px 2px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    position: relative;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    padding: 17px 10px;
+    transition: transform 200ms ease-in-out;
+    @include mix.lg {
+      align-items: flex-start;
+      box-shadow: none;
+    }
+    @include mix.md {
+      background: none;
+    }
+  }
+  .rightSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90%;
+    padding: 0 10px;
+    background-image: url('../assets/images/honeyReg.jpg');
+    background-size: cover;
+    width: 100%;
+    position: absolute;
+    right: -64%;
+    border-radius: 6px;
+    z-index: 1;
+    transition: all 400ms ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 0 12px 2px rgba(15, 15, 15, 0.281);
+    @include mix.lg {
+      display: none;
+    }
+
+    &.right {
+      font-size: 21px;
+      font-weight: 500;
+      color: #fff;
+      margin-right: 3em;
+      margin-left: 3em;
+      right: -65%;
+      align-items: flex-end;
+      position: absolute;
+
+      &:hover {
+        right: -70%;
+      }
+    }
+
+    &.left {
+      font-size: 21px;
+      font-weight: 500;
+      color: #fff;
+      margin-right: 3em;
+      margin-left: 3em;
+      position: absolute;
+      right: 43%;
+      align-items: flex-start;
+
+      @include mix.lg {
+        display: none;
+      }
+
+      &:hover {
+        right: 47%;
+      }
+    }
+  }
+}
+
+.logMobile {
+  display: none;
+  @include mix.lg {
+    display: block;
+    margin-bottom: 40px;
+  }
+}
+
+.regMobile {
+  display: none;
+  @include mix.lg {
+    display: block;
+    margin-bottom: 40px;
+  }
+}
+
+.btnOn {
+  background: white;
+  border: none;
+  border-radius: 10px;
+  color: orange;
+  padding: 10px;
+  font-size: 15px;
+
+  @include mix.lg {
+    background: orange;
+    color: white;
+  }
+}
+
+.wrapBtn {
+  position: static;
+  @include mix.lg {
+    white-space: nowrap;
+    background: white;
+    padding: 20px 40px;
+    border-radius: 20px;
+  }
+}

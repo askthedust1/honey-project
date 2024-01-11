@@ -1,0 +1,182 @@
+@import './variables';
+@import './mixin';
+
+.about {
+  padding: 20px 0 50px;
+
+  @include sm {
+    padding: 20px 0;
+  }
+
+  &_title {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-style: normal;
+    font-weight: 800;
+
+    @include md {
+      display: none;
+    }
+  }
+
+  &_second_title {
+    margin-bottom: 10px;
+    color: $text-color;
+    font-size: 30px;
+    text-align: center;
+
+    @include sm {
+      font-size: 22px;
+    }
+  }
+
+  &_svg_wrap {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include lg {
+      flex-wrap: wrap;
+    }
+  }
+
+  .col_50 {
+    width: 50%;
+    @include lg {
+      width: 100%;
+    }
+  }
+
+  &_media {
+    width: 96%;
+    border-radius: 5px;
+    background: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 5px 30px rgba($text-color, 0.1);
+
+    @include lg {
+      margin: 0 auto;
+    }
+
+    img {
+      max-width: 100%;
+      width: 100%;
+      max-height: 460px;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+
+  &_info {
+    padding: 0 30px 0;
+
+    @include lg {
+      padding: 20px 15px;
+    }
+
+    @include md {
+      text-align: center;
+    }
+
+    @include sm {
+      padding: 20px 15px;
+    }
+  }
+
+  &_advantages {
+    background-color: $bg-yellow;
+    border-radius: 20px;
+    padding: 25px 20px;
+    margin: 60px 0;
+
+    @include lg {
+      margin: 10px 0;
+    }
+
+    &_title {
+      text-align: center;
+      font-size: 30px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      @include sm {
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+    }
+
+    &_row {
+      display: flex;
+      justify-content: center;
+
+      @include lg {
+        flex-wrap: wrap;
+      }
+    }
+
+    &_col {
+      width: 25%;
+
+      @include lg {
+        width: 50%;
+      }
+      @include sm {
+        width: 100%;
+      }
+    }
+
+    &_card {
+      text-align: center;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+
+      &_title {
+        min-height: 50px;
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        @include sm {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &_partners {
+    padding: 50px 0 30px;
+
+    @include sm {
+      padding: 40px 0 20px;
+    }
+
+    &_row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    &_media {
+      width: 33.333%;
+      text-align: center;
+
+      @include md {
+        width: 50%;
+      }
+
+      &_img {
+        display: inline-block;
+        object-fit: contain;
+        max-width: 200px;
+        max-height: 130px;
+      }
+    }
+  }
+}

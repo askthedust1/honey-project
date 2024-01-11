@@ -1,0 +1,121 @@
+.productsContainer {
+  width: 1000px;
+  margin-top: 10px;
+  h2 {
+    font-weight: 500;
+    margin-bottom: 40px;
+  }
+}
+.productInfoBlock {
+  display: flex;
+}
+.photoBlock {
+  width: 300px;
+  box-shadow: 0 0 3px 3px #5a37330a;
+  background: white;
+  padding: 21px 40px;
+  border-radius: 15px;
+  img {
+    width: 100%;
+  }
+}
+.infoBlock {
+  background-color: white;
+  box-shadow: 0 0 3px 3px #5a37330a;
+  border-radius: 15px;
+  margin: 0 20px;
+  width: 65%;
+  padding: 20px;
+}
+
+.productsName {
+  h3 {
+    margin-bottom: 20px;
+  }
+  .name {
+    font-size: 16px;
+    line-height: 27px;
+    margin: 16px 0;
+    background: #fcf8f5;
+    padding: 15px 10px;
+    border-radius: 6px;
+    border: 0.5px solid rgb(90 55 51 / 6%);
+  }
+}
+.spanLang {
+  border: 0.5px solid #5a373387;
+  display: inline-block;
+  margin-right: 20px;
+  padding: 3px 10px;
+  font-size: 14px;
+  color: #5a3733;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.bottomBlock {
+  display: flex;
+}
+.detailsBlock {
+  background: white;
+  box-shadow: 0 0 3px 3px #5a37330a;
+  border-radius: 15px;
+  margin: 20px 0;
+  width: 64%;
+  padding: 20px;
+  h3 {
+    margin-bottom: 20px;
+  }
+  .description {
+    font-size: 16px;
+    line-height: 27px;
+    margin: 16px 0;
+    background: #fcf8f5;
+    padding: 15px 10px;
+    border-radius: 6px;
+    border: 0.5px solid rgb(90 55 51 / 6%);
+  }
+}
+.moreBlock {
+  background: white;
+  box-shadow: 0 0 3px 3px rgba(90, 55, 51, 0.0392156863);
+  border-radius: 15px;
+  margin: 20px 0 20px 30px;
+  width: 30%;
+  padding: 20px;
+  h3 {
+    margin-bottom: 20px;
+  }
+  p {
+    margin-bottom: 20px;
+  }
+  span {
+    font-weight: 600;
+  }
+  .btnActive {
+    font-size: 16px;
+    height: 26px;
+    color: #27ae60;
+    background: none;
+    border: none;
+    border-radius: 6px;
+  }
+  .btnInactive {
+    height: 26px;
+    color: #ae2727;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+}
+.back {
+  display: inline-block;
+  margin: 0 0 12px;
+  border-radius: 5px;
+  border: 1px solid #5a3733;
+  padding: 5px 10px;
+  background: #5a3733;
+  color: white;
+}

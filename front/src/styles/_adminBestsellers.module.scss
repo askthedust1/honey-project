@@ -1,0 +1,220 @@
+@import 'variables';
+
+.bestseller {
+  max-width: 1073px;
+  height: auto;
+
+  &_mainTitle {
+    font-weight: 500;
+    font-size: 30px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  &_title {
+    font-weight: 500;
+    font-size: 25px;
+    margin-right: 37px;
+  }
+
+  &_activeBest {
+    background-color: $white;
+    border-radius: 15px;
+    min-height: 95px;
+    box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+    margin: 20px 15px 16px;
+    padding: 16px 20px;
+  }
+
+  &_hit {
+    display: inline-flex;
+    color: $admin-brown-color;
+    align-items: center;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 18px;
+    margin: 10px;
+    background: $admin-white-color;
+    background-size: 22px;
+
+    &_title {
+      margin-right: 30px;
+    }
+
+    &_btn {
+      background: url('../assets/images/cross-icon.svg') no-repeat center;
+      background-size: contain;
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+.adminProductsNav {
+  display: flex;
+  align-items: center;
+  margin: 15px 15px 15px;
+  padding: 5px;
+
+  select {
+    font-family: 'Montserrat', sans-serif;
+    padding: 11px;
+    font-size: 13px;
+    color: $admin-brown-color;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+    border: 0.5px solid $admin-brown-color;
+    border-radius: 4px;
+    background-color: $white;
+    width: 265px;
+    margin-right: 30px;
+  }
+
+  select:focus-visible {
+    border: 2px solid $admin-brown-color;
+    outline: none;
+  }
+
+  option {
+    padding: 8px;
+    font-size: 14px;
+    background-color: $white;
+    color: #333;
+  }
+
+  option:active {
+    background-color: $admin-brown-color;
+    color: #333;
+  }
+
+  option:hover {
+    padding: 8px;
+    background-color: #f0f0f0;
+  }
+
+  input {
+    width: 250px;
+    height: 40px;
+    background: $white url('../assets/images/findIcon.svg') no-repeat center right 10px;
+    padding: 8px 40px 8px 10px;
+    border: 0.5px solid $admin-brown-color;
+    border-radius: 4px;
+    margin: 0 67px 0 0;
+  }
+
+  input::placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+    font-size: 13px;
+    color: $admin-brown-color;
+  }
+
+  input:focus-visible {
+    border: 2px solid $admin-brown-color;
+    outline: none;
+  }
+
+  .adminProductsPagination {
+    display: flex;
+    margin: 8px 0 0 0;
+    font-size: 14px;
+
+    .arrowToLeft {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: url('../assets/images/arrowToLeft.svg') no-repeat center;
+    }
+
+    .arrowToRight {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: url('../assets/images/arrowToRight.svg') no-repeat center;
+    }
+
+    p {
+      margin: 5px 5px 0;
+    }
+  }
+}
+
+.adminBestsellersTable {
+  max-width: 1197px;
+  background-color: $white;
+  box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+  border-radius: 15px;
+  padding: 10px 0;
+  margin: 0 15px;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: $white;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  &_body {
+    .imageTd {
+      height: 70px;
+      width: 70px;
+
+      img {
+        width: 69px;
+        height: 69px;
+        border-radius: 15px;
+        border: 1px solid rgb(25 5 5 / 12%);
+      }
+
+      td {
+        font-size: 13px;
+        font-weight: 500;
+      }
+    }
+
+    &_title {
+      width: 300px;
+    }
+    &_text {
+      font-weight: bold;
+      text-align: center;
+      padding: 20px;
+    }
+  }
+
+  &_addBtn {
+    position: relative;
+    background-color: $admin-brown-color;
+    color: $white;
+    width: 30px;
+    height: 30px;
+    border: none;
+    padding: 7px;
+    border-radius: 7px;
+
+    img {
+      position: absolute;
+      top: 9px;
+      left: 8px;
+      width: auto;
+    }
+  }
+}

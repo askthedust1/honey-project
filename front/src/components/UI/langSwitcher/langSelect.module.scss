@@ -1,0 +1,19 @@
+@import '@/styles/_variables.scss';
+
+.lang_select {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Open Sans', sans-serif;
+  color: #3c3c3c;
+  border: 2px solid #3c3c3c;
+  border-radius: 4px;
+  background-color: white;
+  display: block;
+  margin: -9px 0 0 0;
+}
+
+.lang_select:focus {
+  border-color: $text-color;
+  color: $text-color;
+  outline: none;
+}

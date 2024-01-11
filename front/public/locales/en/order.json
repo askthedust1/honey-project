@@ -1,0 +1,23 @@
+{
+  "basket": "Basket",
+  "returnToStore": "Return to Store",
+  "deliveryAddress": "Provide Delivery Address",
+  "addressDetails": "Specify street name, house number, and apartment number",
+  "yourAddress": "Your Address",
+  "selectPaymentMethod": "Select Payment Method",
+  "cashPayment": "Cash",
+  "cardPayment": "Card",
+  "paymentOptions": "Payment is made by transfer to Optima or M-Bank cards",
+  "contactInformation": "Contact Information",
+  "clientNameLabel": "Buyer:",
+  "phoneNumberLabel": "Phone Number:",
+  "emailLabel": "Email:",
+  "orderTitle": "Order Total",
+  "priceLabel": "Price",
+  "discountLabel": "Discount",
+  "deliveryLabel": "Delivery",
+  "deliveryValue": "free",
+  "totalLabel": "Total",
+  "buy": "Buy",
+  "requiredAddress": "You haven't entered the address, please enter it!"
+}

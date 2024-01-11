@@ -1,0 +1,84 @@
+@import './variables';
+@import './mixin';
+
+.delivery {
+  padding: 30px 0;
+  text-align: center;
+  margin-bottom: 100px;
+
+  &_title {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+
+    @include md {
+      text-align: center;
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
+
+    @include sm {
+      font-size: 20px;
+    }
+  }
+
+  &_subtitle {
+    text-transform: uppercase;
+    margin: 30px 0;
+  }
+
+  &_info {
+    font-size: 18px;
+    margin-bottom: 30px;
+    @include md {
+      font-size: 16px;
+    }
+  }
+
+  &_media {
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include sm {
+      display: block;
+    }
+
+    @include lg {
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    &_card {
+      width: 24%;
+      height: 220px;
+      background: white;
+      padding: 30px 30px;
+      text-align: center;
+      border-radius: 5px;
+      @include lg {
+        width: 40%;
+        flex-wrap: wrap;
+        margin: 10px auto;
+      }
+      @include sm {
+        width: 80%;
+        margin: 10px auto;
+      }
+      @include xs {
+        width: 100%;
+        margin: 10px auto;
+      }
+      &_img {
+        width: 70%;
+        height: 70%;
+        position: relative;
+        margin: 0 auto 20px auto;
+      }
+      &_text {
+        font-size: 14px;
+      }
+    }
+  }
+}

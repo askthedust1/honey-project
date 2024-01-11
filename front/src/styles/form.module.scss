@@ -1,0 +1,116 @@
+@use 'mixin' as mix;
+
+.baseContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .header {
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .content {
+    @include mix.md {
+      width: 600px;
+    }
+    @include mix.md2 {
+      width: 500px;
+    }
+    @include mix.sm {
+      width: 400px;
+    }
+    @include mix.xs {
+      width: 360px;
+    }
+
+    .form {
+      margin-top: 2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .formGroup {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: fit-content;
+        margin-bottom: 15px;
+        @include mix.md {
+          width: 100%;
+        }
+        label {
+          font-size: 20px;
+          @include mix.md {
+            font-size: 16px;
+          }
+          @include mix.xs {
+            font-size: 14px;
+          }
+        }
+        input {
+          margin-top: 6px;
+          min-width: 18em;
+          height: 37px;
+          padding: 0 10px;
+          font-size: 16px;
+          font-family: 'Open Sans', sans-serif;
+          background-color: #f3f3f3;
+          border: 0;
+          border-radius: 4px;
+          transition: all 250ms ease-in-out;
+
+          @include mix.md {
+            background-color: white;
+            width: 600px;
+          }
+          @include mix.md2 {
+            width: 500px;
+          }
+          @include mix.sm {
+            width: 400px;
+          }
+          @include mix.xs {
+            width: 360px;
+          }
+          &:hover {
+            background-color: #ffffff;
+            box-shadow: 0 0 14px 0.3px rgba(255, 99, 0, 0.8);
+          }
+
+          &:focus {
+            outline: none;
+            box-shadow: 0 0 12px 0.8px rgba(255, 99, 0, 0.8);
+          }
+        }
+        .error {
+          color: red;
+        }
+      }
+    }
+  }
+  .footer {
+    margin-top: 3em;
+    .btn {
+      font-size: 21px;
+      padding: 5px 20px;
+      border: 0;
+      background-color: #ff8f31;
+      color: #fff;
+      border-radius: 3px;
+      transition: all 250ms ease-in-out;
+      cursor: pointer;
+      &:hover {
+        background-color: #a60000;
+      }
+      &:focus {
+        outline: none;
+      }
+      @include mix.xs {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Orders History",
+  "numberOrder": "Order Number",
+  "address": "Address",
+  "date": "Date",
+  "orderList": "Order",
+  "total": "Total Amount",
+  "status": "Status",
+  "som": "kgs",
+  "statusYes": "Confirmed",
+  "statusNo": "Not Confirmed",
+  "noOrders": "No orders yet",
+  "orderBtn": "Order",
+  "piece": "pcs"
+}

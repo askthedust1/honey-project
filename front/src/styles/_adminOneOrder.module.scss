@@ -1,0 +1,61 @@
+.orderContainer {
+  width: 1073px;
+  height: auto;
+  box-sizing: border-box;
+
+  .adminOrdersMainTitle {
+    margin: 20px 0 0 30px;
+    font-weight: 400;
+  }
+
+  h2 {
+    margin: 20px 0 0 30px;
+    font-weight: 700;
+  }
+
+  .infoBlock {
+    background: white;
+    box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+    border-radius: 15px;
+    margin: 30px 0 0 17px;
+    max-width: 1040px;
+    padding: 20px;
+
+    .infoKit {
+      margin-top: 20px;
+    }
+
+    .infoPont {
+      margin-top: 10px;
+
+      .infoPointSpan {
+        font-weight: 600;
+      }
+    }
+
+    .infoProductsList {
+      padding: 10px 0 0 20px;
+
+      .listItem {
+        margin-top: 10px;
+
+        .innerSpanList {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .innerPointSpan {
+      font-weight: 400;
+    }
+  }
+  .back {
+    display: inline-block;
+    margin: 10px 0 0 30px;
+    border-radius: 5px;
+    border: 1px solid #5a3733;
+    padding: 5px 10px;
+    background: #5a3733;
+    color: white;
+  }
+}

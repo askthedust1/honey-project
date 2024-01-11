@@ -1,0 +1,53 @@
+.analytic {
+  margin: 20px 10px;
+  width: 1000px;
+  h2 {
+    color: #5a3733;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .analyticBlock {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    .analytic_title {
+      background-color: rgba(90, 55, 51, 0.3);
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 40px;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 18px;
+      th,
+      td {
+        padding: 5px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+      }
+      th {
+        font-weight: bold;
+      }
+      td:first-child {
+        width: 100px;
+      }
+      img {
+        display: block;
+        width: 100px;
+        height: auto;
+      }
+    }
+    .productTitle {
+      width: 300px;
+      text-align: center;
+    }
+    .productClick {
+      font-weight: 600;
+      color: #a60000;
+      text-align: center;
+    }
+  }
+}

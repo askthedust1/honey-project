@@ -1,0 +1,206 @@
+.mainAdminLayout {
+  min-height: 400px;
+  display: flex;
+  color: #5a3733;
+  .mainAdminLayoutContainer {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    height: 100vh;
+    overflow-y: auto;
+  }
+}
+.container {
+  .productsBlock {
+    margin: 20px 5px;
+    width: 1045px;
+    height: auto;
+
+    .adminProductsMainTitle {
+      margin: 20px 0 0 30px;
+      font-weight: 500;
+    }
+    .adminProductsNav {
+      display: flex;
+      background-color: #ffffff;
+      border-radius: 15px;
+      margin: 20px 15px 16px;
+      padding: 16px 20px;
+      box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+      select {
+        font-family: 'Montserrat', sans-serif;
+        padding: 11px;
+        font-size: 13px;
+        color: #5a3733;
+        font-weight: 400;
+        letter-spacing: 0.25px;
+        border: 0.5px solid #5a3733;
+        border-radius: 4px;
+        background-color: #fff;
+        width: 265px;
+        margin: 0 21px 0 0;
+      }
+      select:focus-visible {
+        border: 2px solid #5a3733;
+        outline: none;
+      }
+      option {
+        padding: 8px;
+        font-size: 14px;
+        background-color: #fff;
+        color: #333;
+      }
+      option:active {
+        background-color: #5a3733;
+        color: #333;
+      }
+
+      option:hover {
+        padding: 8px;
+        background-color: #f0f0f0;
+      }
+      input {
+        width: 250px;
+        background: url('../assets/images/findIcon.svg') no-repeat center right 10px;
+        height: 40px;
+        padding: 8px 40px 8px 10px;
+        border: 0.5px solid #5a3733;
+        border-radius: 4px;
+        margin: 0 67px 0 0;
+      }
+      input::placeholder {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+        letter-spacing: 0.25px;
+        font-size: 13px;
+        color: #5a3733;
+      }
+      input:focus-visible {
+        border: 2px solid #5a3733;
+        outline: none;
+      }
+      .adminProductsPagination {
+        display: flex;
+        margin: 8px 0 0 0;
+        font-size: 14px;
+        .arrowToLeft {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: url('../assets/images/arrowToLeft.svg') no-repeat center;
+        }
+        .arrowToRight {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: url('../assets/images/arrowToRight.svg') no-repeat center;
+        }
+        p {
+          margin: 5px 5px 0;
+        }
+      }
+      .addNewProductBtn {
+        position: relative;
+        margin: 0 0 0 auto;
+        background-color: #5a3733;
+        color: #ffffff;
+        width: 180px;
+        height: 40px;
+        border: none;
+        border-radius: 14px;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+        img {
+          position: absolute;
+          top: 13px;
+          left: 9px;
+          width: auto;
+        }
+      }
+    }
+    .adminProductsTable {
+      max-width: 1230px;
+      background-color: #ffffff;
+      box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+      border-radius: 15px;
+      padding: 10px 0;
+      margin: 0 15px;
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        font-weight: 600;
+        font-size: 12px;
+      }
+      .tableBodyBlock {
+        td {
+          font-size: 13px;
+          font-weight: 500;
+        }
+        .imageTd {
+          width: 69px;
+          height: 69px;
+
+          img {
+            width: 69px;
+            height: 69px;
+            border-radius: 15px;
+            border: 1px solid rgb(25 5 5 / 12%);
+          }
+        }
+        .btnActive {
+          font-size: 13px;
+          width: 92px;
+          height: 26px;
+          padding: 5px 12px;
+          color: #27ae60;
+          background-color: rgb(39 174 96 / 20%);
+          border: none;
+          border-radius: 6px;
+        }
+        .btnInactive {
+          width: 92px;
+          height: 26px;
+          padding: 5px 12px;
+          color: #ae2727;
+          background-color: rgba(174, 39, 39, 0.2);
+          border: none;
+          border-radius: 6px;
+          font-size: 13px;
+        }
+        .hitActive {
+          font-size: 12px;
+          color: #27ae60;
+        }
+        .hitInactive {
+          font-size: 12px;
+          color: #ae2727;
+        }
+        .viewMoreBtn {
+          border: none;
+          background: url('../assets/images/adminIcon/toWatchMoreIcon.svg') no-repeat center;
+          width: 27px;
+          height: 18px;
+          margin: 0 9px 0 0;
+        }
+        .editBtn {
+          border: none;
+          width: 22px;
+          height: 23px;
+          background: url('../assets/images/adminIcon/editIcon.svg') no-repeat center;
+        }
+      }
+    }
+  }
+}

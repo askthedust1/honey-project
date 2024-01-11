@@ -1,0 +1,253 @@
+@import './variables';
+@import './mixin';
+
+.catalog {
+  padding-bottom: 60px;
+  padding-top: 49px;
+  position: relative;
+  margin-top: 20px;
+  z-index: 1;
+
+  @include sm {
+    padding-top: 29px;
+    margin-top: 0;
+  }
+
+  &_container {
+    max-width: 1170px;
+    padding: 0 15px;
+    margin: 0 auto;
+    @include xs {
+      padding: 0;
+    }
+
+    h3 {
+      color: $text-color;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 55.01px;
+      text-transform: uppercase;
+      margin: 55px 0 15px;
+      position: relative;
+      z-index: 1;
+
+      @include lg {
+        font-size: 32px;
+      }
+
+      @include lm {
+        font-size: 30px;
+      }
+
+      @include sm {
+        font-size: 20px;
+        margin: 25px 0 0;
+      }
+    }
+
+    p {
+      color: $text-color;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 30px;
+      text-transform: uppercase;
+      display: block;
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+
+      @include sm {
+        font-size: 12px;
+        max-width: 340px;
+        line-height: 18px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  &_list {
+    margin: 54px 0 0;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    position: relative;
+
+    @include sm {
+      margin: 10px 0 30px;
+    }
+
+    &_item {
+      display: flex;
+      flex-direction: column;
+      margin: 15px;
+      transition: 0.3s;
+      position: relative;
+      z-index: 1;
+
+      @include lg {
+        margin: 10px;
+      }
+
+      @include sm {
+        margin: 5px;
+      }
+
+      &_img {
+        border-radius: 10px;
+        width: 315px;
+        height: 168px;
+        transition: 0.2s;
+        background-color: #f7f3f0;
+
+        @include xl {
+          width: 260px;
+          height: 139px;
+        }
+
+        @include lg {
+          width: 235px;
+          height: 125px;
+        }
+
+        @include lm {
+          width: 290px;
+          height: 155px;
+        }
+
+        @include md {
+          width: 238px;
+          height: 127px;
+        }
+
+        @include md2 {
+          width: 210px;
+          height: 112px;
+        }
+
+        @include sm {
+          width: 315px;
+          height: 168px;
+        }
+      }
+
+      span {
+        color: $text-color;
+        text-align: center;
+        margin: 5px auto 0;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 32.01px;
+        text-transform: uppercase;
+
+        @include sm {
+          font-size: 14px;
+        }
+      }
+
+      &:hover img {
+        box-shadow: 0 0 3px 2px rgba(125, 125, 125, 0.84);
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+.topLineBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('../assets/images/catalogTopLineBg.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 70px;
+  width: 100%;
+  display: block;
+}
+
+.bottomLineBg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-image: url('../assets/images/catalogBottomLineBg.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 70px;
+  width: 100%;
+  display: block;
+}
+
+.bgLeft {
+  position: absolute;
+  top: -100px;
+  left: -20px;
+  z-index: 0;
+  width: 500px;
+  height: 340px;
+  background-image: url('../assets/images/catalogOrangeBg1.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  @include xl {
+    width: 360px;
+    height: 340px;
+    top: -80px;
+    left: 0;
+  }
+
+  @include lm {
+    top: -70px;
+    left: 0;
+    width: 420px;
+    height: 340px;
+  }
+
+  @include md2 {
+    bottom: -70px;
+    left: 0;
+    width: 360px;
+    height: 340px;
+  }
+
+  @include sm {
+    display: none;
+  }
+}
+
+.bgRight {
+  position: absolute;
+  bottom: -80px;
+  right: -20px;
+  z-index: 0;
+  width: 500px;
+  height: 370px;
+  background-image: url('../assets/images/catalogOrangeBg2.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  @include xl {
+    width: 360px;
+    height: 340px;
+  }
+
+  @include lm {
+    bottom: -70px;
+    right: 0;
+    width: 420px;
+    height: 340px;
+  }
+
+  @include md2 {
+    bottom: -70px;
+    right: 0;
+    width: 360px;
+    height: 340px;
+  }
+
+  @include sm {
+    display: none;
+  }
+}

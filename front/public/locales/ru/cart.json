@@ -1,0 +1,17 @@
+{
+  "basket": "Корзина",
+  "returnToStore": "Вернуться в магазин",
+  "product": "Товар",
+  "quantity": "Количество",
+  "price": "Цена",
+  "total": "Сумма",
+  "empty": "Тут пусто",
+  "orderTotal": "Сумма заказа",
+  "discount": "Скидка",
+  "delivery": "Доставка",
+  "free": "бесплатно",
+  "totalAmount": "Итого",
+  "checkout": "Оформить заказ",
+  "som": "сом",
+  "DeleteFromCart": "Удалить из корзины"
+}

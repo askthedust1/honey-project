@@ -1,0 +1,12 @@
+{
+  "basket": "Basket",
+  "returnToStore": "Return to Store",
+  "thanksForOrder": "Thank You for Your Order!",
+  "orderPlaced": "Your Order Has Been Placed!",
+  "managerContact": "Our manager will contact you to clarify the details",
+  "client": "Date",
+  "orderTotal": "Order Total",
+  "paymentMethod": "Payment Method",
+  "cashPayment": "Cash",
+  "purchaseHistory": "Purchase History"
+}

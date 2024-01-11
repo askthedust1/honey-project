@@ -1,0 +1,400 @@
+@import './variables';
+@import './mixin';
+
+.benefit {
+  color: $text-color;
+  background-image: url('../assets/images/benefitBG.png');
+  background-size: 24%;
+  background-repeat: no-repeat;
+  background-position: 50% 55%;
+  margin-top: 75px;
+  padding-bottom: 40px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 60px;
+
+  @include xl {
+    background-size: 22%;
+    background-position: 51% 56%;
+    padding-left: 1.5%;
+  }
+
+  @include lg {
+    background-size: 280px;
+    background-position: 51% 48%;
+    margin-top: 15px;
+    padding: 0 0 105px 0;
+  }
+
+  @include md2 {
+    background-size: 200px;
+    background-position: 50% 50%;
+    margin-top: 0;
+  }
+
+  @include sm {
+    background-size: 180px;
+    background-position: 50% 47%;
+    margin-top: 0;
+  }
+
+  &_container {
+    max-width: 1170px;
+    padding: 0 15px;
+    margin: 0 auto;
+
+    @include lg {
+      display: flex;
+      flex-direction: column;
+    }
+    @include xs {
+      padding: 0;
+    }
+
+    h3 {
+      text-align: center;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 55.01px;
+      text-transform: uppercase;
+      margin: 0 0 60px;
+
+      @include xl {
+        font-size: 32px;
+      }
+
+      @include lg {
+        font-size: 28px;
+        margin: 0 0 35px;
+      }
+
+      @include md2 {
+        font-size: 26px;
+      }
+
+      @include sm {
+        font-size: 20px;
+        font-weight: 800;
+        margin: 0 0 15px;
+      }
+    }
+  }
+
+  &_row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+
+    @include lg {
+      flex-direction: column;
+      margin: 0 auto;
+    }
+
+    &:nth-child(2) {
+      div:nth-child(1) {
+        @include lg {
+          flex-direction: row-reverse;
+        }
+      }
+    }
+
+    &:nth-child(3) {
+      div:nth-child(1) {
+        @include lg {
+          flex-direction: row-reverse;
+        }
+      }
+    }
+
+    &:nth-child(4) {
+      div:nth-child(1) {
+        @include lg {
+          flex-direction: row-reverse;
+        }
+      }
+    }
+
+    &:nth-child(3) {
+      div {
+        max-width: 382px;
+
+        @include lg {
+          max-width: 440px;
+        }
+      }
+    }
+
+    &_item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 440px;
+
+      @include lg {
+        margin-bottom: 15px;
+        min-height: 85px;
+      }
+
+      @include md2 {
+        margin-bottom: 5px;
+      }
+
+      &_info {
+        margin: 0 auto;
+
+        @include lg {
+          margin: 0 auto 0 0;
+        }
+
+        @include sm {
+          margin: 0 auto 0 0;
+        }
+
+        h4 {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 800;
+          line-height: normal;
+          text-align: center;
+
+          @include lg {
+            text-align: left;
+          }
+
+          @include md2 {
+            font-size: 14px;
+          }
+
+          @include sm {
+            font-size: 12px;
+            font-weight: 700;
+            text-align: left;
+          }
+        }
+
+        p {
+          font-size: 14px;
+          font-weight: 600;
+          line-height: normal;
+          text-align: center;
+
+          @include lg {
+            text-align: left;
+          }
+
+          @include md2 {
+            font-size: 12px;
+          }
+
+          @include sm {
+            font-weight: 500;
+            text-align: left;
+          }
+        }
+      }
+
+      &_hexagon {
+        min-width: 90px;
+        height: 50px;
+        background-color: #d3a863;
+        margin: 0 45px;
+        display: flex;
+        position: relative;
+
+        @include xl {
+          min-width: 80px;
+          height: 44px;
+          margin: 0 50px;
+        }
+
+        @include md2 {
+          margin: 0 15px 0 20px;
+          min-width: 70px;
+          height: 39px;
+        }
+
+        svg {
+          margin: auto;
+          height: 50px;
+
+          @include xl {
+            height: 40px;
+          }
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -24px;
+          border-left: 45px solid transparent;
+          border-right: 45px solid transparent;
+          border-bottom: 25px solid #d3a863;
+
+          @include xl {
+            top: -22px;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 22px solid #d3a863;
+          }
+
+          @include md2 {
+            top: -20px;
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 20px solid #d3a863;
+          }
+        }
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -24px;
+          border-left: 45px solid transparent;
+          border-right: 45px solid transparent;
+          border-top: 25px solid #d3a863;
+
+          @include xl {
+            bottom: -21px;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-top: 22px solid #d3a863;
+          }
+
+          @include md2 {
+            bottom: -20px;
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-top: 20px solid #d3a863;
+          }
+        }
+      }
+    }
+  }
+
+  &_lg_margin {
+    display: none;
+
+    @include lg {
+      display: block;
+      height: 0;
+      margin-bottom: 260px;
+      border-color: transparent;
+    }
+
+    @include md2 {
+      margin-bottom: 200px;
+    }
+
+    @include sm {
+      margin-bottom: 170px;
+    }
+  }
+
+  &_rightBg {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    background-image: url('../assets/images/benefitBG2.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 100%;
+    display: none;
+
+    @include lg {
+      display: block;
+    }
+
+    @include md {
+      transform: rotate(-15deg);
+      top: -10px;
+      right: -80px;
+    }
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  &_leftBg {
+    position: absolute;
+    z-index: 0;
+    top: -200px;
+    left: -80px;
+    background-image: url('../assets/images/benefitBG2.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 100%;
+    display: none;
+    transform: rotate(165deg);
+
+    @include lg {
+      display: block;
+    }
+
+    @include md2 {
+      top: -185px;
+      left: -90px;
+    }
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  &_honeybeeRight {
+    position: absolute;
+    top: -35px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-image: url('../assets/images/benefitHoneybee.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: none;
+
+    @include lg {
+      display: block;
+    }
+
+    @include md {
+      transform: rotate(-25deg);
+      top: -30px;
+      right: 60px;
+    }
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  &_honeybeeLeft {
+    position: absolute;
+    bottom: 185px;
+    left: 70px;
+    width: 60px;
+    height: 60px;
+    background-image: url('../assets/images/benefitHoneybee.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: none;
+    transform: rotate(150deg);
+
+    @include lg {
+      display: block;
+    }
+
+    @include md2 {
+      bottom: 170px;
+      left: 52px;
+      transform: rotate(162deg);
+      width: 50px;
+      height: 50px;
+    }
+
+    @include sm {
+      display: none;
+    }
+  }
+}

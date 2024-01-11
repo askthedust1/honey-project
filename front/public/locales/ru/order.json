@@ -1,0 +1,23 @@
+{
+  "basket": "Корзина",
+  "returnToStore": "Вернуться в магазин",
+  "deliveryAddress": "Укажите адрес доставки",
+  "addressDetails": "Укажите название улицы, номер дома и номер квартиры",
+  "yourAddress": "Ваш адрес",
+  "selectPaymentMethod": "Выберите способ оплаты",
+  "cashPayment": "Наличными",
+  "cardPayment": "Картой",
+  "paymentOptions": "Оплата производится переводом на карты Optima или M-Bank",
+  "contactInformation": "Контактная информация",
+  "clientNameLabel": "Покупатель:",
+  "phoneNumberLabel": "Номер телефона:",
+  "emailLabel": "Email:",
+  "orderTitle": "Сумма заказа",
+  "priceLabel": "Цена",
+  "discountLabel": "Скидка",
+  "deliveryLabel": "Доставка",
+  "deliveryValue": "бесплатно",
+  "totalLabel": "Итого",
+  "buy": "Купить",
+  "requiredAddress": "Вы не ввели адрес, введите обязательно!"
+}

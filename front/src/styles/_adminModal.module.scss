@@ -1,0 +1,109 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Полупрозрачный черный фон */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &_container {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 96%;
+    .closeButton {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+      border: none;
+      background-color: inherit;
+      background: url('../assets/images/adminIcon/iconCloseModal.png') no-repeat center;
+    }
+  }
+  .content {
+    margin-top: 20px;
+    display: flex;
+    .adminModalTable {
+      border-radius: 15px;
+      padding: 10px 0;
+      box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
+      margin: 0 15px;
+
+      table {
+        border-collapse: collapse;
+        background-color: #ffffff;
+      }
+      th,
+      td {
+        max-width: 250px;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      th {
+        font-weight: 600;
+        font-size: 12px;
+      }
+      .tableBodyBlock {
+        td {
+          font-size: 13px;
+          font-weight: 500;
+        }
+        .imageTd {
+          width: 69px;
+          height: 69px;
+
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            border: 1px solid rgb(25 5 5 / 12%);
+          }
+        }
+      }
+    }
+    .infoContainer {
+      margin: 0 10px;
+      border-left: 2px solid rgba(175, 175, 175, 0.44);
+      padding-left: 30px;
+      div {
+        margin: 15px 0;
+        font-weight: 500;
+        font-size: 18px;
+        span {
+          display: inline-block;
+          width: 75px;
+          font-weight: 400;
+          font-size: 16px;
+        }
+      }
+      .btnConfirmOrder {
+        padding: 14px 20px;
+        font-weight: 500;
+        border: none;
+        background-color: orange;
+        border-radius: 10px;
+        font-size: 18px;
+        margin: 18px 10px 5px;
+        &:hover {
+          background-color: #afafaf;
+        }
+        &:active {
+          background-color: red;
+          color: white;
+        }
+      }
+    }
+  }
+}

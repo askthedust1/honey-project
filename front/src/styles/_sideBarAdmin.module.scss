@@ -1,0 +1,245 @@
+.sidebar {
+  width: 388px;
+  height: 100vh;
+  padding-bottom: 300px;
+  background-color: white;
+  &_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 25px;
+    .logo {
+      img {
+        width: 140px;
+        height: auto;
+      }
+    }
+    .box {
+      border-radius: 10px;
+      border: 1px solid #5a3733;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    span {
+      display: inline-block;
+      color: #5a3733;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 12px 22px;
+      border-right: 1px solid #5a3733;
+    }
+    .exit {
+      border: none;
+      background: transparent url('../assets/images/adminIcon/exitAdmin.png') no-repeat center;
+      padding: 11px;
+      margin: 0 11px;
+      &:hover {
+        background-image: url('../assets/images/adminIcon/exitAdminHover.png');
+      }
+      &:active {
+        background-image: url('../assets/images/adminIcon/exitAdminActive.png');
+      }
+    }
+    .confirm {
+      display: none;
+      padding: 16px 10px;
+      border-radius: 15px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      position: absolute;
+      top: 55px;
+      left: -60px;
+      button {
+        padding: 10px 20px;
+        margin: 0 10px;
+        font-size: 16px;
+        border-radius: 15px;
+        border: none;
+        &:hover {
+          background-color: rgba(157, 157, 157, 0.51);
+          color: rgba(128, 0, 0, 0.88);
+        }
+        &:active {
+          background-color: rgba(112, 112, 112, 0.51);
+          color: rgb(255, 255, 255);
+        }
+      }
+      &_show {
+        display: flex;
+      }
+    }
+  }
+  .list {
+    margin: 67px 47px 0 24px;
+    list-style: none;
+    li {
+      position: relative;
+      &:hover {
+        border-radius: 4px;
+        background-color: rgba(90, 55, 51, 0.1);
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        left: 14px;
+        top: 12px;
+        width: 24px;
+        height: 24px;
+        background: transparent center no-repeat;
+      }
+    }
+    &_link {
+      padding: 13px 11px 13px 67px;
+      display: block;
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 21px;
+      letter-spacing: 0.1px;
+      user-select: none;
+    }
+    .main {
+      &::before {
+        background-image: url('../assets/images/adminIcon/mainAdmin.png');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../assets/images/adminIcon/mainAdminHover.png');
+        }
+      }
+    }
+    .product {
+      &::before {
+        background-image: url('../assets/images/adminIcon/productAdmin.png');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../assets/images/adminIcon/productAdminHover.png');
+        }
+      }
+    }
+    .category {
+      &::before {
+        background-image: url('../assets/images/adminIcon/categoryAdmin.png');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../assets/images/adminIcon/categoryAdminHover.png');
+        }
+      }
+    }
+    .banner {
+      &::before {
+        background-image: url('../assets/images/adminIcon/bannerAdmin.png');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../assets/images/adminIcon/bannerAdminHover.png');
+        }
+      }
+    }
+    .hit {
+      &::before {
+        background-image: url('../assets/images/adminIcon/hitAdmin.png');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../assets/images/adminIcon/hitAdminHover.png');
+        }
+      }
+    }
+    .order {
+      &::before {
+        background-image: url('../assets/images/adminIcon/orderAdmin.png');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../assets/images/adminIcon/orderAdminHover.png');
+        }
+      }
+    }
+    .client {
+      &::before {
+        background-image: url('../assets/images/adminIcon/peopleAdmin.png');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../assets/images/adminIcon/peopleAdminHover.png');
+        }
+      }
+    }
+    .analytics {
+      &::before {
+        background-image: url('../assets/images/adminIcon/analyticsAdmin.png');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../assets/images/adminIcon/analyticsAdminHover.png');
+        }
+      }
+    }
+    .report {
+      &::before {
+        background-image: url('../assets/images/adminIcon/reportAdmin.png');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../assets/images/adminIcon/reportAdminHover.png');
+        }
+      }
+    }
+    .open {
+      border-radius: 2px;
+      background-color: rgba(98, 78, 77, 0.1);
+      &::after {
+        content: '';
+        position: absolute;
+        opacity: 0.3;
+        right: 14px;
+        top: 13px;
+        width: 16px;
+        height: 24px;
+        background: url('../assets/images/adminIcon/downArrowAdmin.png') center no-repeat;
+      }
+    }
+    .detail {
+      font-size: 18px;
+      border-radius: 4px;
+      background-color: rgba(98, 78, 77, 0.06);
+      margin: 2px 10px;
+      padding-left: 30px;
+      display: none;
+
+      &_show {
+        display: block;
+      }
+    }
+    .newOrder {
+      position: relative;
+      span {
+        text-align: center;
+        display: inline-block;
+        width: 31px;
+        height: 31px;
+        padding: 5px;
+        position: absolute;
+        background: orange;
+        left: 11px;
+        top: 8px;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .empty {
+        background: rgba(148, 148, 148, 0.51);
+        color: #757575;
+      }
+      &:hover {
+        span {
+          background: rgba(128, 128, 128, 0.73);
+        }
+      }
+    }
+  }
+}
