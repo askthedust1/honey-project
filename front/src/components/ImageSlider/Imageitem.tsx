@@ -17,9 +17,9 @@ const Imageitem: React.FC<Props> = ({ image }) => {
         width="0"
         height="0"
         sizes="100vw"
-        loading="lazy"
+        priority
         style={{ width: '100%', height: 'auto' }}
-        quality={100}
+        quality={50}
         src={picture}
         alt={image.description}
       />
