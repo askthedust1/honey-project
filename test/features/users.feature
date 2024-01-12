@@ -22,7 +22,6 @@ Feature: Users
       | passwordConfirm | user |
       | displayName | User |
       | phone | +996555555555 |
-      | address | street Chy |
     And I click "#regBtn" button
     Then I see main page
     When I move mouse to "#user-drop" in user menu
