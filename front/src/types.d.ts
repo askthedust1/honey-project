@@ -6,7 +6,6 @@ export interface RegisterMutation {
   passwordConfirm: string;
   displayName: string;
   phone: string;
-  address: string;
 }
 
 export interface RegisterResponse {
@@ -341,4 +340,9 @@ export interface IKits {
   product: IProductMutation;
   amount: number;
   price: number;
+}
+
+export interface AnimationState {
+  y: number;
+  opacity: number;
 }

@@ -3,8 +3,8 @@
 .mission {
   max-width: 1320px;
   height: 450px;
-  margin-top: 120px;
-  margin-bottom: 150px;
+  margin-top: 100px;
+  margin-bottom: 80px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -120,5 +120,95 @@
         }
       }
     }
+  }
+}
+
+.youtubePreviewContainer {
+  position: relative;
+  width: 685px;
+  height: 403px;
+  margin: auto;
+}
+
+.youtubePlayerPreview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/images/video.jpg');
+  background-size: cover;
+  display: flex;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.playButton {
+  position: relative;
+  z-index: 3;
+  border: none;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  overflow: hidden;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 30px solid #d3a863;
+    cursor: pointer;
+  }
+}
+
+.playButton:hover {
+  background-color: #5a3733;
+  &:before {
+    border-left: 30px solid white;
+  }
+}
+
+.youtubePlayerPreview iframe {
+  z-index: 1;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .playButton {
+    width: 48px;
+    height: 48px;
+  }
+  .playButton::before {
+    border-width: 0 12px 12px 0;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .playButton {
+    width: 32px;
+    height: 32px;
+  }
+  .playButton::before {
+    border-width: 0 8px 8px 0;
+    padding: 8px;
   }
 }

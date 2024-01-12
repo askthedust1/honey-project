@@ -3,17 +3,19 @@ import { apiUrl } from '@/constants';
 import Link from 'next/link';
 import cls from '../../../styles/_products.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { IProduct } from '@/types';
+import { AnimationState, IProduct } from '@/types';
 import { addProduct, delProduct, selectCart } from '@/features/cart/cartSlice';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 interface Props {
   product: IProduct;
   customClass?: string;
+  item?: { hidden: AnimationState; visible: AnimationState };
 }
 
-const ProductItem: React.FC<Props> = ({ product, customClass }) => {
+const ProductItem: React.FC<Props> = ({ product, customClass, item }) => {
   const dispatch = useAppDispatch();
   const cartState = useAppSelector(selectCart);
   const { t } = useTranslation('common');
@@ -29,7 +31,7 @@ const ProductItem: React.FC<Props> = ({ product, customClass }) => {
   };
 
   return (
-    <div className={`${cls.card_block} ${customClass}`}>
+    <motion.div variants={item} className={`${cls.card_block} ${customClass}`}>
       <Link href={`/products/${product._id}`} data-product-id={product._id}>
         <div className={cls.card}>
           <div className={cls.imgContainer}>
@@ -74,7 +76,7 @@ const ProductItem: React.FC<Props> = ({ product, customClass }) => {
           {isInCart ? t('remove-from-basket') : t('add-to-basket')}
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
