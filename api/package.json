@@ -11,8 +11,7 @@
     "lint": "eslint --ext .ts --ignore-path .gitignore --ignore-pattern '/node_modules/*' .",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
-    "typecheck": "tsc --noemit",
-    "prepare": "cd .. && npm i"
+    "typecheck": "tsc --noemit"
   },
   "keywords": [],
   "author": "",

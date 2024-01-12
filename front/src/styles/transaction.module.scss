@@ -10,7 +10,7 @@
   }
 
   .title {
-    border-bottom: 1px solid #d1d1d8;
+    border-bottom: 1px solid #D1D1D8;
     width: 100%;
     text-align: center;
     padding-bottom: 32px;
@@ -21,7 +21,7 @@
     }
 
     h3 {
-      color: #5a3733;
+      color: #5A3733;
       text-align: center;
       font-size: 30px;
       font-weight: 700;
@@ -35,7 +35,7 @@
     }
 
     .return {
-      color: #ff8f31;
+      color: #FF8F31;
       text-align: center;
       font-size: 18px;
       font-weight: 400;
@@ -51,8 +51,8 @@
     display: inline-block;
     padding: 80px 95px;
     border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 32px 48px -48px rgba(18, 18, 18, 0.1);
+    background: #FFF;
+    box-shadow: 0 32px 48px -48px rgba(18, 18, 18, 0.10);
     margin: 50px;
     @include mix.sm {
       padding: 30px;
@@ -64,7 +64,7 @@
       align-items: center;
     }
     .contentTitle {
-      color: #6c7275;
+      color: #6C7275;
       font-size: 28px;
       font-weight: 500;
       line-height: 34px;
@@ -76,7 +76,7 @@
       }
     }
     .subtitle {
-      color: #23262f;
+      color: #23262F;
       font-size: 40px;
       font-weight: 600;
       line-height: 44px;
@@ -89,7 +89,7 @@
       }
     }
     .text {
-      color: #ff8f31;
+      color: #FF8F31;
       font-size: 16px;
       font-weight: 600;
       line-height: 24px;
@@ -128,9 +128,9 @@
           right: 5px;
           width: 32px;
           height: 32px;
-          background: #ff8f31;
+          background: #FF8F31;
           border-radius: 50%;
-          color: #fcfcfd;
+          color: #FCFCFD;
           font-size: 16px;
           font-weight: 600;
           line-height: 24px;
@@ -154,16 +154,17 @@
         width: 150px;
       }
       .name {
-        color: #6c7275;
+        color: #6C7275;
         margin-right: 5px;
+
       }
     }
     .historyBtn {
       border-radius: 80px;
-      background: #ff8f31;
+      background: #FF8F31;
       padding: 12px 40px;
       border: none;
-      color: #fff;
+      color: #FFF;
       font-size: 16px;
       font-weight: 500;
       line-height: 28px;

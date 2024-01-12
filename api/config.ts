@@ -10,7 +10,10 @@ const config = {
   rootPath,
   publicPath: path.join(rootPath, 'public'),
   port: parseInt(process.env.PORT || '8000'),
-  db: 'mongodb://0.0.0.0:27017/honey-test',
+  db: process.env.DB_HOST || 'mongodb://localhost/honey',
+  google: {
+    clientId: process.env.GOOGLE_CLIENT_ID,
+  }, 
 };
 
 export default config;

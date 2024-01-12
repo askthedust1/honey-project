@@ -10,8 +10,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 import axiosApi from '@/axiosApi';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
-import GoogleMap from '@/components/GoogleMap/GoogleMap';
-import { googleMapEmbed } from '@/constants';
 
 const Contacts: MyPage = () => {
   const { t } = useTranslation('common');
@@ -138,10 +136,6 @@ const Contacts: MyPage = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className={cls.contacts_mapWrapper}>
-        <h1 className={cls.contacts_subtitle}>Наш магазин на карте:</h1>
-        <GoogleMap src={googleMapEmbed} />
       </div>
     </div>
   );

@@ -8,17 +8,17 @@
 
   .header {
     font-size: 24px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
 
   .content {
-    @include mix.md {
+    @include mix.md{
       width: 600px;
     }
     @include mix.md2 {
       width: 500px;
     }
-    @include mix.sm {
+    @include mix.sm{
       width: 400px;
     }
     @include mix.xs {
@@ -55,7 +55,7 @@
           height: 37px;
           padding: 0 10px;
           font-size: 16px;
-          font-family: 'Open Sans', sans-serif;
+          font-family: "Open Sans", sans-serif;
           background-color: #f3f3f3;
           border: 0;
           border-radius: 4px;
@@ -68,7 +68,7 @@
           @include mix.md2 {
             width: 500px;
           }
-          @include mix.sm {
+          @include mix.sm{
             width: 400px;
           }
           @include mix.xs {
@@ -93,24 +93,25 @@
   .footer {
     margin-top: 3em;
     .btn {
-      font-size: 21px;
-      padding: 5px 20px;
-      border: 0;
-      background-color: #ff8f31;
-      color: #fff;
-      border-radius: 3px;
-      transition: all 250ms ease-in-out;
-      cursor: pointer;
-      &:hover {
-        background-color: #a60000;
-      }
-      &:focus {
-        outline: none;
-      }
+    font-size: 21px;
+    padding: 5px 20px;
+    border: 0;
+    background-color: #FF8F31;
+    color: #fff;
+    border-radius: 3px;
+    transition: all 250ms ease-in-out;
+    cursor: pointer;
+    &:hover {
+      background-color: #a60000;
+    }
+    &:focus {
+      outline: none;
+    }
       @include mix.xs {
         font-size: 14px;
         padding: 10px 20px;
       }
-    }
+
+  }
   }
 }

@@ -27,14 +27,7 @@ const ButtonUi: React.FC<IProps> = ({ id, link, event, loading, type, text, btn 
   }
 
   return (
-    <button
-      id={id}
-      onClick={event}
-      style={styledBtn}
-      className={btn}
-      type={type}
-      disabled={loading}
-    >
+    <button id={id} onClick={event} style={styledBtn} className={btn} type={type} disabled={loading}>
       {loading ? <LoadingSpinnerBtn /> : null} {text}
     </button>
   );

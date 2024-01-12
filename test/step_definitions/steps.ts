@@ -20,7 +20,6 @@ const {I} = inject();
 // });
 
 Given('I am on accounts page', () => {
-    I.wait(10);
     I.amOnPage('/accounts');
 });
 
@@ -51,12 +50,12 @@ When('I click {string} button', async (text: string) => {
 });
 
 Then('I see main page', () => {
-    I.wait(10);
+    I.wait(5);
     I.seeInCurrentUrl('/');
 });
 
 When('I see main page', () => {
-    I.wait(10);
+    I.wait(5);
     I.seeInCurrentUrl('/');
 });
 
@@ -74,7 +73,7 @@ When('I click {string} in user menu', async (text: string) => {
 });
 
 Then('I see main page and {string}', async (text: string) => {
-    I.wait(10);
+    I.wait(5);
     I.seeInCurrentUrl('/');
     I.seeElement(text);
 });
@@ -86,7 +85,6 @@ Then('I see {string} in user menu', (login: string) => {
 });
 
 Given('I am on the products page', () => {
-    I.wait(10);
     I.amOnPage('/products/page/1');
 });
 
@@ -100,7 +98,6 @@ Then('I see the product page and "В каталог"', async () => {
 });
 
 Given('I am on main page', () => {
-    I.wait(10);
     I.amOnPage('/');
 });
 
@@ -109,24 +106,20 @@ When('I click on {string} link', (text: string) => {
 });
 
 Then('I am on products page', () => {
-    I.wait(10);
     I.amOnPage('/products/page/1');
 });
 
 Then('I am on about us page', () => {
-    I.wait(10);
     I.amOnPage('/about');
     I.see('О нас');
 });
 
 Then('I am on cart page', () => {
-    I.wait(10);
     I.amOnPage('/cart');
     I.see('Корзина');
 });
 
 Then('I am on admin page', () => {
-    I.wait(10);
     I.amOnPage('/admin');
 });
 
@@ -141,7 +134,6 @@ Then('I click on {string}', (text: string) => {
 });
 
 Given('I am on admin products page', () => {
-    I.wait(10);
     I.amOnPage('/admin/products');
 });
 
@@ -151,7 +143,6 @@ Then('I see {string} in title', async (text: string) => {
 });
 
 Given('I am on create products page', () => {
-    I.wait(10);
     I.amOnPage('/admin/addProduct');
 });
 
@@ -176,7 +167,6 @@ Then('I see {string}', (text: string) => {
 });
 
 Given('I am on admin hits page', () => {
-    I.wait(10);
     I.amOnPage('/admin/bestseller');
 });
 

@@ -2,7 +2,7 @@
 
 .box {
   margin: 40px 0 130px 0;
-  background-image: url('../assets/images/bg.png');
+  background-image: url("../assets/images/bg.png");
   background-repeat: no-repeat;
   background-size: 300px 300px;
   @include md {
@@ -50,12 +50,12 @@
   justify-content: space-between;
   cursor: pointer;
   font-weight: bold;
-  background-color: #c74817;
+  background-color: #C74817;
   color: white;
 }
 
 .accordion_title:hover {
-  background-color: #5a3733;
+  background-color: #5A3733;
   color: white;
 }
 
@@ -66,7 +66,7 @@
 
 .accordion_content {
   background-color: white;
-  border-top: #5a3733 1px solid;
+  border-top: #5A3733 1px solid;
 }
 
 .accordion_item {

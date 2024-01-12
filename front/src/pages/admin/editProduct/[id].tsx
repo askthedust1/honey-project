@@ -13,7 +13,6 @@ import { fetchOneProductForAdmin, putProduct } from '@/features/productAdmin/pro
 import { apiUrl } from '@/constants';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const EditProduct: MyPage = () => {
   const { id } = useParams() || {};
@@ -258,16 +257,7 @@ const EditProduct: MyPage = () => {
             <div className={cls.currentImg}>
               <h4>Нынешнее изображение </h4>
               <div className={cls.imgBlock}>
-                <Image
-                  width={100}
-                  height={100}
-                  src={apiUrl + '/' + state.image}
-                  className={cls.product_media_wrapper}
-                  alt={'Продукция Aman Kyrgyz Honey'}
-                  layout="responsive"
-                  objectFit="contain"
-                />
-                {/*<img src={apiUrl + '/' + state.image} alt="image" />*/}
+                <img src={apiUrl + '/' + state.image} alt="image" />
               </div>
             </div>
             <div className={cls.imageBlock}>
@@ -280,16 +270,7 @@ const EditProduct: MyPage = () => {
               />
               <label className={cls.createCategory_fileInputLabel} htmlFor="fileCategory">
                 {file ? (
-                  <Image
-                    style={{ width: '250px', height: '300px' }}
-                    width={100}
-                    height={100}
-                    priority
-                    quality={80}
-                    className={cls.img}
-                    src={file ? URL.createObjectURL(file) : ''}
-                    alt="img"
-                  />
+                  <img src={file ? URL.createObjectURL(file) : ''} alt="" />
                 ) : (
                   <span>Загрузить изображение</span>
                 )}

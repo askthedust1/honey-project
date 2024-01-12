@@ -180,6 +180,140 @@ productRouter.get('/search', async (req, res) => {
   }
 });
 
+
+// import express from 'express';
+// import Product from '../models/Product';
+// import Category from '../models/Category';
+// import User from '../models/User';
+// import { IProductPost } from '../types';
+//
+// const productRouter = express.Router();
+//
+// productRouter.get('/', async (req, res) => {
+//   const lang = req.headers['accept-language'] || 'ru';
+//
+//   try {
+//     const filterBy = req.query.filterBy;
+//
+//     if (filterBy && filterBy === 'hit') {
+//       const result = await Product.find({
+//         $and: [{ isHit: true }, { isActive: true }],
+//       }).limit(6);
+//
+//       const fit = result.map((i) => {
+//         const product = i.toObject() as IProductPost;
+//         return {
+//           ...product,
+//           title: product.translations[lang]?.title,
+//         };
+//       });
+//       return res.send(fit);
+//     }
+//
+//     if (filterBy && filterBy === 'new') {
+//       const result = await Product.find({
+//         $and: [{ isHit: false }, { isActive: true }],
+//       })
+//         .sort({ datetime: 'descending' })
+//         .limit(6);
+//
+//       const fit = result.map((i) => {
+//         const product = i.toObject() as IProductPost;
+//         return {
+//           ...product,
+//           title: product.translations[lang]?.title,
+//         };
+//       });
+//       return res.send(fit);
+//     }
+//
+//     if (filterBy && filterBy === 'offers') {
+//       const result = await Product.find({
+//         $and: [{ $expr: { $ne: ['$oldPrice', '$actualPrice'] } }, { isActive: true }],
+//       }).limit(6);
+//
+//       const fit = result.map((i) => {
+//         const product = i.toObject() as IProductPost;
+//         return {
+//           ...product,
+//           title: product.translations[lang]?.title,
+//         };
+//       });
+//       return res.send(fit);
+//     }
+//
+//     let page = 1;
+//     const perPage = 9;
+//     const totalProducts = await Product.find({ isActive: true }).countDocuments();
+//     const totalPages = Math.ceil(totalProducts / perPage);
+//
+//     if (req.query.page) {
+//       page = parseInt(req.query.page as string);
+//
+//       const products = await Product.find({ isActive: true })
+//         .populate('category', 'title description')
+//         .skip((page - 1) * perPage)
+//         .limit(perPage);
+//
+//       const fit = products.map((i) => {
+//         const product = i.toObject() as IProductPost;
+//         return {
+//           ...product,
+//           title: product.translations[lang].title,
+//         };
+//       });
+//
+//       const productsWithPages = {
+//         productsOfPage: fit,
+//         currentPage: page,
+//         totalPages,
+//       };
+//       return res.send(productsWithPages);
+//     }
+//
+//     if (req.query.categoryId && req.query.categoryPage) {
+//       const categoryPerPage = 9;
+//       let pageCategory = 1;
+//
+//       pageCategory = +req.query.categoryPage;
+//
+//       const products = await Product.find({
+//         category: req.query.categoryId as string,
+//         isActive: true,
+//       })
+//         .populate('category', 'title description')
+//         .skip((pageCategory - 1) * categoryPerPage)
+//         .limit(categoryPerPage);
+//
+//       const productsTotal = await Product.find({
+//         category: req.query.categoryId as string,
+//         isActive: true,
+//       }).countDocuments();
+//
+//       const totalPages = Math.ceil(productsTotal / categoryPerPage);
+//
+//       const fit = products.map((i) => {
+//         const product = i.toObject() as IProductPost;
+//         return {
+//           ...product,
+//           title: product.translations[lang].title,
+//         };
+//       });
+//
+//       const productsWithPages = {
+//         productsOfPage: fit,
+//         currentPage: pageCategory,
+//         totalPages,
+//       };
+//
+//       return res.send(productsWithPages);
+//     }
+//   } catch (error) {
+//     console.error('Error fetching products:', error);
+//     return res.status(500).send('Internal Server Error');
+//   }
+// });
+//
 productRouter.get('/:id', async (req, res) => {
   const lang = req.headers['accept-language'] || 'ru';
 

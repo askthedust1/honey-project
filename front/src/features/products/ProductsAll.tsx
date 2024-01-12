@@ -37,7 +37,7 @@ const ProductsAll: React.FC<Props> = ({ pageName, id }) => {
           width="0"
           height="0"
           sizes="100vw"
-          priority
+          loading="lazy"
           style={{ width: '100%', height: '230px' }}
           quality={100}
           className={cls.bnr}
@@ -59,14 +59,10 @@ const ProductsAll: React.FC<Props> = ({ pageName, id }) => {
                 placeholder="Найти по названию"
               />
               <Link
-                href={
-                  searchQuery.trim().length > 0
-                    ? {
-                        pathname: '/products/page/path',
-                        query: { q: searchQuery, page: '1' },
-                      }
-                    : '#'
-                }
+                href={{
+                  pathname: '/products/page/path',
+                  query: { q: searchQuery, page: '1' },
+                }}
               >
                 {t('search')}
               </Link>

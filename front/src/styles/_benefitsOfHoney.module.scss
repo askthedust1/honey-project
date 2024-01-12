@@ -1,9 +1,9 @@
-@import './variables';
+@import "./variables";
 @import './mixin';
 
 .benefit {
   color: $text-color;
-  background-image: url('../assets/images/benefitBG.png');
+  background-image: url("../assets/images/benefitBG.png");
   background-size: 24%;
   background-repeat: no-repeat;
   background-position: 50% 55%;
@@ -196,7 +196,7 @@
       &_hexagon {
         min-width: 90px;
         height: 50px;
-        background-color: #d3a863;
+        background-color: #D3A863;
         margin: 0 45px;
         display: flex;
         position: relative;
@@ -228,20 +228,20 @@
           top: -24px;
           border-left: 45px solid transparent;
           border-right: 45px solid transparent;
-          border-bottom: 25px solid #d3a863;
+          border-bottom: 25px solid #D3A863;
 
           @include xl {
             top: -22px;
             border-left: 40px solid transparent;
             border-right: 40px solid transparent;
-            border-bottom: 22px solid #d3a863;
+            border-bottom: 22px solid #D3A863;
           }
 
           @include md2 {
             top: -20px;
             border-left: 35px solid transparent;
             border-right: 35px solid transparent;
-            border-bottom: 20px solid #d3a863;
+            border-bottom: 20px solid #D3A863;
           }
         }
         &::after {
@@ -250,20 +250,20 @@
           bottom: -24px;
           border-left: 45px solid transparent;
           border-right: 45px solid transparent;
-          border-top: 25px solid #d3a863;
+          border-top: 25px solid #D3A863;
 
           @include xl {
             bottom: -21px;
             border-left: 40px solid transparent;
             border-right: 40px solid transparent;
-            border-top: 22px solid #d3a863;
+            border-top: 22px solid #D3A863;
           }
 
           @include md2 {
             bottom: -20px;
             border-left: 35px solid transparent;
             border-right: 35px solid transparent;
-            border-top: 20px solid #d3a863;
+            border-top: 20px solid #D3A863;
           }
         }
       }
@@ -294,7 +294,7 @@
     z-index: 0;
     top: 0;
     right: 0;
-    background-image: url('../assets/images/benefitBG2.png');
+    background-image: url("../assets/images/benefitBG2.png");
     background-size: 100%;
     background-repeat: no-repeat;
     width: 120px;
@@ -321,7 +321,7 @@
     z-index: 0;
     top: -200px;
     left: -80px;
-    background-image: url('../assets/images/benefitBG2.png');
+    background-image: url("../assets/images/benefitBG2.png");
     background-size: 100%;
     background-repeat: no-repeat;
     width: 120px;
@@ -349,7 +349,7 @@
     right: 20px;
     width: 60px;
     height: 60px;
-    background-image: url('../assets/images/benefitHoneybee.png');
+    background-image: url("../assets/images/benefitHoneybee.png");
     background-size: 100%;
     background-repeat: no-repeat;
     display: none;
@@ -375,7 +375,7 @@
     left: 70px;
     width: 60px;
     height: 60px;
-    background-image: url('../assets/images/benefitHoneybee.png');
+    background-image: url("../assets/images/benefitHoneybee.png");
     background-size: 100%;
     background-repeat: no-repeat;
     display: none;

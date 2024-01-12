@@ -1,6 +1,6 @@
 @keyframes stretch {
   0% {
-    transform: scale(0.5);
+    transform: scale(.5);
     background-color: white;
   }
   50% {
@@ -15,7 +15,7 @@
 @mixin dot-animation {
   animation: {
     direction: alternate;
-    duration: 0.5s;
+    duration: .5s;
     fill-mode: none;
     iteration-count: infinite;
     name: stretch;
@@ -30,31 +30,32 @@
 }
 
 .btnLoading {
-  .sp {
-    display: flex;
 
-    .b {
-      @include dot-animation;
-      animation-delay: 0.1s;
-      margin: 0 5px;
+    .sp {
+      display: flex;
 
-      &:first-child {
-        animation-delay: 0s;
-        margin: 0;
-      }
+      .b {
+        @include dot-animation;
+        animation-delay: .1s;
+        margin: 0 5px;
 
-      &:last-child {
-        animation-delay: 0.2s;
-        margin: 0;
+        &:first-child {
+          animation-delay: 0s;
+          margin: 0;
+        }
+
+        &:last-child {
+          animation-delay: .2s;
+          margin: 0;
+        }
       }
     }
   }
-}
 
-.b {
-  font-weight: normal;
-}
+  .b {
+    font-weight: normal;
+  }
 
-.sp {
-  display: none;
-}
+  .sp {
+    display: none;
+  }

@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 @import 'mixin';
 
 .product {
@@ -97,7 +97,7 @@
     }
 
     &_actualPrice {
-      color: #c74817;
+      color: #C74817;
       font-size: 22px;
       margin-bottom: 26px;
     }
@@ -172,7 +172,7 @@
   margin-bottom: 30px;
 }
 .socialBtns {
-  margin: 20px 0 0;
+  margin: 20px 0 0 ;
   display: flex;
   button {
     margin-right: 10px;
@@ -180,16 +180,16 @@
     height: 41px;
   }
   .facebook {
-    background: url('../assets/images/icons8-facebook.svg') center no-repeat;
+    background: url("../assets/images/icons8-facebook.svg") center no-repeat;
   }
   .telegram {
-    background: url('../assets/images/icons8-telegram-app.svg') center no-repeat;
+    background: url("../assets/images/icons8-telegram-app.svg") center no-repeat;
   }
   .whatsapp {
-    background: url('../assets/images/icons8-whatsapp.svg') center no-repeat;
+    background: url("../assets/images/icons8-whatsapp.svg") center no-repeat;
   }
   .copy {
     border: none;
-    background: url('../assets/images/icons8-copy-24.png') center no-repeat;
+    background: url("../assets/images/icons8-copy-24.png") center no-repeat;
   }
 }

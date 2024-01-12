@@ -9,20 +9,20 @@ Feature: Products
 
   Scenario: To product page
     Given I am on main page
-    When I click on "Products" link
+    When I click on "Продукция" link
     Then I am on products page
 
   Scenario: To about us page
     Given I am on main page
-    When I click on "About us" link
+    When I click on "О нас" link
     Then I am on about us page
 
   Scenario: To account page
     Given I am on main page
-    When I click on "Login" link
+    When I click on "Войти" link
     Then I am on accounts page
 
   Scenario: To cart page
     Given I am on main page
-    When I click on "Cart" link
+    When I click on "Корзина" link
     Then I am on cart page

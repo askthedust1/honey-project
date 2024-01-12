@@ -1,45 +1,25 @@
-@import './variables';
+@import "./variables";
 @import './mixin';
 
 .contacts {
   position: relative;
   padding: 40px 0 40px;
-  margin-bottom: 150px;
+  margin-bottom: 350px;
 
   @include lg {
-    padding-bottom: 150px;
+    padding-bottom: 200px;
   }
 
-  @include lg {
-    margin-bottom: 0;
-  }
-
-  &_mapWrapper {
-    text-align: center;
-    width: 100%;
+  &_map {
+    width: 50%;
+    margin: 0 80px 0;
     @include xl {
-      margin-top: 20px;
+      margin: 0;
     }
-    &_map {
-      width: 900px;
-      height: 300px;
+    @include lg {
+      width: 400px;
+    }
 
-      @include xl {
-        margin-top: 20px;
-      }
-      @include lg {
-        width: 700px;
-      }
-      @include lm {
-        width: 550px;
-      }
-      @include md2 {
-        width: 390px;
-      }
-      @include xs {
-        width: 350px;
-      }
-    }
   }
 
   &_title {
@@ -50,24 +30,7 @@
 
     @include lg {
       margin-bottom: 20px;
-      text-align: center;
-    }
-
-    @include lm {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-  }
-
-  &_subtitle {
-    text-transform: uppercase;
-    font-size: 25px;
-    font-weight: 800;
-    margin-bottom: 20px;
-
-    @include lg {
-      margin-bottom: 20px;
-      text-align: center;
+      text-align: center
     }
 
     @include lm {

@@ -1,6 +1,6 @@
 .adminNav {
   display: flex;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border-radius: 15px;
   margin: 20px 15px 16px;
   padding: 16px 20px;
@@ -17,10 +17,10 @@
     font-family: 'Montserrat', sans-serif;
     padding: 11px;
     font-size: 13px;
-    color: #5a3733;
+    color: #5A3733;
     font-weight: 400;
     letter-spacing: 0.25px;
-    border: 0.5px solid #5a3733;
+    border: 0.5px solid #5A3733;
     border-radius: 4px;
     background-color: #fff;
     width: 265px;
@@ -28,7 +28,7 @@
   }
 
   select:focus-visible {
-    border: 2px solid #5a3733;
+    border: 2px solid #5A3733;
     outline: none;
   }
 
@@ -40,7 +40,7 @@
   }
 
   option:active {
-    background-color: #5a3733;
+    background-color: #5A3733;
     color: #333;
   }
 
@@ -54,10 +54,10 @@
     background: url('../assets/images/findIcon.svg') no-repeat center right 10px;
     height: 40px;
     padding: 8px 40px 8px 10px;
-    border: 0.5px solid #5a3733;
+    border: 0.5px solid #5A3733;
     border-radius: 4px;
     margin: 0 67px 0 0;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
   }
 
   input::placeholder {
@@ -65,11 +65,11 @@
     font-weight: 400;
     letter-spacing: 0.25px;
     font-size: 13px;
-    color: #5a3733;
+    color: #5A3733;
   }
 
   input:focus-visible {
-    border: 2px solid #5a3733;
+    border: 2px solid #5A3733;
     outline: none;
   }
 
@@ -101,8 +101,8 @@
   .addAdminNavBtn {
     position: relative;
     margin: 0 0 0 auto;
-    background-color: #5a3733;
-    color: #ffffff;
+    background-color: #5A3733;
+    color: #FFFFFF;
     height: 40px;
     padding: 0 25px;
     border: none;

@@ -16,36 +16,36 @@
     }
     .box {
       border-radius: 10px;
-      border: 1px solid #5a3733;
+      border: 1px solid #5A3733;
       display: flex;
       align-items: center;
       position: relative;
     }
     span {
       display: inline-block;
-      color: #5a3733;
+      color: #5A3733;
       font-size: 15px;
       font-weight: 600;
       padding: 12px 22px;
-      border-right: 1px solid #5a3733;
+      border-right: 1px solid #5A3733;
     }
     .exit {
       border: none;
-      background: transparent url('../assets/images/adminIcon/exitAdmin.png') no-repeat center;
+      background: transparent url("../assets/images/adminIcon/exitAdmin.png") no-repeat center;
       padding: 11px;
       margin: 0 11px;
       &:hover {
-        background-image: url('../assets/images/adminIcon/exitAdminHover.png');
+        background-image: url("../assets/images/adminIcon/exitAdminHover.png");
       }
       &:active {
-        background-image: url('../assets/images/adminIcon/exitAdminActive.png');
+        background-image: url("../assets/images/adminIcon/exitAdminActive.png");
       }
     }
     .confirm {
       display: none;
       padding: 16px 10px;
       border-radius: 15px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
       position: absolute;
       top: 55px;
       left: -60px;
@@ -101,91 +101,91 @@
     }
     .main {
       &::before {
-        background-image: url('../assets/images/adminIcon/mainAdmin.png');
+        background-image: url("../assets/images/adminIcon/mainAdmin.png");
       }
       &:hover {
         &::before {
-          background-image: url('../assets/images/adminIcon/mainAdminHover.png');
+          background-image: url("../assets/images/adminIcon/mainAdminHover.png");
         }
       }
     }
     .product {
       &::before {
-        background-image: url('../assets/images/adminIcon/productAdmin.png');
+        background-image: url("../assets/images/adminIcon/productAdmin.png");
       }
       &:hover {
         &::before {
-          background-image: url('../assets/images/adminIcon/productAdminHover.png');
+          background-image: url("../assets/images/adminIcon/productAdminHover.png");
         }
       }
     }
     .category {
       &::before {
-        background-image: url('../assets/images/adminIcon/categoryAdmin.png');
+        background-image: url("../assets/images/adminIcon/categoryAdmin.png");
       }
       &:hover {
         &::before {
-          background-image: url('../assets/images/adminIcon/categoryAdminHover.png');
+          background-image: url("../assets/images/adminIcon/categoryAdminHover.png");
         }
       }
     }
     .banner {
       &::before {
-        background-image: url('../assets/images/adminIcon/bannerAdmin.png');
+        background-image: url("../assets/images/adminIcon/bannerAdmin.png");
       }
       &:hover {
         &::before {
-          background-image: url('../assets/images/adminIcon/bannerAdminHover.png');
+          background-image: url("../assets/images/adminIcon/bannerAdminHover.png");
         }
       }
     }
     .hit {
       &::before {
-        background-image: url('../assets/images/adminIcon/hitAdmin.png');
+        background-image: url("../assets/images/adminIcon/hitAdmin.png");
       }
       &:hover {
         &::before {
-          background-image: url('../assets/images/adminIcon/hitAdminHover.png');
+          background-image: url("../assets/images/adminIcon/hitAdminHover.png");
         }
       }
     }
     .order {
       &::before {
-        background-image: url('../assets/images/adminIcon/orderAdmin.png');
+        background-image: url("../assets/images/adminIcon/orderAdmin.png");
       }
       &:hover {
         &::before {
-          background-image: url('../assets/images/adminIcon/orderAdminHover.png');
+          background-image: url("../assets/images/adminIcon/orderAdminHover.png");
         }
       }
     }
     .client {
       &::before {
-        background-image: url('../assets/images/adminIcon/peopleAdmin.png');
+        background-image: url("../assets/images/adminIcon/peopleAdmin.png");
       }
       &:hover {
         &::before {
-          background-image: url('../assets/images/adminIcon/peopleAdminHover.png');
+          background-image: url("../assets/images/adminIcon/peopleAdminHover.png");
         }
       }
     }
     .analytics {
       &::before {
-        background-image: url('../assets/images/adminIcon/analyticsAdmin.png');
+        background-image: url("../assets/images/adminIcon/analyticsAdmin.png");
       }
       &:hover {
         &::before {
-          background-image: url('../assets/images/adminIcon/analyticsAdminHover.png');
+          background-image: url("../assets/images/adminIcon/analyticsAdminHover.png");
         }
       }
     }
     .report {
       &::before {
-        background-image: url('../assets/images/adminIcon/reportAdmin.png');
+        background-image: url("../assets/images/adminIcon/reportAdmin.png");
       }
       &:hover {
         &::before {
-          background-image: url('../assets/images/adminIcon/reportAdminHover.png');
+          background-image: url("../assets/images/adminIcon/reportAdminHover.png");
         }
       }
     }
@@ -200,7 +200,7 @@
         top: 13px;
         width: 16px;
         height: 24px;
-        background: url('../assets/images/adminIcon/downArrowAdmin.png') center no-repeat;
+        background: url("../assets/images/adminIcon/downArrowAdmin.png") center no-repeat;
       }
     }
     .detail {

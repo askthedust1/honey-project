@@ -4,7 +4,6 @@ import { selectAdminMain, selectAdminMainHits } from '@/features/adminMain/admin
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { fetchAdminMain, fetchAdminMainHit } from '@/features/adminMain/adminMainThunk';
 import { apiUrl } from '@/constants';
-import Image from 'next/image';
 
 const AdminMain = () => {
   const dispatch = useAppDispatch();
@@ -59,15 +58,7 @@ const AdminMain = () => {
               <tr key={hit.product._id} className={cls.lineBody}>
                 <td>
                   <div className={cls.imgWrap}>
-                    <Image
-                      width={100}
-                      height={80}
-                      priority
-                      quality={80}
-                      className={cls.cardImg}
-                      src={apiUrl + '/' + hit.product.image}
-                      alt="imgProd"
-                    />
+                    <img src={apiUrl + '/' + hit.product.image} alt={hit.product.title} />
                   </div>
                 </td>
                 <td>{hit.product.translations?.ru.title}</td>

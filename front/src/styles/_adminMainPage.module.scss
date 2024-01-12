@@ -2,7 +2,7 @@
   margin-top: 20px;
   width: 1000px;
   &_title {
-    color: #5a3733;
+    color: #5A3733;
     font-size: 30px;
     font-weight: 500;
     margin-bottom: 28px;
@@ -18,46 +18,46 @@
       width: 190px;
       margin: 0 5px 0;
       border-radius: 15px;
-      background: #fff center left 11px no-repeat;
+      background: #FFF center left 11px no-repeat;
       box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.43);
       padding: 15px 3px 15px 67px;
       display: flex;
       flex-direction: column;
     }
     &_number {
-      color: #5a3733;
+      color: #5A3733;
       font-size: 25px;
       font-weight: 500;
     }
     &_description {
-      color: #5a3733;
+      color: #5A3733;
       font-size: 14px;
       font-weight: 500;
     }
     .user {
-      background-image: url('../assets/images/adminIcon/userQuantityIcon.png');
+      background-image: url("../assets/images/adminIcon/userQuantityIcon.png");
     }
     .product {
-      background-image: url('../assets/images/adminIcon/productQuantityIcon.png');
+      background-image: url("../assets/images/adminIcon/productQuantityIcon.png");
     }
     .category {
-      background-image: url('../assets/images/adminIcon/categoryQuantityIcon.png');
+      background-image: url("../assets/images/adminIcon/categoryQuantityIcon.png");
     }
     .order {
-      background-image: url('../assets/images/adminIcon/orderQuantityIcon.png');
+      background-image: url("../assets/images/adminIcon/orderQuantityIcon.png");
     }
     .sum {
-      background-image: url('../assets/images/adminIcon/sumQuantityIcon.png');
+      background-image: url("../assets/images/adminIcon/sumQuantityIcon.png");
     }
   }
   .hit {
     margin: 34px 5px 0;
     padding: 14px 30px;
     border-radius: 15px;
-    background: #fff;
+    background: #FFF;
     box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
     &_title {
-      color: #5a3733;
+      color: #5A3733;
       display: inline-block;
       font-size: 20px;
       font-weight: 500;
@@ -69,18 +69,18 @@
     .table {
       border-collapse: separate;
       width: 100%;
-      th,
-      td {
+      th, td {
         padding: 8px;
         text-align: center;
         border-bottom: 1px solid #ddd;
-        color: #5a3733;
+        color: #5A3733;
         font-size: 15px;
         font-weight: 500;
         line-height: 21px;
         letter-spacing: 0.1px;
       }
       thead {
+
         th {
           font-size: 16px;
           font-weight: 700;
@@ -102,6 +102,7 @@
         .lineBody {
           border-bottom: 1px solid rgba(90, 55, 51, 0.11);
           padding: 8px 20px;
+
         }
         td {
           margin: 8px 0;

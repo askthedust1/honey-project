@@ -1,4 +1,4 @@
-@import './variables';
+@import "./variables";
 @import './mixin';
 
 .catalog {
@@ -100,7 +100,7 @@
         width: 315px;
         height: 168px;
         transition: 0.2s;
-        background-color: #f7f3f0;
+        background-color: #F7F3F0;
 
         @include xl {
           width: 260px;
@@ -160,7 +160,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url('../assets/images/catalogTopLineBg.png');
+  background-image: url("../assets/images/catalogTopLineBg.png");
   background-size: 100%;
   background-repeat: no-repeat;
   height: 70px;
@@ -172,7 +172,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  background-image: url('../assets/images/catalogBottomLineBg.png');
+  background-image: url("../assets/images/catalogBottomLineBg.png");
   background-size: 100%;
   background-repeat: no-repeat;
   height: 70px;
@@ -187,7 +187,7 @@
   z-index: 0;
   width: 500px;
   height: 340px;
-  background-image: url('../assets/images/catalogOrangeBg1.png');
+  background-image: url("../assets/images/catalogOrangeBg1.png");
   background-size: 100%;
   background-repeat: no-repeat;
 
@@ -224,7 +224,7 @@
   z-index: 0;
   width: 500px;
   height: 370px;
-  background-image: url('../assets/images/catalogOrangeBg2.png');
+  background-image: url("../assets/images/catalogOrangeBg2.png");
   background-size: 100%;
   background-repeat: no-repeat;
 
