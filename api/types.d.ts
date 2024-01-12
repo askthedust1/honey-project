@@ -5,7 +5,6 @@ export interface IUserApi {
   role: string;
   displayName: string;
   phone: string;
-  googleID?: string;
   address?: string;
 }
 

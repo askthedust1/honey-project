@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppSelector } from '@/store/hook';
 import { selectAllProducts } from '@/features/products/productsSlice';
 import ProductItem from '@/features/products/components/ProductItem';
-import { IProduct } from '@/types';
+import { AnimationState, IProduct } from '@/types';
 import { useTranslation } from 'next-i18next';
 import cls from '../../styles/_products.module.scss';
 import SideBar from '@/components/UI/sideBar/SideBar';
@@ -11,6 +11,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import FilterBar from '@/components/FilterBar/FilterBar';
+import { motion } from 'framer-motion';
 
 interface Props {
   pageName?: string;
@@ -28,6 +29,26 @@ const ProductsAll: React.FC<Props> = ({ pageName, id }) => {
 
   const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
+  };
+
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const item: { hidden: AnimationState; visible: AnimationState } = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
   };
 
   return (
@@ -75,11 +96,16 @@ const ProductsAll: React.FC<Props> = ({ pageName, id }) => {
           {products.length === 0 ? (
             <div style={{ width: '100%', textAlign: 'center', marginTop: '20px' }}>Товаров нет</div>
           ) : (
-            <div className={cls.list}>
+            <motion.div
+              className={cls.list}
+              variants={container}
+              initial="hidden"
+              animate="visible"
+            >
               {products.map((el: IProduct) => (
-                <ProductItem key={el._id} product={el} />
+                <ProductItem key={el._id} product={el} item={item} />
               ))}
-            </div>
+            </motion.div>
           )}
         </div>
       </div>

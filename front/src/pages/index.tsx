@@ -5,7 +5,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import BenefitsOfHoney from '@/components/home/benefitsOfHoney/BenefitsOfHoney';
 import Bestseller from '@/components/home/bestseller/Bestseller';
-import React, { useEffect } from 'react';
 import { fetchBanners } from '@/features/banners/bannersThunk';
 import axiosApi from '@/axiosApi';
 import { fetchBestsellers } from '@/features/products/productsThunk';
@@ -16,16 +15,6 @@ import { useTranslation } from 'next-i18next';
 
 const Home: MyPage = () => {
   const { t } = useTranslation('header');
-  useEffect(() => {
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-
-    return () => {
-      firstScriptTag.parentNode?.removeChild(tag);
-    };
-  }, []);
 
   return (
     <>

@@ -30,6 +30,7 @@ const Order: MyPage = () => {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -54,6 +55,12 @@ const Order: MyPage = () => {
   });
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+
+    if (value.trim().length === 0 && value.length > 0) {
+      setError(true);
+      return;
+    }
+
     setState((prevState) => ({
       ...prevState,
       [name]: value,
@@ -116,9 +123,7 @@ const Order: MyPage = () => {
                   name="address"
                   placeholder={t('yourAddress')}
                 />
-                {!state.address.length && (
-                  <div className={cls.requiredAddress}>{t('requiredAddress')}</div>
-                )}
+                {error && <div className={cls.requiredAddress}>{t('requiredAddress')}</div>}
               </div>
               <div className={cls.order_leftBlock_item}>
                 <h4>{t('selectPaymentMethod')}:</h4>
@@ -169,10 +174,6 @@ const Order: MyPage = () => {
               <div className={cls.item}>
                 <span>{t('priceLabel')}</span>
                 <span>{getTotalPrice()} сом</span>
-              </div>
-              <div className={cls.item}>
-                <span>{t('discountLabel')}</span>
-                <span>0</span>
               </div>
               <div className={cls.item}>
                 <span>{t('deliveryLabel')}</span>

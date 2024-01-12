@@ -39,20 +39,23 @@ const TransactionSchema = new mongoose.Schema({
   address: {
     type: String,
     required: true,
+    validate: {
+      validator: function(value: string) {
+        return value.trim().length > 0;
+      },
+      message: 'Адрес не может состоять только из пробелов',
+    },
   },
   kits: [kitSchema],
-
   totalPrice: {
     type: Number,
     required: true,
   },
-
   status: {
     type: Boolean,
     required: true,
     default: false,
   },
-
   dateTime: {
     type: String,
     required: true,
