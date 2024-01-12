@@ -97,26 +97,6 @@ const ProductSchema = new Schema({
 
 const Product = mongoose.model('Product', ProductSchema);
 
-// const Modify = Product.aggregate([
-//   {
-//     $project: {
-//       category: '$category',
-//       image: '$image',
-//       oldPrice: '$oldPrice',
-//       actualPrice: '$actualPrice',
-//       amount: '$amount',
-//       isActive: '$isActive',
-//       isHit: '$isHit',
-//       datetime: '$datetime',
-//       lang: '$translations.en',
-//       title: `$translations.en.title`,
-//       description: `$translations.en.description`,
-//     },
-//   },
-// ]);
-//
-// const ModifyProduct = Modify.map(i => new Product(i))
-
 export const pipelineProduct = (lang: string) => ({
   $project: {
     category: '$category',
@@ -133,11 +113,4 @@ export const pipelineProduct = (lang: string) => ({
   },
 });
 
-// export const oneProduct = (lang: string, id: string) => [
-//   {
-//     $match: {
-//       _id: id,
-//     },
-//   },
-// ];
 export default Product;

@@ -3,8 +3,7 @@ Feature: Products
   We have to go to the admin page we need to check functionality
 
   Scenario: To watch detail information
-    Given I am on main page
-    Given I click on "Войти" link
+    Given I am on accounts page
     Given I click the "#button-log" button
     When I enter form fields:
       | email    | admin@gmail.com |
@@ -19,8 +18,7 @@ Feature: Products
     Then I see "Информация о продукте" in title
 
   Scenario: To create new product
-    Given I am on main page
-    Given I click on "Войти" link
+    Given I am on accounts page
     Given I click the "#button-log" button
     When I enter form fields:
       | email    | admin@gmail.com |

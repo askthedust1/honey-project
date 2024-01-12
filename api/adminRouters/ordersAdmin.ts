@@ -10,8 +10,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
   try {
     if (req.query.statusId && req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
-      console.log('inside by status and name search');
-      let page = 1;
+      let page ;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -51,8 +50,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.statusId && req.query.camePage && req.query.searchNum) {
       const nSearch = req.query.searchNum as string;
-      console.log('inside by status and Number search');
-      let page = 1;
+      let page ;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -91,9 +89,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && req.query.search) {
-      console.log('inside only by search Name');
 
-      let page = 1;
+      let page ;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -131,8 +128,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && req.query.searchNum) {
-      console.log('inside only by search Number');
-      let page = 1;
+      let page ;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -170,8 +166,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.statusId && req.query.camePage) {
-      console.log('inside by only status');
-      let page = 1;
+      let page ;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -200,8 +195,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
-      console.log('inside only by search');
-      let page = 1;
+      let page ;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -240,8 +234,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && !req.query.search) {
-      console.log('inside only by some page of ALL orders');
-      let page = 1;
+      let page ;
       page = parseInt(req.query.camePage as string);
       const perPage = 10;
       const totalOrders = await Transaction.countDocuments();
@@ -262,8 +255,6 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
       return res.send(ordersWithPages);
     }
-
-    console.log('inside by ALL orders without camePage');
 
     const transactions = await Transaction.find()
       .populate('user', 'displayName')

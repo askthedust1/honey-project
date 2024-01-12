@@ -3,7 +3,7 @@ $circle-size: 40px;
 $inner-circle-size: 50px;
 $inner-circle-color: white;
 
-.pagination_block{
+.pagination_block {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -39,7 +39,8 @@ $inner-circle-color: white;
       font-size: 50px;
     }
 
-    .previous, .next{
+    .previous,
+    .next {
       display: inline-block;
       color: white;
       font-weight: bold;
@@ -49,29 +50,28 @@ $inner-circle-color: white;
 
       width: $circle-size;
       height: $circle-size;
-      background-color: #D3A863;
+      background-color: #d3a863;
       border-radius: 50%;
       justify-content: center;
       align-items: center;
 
-        &:hover {
-          background-color: #FFB931;
-        }
-          &:active {
-            background-color: #D3A863;
-            color: white;
-          }
+      &:hover {
+        background-color: #ffb931;
+      }
+      &:active {
+        background-color: #d3a863;
+        color: white;
+      }
     }
 
     .span_text {
       color: transparent;
     }
 
-
     .circle {
       width: 80px;
       height: 80px;
-      background-color: #D3A863;
+      background-color: #d3a863;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -88,7 +88,6 @@ $inner-circle-color: white;
         display: flex;
         justify-content: center;
         align-items: center;
-
       }
     }
   }

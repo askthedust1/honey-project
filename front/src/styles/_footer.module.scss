@@ -5,7 +5,7 @@
   position: relative;
 
   .logo_block {
-    background-color: #D3A863;
+    background-color: #d3a863;
     border-radius: 50%;
   }
 
@@ -18,7 +18,7 @@
     height: 317px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("../assets/images/flowers.png") ;
+    background-image: url('../assets/images/flowers.png');
     @include mix.xl {
       top: auto;
       left: -239px;
@@ -40,7 +40,7 @@
     height: 434px;
     background-size: auto;
     background-repeat: no-repeat;
-    background-image: url("../assets/images/flowers.png");
+    background-image: url('../assets/images/flowers.png');
     @include mix.xl {
       top: -105px;
       right: -216px;
@@ -75,7 +75,7 @@
       height: 152px;
       flex-shrink: 0;
       cursor: pointer;
-      background-color: #D3A863;
+      background-color: #d3a863;
       border-radius: 65%;
       display: block;
       position: absolute;
@@ -164,7 +164,9 @@
       a {
         color: #000000;
         margin: 14px 0 0;
-        font-feature-settings: 'clig' off, 'liga' off;
+        font-feature-settings:
+          'clig' off,
+          'liga' off;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -180,13 +182,15 @@
       }
 
       a:hover {
-        color: #FFB931;
+        color: #ffb931;
       }
 
       span {
-        color: #FFFFFF;
+        color: #ffffff;
         margin: 14px 0 0;
-        font-feature-settings: 'clig' off, 'liga' off;
+        font-feature-settings:
+          'clig' off,
+          'liga' off;
         font-size: 16px;
         font-style: normal;
         font-weight: 600;
@@ -214,7 +218,7 @@
         align-items: center;
 
         a {
-          background-color: #FFB606;
+          background-color: #ffb606;
           width: 40px;
           height: 40px;
           border-radius: 50%;
