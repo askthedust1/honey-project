@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 interface Props {
   product: IProduct;
   customClass?: string;
-  item: { hidden: AnimationState; visible: AnimationState };
+  item?: { hidden: AnimationState; visible: AnimationState };
 }
 
 const ProductItem: React.FC<Props> = ({ product, customClass, item }) => {
