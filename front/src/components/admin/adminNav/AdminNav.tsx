@@ -42,7 +42,6 @@ const AdminNav: React.FC<Props> = (props) => {
     if (props.getCategorySelectId) {
       props.getCategorySelectId(categoryId);
     }
-    // console.log(categoryId);
   };
 
   const setSearchItem = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -89,7 +88,7 @@ const AdminNav: React.FC<Props> = (props) => {
 
     if (props.getStatus && props.orderPage !== undefined && props.orderPage !== null) {
       props.getStatus(statusId);
-      const currentPage = props.orderPage.toString();
+      // const currentPage = props.orderPage.toString();
 
       if (statusId !== '') {
         dispatch(changeStatus(statusId));
