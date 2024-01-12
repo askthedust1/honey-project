@@ -29,7 +29,6 @@ const run = async () => {
       role: 'user',
       displayName: 'Sam Smith ',
       phone: '0772772277',
-      address: 'Some street 1',
     },
     {
       email: 'oleg@gmail.com',
@@ -38,7 +37,6 @@ const run = async () => {
       role: 'user',
       displayName: 'Oleg Mongol ',
       phone: '0552827876',
-      address: 'Some street 2',
     },
     {
       email: 'admin@gmail.com',
@@ -47,7 +45,6 @@ const run = async () => {
       role: 'admin',
       displayName: 'Administrator',
       phone: '0555555555',
-      address: 'Some street 3',
     }
   );
 

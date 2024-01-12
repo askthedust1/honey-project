@@ -17,8 +17,9 @@ const Imageitem: React.FC<Props> = ({ image }) => {
         width="0"
         height="0"
         sizes="100vw"
-        priority
         style={{ width: '100%', height: 'auto' }}
+        placeholder="blur"
+        blurDataURL={picture}
         quality={50}
         src={picture}
         alt={image.description}

@@ -2,7 +2,7 @@
 @import 'variables';
 
 .bestseller {
-  padding: 40px;
+  padding: 40px 40px 0 40px;
   text-transform: uppercase;
 
   @include mix.md {

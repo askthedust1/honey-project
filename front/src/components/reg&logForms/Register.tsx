@@ -27,7 +27,6 @@ const Register: React.FC<Props> = ({ containerRef }) => {
     passwordConfirm: '',
     displayName: '',
     phone: '',
-    address: '',
   });
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,11 +99,6 @@ const Register: React.FC<Props> = ({ containerRef }) => {
               placeholder="Номер телефона"
             />
             {error && <span className={acc.error}>{getFieldError('phone')}</span>}
-          </div>
-          <div className={acc.formGroup}>
-            <label htmlFor="address">{t('address')}*</label>
-            <input onChange={inputChangeHandler} type="text" name="address" placeholder="Адрес" />
-            {error && <span className={acc.error}>{getFieldError('address')}</span>}
           </div>
           <div className={acc.footer}>
             <ButtonUi
