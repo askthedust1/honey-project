@@ -25,7 +25,7 @@
       cursor: pointer;
       border: none;
       background-color: inherit;
-      background: url("../assets/images/adminIcon/iconCloseModal.png") no-repeat center;
+      background: url('../assets/images/adminIcon/iconCloseModal.png') no-repeat center;
     }
   }
   .content {
@@ -39,9 +39,10 @@
 
       table {
         border-collapse: collapse;
-        background-color: #FFFFFF;
+        background-color: #ffffff;
       }
-      th, td {
+      th,
+      td {
         max-width: 250px;
         padding: 10px;
         border-bottom: 1px solid #ddd;
@@ -105,11 +106,4 @@
       }
     }
   }
-
 }
-
-
-
-
-
-

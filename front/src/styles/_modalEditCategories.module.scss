@@ -9,7 +9,7 @@
   &_form {
     border: 2px solid #7d7d7d;
     margin: 15px auto 0;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 21px;
     position: relative;
     max-width: 800px;
@@ -20,7 +20,7 @@
     box-shadow: 0 0 3px 1px #7d7d7d;
 
     h2 {
-      color: #5A3733;
+      color: #5a3733;
       font-size: 30px;
       font-style: normal;
       font-weight: 500;
@@ -35,8 +35,8 @@
       font-size: 20px;
       padding: 8px 12px;
       border: none;
-      background-color: rgba(39, 174, 96, 0.20);
-      color: #27AE60;
+      background-color: rgba(39, 174, 96, 0.2);
+      color: #27ae60;
       transition: 0.3s;
       border-radius: 8px;
       line-height: normal;
@@ -49,7 +49,7 @@
   }
 
   &_closeButton {
-    border: 2px solid #27AE60;
+    border: 2px solid #27ae60;
     font-weight: 700;
     font-size: 25px;
     text-align: center;
@@ -60,13 +60,13 @@
     width: 50px;
     height: 50px;
     border-radius: 0 21px 0 21px;
-    background-image: url("../assets/images/modal-close-icon.png");
+    background-image: url('../assets/images/modal-close-icon.png');
     background-size: 100%;
     background-repeat: no-repeat;
-    box-shadow: 0 0 1px 2px #27AE60;
+    box-shadow: 0 0 1px 2px #27ae60;
 
     &:hover {
-      background-color: rgba(39, 174, 96, 0.20);
+      background-color: rgba(39, 174, 96, 0.2);
     }
   }
 
@@ -79,16 +79,16 @@
     img {
       height: 260px;
       width: 260px;
-      box-shadow: 0 0 3px 3px #27AE60;
+      box-shadow: 0 0 3px 3px #27ae60;
       border-radius: 8px;
       position: relative;
       margin: 0 auto;
     }
 
     &::after {
-      content: "Используемое изображение";
+      content: 'Используемое изображение';
       position: absolute;
-      color: #27AE60;
+      color: #27ae60;
       font-size: 16px;
       font-weight: 700;
       top: 0;
@@ -120,11 +120,11 @@
     }
 
     &:hover {
-      border-bottom-color: #5A3733;
+      border-bottom-color: #5a3733;
     }
 
     &:focus {
-      border-bottom-color: #5A3733;
+      border-bottom-color: #5a3733;
     }
 
     &:hover::placeholder {
@@ -133,7 +133,7 @@
       top: 13px;
       left: 15px;
       font-size: 12px;
-      color: #5A3733;
+      color: #5a3733;
     }
 
     &:focus::placeholder {
@@ -142,7 +142,7 @@
       top: 13px;
       left: 15px;
       font-size: 12px;
-      color: #5A3733;
+      color: #5a3733;
     }
   }
 
@@ -165,7 +165,7 @@
     border-radius: 8px;
 
     &:hover {
-      box-shadow: 0 0 3px 3px #5A3733;
+      box-shadow: 0 0 3px 3px #5a3733;
     }
 
     span {
@@ -186,13 +186,13 @@
 
 .langSpan {
   margin-right: 35px;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding: 6px;
   font-size: 14px;
-  color: #5A3733;
+  color: #5a3733;
   font-weight: 600;
   letter-spacing: 0.25px;
-  border: 2.5px solid #5A3733;
+  border: 2.5px solid #5a3733;
   border-radius: 4px;
   background-color: #fff;
 }

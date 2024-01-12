@@ -746,7 +746,7 @@ const run = async () => {
     {
       user: user1._id,
       indexNumber: 3,
-      dateTime: '2023-13-29T14:18:43.174Z',
+      dateTime: '2023-10-29T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
         {
@@ -760,7 +760,7 @@ const run = async () => {
     {
       user: user1._id,
       indexNumber: 4,
-      dateTime: '2023-19-29T14:18:43.174Z',
+      dateTime: '2023-09-29T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
         {
@@ -774,7 +774,7 @@ const run = async () => {
     {
       user: user1._id,
       indexNumber: 5,
-      dateTime: '2023-14-29T14:18:43.174Z',
+      dateTime: '2023-04-25T14:18:43.174Z',
       address: 'ул. Малдыбаева 7/1',
       kits: [
         {
@@ -788,7 +788,7 @@ const run = async () => {
     {
       user: user2._id,
       indexNumber: 6,
-      dateTime: '2023-15-29T14:18:43.174Z',
+      dateTime: '2023-04-08T14:28:43.174Z',
       address: 'Медерова, 35',
       kits: [
         {
@@ -812,7 +812,7 @@ const run = async () => {
     {
       user: user2._id,
       indexNumber: 7,
-      dateTime: '2023-16-29T14:18:43.174Z',
+      dateTime: '2023-04-08T14:28:43.174Z',
       address: 'Ахунбаева, 23',
       kits: [
         {
@@ -831,7 +831,7 @@ const run = async () => {
     {
       user: user2._id,
       indexNumber: 8,
-      dateTime: '2023-17-29T14:18:43.174Z',
+      dateTime: '2023-01-08T14:28:43.174Z',
       address: 'Ахунбаева, 23',
       kits: [
         {
@@ -860,7 +860,7 @@ const run = async () => {
     {
       user: user2._id,
       indexNumber: 9,
-      dateTime: '2023-18-29T14:18:43.174Z',
+      dateTime: '2024-01-08T14:28:43.174Z',
       address: 'Логвиненко, 32',
       kits: [
         {
@@ -899,7 +899,7 @@ const run = async () => {
     {
       user: user2._id,
       indexNumber: 10,
-      dateTime: '2024-01-09T14:28:43.174Z',
+      dateTime: '2023-01-09T14:28:43.174Z',
       address: 'Логвиненко, 34',
       kits: [
         {
