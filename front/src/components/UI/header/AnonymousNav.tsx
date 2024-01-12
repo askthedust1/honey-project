@@ -8,7 +8,9 @@ const AnonymousNav = () => {
   return (
     <li id={'accLog'} className={cls.menu_item}>
       <span className={cls.user_icon}></span>
-      <Link href={'/accounts'}>{t('login')}</Link>
+      <Link href={'/accounts'}>
+        {t('login')}
+      </Link>
     </li>
   );
 };

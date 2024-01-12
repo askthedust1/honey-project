@@ -53,23 +53,30 @@ const AdminNav: React.FC<Props> = (props) => {
 
   const setSearchName = async (event: ChangeEvent<HTMLInputElement>) => {
     const item = event.target.value;
+    const verifiedItem = item.replace(/\s+/g, ' ');
+    const regex = /^[\p{L} ]*$/u;
+
     setSearchNameState(item);
-    if (item.length > 0) {
-      setSearchPhoneState('');
-    }
-    if (props.getDisplayName) {
-      props.getDisplayName(item);
+
+    if (regex.test(verifiedItem) || verifiedItem === '') {
+      if (verifiedItem.length > 0) {
+        setSearchPhoneState('');
+      }
+      if (props.getDisplayName) {
+        props.getDisplayName(verifiedItem);
+      }
     }
   };
 
   const setSearchPhone = async (event: ChangeEvent<HTMLInputElement>) => {
     const item = event.target.value;
-    setSearchPhoneState(item);
-    if (item.length > 0) {
+    const numberValue = item.replace(/[^\d]/g, '');
+    setSearchPhoneState(numberValue);
+    if (numberValue.length > 0) {
       setSearchNameState('');
     }
     if (props.getPhone) {
-      props.getPhone(item);
+      props.getPhone(numberValue);
     }
   };
 
@@ -81,10 +88,9 @@ const AdminNav: React.FC<Props> = (props) => {
 
     if (props.getStatus && props.orderPage !== undefined && props.orderPage !== null) {
       props.getStatus(statusId);
-      const currentPage = props.orderPage.toString();
+      // const currentPage = props.orderPage.toString();
 
       if (statusId !== '') {
-        console.log({ id: statusId, page: currentPage });
         dispatch(changeStatus(statusId));
       } else {
         dispatch(changeStatus(null));
@@ -182,7 +188,9 @@ const AdminNav: React.FC<Props> = (props) => {
           margin: '0 22px 0 0',
           opacity: searchName.length > 0 ? '0.4' : '1',
         }}
-        type="text"
+        type="number"
+        pattern="[0-9]*"
+        inputMode="numeric"
         name="findOrderPhone"
         id="findOrderPhone"
         placeholder="Найти по номеру"

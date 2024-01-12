@@ -33,7 +33,6 @@ const CatalogCategories = () => {
                   className={cls.catalog_list_item_img}
                   src={apiUrl + '/' + item.image}
                   alt={item.title}
-                  priority
                   width={315}
                   height={168}
                 />

@@ -39,7 +39,6 @@ const Header = () => {
           <Image
             src={logo.src}
             alt={'Aman Kyrgyz Honey logo'}
-            priority
             width={124}
             height={46}
             className={cls.logo}

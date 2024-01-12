@@ -4,9 +4,8 @@ import { wrapper } from '@/store/store';
 import {
   fetchProducts,
   fetchProductsFilter,
-  fetchProductsPromotion,
-  fetchProductsSearch,
-} from '@/features/products/productsThunk';
+  fetchProductsPromotion, fetchProductsSearch
+} from "@/features/products/productsThunk";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { MyPage } from '@/components/common/types';

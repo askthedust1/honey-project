@@ -3,7 +3,7 @@
 
   h2 {
     margin: 20px 0 14px;
-    color: #5a3733;
+    color: #5A3733;
     font-size: 30px;
     font-style: normal;
     font-weight: 500;
@@ -18,7 +18,7 @@
     flex-direction: column;
     box-sizing: border-box;
     border-radius: 15px;
-    background: #fff;
+    background: #FFF;
     box-shadow: 0 0 2px 0 rgba(90, 55, 51, 0.25);
 
     h4 {
@@ -27,13 +27,13 @@
 
     .langSpan {
       margin-right: 13px;
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       padding: 11px;
       font-size: 14px;
-      color: #5a3733;
+      color: #5A3733;
       font-weight: 600;
       letter-spacing: 0.25px;
-      border: 2.5px solid #5a3733;
+      border: 2.5px solid #5A3733;
       border-radius: 4px;
       background-color: #fff;
     }
@@ -44,7 +44,7 @@
       flex-direction: column;
       border: 2px solid #5a3733;
       padding: 20px;
-      background: #fcf8f5;
+      background: #FCF8F5;
       border-radius: 15px;
 
       .nameInputBlock {
@@ -56,21 +56,21 @@
       margin: 20px 0;
       border: 2px solid #5a3733;
       padding: 20px;
-      background: #fcf8f5;
+      background: #FCF8F5;
       border-radius: 15px;
-      div {
+      div{
         display: flex;
       }
       .langSpanText {
         display: block;
         margin: 8px 20px 78px 0;
-        font-family: 'Montserrat', sans-serif;
+        font-family: "Montserrat", sans-serif;
         padding: 11px;
         font-size: 14px;
-        color: #5a3733;
+        color: #5A3733;
         font-weight: 600;
         letter-spacing: 0.25px;
-        border: 2.5px solid #5a3733;
+        border: 2.5px solid #5A3733;
         border-radius: 4px;
         background-color: #fff;
       }
@@ -83,14 +83,14 @@
     }
 
     button {
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       width: 263px;
       margin: 15px auto 0 auto;
       font-size: 20px;
       padding: 13px 8px;
       border: none;
-      background-color: rgba(39, 174, 96, 0.2);
-      color: #27ae60;
+      background-color: rgba(39, 174, 96, 0.20);
+      color: #27AE60;
       transition: 0.3s;
       border-radius: 8px;
       line-height: normal;
@@ -125,11 +125,11 @@
     }
 
     &:hover {
-      border-bottom-color: #5a3733;
+      border-bottom-color: #5A3733;
     }
 
     &:focus {
-      border-bottom-color: #5a3733;
+      border-bottom-color: #5A3733;
     }
 
     &:hover::placeholder {
@@ -138,7 +138,7 @@
       top: 13px;
       left: 15px;
       font-size: 12px;
-      color: #5a3733;
+      color: #5A3733;
     }
 
     &:focus::placeholder {
@@ -147,7 +147,7 @@
       top: 13px;
       left: 15px;
       font-size: 12px;
-      color: #5a3733;
+      color: #5A3733;
     }
   }
   .bottomFormBlocks {
@@ -161,17 +161,17 @@
     margin: 20px 29px 0 0;
     border: 2px solid #5a3733;
     padding: 20px;
-    background: #fcf8f5;
+    background: #FCF8F5;
     border-radius: 15px;
     width: 50%;
     select {
       font-family: 'Montserrat', sans-serif;
       padding: 11px;
       font-size: 16px;
-      color: #5a3733;
+      color: #5A3733;
       font-weight: 400;
       letter-spacing: 0.25px;
-      border: 0.5px solid #5a3733;
+      border: 0.5px solid #5A3733;
       border-radius: 4px;
       background-color: #fff;
       width: 100%;
@@ -179,7 +179,7 @@
     }
 
     select:focus-visible {
-      border: 2px solid #5a3733;
+      border: 2px solid #5A3733;
       outline: none;
     }
 
@@ -191,7 +191,7 @@
     }
 
     option:active {
-      background-color: #5a3733;
+      background-color: #5A3733;
       color: #333;
     }
 
@@ -207,7 +207,7 @@
     margin: 20px 0;
     border: 2px solid #5a3733;
     padding: 20px;
-    background: #fcf8f5;
+    background: #FCF8F5;
     border-radius: 15px;
   }
 
@@ -230,8 +230,8 @@
     border-radius: 8px;
 
     &:hover {
-      box-shadow: 0 0 3px 3px #5a3733;
-      color: #5a3733;
+      box-shadow: 0 0 3px 3px #5A3733;
+      color: #5A3733;
     }
 
     span {

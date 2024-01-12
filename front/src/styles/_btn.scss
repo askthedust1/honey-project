@@ -1,6 +1,7 @@
 @import '@/styles/_variables.scss';
 @import 'mixin';
 
+
 .btn-primary {
   display: inline-block;
   padding: 16px 34px;
@@ -11,7 +12,7 @@
   cursor: pointer;
   text-decoration: none;
   font-size: 16px;
-  transition: 0.3s;
+  transition: .3s;
 
   &:hover {
     background: $primary-hover;
@@ -36,7 +37,7 @@
   cursor: pointer;
   text-decoration: none;
   font-size: 16px;
-  transition: 0.3s;
+  transition: .3s;
 
   &:hover {
     background: #612d01;

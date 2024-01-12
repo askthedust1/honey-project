@@ -189,4 +189,6 @@ transactionsRouter.patch('/:id/toggleStatus', auth, permit('admin'), async (req,
   }
 });
 
+// findByIdAndUpdate поумолчанию возвращает документ до его обновления, а НЕ ПОСЛЕ.
+// { new: true } вернет обновленный документ, а не оригинальный.
 export default transactionsRouter;

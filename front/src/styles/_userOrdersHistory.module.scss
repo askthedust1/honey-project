@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 @import 'mixin';
 
 .history {
@@ -38,6 +38,7 @@
     }
   }
 
+
   &_return {
     color: $primary;
     font-size: 20px;
@@ -73,8 +74,7 @@
     background-color: #f3efef;
   }
 
-  th,
-  td {
+  th, td {
     text-align: center;
     border-bottom: 1px solid #ddd;
   }
@@ -106,7 +106,7 @@
   width: 280px;
 }
 .ordersCards {
-  display: none;
+    display: none;
 
   @include lm {
     display: flex;
@@ -117,26 +117,27 @@
     justify-content: center;
   }
 
-  &_card {
-    border: 2px solid $text-color;
+&_card {
+  border: 2px solid $text-color;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 600px;
+
+  p {
+    margin-bottom: 5px;
+  }
+
+  &_marker {
+    font-weight: bold;
+  }
+
+  &_order {
+    border: 1px solid $text-color;
     border-radius: 15px;
     padding: 10px;
-    margin: 10px 0;
-    width: 600px;
-
-    p {
-      margin-bottom: 5px;
-    }
-
-    &_marker {
-      font-weight: bold;
-    }
-
-    &_order {
-      border: 1px solid $text-color;
-      border-radius: 15px;
-      padding: 10px;
-      margin-top: 10px;
-    }
+    margin-top: 10px;
   }
+}
+
 }

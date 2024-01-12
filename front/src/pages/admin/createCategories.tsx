@@ -12,7 +12,6 @@ import {
 import { MyPage } from '@/components/common/types';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import Head from 'next/head';
-import Image from 'next/image';
 
 const CreateCategories: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -133,16 +132,7 @@ const CreateCategories: MyPage = () => {
           />
           <label className={cls.createCategory_fileInputLabel} htmlFor="fileCategory">
             {file ? (
-              <Image
-                style={{ width: '250px', height: '300px' }}
-                width={100}
-                height={100}
-                priority
-                quality={80}
-                className={cls.img}
-                src={file ? URL.createObjectURL(file) : ''}
-                alt="img"
-              />
+              <img src={file ? URL.createObjectURL(file) : ''} alt="" />
             ) : (
               <span
                 style={{

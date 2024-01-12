@@ -2,14 +2,14 @@
 
 .wrapper {
   padding: 10px 20px;
-  h2 {
+  h2{
     margin: 10px 0 15px 33px;
   }
 }
 
 .wrapperBottom {
   border-radius: 15px;
-  background: #fff;
+  background: #FFF;
   display: flex;
   flex-direction: column;
   width: 1005px;
@@ -19,7 +19,7 @@
 }
 
 .formTitle {
-  color: #5a3733;
+  color: #5A3733;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -31,7 +31,7 @@
 .select {
   width: 744px;
   height: 51px;
-  color: #5a3733;
+  color: #5A3733;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -48,7 +48,7 @@
 
 .addTitle {
   text-align: center;
-  color: #5a3733;
+  color: #5A3733;
   font-size: 29px;
   font-style: normal;
   font-weight: 500;
@@ -59,8 +59,8 @@
 .formInput {
   width: 744px;
   height: 51px;
-  color: #5a3733;
-  border: #5a3733 1px solid;
+  color: #5A3733;
+  border: #5A3733 1px solid;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -71,9 +71,9 @@
 }
 
 .formBtn {
-  color: #fff;
+  color: #FFF;
   border-radius: 4px;
-  background: #ff8f31;
+  background: #FF8F31;
   font-size: 19px;
   font-style: normal;
   font-weight: 600;
@@ -83,7 +83,7 @@
   margin-left: auto;
 }
 
-.formBtn:disabled {
+.formBtn:disabled{
   background: gray;
   color: #111;
   cursor: no-drop;
