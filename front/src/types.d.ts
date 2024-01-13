@@ -295,6 +295,7 @@ export interface IOrder {
   status: boolean;
   dateTime: string;
   kits: IProductOfKits[];
+  payment: string;
 }
 
 export interface IOrderAdminView {
@@ -306,6 +307,7 @@ export interface IOrderAdminView {
   status: boolean;
   dateTime: string;
   kits: IProductOfKits[];
+  payment: string;
 }
 
 export interface IOrderAdminFullResponse {
@@ -323,6 +325,7 @@ export interface IFullOrder {
   kits: OrderMutation[];
   address: string;
   dateTime: string;
+  payment: string;
 }
 
 export interface IOrderMutation {

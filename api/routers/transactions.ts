@@ -151,6 +151,7 @@ transactionsRouter.post('/', auth, async (req, res, next) => {
       totalPrice: totalPrice,
       address: req.body.address,
       dateTime: req.body.dateTime,
+      payment: req.body.payment,
       status: false,
     };
 

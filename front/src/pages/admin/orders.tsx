@@ -86,6 +86,7 @@ const Orders: MyPage = () => {
                   <th>Телефон</th>
                   <th>Адрес</th>
                   <th>Сумма</th>
+                  <th>Оплата</th>
                   <th>Статус</th>
                   <th>Действие</th>
                 </tr>
@@ -101,6 +102,7 @@ const Orders: MyPage = () => {
                     </td>
                     <td>{item.address}</td>
                     <td>{item.totalPrice}</td>
+                    <td>{item.payment}</td>
                     <td>
                       {item.status ? (
                         <button className={cls.btnActive} onClick={() => onStatusActive(item._id)}>

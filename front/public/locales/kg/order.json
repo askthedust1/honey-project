@@ -8,6 +8,7 @@
   "cashPayment": "Ачык",
   "cardPayment": "Карта",
   "paymentOptions": "Оптима же М-Банк карталарына ачык төлөм",
+  "payment": "Төлөм жеткирүү учурунда курьерге накталай акча менен жүргүзүлөт",
   "contactInformation": "Байланыш маалымат",
   "clientNameLabel": "Сатуучу:",
   "phoneNumberLabel": "Телефон номери:",

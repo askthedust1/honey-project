@@ -25,6 +25,7 @@ const Order: MyPage = () => {
   const [isClient, setIsClient] = useState(false);
   const [state, setState] = useState({
     address: '',
+    payment: 'Картой',
   });
   const cart = useAppSelector(selectCart);
   const user = useAppSelector(selectUser);
@@ -75,6 +76,7 @@ const Order: MyPage = () => {
           kits: fullOrderArr,
           address: state.address ? state.address : 'defaultAddress',
           dateTime: new Date().toISOString(),
+          payment: state.payment,
         };
         dispatch(changeDate(fullOrder.dateTime));
         await dispatch(createOrder(fullOrder));
@@ -86,8 +88,12 @@ const Order: MyPage = () => {
     }
   };
   const [choice, setChoice] = useState<boolean>(false);
-  const changeSelection = () => {
+  const changeSelection = (paymentMethod: string) => {
     setChoice(!choice);
+    setState((prevState) => ({
+      ...prevState,
+      payment: paymentMethod,
+    }));
   };
 
   if (cart.length === 0) {
@@ -130,14 +136,14 @@ const Order: MyPage = () => {
                 <div className={cls.choice}>
                   <strong
                     className={choice ? cls.selected : cls.notSelected}
-                    onClick={changeSelection}
+                    onClick={() => changeSelection('Наличными')}
                   >
                     {t('cashPayment')}
                   </strong>
-                  <span>{t('paymentOptions')}</span>
+                  <span>{t('payment')}</span>
                   <strong
                     className={!choice ? cls.selected : cls.notSelected}
-                    onClick={changeSelection}
+                    onClick={() => changeSelection('Картой')}
                   >
                     {t('cardPayment')}
                   </strong>

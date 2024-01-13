@@ -8,6 +8,7 @@
   "cashPayment": "Cash",
   "cardPayment": "Card",
   "paymentOptions": "Payment is made by transfer to Optima or M-Bank cards",
+  "payment": "Payment is made in Cash to the courier upon delivery",
   "contactInformation": "Contact Information",
   "clientNameLabel": "Buyer:",
   "phoneNumberLabel": "Phone Number:",
