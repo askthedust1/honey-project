@@ -80,7 +80,7 @@ const Transaction = () => {
                 </div>
                 <div className={cls.clientInfo}>
                   <span className={cls.name}>{t('paymentMethod')}:</span>
-                  <span>{t('cashPayment')}</span>
+                  <span>{transaction?.payment}</span>
                 </div>
               </div>
               <ButtonUi btn={cls.historyBtn} text={t('purchaseHistory')} link={'/orders/history'} />

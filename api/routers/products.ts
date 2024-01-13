@@ -148,7 +148,10 @@ productRouter.get('/search', async (req, res) => {
 
     if (search) {
       const searchField = `translations.${lang}.title`;
-      const query = { [searchField]: regex };
+      const query = {
+        isActive: true,
+        [searchField]: regex
+      };
 
       const productsTotal = await Product.countDocuments(query);
       const totalPages = Math.ceil(productsTotal / productPerPage);

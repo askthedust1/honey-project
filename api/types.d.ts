@@ -44,6 +44,7 @@ export interface ITransactionPost {
   kits: IKits[];
   dateTime: string;
   status: boolean;
+  payment: string;
 }
 
 export interface ICategoryPost {
