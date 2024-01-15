@@ -121,7 +121,7 @@ const Header = () => {
         </button>
         <ul className={cls.menu__box}>
           <li className={cls.multilingualTwo}>
-            <LanguageSwitcher />
+            <LanguageSwitcher toggleNav={toggleNav} />
           </li>
           <li>
             <Link onClick={toggleNav} className={cls.menu__item} href={'/'}>
