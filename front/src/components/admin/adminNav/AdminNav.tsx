@@ -53,12 +53,18 @@ const AdminNav: React.FC<Props> = (props) => {
 
   const setSearchName = async (event: ChangeEvent<HTMLInputElement>) => {
     const item = event.target.value;
+    const verifiedItem = item.replace(/\s+/g, ' ');
+    const regex = /^[\p{L} ]*$/u;
+
     setSearchNameState(item);
-    if (item.length > 0) {
-      setSearchPhoneState('');
-    }
-    if (props.getDisplayName) {
-      props.getDisplayName(item);
+
+    if (regex.test(verifiedItem) || verifiedItem === '') {
+      if (verifiedItem.length > 0) {
+        setSearchPhoneState('');
+      }
+      if (props.getDisplayName) {
+        props.getDisplayName(verifiedItem);
+      }
     }
   };
 
@@ -183,7 +189,9 @@ const AdminNav: React.FC<Props> = (props) => {
           margin: '0 22px 0 0',
           opacity: searchName.length > 0 ? '0.4' : '1',
         }}
-        type="text"
+        type="number"
+        pattern="[0-9]*"
+        inputMode="numeric"
         name="findOrderPhone"
         id="findOrderPhone"
         placeholder="Найти по номеру"
