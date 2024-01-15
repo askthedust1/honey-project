@@ -709,7 +709,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1100,
-      payment: 'Картой'
+      payment: 'Картой',
     },
 
     {
@@ -740,7 +740,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1200,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -755,7 +755,7 @@ const run = async () => {
         },
       ],
       totalPrice: 900,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -770,7 +770,7 @@ const run = async () => {
         },
       ],
       totalPrice: 500,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -785,7 +785,7 @@ const run = async () => {
         },
       ],
       totalPrice: 700,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user2._id,
@@ -810,7 +810,7 @@ const run = async () => {
         },
       ],
       totalPrice: 950,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user2._id,
@@ -830,7 +830,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user2._id,
@@ -860,7 +860,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user2._id,
@@ -900,7 +900,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1700,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user2._id,
@@ -940,7 +940,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1800,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user2._id,
@@ -980,7 +980,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1900,
-      payment: 'Наличными'
+      payment: 'Наличными',
     },
     {
       user: user1._id,
@@ -995,7 +995,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Наличными'
+      payment: 'Наличными',
     },
     {
       user: user1._id,
@@ -1010,7 +1010,7 @@ const run = async () => {
         },
       ],
       totalPrice: 2100,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -1025,7 +1025,7 @@ const run = async () => {
         },
       ],
       totalPrice: 2100,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -1040,7 +1040,7 @@ const run = async () => {
         },
       ],
       totalPrice: 700,
-      payment: 'Наличными'
+      payment: 'Наличными',
     },
     {
       user: user1._id,
@@ -1055,7 +1055,7 @@ const run = async () => {
         },
       ],
       totalPrice: 700,
-      payment: 'Наличными'
+      payment: 'Наличными',
     },
     {
       user: user1._id,
@@ -1070,7 +1070,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Наличными'
+      payment: 'Наличными',
     },
     {
       user: user1._id,
@@ -1085,7 +1085,7 @@ const run = async () => {
         },
       ],
       totalPrice: 700,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -1100,7 +1100,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -1115,7 +1115,7 @@ const run = async () => {
         },
       ],
       totalPrice: 700,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -1130,7 +1130,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Наличными'
+      payment: 'Наличными',
     }
   );
 

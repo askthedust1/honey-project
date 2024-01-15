@@ -64,12 +64,13 @@ const AdminNav: React.FC<Props> = (props) => {
 
   const setSearchPhone = async (event: ChangeEvent<HTMLInputElement>) => {
     const item = event.target.value;
-    setSearchPhoneState(item);
-    if (item.length > 0) {
+    const numberValue = item.replace(/[^\d]/g, '');
+    setSearchPhoneState(numberValue);
+    if (numberValue.length > 0) {
       setSearchNameState('');
     }
     if (props.getPhone) {
-      props.getPhone(item);
+      props.getPhone(numberValue);
     }
   };
 
