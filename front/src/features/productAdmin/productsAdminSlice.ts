@@ -111,6 +111,7 @@ export const productsAdminSlice = createSlice({
 export const selectAllProductsForAdmin = (state: RootState) => state.productsAdmin.items;
 export const selectOneProductForAdmin = (state: RootState) => state.productsAdmin.item;
 export const selectAllProductsLoading = (state: RootState) => state.productsAdmin.fetchLoading;
+export const selectErrorProduct = (state: RootState) => state.productsAdmin.error;
 export const selectOneProductsLoading = (state: RootState) => state.productsAdmin.fetchOneLoading;
 export const selectActiveStatusLoading = (state: RootState) =>
   state.productsAdmin.patchActiveLoading;
