@@ -155,14 +155,26 @@ productAdminRouter.put(
   auth,
   imagesUpload.single('image'),
   permit('admin'),
-  async (req, res) => {
+  async (req, res, next) => {
     try {
       const id = req.params.id;
       const translationsInfo = JSON.parse(req.body.translations);
       const product = await Product.findById(id);
 
       if (!product) {
-        return res.status(404).send('Product not found!');
+        return res.status(400).send('Product not found!');
+      }
+
+      if (req.body.amount && req.body.amount < 0) {
+        return res.send('Количество товара не может быть меньше нуля!');
+      }
+
+      if (req.body.oldPrice && req.body.oldPrice < 0) {
+        return res.send('Цена не может быть меньше нуля!');
+      }
+
+      if (req.body.actualPrice && req.body.actualPrice < 0) {
+        return res.send('Цена не может быть меньше нуля!');
       }
 
       const updateProduct = await Product.findByIdAndUpdate(id, {
@@ -193,7 +205,10 @@ productAdminRouter.put(
 
       return res.send(updateProduct);
     } catch (e) {
-      return res.status(500).send('error');
+      if (e instanceof Error.ValidationError) {
+        return res.status(400).send(e);
+      }
+      return next(e);
     }
   }
 );

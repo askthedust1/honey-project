@@ -12,8 +12,9 @@ interface ProductQuery {
   category?: string;
 }
 
-const getProductsQuery = (isActive: boolean, categoryId?: string): ProductQuery => ({
+const getProductsQuery = (isActive: boolean, categoryId?: string): { amount: { $gt: number }; isActive: boolean } => ({
   isActive,
+  amount: { $gt: 0 },
   ...(categoryId && { category: categoryId }),
 });
 
@@ -71,7 +72,7 @@ productRouter.get('/', async (req, res) => {
 
     if (filterBy && filterBy === 'hit') {
       const result = await Product.find({
-        $and: [{ isHit: true }, { isActive: true }]
+        $and: [{ isHit: true }, { isActive: true }, {amount: { $gt: 0 }}]
       }).limit(6);
 
       const fit = result.map((i) => {
@@ -87,7 +88,7 @@ productRouter.get('/', async (req, res) => {
 
     if (filterBy && filterBy === 'new') {
       const result = await Product.find({
-        $and: [{ isHit: false }, { isActive: true }]
+        $and: [{ isHit: false }, { isActive: true }, {amount: { $gt: 0 }} ]
       })
           .sort({ datetime: 'descending' })
           .limit(6);
@@ -105,7 +106,7 @@ productRouter.get('/', async (req, res) => {
 
     if (filterBy && filterBy === 'offers') {
       const result = await Product.find({
-        $and: [{ $expr: { $ne: ['$oldPrice', '$actualPrice'] } }, { isActive: true }]
+        $and: [{ $expr: { $ne: ['$oldPrice', '$actualPrice'] } }, { isActive: true }, {amount: { $gt: 0 }}]
       }).limit(6);
 
       const fit = result.map((i) => {
@@ -150,6 +151,7 @@ productRouter.get('/search', async (req, res) => {
       const searchField = `translations.${lang}.title`;
       const query = {
         isActive: true,
+        amount: { $gt: 0 },
         [searchField]: regex
       };
 
@@ -245,6 +247,7 @@ productRouter.get('/:id/relatedProducts', async (req, res) => {
     const relatedProducts = await Product.find({
       category: product.category as string,
       isActive: true,
+      amount: { $gt: 0 },
       _id: { $ne: productId },
     })
       .limit(4)

@@ -40,6 +40,12 @@ const ProductSchema = new Schema({
   amount: {
     type: Number,
     required: true,
+    validate: {
+      validator: function (value: number) {
+        return value > 0;
+      },
+      message: 'Количество не может быть меньше нуля',
+    },
   },
   isActive: {
     type: Boolean,
