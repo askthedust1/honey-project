@@ -134,9 +134,9 @@ const CreateCategories: MyPage = () => {
           <label className={cls.createCategory_fileInputLabel} htmlFor="fileCategory">
             {file ? (
               <Image
-                style={{ width: '250px', height: '300px' }}
-                width={100}
-                height={100}
+                style={{ width: '320px', height: '300px', objectFit: 'contain' }}
+                width={320}
+                height={300}
                 priority
                 quality={80}
                 className={cls.img}
