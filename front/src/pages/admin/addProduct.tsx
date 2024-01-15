@@ -229,7 +229,7 @@ const AddProductForm: MyPage = () => {
               <label className={cls.createCategory_fileInputLabel} htmlFor="fileCategory">
                 {file ? (
                   <Image
-                    style={{ width: '250px', height: '300px' }}
+                    style={{ width: '250px', height: '300px', objectFit: 'contain' }}
                     width={100}
                     height={100}
                     priority

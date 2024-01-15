@@ -259,15 +259,13 @@ const EditProduct: MyPage = () => {
               <h4>Нынешнее изображение </h4>
               <div className={cls.imgBlock}>
                 <Image
+                  style={{ width: '250px', height: '250px', objectFit: 'contain' }}
                   width={100}
                   height={100}
                   src={apiUrl + '/' + state.image}
                   className={cls.product_media_wrapper}
                   alt={'Продукция Aman Kyrgyz Honey'}
-                  layout="responsive"
-                  objectFit="contain"
                 />
-                {/*<img src={apiUrl + '/' + state.image} alt="image" />*/}
               </div>
             </div>
             <div className={cls.imageBlock}>
@@ -281,7 +279,7 @@ const EditProduct: MyPage = () => {
               <label className={cls.createCategory_fileInputLabel} htmlFor="fileCategory">
                 {file ? (
                   <Image
-                    style={{ width: '250px', height: '300px' }}
+                    style={{ width: '250px', height: '250px', objectFit: 'contain' }}
                     width={100}
                     height={100}
                     priority

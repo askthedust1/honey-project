@@ -57,7 +57,7 @@ const Login: React.FC<Props> = ({ containerRef }) => {
               onChange={inputChangeHandler}
               type="password"
               name="password"
-              placeholder="Пароль"
+              placeholder={t('password')}
             />
           </div>
           <div className={acc.footer}>

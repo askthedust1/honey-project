@@ -120,7 +120,13 @@ const ModalEditCategories: React.FC<Props> = (props) => {
         </div>
 
         <div className={cls.modalEdit_imagesBlock}>
-          <Image src={apiUrl + '/' + state.image} alt="Изображение" width={260} height={260} />
+          <Image
+            src={apiUrl + '/' + state.image}
+            alt="Изображение"
+            style={{ objectFit: 'contain' }}
+            width={260}
+            height={260}
+          />
 
           <input
             className={cls.modalEdit_fileInput}
@@ -136,6 +142,7 @@ const ModalEditCategories: React.FC<Props> = (props) => {
                 alt="Изображение"
                 width={260}
                 height={260}
+                style={{ objectFit: 'contain' }}
               />
             ) : (
               <span>Загрузить новое изображение</span>

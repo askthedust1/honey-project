@@ -61,8 +61,13 @@ const Register: React.FC<Props> = ({ containerRef }) => {
       <div className={acc.content}>
         <form className={acc.form} onSubmit={submitFormHandler}>
           <div className={acc.formGroup}>
-            <label htmlFor="username">Имя*</label>
-            <input onChange={inputChangeHandler} type="text" name="displayName" placeholder="Имя" />
+            <label htmlFor="username">{t('name')}*</label>
+            <input
+              onChange={inputChangeHandler}
+              type="text"
+              name="displayName"
+              placeholder={t('name')}
+            />
             {error && <span className={acc.error}>{getFieldError('displayName')}</span>}
           </div>
           <div className={acc.formGroup}>
@@ -71,7 +76,7 @@ const Register: React.FC<Props> = ({ containerRef }) => {
               onChange={inputChangeHandler}
               type="password"
               name="password"
-              placeholder="Пароль"
+              placeholder={t('password')}
             />
             {error && <span className={acc.error}>{getFieldError('password')}</span>}
           </div>
@@ -81,13 +86,18 @@ const Register: React.FC<Props> = ({ containerRef }) => {
               onChange={inputChangeHandler}
               type="password"
               name="passwordConfirm"
-              placeholder="Повторите пароль"
+              placeholder={t('passwordConfirm')}
             />
             {error && <span className={acc.error}>{error.error}</span>}
           </div>
           <div className={acc.formGroup}>
             <label htmlFor="email">Email*</label>
-            <input onChange={inputChangeHandler} type="text" name="email" placeholder="Email" />
+            <input
+              onChange={inputChangeHandler}
+              type="text"
+              name="email"
+              placeholder="example@gmail.com"
+            />
             {error && <span className={acc.error}>{getFieldError('email')}</span>}
           </div>
           <div className={acc.formGroup}>
@@ -96,7 +106,7 @@ const Register: React.FC<Props> = ({ containerRef }) => {
               onChange={inputChangeHandler}
               type="text"
               name="phone"
-              placeholder="Номер телефона"
+              placeholder="0555555555"
             />
             {error && <span className={acc.error}>{getFieldError('phone')}</span>}
           </div>

@@ -35,11 +35,16 @@ const SideBar = () => {
         </button>
       </div>
       <div className={`${cls.sideBar_list} ${!isCategoriesVisible ? cls.hiddenCategories : ''}`}>
-        <Link className={cls.category_item} href={'/products/page/1'}>
+        <Link
+          onClick={() => setIsCategoriesVisible(!isCategoriesVisible)}
+          className={cls.category_item}
+          href={'/products/page/1'}
+        >
           {t('all-products')}
         </Link>
         {categories.map((item) => (
           <Link
+            onClick={() => setIsCategoriesVisible(!isCategoriesVisible)}
             key={item._id}
             href={{
               pathname: '/category/page/path',
@@ -51,6 +56,7 @@ const SideBar = () => {
           </Link>
         ))}
         <Link
+          onClick={() => setIsCategoriesVisible(!isCategoriesVisible)}
           className={cls.category_item}
           href={{
             pathname: '/products/page/1',
