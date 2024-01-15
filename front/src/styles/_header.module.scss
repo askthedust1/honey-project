@@ -6,7 +6,10 @@
   max-width: 1170px;
   margin: -1px auto 0;
   position: relative;
-  padding: 20px 15px 20px 15px;
+  padding: 20px 15px;
+  @include mix.sm {
+    padding: 12px 15px;
+  }
 }
 
 .logo {
@@ -14,6 +17,10 @@
   height: 46px;
   cursor: pointer;
   flex: 1;
+  @include mix.sm {
+    width: 110px;
+    height: 37px;
+  }
 }
 
 .rightSection {
@@ -172,6 +179,9 @@
   @include mix.lg {
     display: flex;
     margin: -9px 0 0 0;
+  }
+  @include mix.sm {
+    height: 30px;
   }
   span,
   span::before,

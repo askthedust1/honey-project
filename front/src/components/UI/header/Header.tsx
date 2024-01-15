@@ -148,7 +148,7 @@ const Header = () => {
               {t('contacts')}
             </Link>
           </li>
-          {user ? <UserNav /> : <AnonymousNav />}
+          {user ? <UserNav toggleNav={toggleNav} /> : <AnonymousNav toggleNav={toggleNav} />}
         </ul>
       </div>
     </header>
