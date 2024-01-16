@@ -47,6 +47,9 @@
 
     &:hover {
       text-decoration: none;
+      @include sm {
+        text-decoration: auto;
+      }
     }
   }
 }
