@@ -47,45 +47,17 @@ export interface ITransactionPost {
   payment: string;
 }
 
-export interface ICategoryPost {
-  translations: {
-    [key: string]: {
-      title: string;
-      description?: string;
-    };
-  };
-  image: string;
-}
-
-export interface IBannerPost {
-  translations: {
-    en: {
-      image?: string;
-    };
-    ru: {
-      image?: string;
-    };
-    kg: {
-      image?: string;
-    };
-  };
-  description: string;
-}
-
-export interface IBanner {
-  image?: string;
-  description: string;
-}
-
 export interface Category {
   _id: Types.ObjectId;
 }
 
 export interface ProductTranslations {
-  [key: string]: {
-    title: string;
-    description: string;
-  } | undefined;
+  [key: string]:
+    | {
+        title: string;
+        description: string;
+      }
+    | undefined;
 }
 
 export interface IProduct {

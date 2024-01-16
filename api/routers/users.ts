@@ -33,7 +33,6 @@ usersRouter.post('/', async (req, res, next) => {
 usersRouter.delete('/sessions', async (req, res, next) => {
   try {
     const token = req.get('Authorization');
-    console.log(token);
 
     if (!token) {
       return res.send({ message: 'Success logout' });
