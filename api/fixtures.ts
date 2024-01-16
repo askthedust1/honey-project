@@ -206,17 +206,17 @@ const run = async () => {
       click: 10,
       translations: {
         ru: {
-          title: 'Связистый мед',
+          title: 'Связистый мед 100гр',
           description:
             'Связистый мед обладает богатым ароматом и глубоким, насыщенным вкусом. Он собирается из цветущих растений на лугах и полях.',
         },
         en: {
-          title: 'Cohesive honey',
+          title: 'Cohesive honey 100g',
           description:
             'Cohesive honey has a rich aroma and a deep, rich taste. It is collected from flowering plants in meadows and fields.',
         },
         kg: {
-          title: 'Бириккен бал',
+          title: 'Бириккен бал 100гр',
           description:
             'Бириккен бал бай жыпар жытка жана терең, бай даамга ээ. Ал жайыттарда жана талааларда гүлдөгөн өсүмдүктөрдөн чогултулат.',
         },
@@ -233,17 +233,17 @@ const run = async () => {
       click: 15,
       translations: {
         ru: {
-          title: 'Акациевый мед',
+          title: 'Акациевый мед 200гр',
           description:
             'Акациевый мед обладает нежным, сладким вкусом и прозрачной текстурой. Он производится из нектара цветущего дерева акации.',
         },
         en: {
-          title: 'Acacia honey',
+          title: 'Acacia honey 200g',
           description:
             'Acacia honey has a delicate, sweet taste and a transparent texture. It is made from the nectar of the flowering acacia tree.',
         },
         kg: {
-          title: 'Акация балы',
+          title: 'Акация балы 200гр',
           description:
             'Акация балы назик, таттуу даамга жана тунук текстурага ээ. Ал гүлдөгөн акация дарагынын ширесинен жасалат.',
         },
@@ -254,22 +254,22 @@ const run = async () => {
       category: honey._id,
       oldPrice: 400,
       actualPrice: 400,
-      amount: 20,
+      amount: 0,
       click: 20,
       image: 'fixtures/White-honey.svg',
       translations: {
         ru: {
-          title: 'Гречишный мед',
+          title: 'Гречишный мед 50гр',
           description:
             'Гречишный мед имеет интенсивный аромат и темно-коричневый цвет. Он производится из цветов гречихи и обладает богатым вкусом с нотами карамели.',
         },
         en: {
-          title: 'Buckwheat honey',
+          title: 'Buckwheat honey 50g',
           description:
             'Buckwheat honey has an intense aroma and dark brown color. It is made from buckwheat flowers and has a rich taste with notes of caramel.',
         },
         kg: {
-          title: 'Гречка бал',
+          title: 'Гречка бал 50гр',
           description:
             'Гречка балынын жыты күчтүү жана кочкул күрөң түскө ээ. Ал гречка гүлдөрүнөн жасалган жана карамель ноталары менен бай даамга ээ.',
         },
@@ -284,17 +284,17 @@ const run = async () => {
       image: 'fixtures/White-honey.svg',
       translations: {
         ru: {
-          title: 'Липовый мед',
+          title: 'Липовый мед 50гр',
           description:
             'Липовый мед обладает светлым оттенком и нежным, цветочным ароматом. Он собирается из цветов липы и обладает мягким, сладким вкусом.',
         },
         en: {
-          title: 'Linden honey',
+          title: 'Linden honey 50g',
           description:
             'Linden honey has a light shade and a delicate, floral aroma. It is collected from linden flowers and has a mild, sweet taste.',
         },
         kg: {
-          title: 'Линден балы',
+          title: 'Линден балы 50гр',
           description:
             'Линден балы жарык көлөкө жана назик, гүл жыты бар. Ал линден гүлдөрүнөн чогултулган жана жумшак, таттуу даамы бар.',
         },
@@ -309,17 +309,17 @@ const run = async () => {
       image: 'fixtures/honey.svg',
       translations: {
         ru: {
-          title: 'Каштановый мед',
+          title: 'Каштановый мед 200гр',
           description:
             'Каштановый мед считается одним из самых ценных сортов, среди всех видов меда получаемых пасечниками в разных регионах России.',
         },
         en: {
-          title: 'Chestnut honey',
+          title: 'Chestnut honey 200g',
           description:
             'Chestnut honey is considered one of the most valuable varieties among all types of honey obtained by beekeepers in different regions of Russia.',
         },
         kg: {
-          title: 'Каштан бал',
+          title: 'Каштан бал 200гр',
           description:
             'Каштан балы Россиянын ар кайсы аймактарында балчылар тарабынан алынган балдын бардык түрлөрүнүн ичинен эң баалуу сорттордун бири болуп эсептелет.',
         },
@@ -334,17 +334,17 @@ const run = async () => {
       image: 'fixtures/White-honey.svg',
       translations: {
         ru: {
-          title: 'Цветочный мед',
+          title: 'Цветочный мед 100гр',
           description:
             'Цветочный мёд - продукт пчеловодства, в котором соединены пыльца и нектар с разных цветущих растений.',
         },
         en: {
-          title: 'Flower honey',
+          title: 'Flower honey 100g',
           description:
             'Flower honey is a beekeeping product that combines pollen and nectar from different flowering plants.',
         },
         kg: {
-          title: 'Гүл балы',
+          title: 'Гүл балы 100гр',
           description:
             'Гүл балы – ар түрдүү гүлдүү өсүмдүктөрдүн чаңчалары менен нектарын бириктирген аарычылык продуктусу.',
         },
@@ -359,17 +359,17 @@ const run = async () => {
       image: 'fixtures/White-honey.svg',
       translations: {
         ru: {
-          title: 'Прополисный мёд',
+          title: 'Прополисный мёд 100гр',
           description:
             'Насыщенный продукт, который обладает одновременно противовоспалительными, питательными и антибактериальными свойствами.',
         },
         en: {
-          title: 'Propolis honey',
+          title: 'Propolis honey 100g',
           description:
             'A rich product that has both anti-inflammatory, nutritional and antibacterial properties.',
         },
         kg: {
-          title: 'Прополис бал',
+          title: 'Прополис бал 100гр',
           description:
             'Сезгенүүгө каршы, аш болумдуу жана антибактериалдык касиеттерге ээ болгон бай продукт.',
         },
@@ -380,21 +380,21 @@ const run = async () => {
       category: herbs._id,
       oldPrice: 200,
       actualPrice: 200,
-      amount: 0,
+      amount: 20,
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {
-          title: 'Травяной сбор для иммунитета',
+          title: 'Травяной сбор для иммунитета 100гр',
           description:
             'Этот сбор трав содержит эхинацею, шиповник и зверобой, которые способствуют укреплению иммунной системы и повышению ее защитных функций.',
         },
         en: {
-          title: 'Herbal tea for immunity',
+          title: 'Herbal tea for immunity 100g',
           description:
             "This herbal collection contains echinacea, rose hips and St. John's wort, which help strengthen the immune system and increase its protective functions.",
         },
         kg: {
-          title: 'Иммунитет үчүн чөп чай',
+          title: 'Иммунитет үчүн чөп чай 100гр',
           description:
             'Бул чөптөрдүн коллекциясында иммундук системаны чыңдоого жана анын коргоочу функцияларын жогорулатууга жардам берген эхинацея, роза жамбаштары жана звено бар.',
         },
@@ -409,17 +409,17 @@ const run = async () => {
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {
-          title: 'Сбор трав для пищеварения',
+          title: 'Сбор трав для пищеварения 200гр',
           description:
             'Этот сбор включает мяту, ромашку и фенхель, которые помогают улучшить пищеварение, снизить вздутие и уменьшить дискомфорт в желудке.',
         },
         en: {
-          title: 'Collection of herbs for digestion',
+          title: 'Collection of herbs for digestion 200g',
           description:
             'This blend includes mint, chamomile, and fennel to help improve digestion, reduce bloating, and reduce stomach discomfort.',
         },
         kg: {
-          title: 'Аш сиңирүү үчүн чөптөрдү чогултуу',
+          title: 'Аш сиңирүү үчүн чөптөрдү чогултуу 200гр',
           description:
             'Бул аралашмага жалбыз, ромашка жана фенхель кирет, сиңирүүнү жакшыртат, шишиктерди азайтат жана ашказандагы дискомфортту азайтат.',
         },
@@ -434,17 +434,17 @@ const run = async () => {
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {
-          title: 'Березовый сбор для очищения',
+          title: 'Березовый сбор для очищения 250гр',
           description:
             'Этот сбор включает мяту, ромашку и фенхель, которые помогают улучшить пищеварение, снизить вздутие и уменьшить дискомфорт в желудке.',
         },
         en: {
-          title: 'Birch collection for cleansing',
+          title: 'Birch collection for cleansing 250g',
           description:
             'This blend includes mint, chamomile, and fennel to help improve digestion, reduce bloating, and reduce stomach discomfort.',
         },
         kg: {
-          title: 'Тазалоо үчүн кайың коллекциясы',
+          title: 'Тазалоо үчүн кайың коллекциясы 250гр',
           description:
             'Бул аралашмага жалбыз, ромашка жана фенхель кирет, сиңирүүнү жакшыртат, шишиктерди азайтат жана ашказандагы дискомфортту азайтат.',
         },
@@ -459,17 +459,17 @@ const run = async () => {
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {
-          title: 'Сбор трав для успокоения нервной системы',
+          title: 'Сбор трав для успокоения нервной системы 250гр',
           description:
             'Этот сбор включает валериану, пустырник и мелиссу, которые помогают снять напряжение, улучшить сон и смягчить нервное возбуждение.',
         },
         en: {
-          title: 'Collection of herbs to calm the nervous system',
+          title: 'Collection of herbs to calm the nervous system 250g',
           description:
             'This collection includes valerian, motherwort and lemon balm, which help relieve tension, improve sleep and soothe nervous agitation.',
         },
         kg: {
-          title: 'Нерв системасын тынчтандыруучу чөптөрдү чогултуу',
+          title: 'Нерв системасын тынчтандыруучу чөптөрдү чогултуу 250гр',
           description:
             'Бул коллекцияда чыңалууну басаңдатууга, уйкуну жакшыртууга жана нерв толкундануусун басаңдатууга жардам берген валериана, энелик жана лимон бальзамы кирет.',
         },
@@ -484,17 +484,17 @@ const run = async () => {
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {
-          title: 'Ромашковый чай',
+          title: 'Ромашковый чай 200гр',
           description:
             'Ромашка аптечная - это неприхотливое полевое растение семейства сложноцветных. Она широко распространена в Северной Америки и Евразии и встречается почти во всех регионах обоих полушарий, не считая тропического и субтропического поясов.',
         },
         en: {
-          title: 'Chamomile tea',
+          title: 'Chamomile tea 200g',
           description:
             'Chamomile is an unpretentious field plant of the Asteraceae family. It is widespread in North America and Eurasia and is found in almost all regions of both hemispheres, not counting the tropical and subtropical zones.',
         },
         kg: {
-          title: 'Ромашка чайы',
+          title: 'Ромашка чайы 200гр',
           description:
             'Ромашка - Asteraceae тукумундагы жөнөкөй өсүмдүк. Түндүк Америкада жана Евразияда кеңири таралган жана тропикалык жана субтропиктик зоналарды эсепке албаганда, эки жарым шардын дээрлик бардык аймактарында кездешет.',
         },
@@ -510,17 +510,17 @@ const run = async () => {
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {
-          title: 'Эвкалиптовый напиток',
+          title: 'Эвкалиптовый напиток 150гр',
           description:
             'Эвкалипт это вечнозеленое древесное растение семейства Миртовые. Больше всего различных видов эвкалипта произрастает в Новой Зеландии, Тасмании и лесах Австралии. Некоторые его виды встречаются на Филиппинах, в Индонезии и в Новой Гвинее. В северном полушарии растет всего один вид эвкалипта – это Эвкалипт радужный.',
         },
         en: {
-          title: 'Eucalyptus drink',
+          title: 'Eucalyptus drink 150g',
           description:
             'Eucalyptus is an evergreen woody plant of the Myrtaceae family. The largest variety of eucalyptus species grows in New Zealand, Tasmania and the forests of Australia. Some of its species are found in the Philippines, Indonesia and New Guinea. Only one species of eucalyptus grows in the northern hemisphere - Eucalyptus rainbowus.',
         },
         kg: {
-          title: 'Эвкалипт суусундугу',
+          title: 'Эвкалипт суусундугу 150гр',
           description:
             'Эвкалипт - Myrtaceae тукумундагы дайыма жашыл дарактуу өсүмдүк. Эвкалипт түрлөрүнүн эң чоң сорту Жаңы Зеландияда, Тасманияда жана Австралиянын токойлорунда өсөт. Анын айрым түрлөрү Филиппин, Индонезия жана Жаңы Гвинеяда кездешет. Түндүк жарым шарда эвкалипттин бир гана түрү өсөт - Eucalyptus rainbowus.',
         },
@@ -535,17 +535,17 @@ const run = async () => {
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {
-          title: 'Чай из лепестков роз',
+          title: 'Чай из лепестков роз 100гр',
           description:
             'Розы это не только красивые и популярные цветы с восхитительным ароматом, но и лекарственное растение.',
         },
         en: {
-          title: 'Rose petal tea',
+          title: 'Rose petal tea 100g',
           description:
             'Roses are not only beautiful and popular flowers with a delightful aroma, but also a medicinal plant.',
         },
         kg: {
-          title: 'Роза гүлү чай',
+          title: 'Роза гүлү чай 100гр',
           description:
             'Розалар жагымдуу жыты бар кооз жана популярдуу гүлдөр гана эмес, ошондой эле дарылык өсүмдүк.',
         },
@@ -561,17 +561,17 @@ const run = async () => {
       image: 'fixtures/driedFruits.svg',
       translations: {
         ru: {
-          title: 'Фруктовый микс "Энергия"',
+          title: 'Фруктовый микс "Энергия" 200гр',
           description:
             'Этот сбор содержит смесь из чернослива, изюма, фиников и кураги, обогащенных витаминами и минералами, которые придают энергию и восстанавливают силы.',
         },
         en: {
-          title: 'Fruit mix "Energy"',
+          title: 'Fruit mix "Energy" 200g',
           description:
             'This collection contains a mixture of prunes, raisins, dates and dried apricots, enriched with vitamins and minerals that give energy and restore strength.',
         },
         kg: {
-          title: 'Жемиш аралашмасы "Энергия"',
+          title: 'Жемиш аралашмасы "Энергия" 200гр',
           description:
             'Бул коллекцияда кара өрүктүн, мейиздин, курма жана кургатылган өрүктүн аралашмасы бар, алар энергия берүүчү жана күч-кубатты калыбына келтирүүчү витаминдер жана минералдар менен байытылган.',
         },
@@ -586,17 +586,17 @@ const run = async () => {
       image: 'fixtures/driedFruits.svg',
       translations: {
         ru: {
-          title: 'Сухофруктовый набор "Витамины"',
+          title: 'Сухофруктовый набор "Витамины" 100гр',
           description:
             'Этот набор включает в себя смесь из изюма, чернослива, кураги и вишни, богатых витаминами и антиоксидантами, которые способствуют поддержанию здоровья и укреплению иммунитета.',
         },
         en: {
-          title: 'Dried fruit set "Vitamins"',
+          title: 'Dried fruit set "Vitamins" 100g',
           description:
             'This set includes a blend of raisins, prunes, dried apricots and cherries, rich in vitamins and antioxidants that help support health and strengthen the immune system.',
         },
         kg: {
-          title: 'Кургатылган жемиш топтому "Витаминдер"',
+          title: 'Кургатылган жемиш топтому "Витаминдер" 100гр',
           description:
             'Бул комплект ден соолукту чыңдоо жана иммундук системаны бекемдөөгө жардам берген витаминдерге жана антиоксиданттарга бай мейиз, кара өрүк, кургатылган өрүк жана алчанын аралашмасын камтыйт.',
         },
@@ -611,17 +611,17 @@ const run = async () => {
       image: 'fixtures/driedFruits.svg',
       translations: {
         ru: {
-          title: 'Тропический микс "Экзотика"',
+          title: 'Тропический микс "Экзотика" 200гр',
           description:
             'Этот микс содержит смесь из сушеного ананаса, манго, банана и кокоса, создавая экзотический вкус и богатство питательных веществ тропических фруктов.',
         },
         en: {
-          title: 'Tropical mix "Exotic"',
+          title: 'Tropical mix "Exotic" 200g',
           description:
             'This mix contains a blend of dried pineapple, mango, banana and coconut, creating the exotic taste and nutritional richness of a tropical fruit.',
         },
         kg: {
-          title: 'Тропикалык аралашма "Экзотикалык"',
+          title: 'Тропикалык аралашма "Экзотикалык" 200гр',
           description:
             'Бул аралашма кургатылган ананас, манго, банан жана кокостун аралашмасын камтыйт, тропикалык жемиштердин экзотикалык даамын жана аш болумдуу байлыгын жаратат.',
         },
@@ -632,22 +632,22 @@ const run = async () => {
       category: driedFruits._id,
       oldPrice: 300,
       actualPrice: 300,
-      amount: 0,
+      amount: 20,
       isHit: true,
       image: 'fixtures/driedFruits.svg',
       translations: {
         ru: {
-          title: 'Ягодный сбор "Здоровье"',
+          title: 'Ягодный сбор "Здоровье" 100гр',
           description:
             'Этот сбор включает в себя смесь из сушеных черники, малины, клюквы и красной смородины, обогащенных антиоксидантами, способствующими укреплению иммунной системы и поддержанию здоровья.',
         },
         en: {
-          title: 'Berry collection "Health"',
+          title: 'Berry collection "Health" 100g',
           description:
             'This blend includes a blend of dried blueberries, raspberries, cranberries and red currants, enriched with antioxidants that help strengthen the immune system and support health.',
         },
         kg: {
-          title: 'Берри жыйнагы "Ден соолук"',
+          title: 'Берри жыйнагы "Ден соолук" 100гр',
           description:
             'Бул аралашмага иммундук системаны чыңдоо жана ден соолукту колдоочу антиоксиданттар менен байытылган кургатылган черники, малина, клюква жана кызыл карагаттын аралашмасы кирет.',
         },
@@ -662,17 +662,17 @@ const run = async () => {
       image: 'fixtures/driedFruits.svg',
       translations: {
         ru: {
-          title: 'Чай травяной сбор фруктовый ягодный "Ягодная поляна"',
+          title: 'Чай травяной "Ягодная поляна" 250гр',
           description:
             'Наслаждайтесь ярким и ароматным праздником вкусов с нашим фруктово-ягодным чаем "Ягодная поляна", где сочные ягоды и ароматные фрукты создают неповторимый букет удовольствия в каждом глотке.',
         },
         en: {
-          title: 'Fruit berry herbal tea "Berry Glade"',
+          title: 'Herbal tea "Berry Glade" 250g',
           description:
             'Enjoy a bright and aromatic feast of flavors with our fruit and berry tea "Berry Glade", where juicy berries and aromatic fruits create a unique bouquet of pleasure in every sip.',
         },
         kg: {
-          title: 'Мөмө-жемиш чөп чай "Жемиш Шалбаасы"',
+          title: 'Чөп чай "Жемиш Шалбаасы" 250гр',
           description:
             'Биздин "Жемиш Шалбаасы" мөмө-жемиш чайыбыз менен жаркыраган жана жыпар жыттуу даамдардын майрамынан ырахат алыңыз, мында ширелүү мөмөлөр жана жыпар жыттуу жемиштер ар бир ууртамда уникалдуу ырахаттын букетин жаратат.',
         },
@@ -709,7 +709,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1100,
-      payment: 'Картой'
+      payment: 'Картой',
     },
 
     {
@@ -740,7 +740,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1200,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -755,7 +755,7 @@ const run = async () => {
         },
       ],
       totalPrice: 900,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -770,7 +770,7 @@ const run = async () => {
         },
       ],
       totalPrice: 500,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -785,7 +785,7 @@ const run = async () => {
         },
       ],
       totalPrice: 700,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user2._id,
@@ -810,7 +810,7 @@ const run = async () => {
         },
       ],
       totalPrice: 950,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user2._id,
@@ -830,7 +830,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user2._id,
@@ -860,7 +860,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Картой'
+      payment: 'Наличными',
     },
     {
       user: user2._id,
@@ -900,7 +900,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1700,
-      payment: 'Картой'
+      payment: 'Наличными',
     },
     {
       user: user2._id,
@@ -940,7 +940,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1800,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user2._id,
@@ -980,7 +980,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1900,
-      payment: 'Наличными'
+      payment: 'Наличными',
     },
     {
       user: user1._id,
@@ -995,7 +995,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Наличными'
+      payment: 'Наличными',
     },
     {
       user: user1._id,
@@ -1010,7 +1010,7 @@ const run = async () => {
         },
       ],
       totalPrice: 2100,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -1025,7 +1025,7 @@ const run = async () => {
         },
       ],
       totalPrice: 2100,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -1040,7 +1040,7 @@ const run = async () => {
         },
       ],
       totalPrice: 700,
-      payment: 'Наличными'
+      payment: 'Наличными',
     },
     {
       user: user1._id,
@@ -1055,7 +1055,7 @@ const run = async () => {
         },
       ],
       totalPrice: 700,
-      payment: 'Наличными'
+      payment: 'Наличными',
     },
     {
       user: user1._id,
@@ -1070,7 +1070,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Наличными'
+      payment: 'Наличными',
     },
     {
       user: user1._id,
@@ -1085,7 +1085,7 @@ const run = async () => {
         },
       ],
       totalPrice: 700,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -1100,7 +1100,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -1115,7 +1115,7 @@ const run = async () => {
         },
       ],
       totalPrice: 700,
-      payment: 'Картой'
+      payment: 'Картой',
     },
     {
       user: user1._id,
@@ -1130,7 +1130,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Наличными'
+      payment: 'Наличными',
     }
   );
 
@@ -1173,10 +1173,10 @@ const run = async () => {
           image: 'fixtures/bnr3.png',
         },
         en: {
-          image: 'fixtures/bnr3en.png',
+          image: 'fixtures/bnr3kg.png',
         },
         kg: {
-          image: 'fixtures/bnr3kg.png',
+          image: 'fixtures/bnr3en.png',
         },
       },
       description: 'landing3',

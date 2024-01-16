@@ -35,17 +35,4 @@ const CategorySchema = new mongoose.Schema({
 });
 
 const Category = mongoose.model('Category', CategorySchema);
-
-export const pipelineCategory = (lang: string) => [
-  {
-    $project: {
-      image: '$image',
-      lang: lang,
-      title: `$translations.${lang}.title`,
-      description: `$translations.${lang}.description`,
-      isActive: '$isActive',
-    },
-  },
-];
-
 export default Category;
