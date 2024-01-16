@@ -144,6 +144,9 @@
 
   &:hover {
     text-decoration: none;
+    @include sm {
+      text-decoration: inherit;
+    }
   }
 
   &_link {

@@ -1,3 +1,4 @@
+@use 'mixin' as mix;
 @import '@/styles/_variables.scss';
 @import 'mixin';
 
@@ -15,6 +16,10 @@
 
   &:hover {
     background: $primary-hover;
+    @include mix.sm {
+      background-color: inherit;
+    }
+
   }
 
   &:active {
@@ -40,6 +45,9 @@
 
   &:hover {
     background: #612d01;
+    @include mix.sm {
+      background-color: inherit;
+    }
   }
 
   &:active {

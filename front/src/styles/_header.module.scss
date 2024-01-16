@@ -68,6 +68,10 @@
 
     &:hover {
       color: #ff8f31;
+      @include mix.sm {
+        background-color: inherit;
+        color: inherit;
+      }
     }
 
     &::after {
@@ -83,10 +87,18 @@
 
     &:hover::after {
       background-color: #ff8f31;
+      @include mix.sm {
+        background-color: inherit;
+        color: inherit;
+      }
     }
 
     &.active::after {
       background-color: #ff8f31;
+      @include mix.sm {
+        background-color: inherit;
+        color: inherit;
+      }
     }
   }
 }
@@ -236,6 +248,10 @@
   }
   &:hover {
     background-color: #cfd8dc;
+    @include mix.sm {
+      background-color: inherit;
+      color: inherit;
+    }
   }
 }
 .multilingualTwo {
@@ -305,6 +321,10 @@
   }
   li:hover {
     color: #ff8f31;
+    @include mix.sm {
+      background-color: inherit;
+      color: inherit;
+    }
   }
 }
 .cartBlock {

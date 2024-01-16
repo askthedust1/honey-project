@@ -104,6 +104,9 @@
       cursor: pointer;
       &:hover {
         background-color: #a60000;
+        @include mix.sm {
+          background-color: #ff8f31;
+        }
       }
       &:focus {
         outline: none;

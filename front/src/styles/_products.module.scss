@@ -129,6 +129,10 @@ $color-old-price: #999999;
   transform: scale(1.03);
   box-shadow: 0 6px 6px 0 #00000060;
   border-radius: 15px;
+  @include mix.sm {
+    transform: none;
+    box-shadow: none;
+  }
 }
 
 .btn_prod {
@@ -158,6 +162,11 @@ $color-old-price: #999999;
       background: #d3a863;
       border-radius: 20px;
       color: white;
+      @include mix.sm {
+        background: inherit;
+        border-radius: 12px;
+        color: inherit;
+      }
     }
 
     &:active {
@@ -302,6 +311,9 @@ $color-old-price: #999999;
 
   &:hover {
     background-color: #f7f7f7;
+    @include mix.sm {
+      background-color: inherit;
+    }
   }
 }
 
@@ -323,6 +335,10 @@ $color-old-price: #999999;
   &:hover {
     background-color: #d3a863;
     color: white;
+    @include mix.sm {
+      background-color: inherit;
+      color: inherit;
+    }
   }
 }
 
@@ -376,6 +392,9 @@ $color-old-price: #999999;
 .searchContainer a:hover {
   background-color: #5a3733;
   cursor: pointer;
+  @include mix.sm {
+    background-color: #d3a863;
+  }
 }
 
 .listContaiter {

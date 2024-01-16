@@ -147,6 +147,10 @@
           &:hover {
             color: #fda400;
             background-image: url('../assets/images/iconDeleteProductHover.png');
+            @include mix.sm {
+              background-color: inherit;
+              color: #e14b4b;
+            }
           }
           &:active {
             color: #f80000;
@@ -280,6 +284,9 @@
 
         &:hover {
           background: #c75a00;
+          @include mix.sm {
+            background: #ff8f31;
+          }
         }
         &:active {
           background: red;

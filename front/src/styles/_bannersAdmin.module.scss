@@ -1,5 +1,5 @@
+@use 'mixin' as mix;
 @import '@/styles/_variables.scss';
-
 .wrapper {
   padding: 10px 20px;
   h2 {
@@ -91,6 +91,10 @@
 
 .formBtn:hover {
   background: $primary-hover;
+  @include mix.sm {
+    background-color: inherit;
+    color: inherit;
+  }
 }
 
 .formWrpBtn {
