@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
-import { GlobalError, IBanner } from '@/types';
 import { fetchBanners, fetchBannersAdmin, putBanners } from '@/features/banners/bannersThunk';
+import { GlobalError, IBanner } from '@/types';
 
 interface BannersState {
   items: IBanner[];
@@ -66,6 +66,5 @@ export const bannersSlice = createSlice({
 });
 
 export const selectBanners = (state: RootState) => state.banners.items;
-export const selectBannersLoading = (state: RootState) => state.banners.loading;
 export const selectBannersPutLoading = (state: RootState) => state.banners.loadingPut;
 export const selectBannerError = (state: RootState) => state.banners.errorBanner;

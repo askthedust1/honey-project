@@ -1,13 +1,13 @@
 import React from 'react';
-import { apiUrl } from '@/constants';
 import Link from 'next/link';
-import cls from '../../../styles/_products.module.scss';
-import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { AnimationState, IProduct } from '@/types';
-import { addProduct, delProduct, selectCart } from '@/features/cart/cartSlice';
-import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { addProduct, delProduct, selectCart } from '@/features/cart/cartSlice';
 import { motion } from 'framer-motion';
+import { apiUrl } from '@/constants';
+import { AnimationState, IProduct } from '@/types';
+import cls from '../../styles/_products.module.scss';
 
 interface Props {
   product: IProduct;

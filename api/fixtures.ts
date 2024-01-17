@@ -208,17 +208,17 @@ const run = async () => {
         ru: {
           title: 'Связистый мед',
           description:
-            'Связистый мед обладает богатым ароматом и глубоким, насыщенным вкусом. Он собирается из цветущих растений на лугах и полях.',
+            'Связистый мед обладает богатым ароматом и глубоким, насыщенным вкусом. Он собирается из цветущих растений на лугах и полях. Вес 100г',
         },
         en: {
           title: 'Cohesive honey',
           description:
-            'Cohesive honey has a rich aroma and a deep, rich taste. It is collected from flowering plants in meadows and fields.',
+            'Cohesive honey has a rich aroma and a deep, rich taste. It is collected from flowering plants in meadows and fields. Weight 100g',
         },
         kg: {
           title: 'Бириккен бал',
           description:
-            'Бириккен бал бай жыпар жытка жана терең, бай даамга ээ. Ал жайыттарда жана талааларда гүлдөгөн өсүмдүктөрдөн чогултулат.',
+            'Бириккен бал бай жыпар жытка жана терең, бай даамга ээ. Ал жайыттарда жана талааларда гүлдөгөн өсүмдүктөрдөн чогултулат. Салмагы 100г',
         },
       },
     },
@@ -235,17 +235,17 @@ const run = async () => {
         ru: {
           title: 'Акациевый мед',
           description:
-            'Акациевый мед обладает нежным, сладким вкусом и прозрачной текстурой. Он производится из нектара цветущего дерева акации.',
+            'Акациевый мед обладает нежным, сладким вкусом и прозрачной текстурой. Он производится из нектара цветущего дерева акации. Вес 200г',
         },
         en: {
           title: 'Acacia honey',
           description:
-            'Acacia honey has a delicate, sweet taste and a transparent texture. It is made from the nectar of the flowering acacia tree.',
+            'Acacia honey has a delicate, sweet taste and a transparent texture. It is made from the nectar of the flowering acacia tree. Weight 200g',
         },
         kg: {
           title: 'Акация балы',
           description:
-            'Акация балы назик, таттуу даамга жана тунук текстурага ээ. Ал гүлдөгөн акация дарагынын ширесинен жасалат.',
+            'Акация балы назик, таттуу даамга жана тунук текстурага ээ. Ал гүлдөгөн акация дарагынын ширесинен жасалат. Салмагы 200г',
         },
       },
     },
@@ -254,24 +254,24 @@ const run = async () => {
       category: honey._id,
       oldPrice: 400,
       actualPrice: 400,
-      amount: 20,
+      amount: 0,
       click: 20,
       image: 'fixtures/White-honey.svg',
       translations: {
         ru: {
           title: 'Гречишный мед',
           description:
-            'Гречишный мед имеет интенсивный аромат и темно-коричневый цвет. Он производится из цветов гречихи и обладает богатым вкусом с нотами карамели.',
+            'Гречишный мед имеет интенсивный аромат и темно-коричневый цвет. Он производится из цветов гречихи и обладает богатым вкусом с нотами карамели. Вес 50г',
         },
         en: {
           title: 'Buckwheat honey',
           description:
-            'Buckwheat honey has an intense aroma and dark brown color. It is made from buckwheat flowers and has a rich taste with notes of caramel.',
+            'Buckwheat honey has an intense aroma and dark brown color. It is made from buckwheat flowers and has a rich taste with notes of caramel. Weight 50g',
         },
         kg: {
           title: 'Гречка бал',
           description:
-            'Гречка балынын жыты күчтүү жана кочкул күрөң түскө ээ. Ал гречка гүлдөрүнөн жасалган жана карамель ноталары менен бай даамга ээ.',
+            'Гречка балынын жыты күчтүү жана кочкул күрөң түскө ээ. Ал гречка гүлдөрүнөн жасалган жана карамель ноталары менен бай даамга ээ. Салмагы 50г',
         },
       },
     },
@@ -286,17 +286,17 @@ const run = async () => {
         ru: {
           title: 'Липовый мед',
           description:
-            'Липовый мед обладает светлым оттенком и нежным, цветочным ароматом. Он собирается из цветов липы и обладает мягким, сладким вкусом.',
+            'Липовый мед обладает светлым оттенком и нежным, цветочным ароматом. Он собирается из цветов липы и обладает мягким, сладким вкусом. Вес 50г',
         },
         en: {
           title: 'Linden honey',
           description:
-            'Linden honey has a light shade and a delicate, floral aroma. It is collected from linden flowers and has a mild, sweet taste.',
+            'Linden honey has a light shade and a delicate, floral aroma. It is collected from linden flowers and has a mild, sweet taste. Weight 50g',
         },
         kg: {
           title: 'Линден балы',
           description:
-            'Линден балы жарык көлөкө жана назик, гүл жыты бар. Ал линден гүлдөрүнөн чогултулган жана жумшак, таттуу даамы бар.',
+            'Линден балы жарык көлөкө жана назик, гүл жыты бар. Ал линден гүлдөрүнөн чогултулган жана жумшак, таттуу даамы бар. Салмагы 50г',
         },
       },
     },
@@ -311,17 +311,17 @@ const run = async () => {
         ru: {
           title: 'Каштановый мед',
           description:
-            'Каштановый мед считается одним из самых ценных сортов, среди всех видов меда получаемых пасечниками в разных регионах России.',
+            'Каштановый мед считается одним из самых ценных сортов, среди всех видов меда получаемых пасечниками в разных регионах России. Вес 200г',
         },
         en: {
           title: 'Chestnut honey',
           description:
-            'Chestnut honey is considered one of the most valuable varieties among all types of honey obtained by beekeepers in different regions of Russia.',
+            'Chestnut honey is considered one of the most valuable varieties among all types of honey obtained by beekeepers in different regions of Russia. Weight 200g',
         },
         kg: {
           title: 'Каштан бал',
           description:
-            'Каштан балы Россиянын ар кайсы аймактарында балчылар тарабынан алынган балдын бардык түрлөрүнүн ичинен эң баалуу сорттордун бири болуп эсептелет.',
+            'Каштан балы Россиянын ар кайсы аймактарында балчылар тарабынан алынган балдын бардык түрлөрүнүн ичинен эң баалуу сорттордун бири болуп эсептелет. Салмагы 200г',
         },
       },
     },
@@ -336,17 +336,17 @@ const run = async () => {
         ru: {
           title: 'Цветочный мед',
           description:
-            'Цветочный мёд - продукт пчеловодства, в котором соединены пыльца и нектар с разных цветущих растений.',
+            'Цветочный мёд - продукт пчеловодства, в котором соединены пыльца и нектар с разных цветущих растений. Вес 100г',
         },
         en: {
           title: 'Flower honey',
           description:
-            'Flower honey is a beekeeping product that combines pollen and nectar from different flowering plants.',
+            'Flower honey is a beekeeping product that combines pollen and nectar from different flowering plants. Weight 100g',
         },
         kg: {
           title: 'Гүл балы',
           description:
-            'Гүл балы – ар түрдүү гүлдүү өсүмдүктөрдүн чаңчалары менен нектарын бириктирген аарычылык продуктусу.',
+            'Гүл балы – ар түрдүү гүлдүү өсүмдүктөрдүн чаңчалары менен нектарын бириктирген аарычылык продуктусу. Салмагы 100г',
         },
       },
     },
@@ -361,17 +361,17 @@ const run = async () => {
         ru: {
           title: 'Прополисный мёд',
           description:
-            'Насыщенный продукт, который обладает одновременно противовоспалительными, питательными и антибактериальными свойствами.',
+            'Насыщенный продукт, который обладает одновременно противовоспалительными, питательными и антибактериальными свойствами. Вес 100г',
         },
         en: {
           title: 'Propolis honey',
           description:
-            'A rich product that has both anti-inflammatory, nutritional and antibacterial properties.',
+            'A rich product that has both anti-inflammatory, nutritional and antibacterial properties. Weight 100g',
         },
         kg: {
           title: 'Прополис бал',
           description:
-            'Сезгенүүгө каршы, аш болумдуу жана антибактериалдык касиеттерге ээ болгон бай продукт.',
+            'Сезгенүүгө каршы, аш болумдуу жана антибактериалдык касиеттерге ээ болгон бай продукт. Салмагы 100г',
         },
       },
     },
@@ -380,23 +380,23 @@ const run = async () => {
       category: herbs._id,
       oldPrice: 200,
       actualPrice: 200,
-      amount: 0,
+      amount: 20,
       image: 'fixtures/herbs.svg',
       translations: {
         ru: {
           title: 'Травяной сбор для иммунитета',
           description:
-            'Этот сбор трав содержит эхинацею, шиповник и зверобой, которые способствуют укреплению иммунной системы и повышению ее защитных функций.',
+            'Этот сбор трав содержит эхинацею, шиповник и зверобой, которые способствуют укреплению иммунной системы и повышению ее защитных функций. Вес 100г',
         },
         en: {
           title: 'Herbal tea for immunity',
           description:
-            "This herbal collection contains echinacea, rose hips and St. John's wort, which help strengthen the immune system and increase its protective functions.",
+            "This herbal collection contains echinacea, rose hips and St. John's wort, which help strengthen the immune system and increase its protective functions. Weight 100g",
         },
         kg: {
           title: 'Иммунитет үчүн чөп чай',
           description:
-            'Бул чөптөрдүн коллекциясында иммундук системаны чыңдоого жана анын коргоочу функцияларын жогорулатууга жардам берген эхинацея, роза жамбаштары жана звено бар.',
+            'Бул чөптөрдүн коллекциясында иммундук системаны чыңдоого жана анын коргоочу функцияларын жогорулатууга жардам берген эхинацея, роза жамбаштары жана звено бар. Салмагы 100г',
         },
       },
     },
@@ -411,17 +411,17 @@ const run = async () => {
         ru: {
           title: 'Сбор трав для пищеварения',
           description:
-            'Этот сбор включает мяту, ромашку и фенхель, которые помогают улучшить пищеварение, снизить вздутие и уменьшить дискомфорт в желудке.',
+            'Этот сбор включает мяту, ромашку и фенхель, которые помогают улучшить пищеварение, снизить вздутие и уменьшить дискомфорт в желудке. Вес 200г',
         },
         en: {
           title: 'Collection of herbs for digestion',
           description:
-            'This blend includes mint, chamomile, and fennel to help improve digestion, reduce bloating, and reduce stomach discomfort.',
+            'This blend includes mint, chamomile, and fennel to help improve digestion, reduce bloating, and reduce stomach discomfort. Weight 200g',
         },
         kg: {
           title: 'Аш сиңирүү үчүн чөптөрдү чогултуу',
           description:
-            'Бул аралашмага жалбыз, ромашка жана фенхель кирет, сиңирүүнү жакшыртат, шишиктерди азайтат жана ашказандагы дискомфортту азайтат.',
+            'Бул аралашмага жалбыз, ромашка жана фенхель кирет, сиңирүүнү жакшыртат, шишиктерди азайтат жана ашказандагы дискомфортту азайтат. Салмагы 200г',
         },
       },
     },
@@ -436,17 +436,17 @@ const run = async () => {
         ru: {
           title: 'Березовый сбор для очищения',
           description:
-            'Этот сбор включает мяту, ромашку и фенхель, которые помогают улучшить пищеварение, снизить вздутие и уменьшить дискомфорт в желудке.',
+            'Этот сбор включает мяту, ромашку и фенхель, которые помогают улучшить пищеварение, снизить вздутие и уменьшить дискомфорт в желудке. Вес 250г',
         },
         en: {
           title: 'Birch collection for cleansing',
           description:
-            'This blend includes mint, chamomile, and fennel to help improve digestion, reduce bloating, and reduce stomach discomfort.',
+            'This blend includes mint, chamomile, and fennel to help improve digestion, reduce bloating, and reduce stomach discomfort. Weight 250g',
         },
         kg: {
           title: 'Тазалоо үчүн кайың коллекциясы',
           description:
-            'Бул аралашмага жалбыз, ромашка жана фенхель кирет, сиңирүүнү жакшыртат, шишиктерди азайтат жана ашказандагы дискомфортту азайтат.',
+            'Бул аралашмага жалбыз, ромашка жана фенхель кирет, сиңирүүнү жакшыртат, шишиктерди азайтат жана ашказандагы дискомфортту азайтат. Салмагы 250г',
         },
       },
     },
@@ -461,17 +461,17 @@ const run = async () => {
         ru: {
           title: 'Сбор трав для успокоения нервной системы',
           description:
-            'Этот сбор включает валериану, пустырник и мелиссу, которые помогают снять напряжение, улучшить сон и смягчить нервное возбуждение.',
+            'Этот сбор включает валериану, пустырник и мелиссу, которые помогают снять напряжение, улучшить сон и смягчить нервное возбуждение. Вес 250г',
         },
         en: {
           title: 'Collection of herbs to calm the nervous system',
           description:
-            'This collection includes valerian, motherwort and lemon balm, which help relieve tension, improve sleep and soothe nervous agitation.',
+            'This collection includes valerian, motherwort and lemon balm, which help relieve tension, improve sleep and soothe nervous agitation. Weight 250g',
         },
         kg: {
           title: 'Нерв системасын тынчтандыруучу чөптөрдү чогултуу',
           description:
-            'Бул коллекцияда чыңалууну басаңдатууга, уйкуну жакшыртууга жана нерв толкундануусун басаңдатууга жардам берген валериана, энелик жана лимон бальзамы кирет.',
+            'Бул коллекцияда чыңалууну басаңдатууга, уйкуну жакшыртууга жана нерв толкундануусун басаңдатууга жардам берген валериана, энелик жана лимон бальзамы кирет. Салмагы 250г',
         },
       },
     },
@@ -486,17 +486,17 @@ const run = async () => {
         ru: {
           title: 'Ромашковый чай',
           description:
-            'Ромашка аптечная - это неприхотливое полевое растение семейства сложноцветных. Она широко распространена в Северной Америки и Евразии и встречается почти во всех регионах обоих полушарий, не считая тропического и субтропического поясов.',
+            'Ромашка аптечная - это неприхотливое полевое растение семейства сложноцветных. Она широко распространена в Северной Америки и Евразии и встречается почти во всех регионах обоих полушарий, не считая тропического и субтропического поясов. Вес 200г',
         },
         en: {
           title: 'Chamomile tea',
           description:
-            'Chamomile is an unpretentious field plant of the Asteraceae family. It is widespread in North America and Eurasia and is found in almost all regions of both hemispheres, not counting the tropical and subtropical zones.',
+            'Chamomile is an unpretentious field plant of the Asteraceae family. It is widespread in North America and Eurasia and is found in almost all regions of both hemispheres, not counting the tropical and subtropical zones. Weight 200g',
         },
         kg: {
           title: 'Ромашка чайы',
           description:
-            'Ромашка - Asteraceae тукумундагы жөнөкөй өсүмдүк. Түндүк Америкада жана Евразияда кеңири таралган жана тропикалык жана субтропиктик зоналарды эсепке албаганда, эки жарым шардын дээрлик бардык аймактарында кездешет.',
+            'Ромашка - Asteraceae тукумундагы жөнөкөй өсүмдүк. Түндүк Америкада жана Евразияда кеңири таралган жана тропикалык жана субтропиктик зоналарды эсепке албаганда, эки жарым шардын дээрлик бардык аймактарында кездешет. Салмагы 200г',
         },
       },
     },
@@ -512,17 +512,17 @@ const run = async () => {
         ru: {
           title: 'Эвкалиптовый напиток',
           description:
-            'Эвкалипт это вечнозеленое древесное растение семейства Миртовые. Больше всего различных видов эвкалипта произрастает в Новой Зеландии, Тасмании и лесах Австралии. Некоторые его виды встречаются на Филиппинах, в Индонезии и в Новой Гвинее. В северном полушарии растет всего один вид эвкалипта – это Эвкалипт радужный.',
+            'Эвкалипт это вечнозеленое древесное растение семейства Миртовые. Больше всего различных видов эвкалипта произрастает в Новой Зеландии, Тасмании и лесах Австралии. Некоторые его виды встречаются на Филиппинах, в Индонезии и в Новой Гвинее. В северном полушарии растет всего один вид эвкалипта – это Эвкалипт радужный. Вес 150г',
         },
         en: {
           title: 'Eucalyptus drink',
           description:
-            'Eucalyptus is an evergreen woody plant of the Myrtaceae family. The largest variety of eucalyptus species grows in New Zealand, Tasmania and the forests of Australia. Some of its species are found in the Philippines, Indonesia and New Guinea. Only one species of eucalyptus grows in the northern hemisphere - Eucalyptus rainbowus.',
+            'Eucalyptus is an evergreen woody plant of the Myrtaceae family. The largest variety of eucalyptus species grows in New Zealand, Tasmania and the forests of Australia. Some of its species are found in the Philippines, Indonesia and New Guinea. Only one species of eucalyptus grows in the northern hemisphere - Eucalyptus rainbowus. Weight 150g',
         },
         kg: {
           title: 'Эвкалипт суусундугу',
           description:
-            'Эвкалипт - Myrtaceae тукумундагы дайыма жашыл дарактуу өсүмдүк. Эвкалипт түрлөрүнүн эң чоң сорту Жаңы Зеландияда, Тасманияда жана Австралиянын токойлорунда өсөт. Анын айрым түрлөрү Филиппин, Индонезия жана Жаңы Гвинеяда кездешет. Түндүк жарым шарда эвкалипттин бир гана түрү өсөт - Eucalyptus rainbowus.',
+            'Эвкалипт - Myrtaceae тукумундагы дайыма жашыл дарактуу өсүмдүк. Эвкалипт түрлөрүнүн эң чоң сорту Жаңы Зеландияда, Тасманияда жана Австралиянын токойлорунда өсөт. Анын айрым түрлөрү Филиппин, Индонезия жана Жаңы Гвинеяда кездешет. Түндүк жарым шарда эвкалипттин бир гана түрү өсөт. Салмагы 150г',
         },
       },
     },
@@ -537,17 +537,17 @@ const run = async () => {
         ru: {
           title: 'Чай из лепестков роз',
           description:
-            'Розы это не только красивые и популярные цветы с восхитительным ароматом, но и лекарственное растение.',
+            'Розы это не только красивые и популярные цветы с восхитительным ароматом, но и лекарственное растение. Вес 100г',
         },
         en: {
           title: 'Rose petal tea',
           description:
-            'Roses are not only beautiful and popular flowers with a delightful aroma, but also a medicinal plant.',
+            'Roses are not only beautiful and popular flowers with a delightful aroma, but also a medicinal plant. Weight 100g',
         },
         kg: {
           title: 'Роза гүлү чай',
           description:
-            'Розалар жагымдуу жыты бар кооз жана популярдуу гүлдөр гана эмес, ошондой эле дарылык өсүмдүк.',
+            'Розалар жагымдуу жыты бар кооз жана популярдуу гүлдөр гана эмес, ошондой эле дарылык өсүмдүк. Салмагы 100г',
         },
       },
     },
@@ -563,17 +563,17 @@ const run = async () => {
         ru: {
           title: 'Фруктовый микс "Энергия"',
           description:
-            'Этот сбор содержит смесь из чернослива, изюма, фиников и кураги, обогащенных витаминами и минералами, которые придают энергию и восстанавливают силы.',
+            'Этот сбор содержит смесь из чернослива, изюма, фиников и кураги, обогащенных витаминами и минералами, которые придают энергию и восстанавливают силы. Вес 200г',
         },
         en: {
           title: 'Fruit mix "Energy"',
           description:
-            'This collection contains a mixture of prunes, raisins, dates and dried apricots, enriched with vitamins and minerals that give energy and restore strength.',
+            'This collection contains a mixture of prunes, raisins, dates and dried apricots, enriched with vitamins and minerals that give energy and restore strength. Weight 200g',
         },
         kg: {
           title: 'Жемиш аралашмасы "Энергия"',
           description:
-            'Бул коллекцияда кара өрүктүн, мейиздин, курма жана кургатылган өрүктүн аралашмасы бар, алар энергия берүүчү жана күч-кубатты калыбына келтирүүчү витаминдер жана минералдар менен байытылган.',
+            'Бул коллекцияда кара өрүктүн, мейиздин, курма жана кургатылган өрүктүн аралашмасы бар, алар энергия берүүчү жана күч-кубатты калыбына келтирүүчү витаминдер жана минералдар менен байытылган. Салмагы 200г',
         },
       },
     },
@@ -588,17 +588,17 @@ const run = async () => {
         ru: {
           title: 'Сухофруктовый набор "Витамины"',
           description:
-            'Этот набор включает в себя смесь из изюма, чернослива, кураги и вишни, богатых витаминами и антиоксидантами, которые способствуют поддержанию здоровья и укреплению иммунитета.',
+            'Этот набор включает в себя смесь из изюма, чернослива, кураги и вишни, богатых витаминами и антиоксидантами, которые способствуют поддержанию здоровья и укреплению иммунитета. Вес 100г',
         },
         en: {
           title: 'Dried fruit set "Vitamins"',
           description:
-            'This set includes a blend of raisins, prunes, dried apricots and cherries, rich in vitamins and antioxidants that help support health and strengthen the immune system.',
+            'This set includes a blend of raisins, prunes, dried apricots and cherries, rich in vitamins and antioxidants that help support health and strengthen the immune system. Weight 100g',
         },
         kg: {
           title: 'Кургатылган жемиш топтому "Витаминдер"',
           description:
-            'Бул комплект ден соолукту чыңдоо жана иммундук системаны бекемдөөгө жардам берген витаминдерге жана антиоксиданттарга бай мейиз, кара өрүк, кургатылган өрүк жана алчанын аралашмасын камтыйт.',
+            'Бул комплект ден соолукту чыңдоо жана иммундук системаны бекемдөөгө жардам берген витаминдерге жана антиоксиданттарга бай мейиз, кара өрүк, кургатылган өрүк жана алчанын аралашмасын камтыйт. Салмагы 100г',
         },
       },
     },
@@ -613,17 +613,17 @@ const run = async () => {
         ru: {
           title: 'Тропический микс "Экзотика"',
           description:
-            'Этот микс содержит смесь из сушеного ананаса, манго, банана и кокоса, создавая экзотический вкус и богатство питательных веществ тропических фруктов.',
+            'Этот микс содержит смесь из сушеного ананаса, манго, банана и кокоса, создавая экзотический вкус и богатство питательных веществ тропических фруктов. Вес 200г',
         },
         en: {
           title: 'Tropical mix "Exotic"',
           description:
-            'This mix contains a blend of dried pineapple, mango, banana and coconut, creating the exotic taste and nutritional richness of a tropical fruit.',
+            'This mix contains a blend of dried pineapple, mango, banana and coconut, creating the exotic taste and nutritional richness of a tropical fruit. Weight 200g',
         },
         kg: {
           title: 'Тропикалык аралашма "Экзотикалык"',
           description:
-            'Бул аралашма кургатылган ананас, манго, банан жана кокостун аралашмасын камтыйт, тропикалык жемиштердин экзотикалык даамын жана аш болумдуу байлыгын жаратат.',
+            'Бул аралашма кургатылган ананас, манго, банан жана кокостун аралашмасын камтыйт, тропикалык жемиштердин экзотикалык даамын жана аш болумдуу байлыгын жаратат. Салмагы 200г',
         },
       },
     },
@@ -632,24 +632,24 @@ const run = async () => {
       category: driedFruits._id,
       oldPrice: 300,
       actualPrice: 300,
-      amount: 0,
+      amount: 20,
       isHit: true,
       image: 'fixtures/driedFruits.svg',
       translations: {
         ru: {
           title: 'Ягодный сбор "Здоровье"',
           description:
-            'Этот сбор включает в себя смесь из сушеных черники, малины, клюквы и красной смородины, обогащенных антиоксидантами, способствующими укреплению иммунной системы и поддержанию здоровья.',
+            'Этот сбор включает в себя смесь из сушеных черники, малины, клюквы и красной смородины, обогащенных антиоксидантами, способствующими укреплению иммунной системы и поддержанию здоровья. Вес 100г',
         },
         en: {
           title: 'Berry collection "Health"',
           description:
-            'This blend includes a blend of dried blueberries, raspberries, cranberries and red currants, enriched with antioxidants that help strengthen the immune system and support health.',
+            'This blend includes a blend of dried blueberries, raspberries, cranberries and red currants, enriched with antioxidants that help strengthen the immune system and support health. Weight 100g',
         },
         kg: {
           title: 'Берри жыйнагы "Ден соолук"',
           description:
-            'Бул аралашмага иммундук системаны чыңдоо жана ден соолукту колдоочу антиоксиданттар менен байытылган кургатылган черники, малина, клюква жана кызыл карагаттын аралашмасы кирет.',
+            'Бул аралашмага иммундук системаны чыңдоо жана ден соолукту колдоочу антиоксиданттар менен байытылган кургатылган черники, малина, клюква жана кызыл карагаттын аралашмасы кирет. Салмагы 100г',
         },
       },
     },
@@ -662,19 +662,19 @@ const run = async () => {
       image: 'fixtures/driedFruits.svg',
       translations: {
         ru: {
-          title: 'Чай травяной сбор фруктовый ягодный "Ягодная поляна"',
+          title: 'Чай травяной "Ягодная поляна"',
           description:
-            'Наслаждайтесь ярким и ароматным праздником вкусов с нашим фруктово-ягодным чаем "Ягодная поляна", где сочные ягоды и ароматные фрукты создают неповторимый букет удовольствия в каждом глотке.',
+            'Наслаждайтесь ярким и ароматным праздником вкусов с нашим фруктово-ягодным чаем "Ягодная поляна", где сочные ягоды и ароматные фрукты создают неповторимый букет удовольствия в каждом глотке. Вес 250г',
         },
         en: {
-          title: 'Fruit berry herbal tea "Berry Glade"',
+          title: 'Herbal tea "Berry Glade"',
           description:
-            'Enjoy a bright and aromatic feast of flavors with our fruit and berry tea "Berry Glade", where juicy berries and aromatic fruits create a unique bouquet of pleasure in every sip.',
+            'Enjoy a bright and aromatic feast of flavors with our fruit and berry tea "Berry Glade", where juicy berries and aromatic fruits create a unique bouquet of pleasure in every sip. Weight 250g',
         },
         kg: {
-          title: 'Мөмө-жемиш чөп чай "Жемиш Шалбаасы"',
+          title: 'Чөп чай "Жемиш Шалбаасы"',
           description:
-            'Биздин "Жемиш Шалбаасы" мөмө-жемиш чайыбыз менен жаркыраган жана жыпар жыттуу даамдардын майрамынан ырахат алыңыз, мында ширелүү мөмөлөр жана жыпар жыттуу жемиштер ар бир ууртамда уникалдуу ырахаттын букетин жаратат.',
+            'Биздин "Жемиш Шалбаасы" мөмө-жемиш чайыбыз менен жаркыраган жана жыпар жыттуу даамдардын майрамынан ырахат алыңыз, мында ширелүү мөмөлөр жана жыпар жыттуу жемиштер ар бир ууртамда уникалдуу ырахаттын букетин жаратат. Салмагы 250г',
         },
       },
     }
@@ -1173,10 +1173,10 @@ const run = async () => {
           image: 'fixtures/bnr3.png',
         },
         en: {
-          image: 'fixtures/bnr3en.png',
+          image: 'fixtures/bnr3kg.png',
         },
         kg: {
-          image: 'fixtures/bnr3kg.png',
+          image: 'fixtures/bnr3en.png',
         },
       },
       description: 'landing3',

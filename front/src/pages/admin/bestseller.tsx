@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { MyPage } from '@/components/common/types';
-import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import cls from '@/styles/_adminBestsellers.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { apiUrl } from '@/constants';
+import Head from 'next/head';
+import Image from 'next/image';
 import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
 import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
 import {
   selectAllBestsellers,
   selectAllBestsellersForAdmin,
 } from '@/features/adminBestsellers/adminBestsellersSlice';
-import plusIcon from '@/assets/images/plusIcon.png';
 import {
   fetchBestsellers,
   fetchBestsellersProducts,
   patchHitProduct,
 } from '@/features/adminBestsellers/adminBestsellersThunk';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
-import Head from 'next/head';
-import Image from 'next/image';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import { MyPage } from '@/components/common/types';
+import { apiUrl } from '@/constants';
+import plusIcon from '@/assets/images/plusIcon.png';
+import cls from '@/styles/_adminBestsellers.module.scss';
 
 const BestsellerAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();

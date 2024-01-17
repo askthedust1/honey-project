@@ -1,11 +1,11 @@
 import React from 'react';
-import cls from '@/styles/_cart.module.scss';
-import { apiUrl } from '@/constants';
-import { ICart } from '@/types';
-import { useAppDispatch } from '@/store/hook';
-import { addProduct, decreaseProduct, delProduct } from '@/features/cart/cartSlice';
-import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
+import { useAppDispatch } from '@/store/hook';
+import { useTranslation } from 'next-i18next';
+import { addProduct, decreaseProduct, delProduct } from '@/features/cart/cartSlice';
+import { ICart } from '@/types';
+import { apiUrl } from '@/constants';
+import cls from '@/styles/_cart.module.scss';
 
 interface Props {
   item: ICart;

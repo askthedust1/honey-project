@@ -8,6 +8,7 @@ const orderAdminRouter = express.Router();
 
 orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
   try {
+    let page: number;
     if (req.query.statusId && req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
       let page;

@@ -3,6 +3,8 @@ import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/_adminOrders.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
+import Head from 'next/head';
+import Link from 'next/link';
 import { fetchOrdersAdminAll, patchActiveOrders } from '@/features/orderAdmin/ordersAdminThunk';
 import {
   selectCurrentPage,

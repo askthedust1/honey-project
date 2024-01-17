@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProductView } from '@/types';
 import axiosApi from '@/axiosApi';
+import { IProductView } from '@/types';
 
 export const fetchBestsellersProducts = createAsyncThunk<
   IProductView[],
@@ -11,14 +11,18 @@ export const fetchBestsellersProducts = createAsyncThunk<
   const productsResponse = await axiosApi.get<IProductView[]>(
     `/admin/?${categoryQuery}${searchQuery}`,
   );
-  return productsResponse.data.filter((i) => i.isHit === false && i.isActive === true);
+  return productsResponse.data.filter(
+    (i) => i.isHit === false && i.isActive === true && i.amount > 0,
+  );
 });
 
 export const fetchBestsellers = createAsyncThunk<IProductView[]>(
   'adminBestsellers/fetchBestsellers',
   async () => {
     const productsResponse = await axiosApi.get<IProductView[]>(`/admin`);
-    return productsResponse.data.filter((i) => i.isHit === true && i.isActive === true);
+    return productsResponse.data.filter(
+      (i) => i.isHit === true && i.isActive === true && i.amount > 0,
+    );
   },
 );
 

@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import { MyPage } from '@/components/common/types';
+import { useTranslation } from 'next-i18next';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
+import axiosApi from '@/axiosApi';
+import Head from 'next/head';
+import Link from 'next/link';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { wrapper } from '@/store/store';
 import { selectUserOrders } from '@/features/order/orderSlice';
 import { fetchOrdersAll } from '@/features/order/orderThunk';
-import cls from '@/styles/_userOrdersHistory.module.scss';
-import Link from 'next/link';
-import { wrapper } from '@/store/store';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
-import Head from 'next/head';
-import axiosApi from '@/axiosApi';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
+import { MyPage } from '@/components/common/types';
+import cls from '@/styles/_userOrdersHistory.module.scss';
 
 const History: MyPage = () => {
   const { t, i18n } = useTranslation('ordersHistory');

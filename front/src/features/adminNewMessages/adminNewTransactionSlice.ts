@@ -37,7 +37,6 @@ export const adminNewTransactionsSlice = createSlice({
   },
 });
 
-export const adminMainReducer = adminNewTransactionsSlice.reducer;
 export const selectAdminNewTransactions = (state: RootState) =>
   state.adminNewTransactions.newTransactions;
 

@@ -1,9 +1,12 @@
 import React from 'react';
-import { wrapper } from '@/store/store';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import cls from '@/styles/_delivery.module.scss';
 import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from 'next/head';
+import axiosApi from '@/axiosApi';
+import { wrapper } from '@/store/store';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { MyPage } from '@/components/common/types';
+import DeliveryItms from '@/components/DelivetyItm/DeliveryItms';
 import delivery1 from '@/assets/images/delivery1.png';
 import delivery2 from '@/assets/images/delivery2.png';
 import delivery3 from '@/assets/images/delivery3.png';
@@ -14,10 +17,7 @@ import deliv3 from '@/assets/images/delivmet3.png';
 import pay from '@/assets/images/pay.png';
 import pay1 from '@/assets/images/pay1.png';
 import pay2 from '@/assets/images/pay2.png';
-import DeliveryItms from '@/components/DelivetyItm/DeliveryItms';
-import Head from 'next/head';
-import axiosApi from '@/axiosApi';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
+import cls from '@/styles/_delivery.module.scss';
 
 const Delivery: MyPage = () => {
   const { t } = useTranslation('common');

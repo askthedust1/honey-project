@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IOrder } from '@/types';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
 import { createOrder, fetchOrder, fetchOrdersAll } from '@/features/order/orderThunk';
+import { IOrder } from '@/types';
 
 interface OrderState {
   transaction: IOrder | null;
@@ -74,10 +74,6 @@ export const orderSlice = createSlice({
 });
 
 export const selectOrder = (state: RootState) => state.order.transaction;
-
-export const selectDateOrder = (state: RootState) => state.order.dateOrder;
 export const selectUserOrders = (state: RootState) => state.order.userOrders;
-export const selectUserOrdersLoad = (state: RootState) => state.order.userOrdersLoading;
 export const { changeDate } = orderSlice.actions;
-export const selectProductsDataLoaded = (state: RootState) => state.order.dataLoaded;
 export const selectOrderLoading = (state: RootState) => state.order.orderLoading;

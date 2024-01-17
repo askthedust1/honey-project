@@ -1,3 +1,4 @@
+@use 'mixin' as mix;
 .adminNav {
   display: flex;
   background-color: #ffffff;
@@ -47,17 +48,20 @@
   option:hover {
     padding: 8px;
     background-color: #f0f0f0;
+    @include mix.sm {
+      background-color: inherit;
+      color: inherit;
+    }
   }
 
   input {
     width: 250px;
-    background: url('../assets/images/findIcon.svg') no-repeat center right 10px;
+    background: #ffffff url('../assets/images/findIcon.svg') no-repeat center right 10px;
     height: 40px;
     padding: 8px 40px 8px 10px;
     border: 0.5px solid #5a3733;
     border-radius: 4px;
     margin: 0 67px 0 0;
-    background-color: #ffffff;
   }
 
   input::placeholder {

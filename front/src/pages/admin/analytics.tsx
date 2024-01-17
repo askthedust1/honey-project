@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import { MyPage } from '@/components/common/types';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
+import Image from 'next/image';
 import { selectAllProductsForAdmin } from '@/features/productAdmin/productsAdminSlice';
 import { fetchProductsAnalyticsAdmin } from '@/features/productAdmin/productsAdminThunk';
-import cls from '@/styles/_adminAnalytics.module.scss';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import { MyPage } from '@/components/common/types';
 import { apiUrl } from '@/constants';
-import Image from 'next/image';
+import cls from '@/styles/_adminAnalytics.module.scss';
 
 const Analytics: MyPage = () => {
   const products = useAppSelector(selectAllProductsForAdmin);

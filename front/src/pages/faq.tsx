@@ -1,15 +1,15 @@
 import React from 'react';
-import { MyPage } from '@/components/common/types';
-import Accordion from '@/components/UI/Accordion/Accordion';
-import cls from '@/styles/_accordion.module.scss';
-import pic from '@/assets/images/faq.png';
-import { wrapper } from '@/store/store';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
-import axiosApi from '@/axiosApi';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
+import Image from 'next/image';
+import axiosApi from '@/axiosApi';
+import { wrapper } from '@/store/store';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
+import Accordion from '@/components/UI/Accordion/Accordion';
+import { MyPage } from '@/components/common/types';
+import pic from '@/assets/images/faq.png';
+import cls from '@/styles/_accordion.module.scss';
 
 const FaqPage: MyPage = () => {
   const { t } = useTranslation('common');

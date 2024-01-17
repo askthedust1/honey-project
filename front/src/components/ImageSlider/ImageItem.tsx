@@ -1,14 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
-import { apiUrl } from '@/constants';
 import Link from 'next/link';
+import { apiUrl } from '@/constants';
 import { IBanner } from '@/types';
 
 interface Props {
   image: IBanner;
 }
 
-const Imageitem: React.FC<Props> = ({ image }) => {
+const ImageItem: React.FC<Props> = ({ image }) => {
   const picture = apiUrl + '/' + image.image;
 
   return (
@@ -28,4 +28,4 @@ const Imageitem: React.FC<Props> = ({ image }) => {
   );
 };
 
-export default Imageitem;
+export default ImageItem;

@@ -74,6 +74,9 @@
 
     &:hover {
       background: rgba($text-color, 0.05);
+      @include mix.sm {
+        background: $white;
+      }
     }
 
     &_active {

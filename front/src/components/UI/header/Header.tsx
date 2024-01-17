@@ -1,17 +1,17 @@
 'use static';
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import cls from '../../../styles/_header.module.scss';
-import logo from '@/assets/images/logo.svg';
-import LanguageSwitcher from '@/components/UI/langSwitcher/LanguageSwitcher';
 import { useTranslation } from 'next-i18next';
 import { useAppSelector } from '@/store/hook';
-import { selectUser } from '@/features/users/usersSlice';
-import UserNav from '@/components/UI/header/UserNav';
-import AnonymousNav from '@/components/UI/header/AnonymousNav';
-import { selectCart } from '@/features/cart/cartSlice';
+import Link from 'next/link';
 import Image from 'next/image';
+import { selectUser } from '@/features/users/usersSlice';
+import { selectCart } from '@/features/cart/cartSlice';
 import { selectCategories } from '@/features/categories/categoriesSlice';
+import UserNav from '@/components/UI/header/UserNav';
+import LanguageSwitcher from '@/components/UI/langSwitcher/LanguageSwitcher';
+import AnonymousNav from '@/components/UI/header/AnonymousNav';
+import logo from '@/assets/images/logo.svg';
+import cls from '../../../styles/_header.module.scss';
 
 const Header = () => {
   const user = useAppSelector(selectUser);
@@ -121,7 +121,7 @@ const Header = () => {
         </button>
         <ul className={cls.menu__box}>
           <li className={cls.multilingualTwo}>
-            <LanguageSwitcher />
+            <LanguageSwitcher toggleNav={toggleNav} />
           </li>
           <li>
             <Link onClick={toggleNav} className={cls.menu__item} href={'/'}>
@@ -148,7 +148,7 @@ const Header = () => {
               {t('contacts')}
             </Link>
           </li>
-          {user ? <UserNav /> : <AnonymousNav />}
+          {user ? <UserNav toggleNav={toggleNav} /> : <AnonymousNav toggleNav={toggleNav} />}
         </ul>
       </div>
     </header>

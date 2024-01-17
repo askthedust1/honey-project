@@ -43,7 +43,7 @@ export const pipelineBanner = (lang: string) => [
       image: `$translations.${lang}.image`,
       description: `$description`,
       page: `$page`,
-      priority: `$priority`
+      priority: `$priority`,
     },
   },
 ];

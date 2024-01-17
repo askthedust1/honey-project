@@ -1,18 +1,18 @@
 import React, { ChangeEvent, useState } from 'react';
-import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import Head from 'next/head';
+import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { useRouter } from 'next/router';
 import { createCategory } from '@/features/adminCategories/adminCategoriesThunk';
-import cls from '@/styles/_createCategories.module.scss';
-import { ICategoryMutation } from '@/types';
 import {
   selectCreateCategoriesLoading,
   selectErrorsCategoriesAdmin,
 } from '@/features/adminCategories/adminCategoriesSlice';
 import { MyPage } from '@/components/common/types';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
-import Head from 'next/head';
-import Image from 'next/image';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import { ICategoryMutation } from '@/types';
+import cls from '@/styles/_createCategories.module.scss';
 
 const CreateCategories: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -134,9 +134,9 @@ const CreateCategories: MyPage = () => {
           <label className={cls.createCategory_fileInputLabel} htmlFor="fileCategory">
             {file ? (
               <Image
-                style={{ width: '250px', height: '300px' }}
-                width={100}
-                height={100}
+                style={{ width: '320px', height: '300px', objectFit: 'contain' }}
+                width={320}
+                height={300}
                 priority
                 quality={80}
                 className={cls.img}

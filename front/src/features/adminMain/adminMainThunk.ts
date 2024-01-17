@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IAdminMainHit, IAdminMainInfo } from '@/types';
 import { RootState } from '@/store/store';
 import axiosApi from '@/axiosApi';
+import { IAdminMainHit, IAdminMainInfo } from '@/types';
 
 export const fetchAdminMain = createAsyncThunk<
   IAdminMainInfo,

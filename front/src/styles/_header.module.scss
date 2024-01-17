@@ -1,4 +1,5 @@
 @use 'mixin' as mix;
+
 .header {
   display: flex;
   align-items: center;
@@ -6,7 +7,10 @@
   max-width: 1170px;
   margin: -1px auto 0;
   position: relative;
-  padding: 20px 15px 20px 15px;
+  padding: 20px 15px;
+  @include mix.sm {
+    padding: 12px 15px;
+  }
 }
 
 .logo {
@@ -14,6 +18,10 @@
   height: 46px;
   cursor: pointer;
   flex: 1;
+  @include mix.sm {
+    width: 110px;
+    height: 37px;
+  }
 }
 
 .rightSection {
@@ -61,6 +69,10 @@
 
     &:hover {
       color: #ff8f31;
+      @include mix.sm {
+        background-color: inherit;
+        color: inherit;
+      }
     }
 
     &::after {
@@ -76,10 +88,18 @@
 
     &:hover::after {
       background-color: #ff8f31;
+      @include mix.sm {
+        background-color: inherit;
+        color: inherit;
+      }
     }
 
     &.active::after {
       background-color: #ff8f31;
+      @include mix.sm {
+        background-color: inherit;
+        color: inherit;
+      }
     }
   }
 }
@@ -173,6 +193,9 @@
     display: flex;
     margin: -9px 0 0 0;
   }
+  @include mix.sm {
+    height: 30px;
+  }
   span,
   span::before,
   span::after {
@@ -226,6 +249,10 @@
   }
   &:hover {
     background-color: #cfd8dc;
+    @include mix.sm {
+      background-color: inherit;
+      color: inherit;
+    }
   }
 }
 .multilingualTwo {
@@ -295,6 +322,10 @@
   }
   li:hover {
     color: #ff8f31;
+    @include mix.sm {
+      background-color: inherit;
+      color: inherit;
+    }
   }
 }
 .cartBlock {

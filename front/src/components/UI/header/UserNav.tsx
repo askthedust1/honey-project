@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '@/store/hook';
-import { logout } from '@/features/users/usersThunk';
-import cls from '../../../styles/_header.module.scss';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { logout } from '@/features/users/usersThunk';
+import cls from '../../../styles/_header.module.scss';
 
-const UserNav = () => {
+interface UserNavProps {
+  toggleNav?: () => void;
+}
+
+const UserNav: React.FC<UserNavProps> = ({ toggleNav }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const handleLogout = () => {
     dispatch(logout());
     router.push('/');
+    if (toggleNav) {
+      toggleNav();
+    }
   };
   const { t } = useTranslation('header');
 
@@ -37,7 +44,9 @@ const UserNav = () => {
                 {t('logout')}
               </li>
               <li>
-                <Link href="/orders/history">{t('orderHistory')}</Link>
+                <Link onClick={toggleNav} href="/orders/history">
+                  {t('orderHistory')}
+                </Link>
               </li>
             </ul>
           </div>
