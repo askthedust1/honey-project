@@ -11,6 +11,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     let page: number;
     if (req.query.statusId && req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
+      let page;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -50,7 +51,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.statusId && req.query.camePage && req.query.searchNum) {
       const nSearch = req.query.searchNum as string;
-
+      let page;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -89,6 +90,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && req.query.search) {
+      let page;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -126,6 +128,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && req.query.searchNum) {
+      let page;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -163,6 +166,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.statusId && req.query.camePage) {
+      let page;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -191,6 +195,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
+      let page;
       const perPage = 10;
       page = parseInt(req.query.camePage as string);
 
@@ -229,6 +234,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && !req.query.search) {
+      let page;
       page = parseInt(req.query.camePage as string);
       const perPage = 10;
       const totalOrders = await Transaction.countDocuments();

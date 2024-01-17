@@ -860,7 +860,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1400,
-      payment: 'Наличными',
+      payment: 'Картой',
     },
     {
       user: user2._id,
@@ -900,7 +900,7 @@ const run = async () => {
         },
       ],
       totalPrice: 1700,
-      payment: 'Наличными',
+      payment: 'Картой',
     },
     {
       user: user2._id,

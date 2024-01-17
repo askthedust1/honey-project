@@ -9,6 +9,8 @@ import { fetchAdminHewTransaction } from '@/features/adminNewMessages/adminNewTr
 import { selectAdminNewTransactions } from '@/features/adminNewMessages/adminNewTransactionSlice';
 import {
   changeCurrentPage,
+  changeName,
+  changePhone,
   resetCurrentStatus,
   resetTotalPages,
 } from '@/features/orderAdmin/ordersAdminSlice';
@@ -54,6 +56,8 @@ const SidebarAdmin = () => {
     dispatch(changeCurrentPage(1));
     dispatch(resetTotalPages());
     dispatch(resetCurrentStatus());
+    dispatch(changeName(null));
+    dispatch(changePhone(null));
   };
 
   return (
