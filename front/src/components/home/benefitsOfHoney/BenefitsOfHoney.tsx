@@ -1,5 +1,4 @@
 import React from 'react';
-import cls from '../../../styles/_benefitsOfHoney.module.scss';
 import { useTranslation } from 'next-i18next';
 import hexagonBg1 from '@/assets/images/hexagonBg1.svg';
 import hexagonBg2 from '@/assets/images/hexagonBg2.svg';
@@ -7,6 +6,7 @@ import hexagonBg3 from '@/assets/images/hexagonBg3.svg';
 import hexagonBg4 from '@/assets/images/hexagonBg4.svg';
 import hexagonBg5 from '@/assets/images/hexagonBg5.svg';
 import hexagonBg6 from '@/assets/images/hexagonBg6.svg';
+import cls from '../../../styles/_benefitsOfHoney.module.scss';
 
 const BenefitsOfHoney = () => {
   const { t } = useTranslation('home');

@@ -1,13 +1,13 @@
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-import { RegisterMutation } from '@/types';
-import { register } from '@/features/users/usersThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { selectRegisterError, selectRegisterLoading } from '@/features/users/usersSlice';
-import acc from '@/styles/form.module.scss';
-import { selectCart } from '@/features/cart/cartSlice';
 import { useTranslation } from 'next-i18next';
+import { register } from '@/features/users/usersThunk';
+import { selectRegisterError, selectRegisterLoading } from '@/features/users/usersSlice';
+import { selectCart } from '@/features/cart/cartSlice';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import { RegisterMutation } from '@/types';
+import acc from '@/styles/form.module.scss';
 
 interface Props {
   containerRef?: React.RefObject<HTMLDivElement>;

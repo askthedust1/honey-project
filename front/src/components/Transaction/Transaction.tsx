@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import cls from '@/styles/transaction.module.scss';
 import Link from 'next/link';
-import TransactionItem from '@/components/Order/TransactionItem';
+import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { useRouter } from 'next/router';
+import { fetchOrder } from '@/features/order/orderThunk';
 import { selectOrder, selectOrderLoading } from '@/features/order/orderSlice';
 import { selectUser } from '@/features/users/usersSlice';
-import { fetchOrder } from '@/features/order/orderThunk';
-import { useRouter } from 'next/router';
+import TransactionItem from '@/components/Order/TransactionItem';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import Loading from '@/components/UI/loading/loading';
-import Head from 'next/head';
+import cls from '@/styles/transaction.module.scss';
 
 const Transaction = () => {
   const { t } = useTranslation('transaction');

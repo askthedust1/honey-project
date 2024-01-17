@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
-import cls from '../../../styles/_bestseller.module.scss';
-import otherCls from '../../../styles/_products.module.scss';
 import { useTranslation } from 'next-i18next';
-import { IProduct } from '@/types';
-import ProductItem from '@/features/products/components/ProductItem';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import {
   selectActiveBestsellers,
@@ -11,6 +7,10 @@ import {
   setActiveBestseller,
 } from '@/features/products/productsSlice';
 import { fetchBestsellers } from '@/features/products/productsThunk';
+import ProductItem from '@/features/products/components/ProductItem';
+import { IProduct } from '@/types';
+import cls from '../../../styles/_bestseller.module.scss';
+import otherCls from '../../../styles/_products.module.scss';
 
 const Bestseller = () => {
   const { t, i18n } = useTranslation('home');

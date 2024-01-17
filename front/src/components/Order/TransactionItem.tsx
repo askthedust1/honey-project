@@ -1,8 +1,8 @@
 import React from 'react';
-import { IProductOfKits } from '@/types';
-import cls from '@/styles/transaction.module.scss';
-import { apiUrl } from '@/constants';
 import Image from 'next/image';
+import { IProductOfKits } from '@/types';
+import { apiUrl } from '@/constants';
+import cls from '@/styles/transaction.module.scss';
 
 interface Props {
   item: IProductOfKits;

@@ -1,9 +1,9 @@
 import React from 'react';
-import cls from '@/styles/_categoriesList.module.scss';
-import IMG from '@/assets/images/logo.svg';
 import Link from 'next/link';
-import { apiUrl } from '@/constants';
 import Image from 'next/image';
+import IMG from '@/assets/images/logo.svg';
+import { apiUrl } from '@/constants';
+import cls from '@/styles/_categoriesList.module.scss';
 
 interface Props {
   title: string;

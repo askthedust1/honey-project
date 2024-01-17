@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeOpener from '@/components/home/homeOpener/HomeOpener';
-import cls from './homePage.module.scss';
+import cls from '../../styles/homePage.module.scss';
 
 const HomePage = () => {
   return (
