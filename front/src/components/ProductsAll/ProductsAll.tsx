@@ -94,7 +94,16 @@ const ProductsAll: React.FC<Props> = ({ pageName, id }) => {
             </div>
           </div>
           {products.length === 0 ? (
-            <div style={{ width: '100%', textAlign: 'center', marginTop: '20px' }}>Товаров нет</div>
+            <div
+              style={{
+                width: '100%',
+                textAlign: 'center',
+                marginTop: '20px',
+                marginBottom: '100px',
+              }}
+            >
+              Товаров нет
+            </div>
           ) : (
             <motion.div
               className={cls.list}
