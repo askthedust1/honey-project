@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/_adminOrders.module.scss';
@@ -70,7 +70,7 @@ const Orders: MyPage = () => {
           phone: phoneValueState || '',
         };
 
-        const response = dispatch(fetchOrdersAdminAll(requestData));
+        dispatch(fetchOrdersAdminAll(requestData));
       } catch (error) {
         // nothing
       }
