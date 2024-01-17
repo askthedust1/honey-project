@@ -1,21 +1,21 @@
 import React from 'react';
-import { wrapper } from '@/store/store';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import cls from '../styles/_about.module.scss';
-import about1 from '@/assets/images/about1.jpg';
-import about2 from '@/assets/images/about2.jpg';
-import european_bank from '@/assets/images/partners/european_bank.png';
-import german from '@/assets/images/partners/german.png';
-import jica from '@/assets/images/partners/jica.png';
-import jia from '@/assets/images/partners/jia.png';
-import plata_kg from '@/assets/images/partners/plata_kg.png';
-import usaid from '@/assets/images/partners/usaid.png';
 import { useTranslation } from 'next-i18next';
-import { MyPage } from '@/components/common/types';
-import Head from 'next/head';
-import axiosApi from '@/axiosApi';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
 import Image from 'next/image';
+import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import axiosApi from '@/axiosApi';
+import { wrapper } from '@/store/store';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
+import { MyPage } from '@/components/common/types';
+import european_bank from '@/assets/images/partners/european_bank.png';
+import usaid from '@/assets/images/partners/usaid.png';
+import jica from '@/assets/images/partners/jica.png';
+import plata_kg from '@/assets/images/partners/plata_kg.png';
+import jia from '@/assets/images/partners/jia.png';
+import german from '@/assets/images/partners/german.png';
+import about2 from '@/assets/images/about2.jpg';
+import about1 from '@/assets/images/about1.jpg';
+import cls from '../styles/_about.module.scss';
 
 const About: MyPage = () => {
   const { t } = useTranslation('common');

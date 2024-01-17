@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
+import { FacebookShareButton, TelegramShareButton, WhatsappShareButton } from 'react-share';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { useTranslation } from 'next-i18next';
+import axiosApi from '@/axiosApi';
+import Link from 'next/link';
+import Image from 'next/image';
+import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { wrapper } from '@/store/store';
 import { getProduct } from '@/features/products/productsThunk';
 import { selectOneProduct, selectRelatedProducts } from '@/features/products/productsSlice';
+import { addProduct, delProduct, selectCart } from '@/features/cart/cartSlice';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import RelatedProducts from '@/components/RelatedProducts/RelatedProducts';
+import { MyPage } from '@/components/common/types';
 import { apiUrl } from '@/constants';
 import cls from '../../styles/_product.module.scss';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
-import { addProduct, delProduct, selectCart } from '@/features/cart/cartSlice';
-import { MyPage } from '@/components/common/types';
-import axiosApi from '@/axiosApi';
-import Link from 'next/link';
-import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import wrp from '@/styles/_layoutClient.module.scss';
-import RelatedProducts from '@/components/RelatedProducts/RelatedProducts';
-import Image from 'next/image';
-import Head from 'next/head';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
-import { FacebookShareButton, TelegramShareButton, WhatsappShareButton } from 'react-share';
 
 const Product: MyPage = () => {
   const product = useAppSelector(selectOneProduct);

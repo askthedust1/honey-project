@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { MyPage } from '@/components/common/types';
-import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import cls from '@/styles/_adminOrders.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
+import Head from 'next/head';
+import Link from 'next/link';
 import { fetchOrdersAdminAll, patchActiveOrders } from '@/features/orderAdmin/ordersAdminThunk';
 import {
   selectCurrentPage,
@@ -10,8 +9,9 @@ import {
   selectOrdersAdminAll,
 } from '@/features/orderAdmin/ordersAdminSlice';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
-import Head from 'next/head';
-import Link from 'next/link';
+import { MyPage } from '@/components/common/types';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import cls from '@/styles/_adminOrders.module.scss';
 
 const Orders: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -53,7 +53,7 @@ const Orders: MyPage = () => {
         dispatch(fetchOrdersAdminAll({ page: currentPage }));
       }
     } else {
-      // console.error('currentPageState is undefined or null');
+      //
     }
   };
 

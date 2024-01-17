@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from 'next/head';
+import Link from 'next/link';
+import axiosApi from '@/axiosApi';
+import { wrapper } from '@/store/store';
 import { resetCart, selectCart } from '@/features/cart/cartSlice';
-import { ICart } from '@/types';
-import cls from '@/styles/_order.module.scss';
-import OrderItem from '@/components/Order/OrderItem';
 import { selectUser } from '@/features/users/usersSlice';
 import { createOrder } from '@/features/order/orderThunk';
 import { changeDate } from '@/features/order/orderSlice';
-import Link from 'next/link';
-import { useTranslation } from 'next-i18next';
-import { wrapper } from '@/store/store';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
+import OrderItem from '@/components/Order/OrderItem';
 import { MyPage } from '@/components/common/types';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import Loading from '@/components/UI/loading/loading';
-import Head from 'next/head';
-import axiosApi from '@/axiosApi';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
+import { ICart } from '@/types';
+import cls from '@/styles/_order.module.scss';
 
 const Order: MyPage = () => {
   const router = useRouter();

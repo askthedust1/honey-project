@@ -1,18 +1,18 @@
 import React, { ChangeEvent, useState } from 'react';
-import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import Head from 'next/head';
+import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { useRouter } from 'next/router';
 import { createCategory } from '@/features/adminCategories/adminCategoriesThunk';
-import cls from '@/styles/_createCategories.module.scss';
-import { ICategoryMutation } from '@/types';
 import {
   selectCreateCategoriesLoading,
   selectErrorsCategoriesAdmin,
 } from '@/features/adminCategories/adminCategoriesSlice';
 import { MyPage } from '@/components/common/types';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
-import Head from 'next/head';
-import Image from 'next/image';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import { ICategoryMutation } from '@/types';
+import cls from '@/styles/_createCategories.module.scss';
 
 const CreateCategories: MyPage = () => {
   const dispatch = useAppDispatch();
