@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
   changeCurrentPage,
+  changeName,
+  changePhone,
   resetCurrentStatus,
   resetTotalPages,
 } from '@/features/orderAdmin/ordersAdminSlice';
@@ -54,6 +56,8 @@ const SidebarAdmin = () => {
     dispatch(changeCurrentPage(1));
     dispatch(resetTotalPages());
     dispatch(resetCurrentStatus());
+    dispatch(changeName(null));
+    dispatch(changePhone(null));
   };
 
   return (

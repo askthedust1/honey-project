@@ -82,10 +82,12 @@ export interface Category {
 }
 
 export interface ProductTranslations {
-  [key: string]: {
-    title: string;
-    description: string;
-  } | undefined;
+  [key: string]:
+    | {
+        title: string;
+        description: string;
+      }
+    | undefined;
 }
 
 export interface IProduct {

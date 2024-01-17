@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import cls from '@/styles/_adminNav.module.scss';
 import plusIcon from '@/assets/images/plusIcon.png';
 import { IAdminCategory } from '@/types';
@@ -7,12 +7,16 @@ import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import Image from 'next/image';
 import {
   changeCurrentPage,
+  changeName,
+  changePhone,
   changeStatus,
-  counterMinus,
-  counterPlus,
   selectCurrentPage,
+  selectCurrentStatus,
+  selectNameValue,
+  selectPhoneValue,
   selectTotalOrderPages,
 } from '@/features/orderAdmin/ordersAdminSlice';
+import { fetchOrdersAdminAll } from '@/features/orderAdmin/ordersAdminThunk';
 
 interface Props {
   navProducts: boolean;
@@ -28,14 +32,25 @@ interface Props {
   orderPage?: number;
 }
 
+interface IRequestData {
+  page: string;
+  id?: string | null;
+  name?: string;
+  phone?: string;
+}
+
 const AdminNav: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
 
   const [searchName, setSearchNameState] = useState<string>('');
   const [searchPhone, setSearchPhoneState] = useState<string>('');
+  const [selectedStatus, setSelectedStatus] = useState('');
 
-  const currentPageSate = useAppSelector(selectCurrentPage);
+  const currentPageState = useAppSelector(selectCurrentPage);
   const totalPagesState = useAppSelector(selectTotalOrderPages);
+  const nameValueState = useAppSelector(selectNameValue);
+  const phoneValueState = useAppSelector(selectPhoneValue);
+  const statusValueState = useAppSelector(selectCurrentStatus);
 
   const handleCategoryChange = async (event: ChangeEvent<HTMLSelectElement>) => {
     const categoryId = event.target.value;
@@ -59,11 +74,11 @@ const AdminNav: React.FC<Props> = (props) => {
     setSearchNameState(item);
 
     if (regex.test(verifiedItem) || verifiedItem === '') {
+      dispatch(changeName(verifiedItem));
+      dispatch(changeCurrentPage(1));
       if (verifiedItem.length > 0) {
         setSearchPhoneState('');
-      }
-      if (props.getDisplayName) {
-        props.getDisplayName(verifiedItem);
+        dispatch(changePhone(''));
       }
     }
   };
@@ -71,12 +86,13 @@ const AdminNav: React.FC<Props> = (props) => {
   const setSearchPhone = async (event: ChangeEvent<HTMLInputElement>) => {
     const item = event.target.value;
     const numberValue = item.replace(/[^\d]/g, '');
+
     setSearchPhoneState(numberValue);
+    dispatch(changePhone(numberValue));
+    dispatch(changeCurrentPage(1));
     if (numberValue.length > 0) {
       setSearchNameState('');
-    }
-    if (props.getPhone) {
-      props.getPhone(numberValue);
+      dispatch(changeName(''));
     }
   };
 
@@ -85,34 +101,63 @@ const AdminNav: React.FC<Props> = (props) => {
 
   const handleStatusChangeForOrders = async (event: ChangeEvent<HTMLSelectElement>) => {
     const statusId = event.target.value;
+    dispatch(changeCurrentPage(1));
 
-    if (props.getStatus && props.orderPage !== undefined && props.orderPage !== null) {
-      props.getStatus(statusId);
-      const currentPage = props.orderPage.toString();
+    if (currentPageState !== undefined && props.orderPage !== null) {
+      setSelectedStatus(statusId);
 
       if (statusId !== '') {
-        console.log({ id: statusId, page: currentPage });
         dispatch(changeStatus(statusId));
       } else {
         dispatch(changeStatus(null));
         dispatch(changeCurrentPage(1));
       }
     } else {
-      console.error('currentPageState is undefined or null');
+      //nothing
     }
   };
 
-  const getPlus = async () => {
-    if (currentPageSate && totalPagesState && currentPageSate < totalPagesState) {
-      await dispatch(counterPlus());
+  const handleNextClick = () => {
+    if (currentPageState && totalPagesState && currentPageState < totalPagesState) {
+      dispatch(
+        fetchOrdersAdminAll({
+          page: (currentPageState + 1).toString(),
+          id: selectedStatus || '',
+          name: searchName,
+          phone: searchPhone,
+        }),
+      );
     }
   };
 
-  const getMinus = async () => {
-    if (currentPageSate && currentPageSate > 1) {
-      await dispatch(counterMinus());
+  const handlePrevClick = () => {
+    if (currentPageState && currentPageState > 1) {
+      dispatch(
+        fetchOrdersAdminAll({
+          page: (currentPageState - 1).toString(),
+          id: selectedStatus || '',
+          name: searchName,
+          phone: searchPhone,
+        }),
+      );
     }
   };
+
+  useEffect(() => {
+    const currentPage = currentPageState?.toString();
+
+    try {
+      const requestData: IRequestData = {
+        page: currentPage || '',
+        id: selectedStatus || '',
+        name: searchName || '',
+        phone: searchPhone || '',
+      };
+      dispatch(fetchOrdersAdminAll(requestData));
+    } catch (error) {
+      // nothing
+    }
+  }, [dispatch, nameValueState, phoneValueState, statusValueState]);
 
   const navForProducts = (
     <>
@@ -181,6 +226,7 @@ const AdminNav: React.FC<Props> = (props) => {
         name="findOrderName"
         id="findOrderName"
         placeholder="Найти по имени"
+        value={searchName}
         onChange={setSearchName}
         disabled={isInputNameDisabled}
       />
@@ -193,6 +239,7 @@ const AdminNav: React.FC<Props> = (props) => {
         pattern="[0-9]*"
         inputMode="numeric"
         name="findOrderPhone"
+        value={searchPhone}
         id="findOrderPhone"
         placeholder="Найти по номеру"
         onChange={setSearchPhone}
@@ -212,12 +259,11 @@ const AdminNav: React.FC<Props> = (props) => {
         <option value={'false'}>Не подтвержден</option>
       </select>
       <div className={cls.adminNavPagination}>
-        <button onClick={getMinus} className={cls.arrowToLeft}></button>
+        <button onClick={handlePrevClick} className={cls.arrowToLeft}></button>
         <p>
-          Страница: <span>{currentPageSate}</span> из <span>{totalPagesState}</span>
+          Страница: <span>{currentPageState}</span> из <span>{totalPagesState}</span>
         </p>
-
-        <button onClick={getPlus} className={cls.arrowToRight}></button>
+        <button onClick={handleNextClick} className={cls.arrowToRight}></button>
       </div>
     </>
   );
@@ -255,5 +301,4 @@ const AdminNav: React.FC<Props> = (props) => {
     </div>
   );
 };
-
 export default AdminNav;
