@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from '../../../styles/loadingBtn.module.scss';
+import cls from '../../../styles/_loadingBtn.module.scss';
 
 const LoadingSpinnerBtn = () => {
   return (

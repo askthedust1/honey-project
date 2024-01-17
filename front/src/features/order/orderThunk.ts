@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
-import { IFullOrder, IOrder, IProductOneView } from '@/types';
 import { RootState } from '@/store/store';
+import { IFullOrder, IOrder } from '@/types';
 
 export const fetchOrder = createAsyncThunk<
   IOrder,

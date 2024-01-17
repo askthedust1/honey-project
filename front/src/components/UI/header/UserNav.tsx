@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '@/store/hook';
-import { logout } from '@/features/users/usersThunk';
-import cls from '../../../styles/_header.module.scss';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { logout } from '@/features/users/usersThunk';
+import cls from '../../../styles/_header.module.scss';
 
 interface UserNavProps {
   toggleNav?: () => void;

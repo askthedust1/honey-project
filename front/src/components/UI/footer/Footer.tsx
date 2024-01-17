@@ -1,6 +1,7 @@
 import React from 'react';
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
-import cls from '../../../styles/_footer.module.scss';
+import Image from 'next/image';
 import Logo from '@/assets/images/logo.svg';
 import Email from '@/assets/images/icon-email.svg';
 import Phone from '@/assets/images/icon-phone.svg';
@@ -8,8 +9,7 @@ import FaceBook from '@/assets/images/icon-fb.svg';
 import Twitter from '@/assets/images/icon-tw.svg';
 import Instagram from '@/assets/images/icon-in.svg';
 import YouTube from '@/assets/images/icon-yt.svg';
-import { useTranslation } from 'next-i18next';
-import Image from 'next/image';
+import cls from '../../../styles/_footer.module.scss';
 
 const Footer = () => {
   const { t } = useTranslation('footer');

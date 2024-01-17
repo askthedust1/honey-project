@@ -1,17 +1,17 @@
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from 'next/head';
+import axiosApi from '@/axiosApi';
+import { wrapper } from '@/store/store';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
+import { fetchBanners } from '@/features/banners/bannersThunk';
+import { fetchBestsellers } from '@/features/products/productsThunk';
 import HomePage from '@/components/home/HomePage';
 import CategoriesList from '@/components/UI/categories/CategoriesList';
-import { wrapper } from '@/store/store';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
 import BenefitsOfHoney from '@/components/home/benefitsOfHoney/BenefitsOfHoney';
 import Bestseller from '@/components/home/bestseller/Bestseller';
-import { fetchBanners } from '@/features/banners/bannersThunk';
-import axiosApi from '@/axiosApi';
-import { fetchBestsellers } from '@/features/products/productsThunk';
 import { MyPage } from '@/components/common/types';
 import Mission from '@/components/home/mission/Mission';
-import Head from 'next/head';
-import { useTranslation } from 'next-i18next';
 
 const Home: MyPage = () => {
   const { t } = useTranslation('header');

@@ -1,19 +1,19 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import cls from '@/styles/_editProduct.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { useRouter } from 'next/router';
-import { IProductMutationNew } from '@/types';
-import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import { MyPage } from '@/components/common/types';
-import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
-import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
 import { useParams } from 'next/navigation';
-import { selectOneProductForAdmin } from '@/features/productAdmin/productsAdminSlice';
-import { fetchOneProductForAdmin, putProduct } from '@/features/productAdmin/productsAdminThunk';
-import { apiUrl } from '@/constants';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
+import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
+import { selectOneProductForAdmin } from '@/features/productAdmin/productsAdminSlice';
+import { fetchOneProductForAdmin, putProduct } from '@/features/productAdmin/productsAdminThunk';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import { MyPage } from '@/components/common/types';
+import { apiUrl } from '@/constants';
+import { IProductMutationNew } from '@/types';
+import cls from '@/styles/_editProduct.module.scss';
 
 const EditProduct: MyPage = () => {
   const { id } = useParams() || {};

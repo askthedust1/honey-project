@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { MyPage } from '@/components/common/types';
-import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import ImageSlider from '@/components/ImageSlider/ImageSlider';
+import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
+import Head from 'next/head';
+import ImageSlider from '@/components/ImageSlider/ImageSlider';
 import {
   selectBannerError,
   selectBanners,
   selectBannersPutLoading,
 } from '@/features/banners/bannersSlice';
 import { fetchBannersAdmin, putBanners } from '@/features/banners/bannersThunk';
-import { IBannerPost } from '@/types';
-import FileUpload from '@/components/UI/FileUpload/FileUpload';
-import cls from '@/styles/_bannersAdmin.module.scss';
-import { useRouter } from 'next/router';
-import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
-import Head from 'next/head';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { selectCategories } from '@/features/categories/categoriesSlice';
+import FileUpload from '@/components/UI/FileUpload/FileUpload';
+import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import { MyPage } from '@/components/common/types';
+import { IBannerPost } from '@/types';
+import cls from '@/styles/_bannersAdmin.module.scss';
 
 const BannersAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();

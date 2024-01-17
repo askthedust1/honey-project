@@ -1,5 +1,3 @@
-// import * as wasi from "wasi";
-
 interface IDataTableCalls {
     value: string
 }
@@ -13,11 +11,6 @@ interface IDataTable {
 }
 
 const {I} = inject();
-// Add in your custom step files
-
-// Given('I have a defined step', () => {
-//   // TODO: replace with your own step
-// });
 
 Given('I am on accounts page', () => {
     I.wait(10);

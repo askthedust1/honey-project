@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import cls from '../../styles/_adminProducts.module.scss';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import Image from 'next/image';
+import Link from 'next/link';
+import Head from 'next/head';
 import {
   fetchProductsForAdmin,
   patchActiveProducts,
 } from '@/features/productAdmin/productsAdminThunk';
-import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectAllProductsForAdmin } from '@/features/productAdmin/productsAdminSlice';
-import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import { MyPage } from '@/components/common/types';
-import { apiUrl } from '@/constants';
-import Link from 'next/link';
 import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
 import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
+import { MyPage } from '@/components/common/types';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
-import Head from 'next/head';
-import Image from 'next/image';
+import { apiUrl } from '@/constants';
+import cls from '../../styles/_adminProducts.module.scss';
 
 const ProductsAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();

@@ -1,17 +1,20 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import cls from '@/styles/_addNewProductForm.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { useRouter } from 'next/router';
-import { IProductMutationNew } from '@/types';
-import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import { MyPage } from '@/components/common/types';
+import Head from 'next/head';
+import Image from 'next/image';
 import { fetchAdminCategories } from '@/features/adminCategories/adminCategoriesThunk';
 import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
 import { createProduct } from '@/features/productAdmin/productsAdminThunk';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
-import {selectCreateProductsLoading, selectErrorProduct} from '@/features/productAdmin/productsAdminSlice';
-import Head from 'next/head';
-import Image from 'next/image';
+import {
+  selectCreateProductsLoading,
+  selectErrorProduct,
+} from '@/features/productAdmin/productsAdminSlice';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import { MyPage } from '@/components/common/types';
+import { IProductMutationNew } from '@/types';
+import cls from '@/styles/_addNewProductForm.module.scss';
 
 const AddProductForm: MyPage = () => {
   const dispatch = useAppDispatch();
@@ -119,7 +122,7 @@ const AddProductForm: MyPage = () => {
                 style={{ width: '90%' }}
               />
               {Boolean(getFieldError('translations.en.title')) && (
-                  <span className={cls.field_error}>Некорректные данные EN</span>
+                <span className={cls.field_error}>Некорректные данные EN</span>
               )}
             </div>
             <div>
@@ -133,7 +136,7 @@ const AddProductForm: MyPage = () => {
                 style={{ width: '90%' }}
               />
               {Boolean(getFieldError('translations.ru.title')) && (
-                  <span className={cls.field_error}>Некорректные данные RU</span>
+                <span className={cls.field_error}>Некорректные данные RU</span>
               )}
             </div>
             <div>
@@ -147,7 +150,7 @@ const AddProductForm: MyPage = () => {
                 style={{ width: '90%' }}
               />
               {Boolean(getFieldError('translations.kg.title')) && (
-                  <span className={cls.field_error}>Некорректные данные KG</span>
+                <span className={cls.field_error}>Некорректные данные KG</span>
               )}
             </div>
           </div>
@@ -164,7 +167,7 @@ const AddProductForm: MyPage = () => {
                 style={{ width: '90%' }}
               />
               {Boolean(getFieldError('translations.en.description')) && (
-                  <span className={cls.field_error}>Некорректные данные EN</span>
+                <span className={cls.field_error}>Некорректные данные EN</span>
               )}
             </div>
             <div>
@@ -178,7 +181,7 @@ const AddProductForm: MyPage = () => {
                 style={{ width: '90%' }}
               />
               {Boolean(getFieldError('translations.ru.description')) && (
-                  <span className={cls.field_error}>Некорректные данные RU</span>
+                <span className={cls.field_error}>Некорректные данные RU</span>
               )}
             </div>
             <div>
@@ -192,7 +195,7 @@ const AddProductForm: MyPage = () => {
                 style={{ width: '90%' }}
               />
               {Boolean(getFieldError('translations.kg.description')) && (
-                  <span className={cls.field_error}>Некорректные данные KG</span>
+                <span className={cls.field_error}>Некорректные данные KG</span>
               )}
             </div>
           </div>
@@ -207,7 +210,7 @@ const AddProductForm: MyPage = () => {
                   </option>
                 ))}
                 {Boolean(getFieldError('category')) && (
-                    <span className={cls.field_error}>Выберите категорию!</span>
+                  <span className={cls.field_error}>Выберите категорию!</span>
                 )}
               </select>
               <label htmlFor="amount">Количество товара</label>
@@ -220,7 +223,7 @@ const AddProductForm: MyPage = () => {
                 onChange={inputChangeHandler}
               />
               {Boolean(getFieldError('amount')) && (
-                  <span className={cls.field_error}>Некорректные данные</span>
+                <span className={cls.field_error}>Некорректные данные</span>
               )}
               <label htmlFor="oldPrice">Cтарая цена</label>
               <input
@@ -232,7 +235,7 @@ const AddProductForm: MyPage = () => {
                 onChange={inputChangeHandler}
               />
               {Boolean(getFieldError('oldPrice')) && (
-                  <span className={cls.field_error}>Некорректные данные</span>
+                <span className={cls.field_error}>Некорректные данные</span>
               )}
               <label htmlFor="actualPrice"> Новая цена </label>
               <input
@@ -244,13 +247,13 @@ const AddProductForm: MyPage = () => {
                 onChange={inputChangeHandler}
               />
               {Boolean(getFieldError('actualPrice')) && (
-                  <span className={cls.field_error}>Некорректные данные</span>
+                <span className={cls.field_error}>Некорректные данные</span>
               )}
             </div>
 
             <div className={cls.imageBlock}>
               {Boolean(getFieldError('image')) && (
-                  <span className={cls.field_error}>Загрузите фото!</span>
+                <span className={cls.field_error}>Загрузите фото!</span>
               )}
               <input
                 className={cls.createCategory_fileInput}

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { RootState } from '@/store/store';
-import { IAdminMainHit, IAdminMainInfo } from '@/types';
 import { fetchAdminMain, fetchAdminMainHit } from '@/features/adminMain/adminMainThunk';
+import { IAdminMainHit, IAdminMainInfo } from '@/types';
 
 interface AdminMainState {
   items: IAdminMainInfo;
@@ -54,8 +54,5 @@ export const adminMainSlice = createSlice({
   },
 });
 
-export const adminMainReducer = adminMainSlice.reducer;
 export const selectAdminMain = (state: RootState) => state.adminMain.items;
 export const selectAdminMainHits = (state: RootState) => state.adminMain.hits;
-
-export const selectAdminMainLoading = (state: RootState) => state.adminMain.loading;

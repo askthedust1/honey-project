@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { LoginMutation } from '@/types';
 import { useRouter } from 'next/navigation';
-import acc from '@/styles/form.module.scss';
+import { useTranslation } from 'next-i18next';
 import { login } from '@/features/users/usersThunk';
 import { selectLoginError, selectLoginLoading } from '@/features/users/usersSlice';
-import { useTranslation } from 'next-i18next';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import { LoginMutation } from '@/types';
+import acc from '@/styles/_form.module.scss';
 
 interface Props {
   containerRef?: React.RefObject<HTMLDivElement>;

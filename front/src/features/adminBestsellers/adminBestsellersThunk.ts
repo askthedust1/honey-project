@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProductView } from '@/types';
 import axiosApi from '@/axiosApi';
+import { IProductView } from '@/types';
 
 export const fetchBestsellersProducts = createAsyncThunk<
   IProductView[],

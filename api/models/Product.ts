@@ -42,7 +42,7 @@ const ProductSchema = new Schema({
     required: true,
     validate: {
       validator: function (value: number) {
-        return value > 0;
+        return value >= 0;
       },
       message: 'Количество не может быть меньше нуля',
     },
@@ -102,21 +102,4 @@ const ProductSchema = new Schema({
 });
 
 const Product = mongoose.model('Product', ProductSchema);
-
-export const pipelineProduct = (lang: string) => ({
-  $project: {
-    category: '$category',
-    image: '$image',
-    oldPrice: '$oldPrice',
-    actualPrice: '$actualPrice',
-    amount: '$amount',
-    isActive: '$isActive',
-    isHit: '$isHit',
-    datetime: '$datetime',
-    lang: lang,
-    title: `$translations.${lang}.title`,
-    description: `$translations.${lang}.description`,
-  },
-});
-
 export default Product;

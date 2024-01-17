@@ -1,10 +1,10 @@
 import React from 'react';
-import { wrapper } from '@/store/store';
+import axiosApi from '@/axiosApi';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { wrapper } from '@/store/store';
+import { fetchCategories } from '@/features/categories/categoriesThunk';
 import { MyPage } from '@/components/common/types';
 import Transaction from '@/components/Transaction/Transaction';
-import axiosApi from '@/axiosApi';
-import { fetchCategories } from '@/features/categories/categoriesThunk';
 
 const TransactionPage: MyPage = () => {
   return (

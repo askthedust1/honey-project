@@ -1,11 +1,11 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import cls from '@/styles/_modalEditCategories.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { selectAdminCategoryInfo } from '@/features/adminCategories/adminCategoriesSlice';
-import { ICategoryMutation } from '@/types';
-import { apiUrl } from '@/constants';
-import { fetchAdminCategories, putCategory } from '@/features/adminCategories/adminCategoriesThunk';
 import Image from 'next/image';
+import { fetchAdminCategories, putCategory } from '@/features/adminCategories/adminCategoriesThunk';
+import { selectAdminCategoryInfo } from '@/features/adminCategories/adminCategoriesSlice';
+import { apiUrl } from '@/constants';
+import { ICategoryMutation } from '@/types';
+import cls from '@/styles/_modalEditCategories.module.scss';
 
 interface Props {
   isOpen: boolean;

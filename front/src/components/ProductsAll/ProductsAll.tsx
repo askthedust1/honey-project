@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAppSelector } from '@/store/hook';
 import { selectAllProducts } from '@/features/products/productsSlice';
-import ProductItem from '@/features/products/components/ProductItem';
+import ProductItem from '@/components/ProductsAll/ProductItem';
 import { AnimationState, IProduct } from '@/types';
 import { useTranslation } from 'next-i18next';
 import cls from '../../styles/_products.module.scss';

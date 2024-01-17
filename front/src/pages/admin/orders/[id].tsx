@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { MyPage } from '@/components/common/types';
 import { useParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
+import Link from 'next/link';
 import {
   changeCurrentPage,
   resetCurrentStatus,
@@ -9,11 +9,11 @@ import {
   selectOrderOneAdmin,
 } from '@/features/orderAdmin/ordersAdminSlice';
 import { fetchOrderOneAdmin } from '@/features/orderAdmin/ordersAdminThunk';
-import cls from '../../../styles/_adminOneOrder.module.scss';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import { IProductOfKits } from '@/types';
 import OneOrderItem from '@/components/admin/oneOrder/OneOrderItem';
-import Link from 'next/link';
+import { MyPage } from '@/components/common/types';
+import { IProductOfKits } from '@/types';
+import cls from '../../../styles/_adminOneOrder.module.scss';
 
 const OrderInfo: MyPage = () => {
   const { id } = useParams() || {};

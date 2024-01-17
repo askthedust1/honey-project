@@ -1,6 +1,6 @@
 import React from 'react';
-import cls from '../../../styles/notFound.module.scss';
 import Link from 'next/link';
+import cls from '../../../styles/_notFound.module.scss';
 
 const NotFound404 = () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
-import cls from '@/styles/_delivery.module.scss';
-import DeliveryItm from '@/components/DelivetyItm/DeliveryItm';
 import { StaticImageData } from 'next/image';
+import DeliveryItm from '@/components/DelivetyItm/DeliveryItm';
+import cls from '@/styles/_delivery.module.scss';
 
 interface Props {
   array: { img: StaticImageData; text: string }[];

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '@/axiosApi';
-import { ICategory } from '@/types';
 import { useCategoryTranslation } from '@/features/categories/categoriesHook';
+import { ICategory } from '@/types';
 
 export const fetchCategories = createAsyncThunk<ICategory[], string>(
   'categories/fetchCategories',

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import cls from '../../../styles/_sideBar.module.scss';
 import { useAppSelector } from '@/store/hook';
-import { selectCategories } from '@/features/categories/categoriesSlice';
-import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
+import { selectCategories } from '@/features/categories/categoriesSlice';
+import cls from '../../../styles/_sideBar.module.scss';
 
 const SideBar = () => {
   const categories = useAppSelector(selectCategories);
@@ -36,11 +36,11 @@ const SideBar = () => {
       </div>
       <div className={`${cls.sideBar_list} ${!isCategoriesVisible ? cls.hiddenCategories : ''}`}>
         <Link
-            onClick={() => {
-              if (window.innerWidth < 599) {
-                setIsCategoriesVisible(!isCategoriesVisible);
-              }
-            }}
+          onClick={() => {
+            if (window.innerWidth < 599) {
+              setIsCategoriesVisible(!isCategoriesVisible);
+            }
+          }}
           className={cls.category_item}
           href={'/products/page/1'}
         >
@@ -48,11 +48,11 @@ const SideBar = () => {
         </Link>
         {categories.map((item) => (
           <Link
-              onClick={() => {
-                if (window.innerWidth < 599) {
-                  setIsCategoriesVisible(!isCategoriesVisible);
-                }
-              }}
+            onClick={() => {
+              if (window.innerWidth < 599) {
+                setIsCategoriesVisible(!isCategoriesVisible);
+              }
+            }}
             key={item._id}
             href={{
               pathname: '/category/page/path',

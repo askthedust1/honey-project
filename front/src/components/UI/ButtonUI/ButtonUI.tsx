@@ -1,6 +1,6 @@
 import React from 'react';
-import LoadingSpinnerBtn from '@/components/UI/LoadingSpinnerBtn/LoadingSpinnerBtn';
 import Link from 'next/link';
+import LoadingSpinnerBtn from '@/components/UI/LoadingSpinnerBtn/LoadingSpinnerBtn';
 
 interface IProps {
   text: string;

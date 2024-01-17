@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
-import cls from '../../../../styles/_adminModal.module.scss';
-import { IOrderMutation } from '@/types';
-import { apiUrl } from '@/constants';
 import { useAppDispatch } from '@/store/hook';
+import Image from 'next/image';
 import {
   confirmOrderAdmin,
   fetchAdminHewTransaction,
 } from '@/features/adminNewMessages/adminNewTransactionThunk';
-import Image from 'next/image';
+import { apiUrl } from '@/constants';
+import { IOrderMutation } from '@/types';
+import cls from '../../../../styles/_adminModal.module.scss';
 
 interface ModalProps {
   isOpen: boolean;

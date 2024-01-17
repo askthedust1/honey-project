@@ -1,5 +1,3 @@
-export type BestsellerVariant = 'new' | 'hit';
-
 export interface RegisterMutation {
   email: string;
   password: string;

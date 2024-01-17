@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IAdminCategory, ValidationError } from '@/types';
 import { RootState } from '@/store/store';
 import {
   createCategory,
@@ -7,6 +6,7 @@ import {
   fetchOneCategoryForAdmin,
 } from './adminCategoriesThunk';
 import { HYDRATE } from 'next-redux-wrapper';
+import { IAdminCategory, ValidationError } from '@/types';
 
 interface AdminCategoriesState {
   items: IAdminCategory[];
@@ -71,10 +71,8 @@ export const adminCategoriesSlice = createSlice({
   },
 });
 
-export const adminCategoriesReducer = adminCategoriesSlice.reducer;
 export const selectAdminCategories = (state: RootState) => state.adminCategories.items;
 export const selectAdminCategoryInfo = (state: RootState) => state.adminCategories.itemInfo;
-export const selectAdminCategoriesLoading = (state: RootState) => state.adminCategories.loading;
 export const selectCreateCategoriesLoading = (state: RootState) =>
   state.adminCategories.createLoading;
 export const selectErrorsCategoriesAdmin = (state: RootState) => state.adminCategories.error;
