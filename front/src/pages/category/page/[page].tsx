@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductsAll from '@/features/products/ProductsAll';
+import ProductsAll from '@/components/ProductsAll/ProductsAll';
 import { wrapper } from '@/store/store';
 import {
   fetchProductsByCategory,

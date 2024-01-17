@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axiosApi from '@/axiosApi';
-import { IAdminCategory, ICategoryMutation, TAdminCategory, ValidationError } from '@/types';
-import { RootState } from '@/store/store';
 import { isAxiosError } from 'axios';
+import axiosApi from '@/axiosApi';
+import { RootState } from '@/store/store';
+import { IAdminCategory, ICategoryMutation, TAdminCategory, ValidationError } from '@/types';
 
 export const fetchAdminCategories = createAsyncThunk<
   IAdminCategory[],

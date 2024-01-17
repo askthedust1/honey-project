@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { BannerResponse, GlobalError, IBanner, IBannerPost } from '@/types';
 import axiosApi from '@/axiosApi';
 import { isAxiosError } from 'axios';
+import { BannerResponse, GlobalError, IBanner, IBannerPost } from '@/types';
 
 export const fetchBanners = createAsyncThunk('banner/fetchBanners', async () => {
   const response = await axiosApi.get<IBanner[]>('/banners');

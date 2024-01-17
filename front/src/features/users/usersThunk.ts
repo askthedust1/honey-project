@@ -1,4 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axiosApi from '@/axiosApi';
+import { isAxiosError } from 'axios';
+import { unsetUser } from './usersSlice';
+import { RootState } from '@/store/store';
+import { resetCart } from '@/features/cart/cartSlice';
 import {
   GlobalError,
   ICheck,
@@ -8,11 +13,6 @@ import {
   RegisterResponse,
   ValidationError,
 } from '@/types';
-import axiosApi from '@/axiosApi';
-import { isAxiosError } from 'axios';
-import { unsetUser } from './usersSlice';
-import { RootState } from '@/store/store';
-import { resetCart } from '@/features/cart/cartSlice';
 
 export const register = createAsyncThunk<
   RegisterResponse,

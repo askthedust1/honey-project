@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IOrderAdminView } from '@/types';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
 import { fetchOrderOneAdmin, fetchOrdersAdminAll } from '@/features/orderAdmin/ordersAdminThunk';
+import { IOrderAdminView } from '@/types';
 
 interface OrderAdminState {
   ordersAdminAll: IOrderAdminView[] | null;

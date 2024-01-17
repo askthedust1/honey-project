@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductItem from '@/features/products/components/ProductItem';
+import ProductItem from '@/components/ProductsAll/ProductItem';
 import { IProduct } from '@/types';
 import cls from '../../styles/_product.module.scss';
 

@@ -7,7 +7,7 @@ import {
   setActiveBestseller,
 } from '@/features/products/productsSlice';
 import { fetchBestsellers } from '@/features/products/productsThunk';
-import ProductItem from '@/features/products/components/ProductItem';
+import ProductItem from '@/components/ProductsAll/ProductItem';
 import { IProduct } from '@/types';
 import cls from '../../../styles/_bestseller.module.scss';
 import otherCls from '../../../styles/_products.module.scss';
