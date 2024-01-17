@@ -16,8 +16,6 @@ import {
 } from '@/features/orderAdmin/ordersAdminSlice';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
 import Preloader from '@/components/UI/preloader/preloader';
-import Head from 'next/head';
-import Link from 'next/link';
 
 interface IRequestData {
   page: string;
