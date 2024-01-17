@@ -183,6 +183,9 @@
 
       a:hover {
         color: #ffb931;
+        @include mix.sm {
+          color: inherit;
+        }
       }
 
       span {

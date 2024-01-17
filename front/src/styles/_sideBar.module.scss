@@ -24,6 +24,9 @@ $color-title: #d3a863;
       margin-left: 10px;
       &:hover {
         background-color: darken($color-title, 10%);
+        @include mix.sm {
+          background-color: inherit;
+        }
       }
     }
   }
@@ -84,6 +87,9 @@ $color-title: #d3a863;
 
       &:hover {
         color: $color-title;
+        @include mix.sm {
+          color: inherit;
+        }
       }
 
       @include mix.md2 {

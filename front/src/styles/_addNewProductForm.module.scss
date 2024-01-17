@@ -1,3 +1,4 @@
+@use 'mixin' as mix;
 .createCategory {
   width: 970px;
 
@@ -126,6 +127,10 @@
 
     &:hover {
       border-bottom-color: #5a3733;
+      @include mix.sm {
+        background-color: inherit;
+        color: inherit;
+      }
     }
 
     &:focus {
@@ -139,6 +144,10 @@
       left: 15px;
       font-size: 12px;
       color: #5a3733;
+      @include mix.sm {
+        background-color: inherit;
+        color: inherit;
+      }
     }
 
     &:focus::placeholder {
@@ -198,6 +207,10 @@
     option:hover {
       padding: 8px;
       background-color: #f0f0f0;
+      @include mix.sm {
+        background-color: inherit;
+        color: inherit;
+      }
     }
   }
 
@@ -232,6 +245,11 @@
     &:hover {
       box-shadow: 0 0 3px 3px #5a3733;
       color: #5a3733;
+      @include mix.sm {
+        background-color: inherit;
+        color: inherit;
+        box-shadow: none;
+      }
     }
 
     span {
