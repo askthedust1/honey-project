@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
-import cls from '@/styles/_adminNav.module.scss';
-import plusIcon from '@/assets/images/plusIcon.png';
-import { IAdminCategory } from '@/types';
+import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
-import Image from 'next/image';
+import { IAdminCategory } from '@/types';
+import cls from '@/styles/_adminNav.module.scss';
+import plusIcon from '@/assets/images/plusIcon.png';
 import {
   changeCurrentPage,
   changeStatus,
@@ -84,7 +84,6 @@ const AdminNav: React.FC<Props> = (props) => {
       const currentPage = props.orderPage.toString();
 
       if (statusId !== '') {
-        console.log({ id: statusId, page: currentPage });
         dispatch(changeStatus(statusId));
       } else {
         dispatch(changeStatus(null));

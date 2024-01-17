@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import FilterBarItems from '@/components/FilterBar/FilterBarItems';
 import cls from '@/styles/_products.module.scss';
-import { useTranslation } from 'next-i18next';
 
 interface Props {
   categoryId?: string;

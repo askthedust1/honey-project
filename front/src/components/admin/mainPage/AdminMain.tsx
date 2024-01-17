@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import cls from '../../../styles/_adminMainPage.module.scss';
+import Image from 'next/image';
 import { selectAdminMain, selectAdminMainHits } from '@/features/adminMain/adminMainSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { fetchAdminMain, fetchAdminMainHit } from '@/features/adminMain/adminMainThunk';
 import { apiUrl } from '@/constants';
-import Image from 'next/image';
+import cls from '../../../styles/_adminMainPage.module.scss';
 
 const AdminMain = () => {
   const dispatch = useAppDispatch();

@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { UrlObject } from 'url';
-import cls from '@/styles/_products.module.scss';
 import { useTranslation } from 'next-i18next';
+import cls from '@/styles/_products.module.scss';
 
 interface Props {
   categoryId?: string;
