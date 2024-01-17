@@ -4,7 +4,7 @@ import plusIcon from '@/assets/images/plusIcon.png';
 import { IAdminCategory } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
-
+import Image from 'next/image';
 import {
   changeCurrentPage,
   changeName,
