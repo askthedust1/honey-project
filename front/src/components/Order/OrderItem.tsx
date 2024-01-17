@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { ICart } from '@/types';
 import { apiUrl } from '@/constants';
-import cls from '@/styles/order.module.scss';
+import cls from '@/styles/_order.module.scss';
 
 interface Props {
   item: ICart;

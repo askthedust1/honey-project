@@ -7,7 +7,7 @@ import { selectRegisterError, selectRegisterLoading } from '@/features/users/use
 import { selectCart } from '@/features/cart/cartSlice';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import { RegisterMutation } from '@/types';
-import acc from '@/styles/form.module.scss';
+import acc from '@/styles/_form.module.scss';
 
 interface Props {
   containerRef?: React.RefObject<HTMLDivElement>;

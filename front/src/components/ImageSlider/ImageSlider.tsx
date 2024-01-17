@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Slider from 'react-slick';
 import ImageItem from '@/components/ImageSlider/ImageItem';
 import { IBanner } from '@/types';
-import stl from '../../styles/imgSlider.module.scss';
+import stl from '../../styles/_imgSlider.module.scss';
 
 interface Props {
   images: IBanner[];

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useAppSelector } from '@/store/hook';
 import { selectCurrentPage, selectTotalPages } from '@/features/products/productsSlice';
-import cls from '../../../styles/pagination.module.scss';
+import cls from '../../../styles/_pagination.module.scss';
 
 interface Props {
   productsActive: boolean;

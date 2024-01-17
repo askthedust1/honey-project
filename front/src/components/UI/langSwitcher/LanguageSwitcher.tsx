@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import cls from '../../../styles/langSelect.module.scss';
+import cls from '../../../styles/_langSelect.module.scss';
 
 interface Props {
   toggleNav?: () => void;

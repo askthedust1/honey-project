@@ -1,6 +1,6 @@
 @use 'mixin' as mix;
-@import '@/styles/_variables.scss';
 @import 'mixin';
+@import '@/styles/_variables.scss';
 
 .btn-primary {
   display: inline-block;

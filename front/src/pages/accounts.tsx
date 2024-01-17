@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import Login from '@/components/reg&logForms/Login';
 import Register from '@/components/reg&logForms/Register';
-import acc from '@/styles/accounts.module.scss';
+import acc from '@/styles/_accounts.module.scss';
 import { wrapper } from '@/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { MyPage } from '@/components/common/types';

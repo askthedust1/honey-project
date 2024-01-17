@@ -10,7 +10,7 @@ import { selectUser } from '@/features/users/usersSlice';
 import TransactionItem from '@/components/Order/TransactionItem';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
 import Loading from '@/components/UI/loading/loading';
-import cls from '@/styles/transaction.module.scss';
+import cls from '@/styles/_transaction.module.scss';
 
 const Transaction = () => {
   const { t } = useTranslation('transaction');

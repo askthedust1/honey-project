@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { IProductOfKits } from '@/types';
 import { apiUrl } from '@/constants';
-import cls from '@/styles/transaction.module.scss';
+import cls from '@/styles/_transaction.module.scss';
 
 interface Props {
   item: IProductOfKits;
