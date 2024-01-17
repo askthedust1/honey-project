@@ -15,7 +15,7 @@ export const config: CodeceptJS.MainConfig = {
       show: !process.env.CI,
       windowSize: '1500x1500',
       chrome: {
-        headless: "new", // Используем новый режим Headless
+        headless: "new",
       },
     }
   },
