@@ -43,7 +43,7 @@ transactionsRouter.get('/new/history', auth, async (req, res) => {
         path: 'product',
         model: 'Product',
         populate: {
-          path: 'translations.ru', // Замените 'ru' на нужный язык
+          path: 'translations.ru',
           model: 'Product',
           select: 'title',
         },

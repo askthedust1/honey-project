@@ -27,7 +27,6 @@ export interface IUser {
   role: string;
   displayName: string;
   phone: string;
-  googleID?: string;
   address?: string;
 }
 
