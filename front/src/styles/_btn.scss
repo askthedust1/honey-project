@@ -17,7 +17,7 @@
   &:hover {
     background: $primary-hover;
     @include mix.sm {
-      background-color: inherit;
+      background-color: $primary;
     }
 
   }
@@ -46,7 +46,7 @@
   &:hover {
     background: #612d01;
     @include mix.sm {
-      background-color: inherit;
+      background-color: #934300;
     }
   }
 
