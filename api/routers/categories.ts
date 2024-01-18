@@ -4,7 +4,6 @@ import Category from '../models/Category';
 const categoriesRouter = express.Router();
 
 categoriesRouter.get('/', async (req, res) => {
-
   try {
     const categories = await Category.find({ isActive: true });
 

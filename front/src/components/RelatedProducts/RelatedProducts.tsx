@@ -1,6 +1,6 @@
 import React from 'react';
+import ProductItem from '@/components/ProductsAll/ProductItem';
 import { IProduct } from '@/types';
-import ProductItem from '@/features/products/components/ProductItem';
 import cls from '../../styles/_product.module.scss';
 
 interface Props {

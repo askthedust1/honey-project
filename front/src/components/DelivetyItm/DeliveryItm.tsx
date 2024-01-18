@@ -1,6 +1,6 @@
 import React from 'react';
-import cls from '@/styles/_delivery.module.scss';
 import Image, { StaticImageData } from 'next/image';
+import cls from '@/styles/_delivery.module.scss';
 
 interface Props {
   item: { img: StaticImageData; text: string };

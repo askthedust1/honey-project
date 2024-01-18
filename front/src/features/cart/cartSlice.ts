@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ICart, IProduct, IProductView } from '@/types';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
+import { ICart, IProduct, IProductView } from '@/types';
 
 interface CartState {
   cart: ICart[];

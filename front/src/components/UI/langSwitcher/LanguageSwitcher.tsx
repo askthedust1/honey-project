@@ -2,9 +2,13 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import cls from './langSelect.module.scss';
+import cls from '../../../styles/_langSelect.module.scss';
 
-const LanguageSwitcher = () => {
+interface Props {
+  toggleNav?: () => void;
+}
+
+const LanguageSwitcher: React.FC<Props> = ({ toggleNav }) => {
   const router = useRouter();
 
   const [currentLang, setCurrentLang] = useState(router.locale || 'ru');
@@ -16,6 +20,9 @@ const LanguageSwitcher = () => {
     router.push({ pathname, query }, asPath, { locale: lang });
     i18n.changeLanguage(lang);
     setCurrentLang(lang);
+    if (toggleNav) {
+      toggleNav();
+    }
   };
 
   return (

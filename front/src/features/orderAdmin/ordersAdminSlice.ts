@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IOrderAdminView } from '@/types';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
 import { fetchOrderOneAdmin, fetchOrdersAdminAll } from '@/features/orderAdmin/ordersAdminThunk';
+import { IOrderAdminView } from '@/types';
 
 interface OrderAdminState {
   ordersAdminAll: IOrderAdminView[] | null;
@@ -11,6 +11,8 @@ interface OrderAdminState {
   currentPage: number;
   totalPages: number | null;
   currentStatus: string | null;
+  currentName: string | null;
+  currentPhone: string | null;
 }
 
 const initialState: OrderAdminState = {
@@ -20,6 +22,8 @@ const initialState: OrderAdminState = {
   currentPage: 1,
   totalPages: null,
   currentStatus: null,
+  currentName: null,
+  currentPhone: null,
 };
 
 export const orderAdminSlice = createSlice({
@@ -28,12 +32,6 @@ export const orderAdminSlice = createSlice({
   reducers: {
     resetOrder: (state) => {
       state.orderAdminOne = null;
-    },
-    counterPlus: (state) => {
-      state.currentPage = state.currentPage + 1;
-    },
-    counterMinus: (state) => {
-      state.currentPage = state.currentPage - 1;
     },
     changeCurrentPage: (state, action) => {
       state.currentPage = action.payload;
@@ -46,6 +44,12 @@ export const orderAdminSlice = createSlice({
     },
     resetCurrentStatus: (state) => {
       state.currentStatus = null;
+    },
+    changeName: (state, action) => {
+      state.currentName = action.payload;
+    },
+    changePhone: (state, action) => {
+      state.currentPhone = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -87,12 +91,15 @@ export const selectOrdersAdminAll = (state: RootState) => state.orderAdmin.order
 export const selectCurrentPage = (state: RootState) => state.orderAdmin.currentPage;
 export const selectTotalOrderPages = (state: RootState) => state.orderAdmin.totalPages;
 export const selectCurrentStatus = (state: RootState) => state.orderAdmin.currentStatus;
+export const selectNameValue = (state: RootState) => state.orderAdmin.currentName;
+export const selectPhoneValue = (state: RootState) => state.orderAdmin.currentPhone;
+export const selectDataLoaded = (state: RootState) => state.orderAdmin.dataLoaded;
 
 export const {
-  counterPlus,
-  counterMinus,
   changeStatus,
   changeCurrentPage,
   resetTotalPages,
   resetCurrentStatus,
+  changeName,
+  changePhone,
 } = orderAdminSlice.actions;

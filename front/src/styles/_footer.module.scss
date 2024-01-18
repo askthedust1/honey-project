@@ -80,24 +80,21 @@
       display: block;
       position: absolute;
       bottom: 74%;
-      left: 43%;
+      left: 50%;
+      transform: translateX(-50%);
       @include mix.md {
-        left: 36%;
         bottom: 73%;
       }
       @include mix.md2 {
         width: 154px;
         height: 144px;
         bottom: 70%;
-        left: 34%;
       }
       @include mix.sm {
         bottom: 78%;
-        left: 30%;
       }
       @include mix.xs {
         bottom: 79%;
-        left: 30%;
       }
       img {
         position: absolute;
@@ -183,6 +180,9 @@
 
       a:hover {
         color: #ffb931;
+        @include mix.sm {
+          color: inherit;
+        }
       }
 
       span {

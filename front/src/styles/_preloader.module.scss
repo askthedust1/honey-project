@@ -1,0 +1,47 @@
+
+.loader_wrapper {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+}
+
+.loader {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 5px;
+  background-color: #5a3733;
+  opacity: 0.3;
+}
+
+.loader_dot1 {
+  animation: dotAnimation 1s infinite 0.1s;
+}
+
+.loader_dot2 {
+  animation: dotAnimation 1s infinite 0.33s;
+}
+
+.loader_dot3 {
+  animation: dotAnimation 1s infinite 0.66s;
+}
+
+@keyframes dotAnimation {
+  0% {
+    opacity: 0.3;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  75% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}

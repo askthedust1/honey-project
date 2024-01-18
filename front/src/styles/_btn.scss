@@ -1,5 +1,6 @@
-@import '@/styles/_variables.scss';
+@use 'mixin' as mix;
 @import 'mixin';
+@import '@/styles/_variables.scss';
 
 .btn-primary {
   display: inline-block;
@@ -15,6 +16,10 @@
 
   &:hover {
     background: $primary-hover;
+    @include mix.sm {
+      background-color: $primary;
+    }
+
   }
 
   &:active {
@@ -40,6 +45,9 @@
 
   &:hover {
     background: #612d01;
+    @include mix.sm {
+      background-color: #934300;
+    }
   }
 
   &:active {

@@ -2,9 +2,8 @@ import express from 'express';
 import Product from '../models/Product';
 import Category from '../models/Category';
 import User from '../models/User';
-import {IProduct, IProductPost} from "../types";
-//НЕ ВКЛЮЧАТЬ ПРОВЕРКУ ПРИТИРА И ИСПРАВЛЕНИЯ!
-// ТУТ ВСЕ ПРАВИЛЬНО, ЕСЛИ ОН ПОСТАВИТ СВОИ ЛИШНИЕ ЗАПЯТЫЕ, ЗАПРОСЫ ПОЛОМАЮТСЯ! СПАСИБО)
+import { IProduct, IProductPost } from '../types';
+
 const productRouter = express.Router();
 
 interface ProductQuery {
@@ -12,8 +11,12 @@ interface ProductQuery {
   category?: string;
 }
 
-const getProductsQuery = (isActive: boolean, categoryId?: string): ProductQuery => ({
+const getProductsQuery = (
+  isActive: boolean,
+  categoryId?: string
+): { amount: { $gt: number }; isActive: boolean } => ({
   isActive,
+  amount: { $gt: 0 },
   ...(categoryId && { category: categoryId }),
 });
 
@@ -31,24 +34,27 @@ const getSortQuery = (sortType?: string): Record<string, 1 | -1> => {
 };
 
 async function getProductsWithPages(
-    query: ProductQuery,
-    page: number,
-    perPage: number,
-    lang: string,
-    sortType?: string,
+  query: ProductQuery,
+  page: number,
+  perPage: number,
+  lang: string,
+  sortType?: string
 ): Promise<{ productsOfPage: IProduct[]; currentPage: number; totalPages: number }> {
   const totalProducts = await Product.countDocuments(query);
   const totalPages = Math.ceil(totalProducts / perPage);
 
   const products = await Product.find(query)
-      .populate('category', 'title description')
-      .sort(getSortQuery(sortType))
-      .skip((page - 1) * perPage)
-      .limit(perPage)
-      .lean();
+    .populate('category', 'title description')
+    .sort(getSortQuery(sortType))
+    .skip((page - 1) * perPage)
+    .limit(perPage)
+    .lean();
 
-  const fit = products.map(product => {
-    const translations = product.translations as Record<string, { title: string; description: string } | undefined>;
+  const fit = products.map((product) => {
+    const translations = product.translations as Record<
+      string,
+      { title: string; description: string } | undefined
+    >;
     const title = translations[lang]?.title ?? 'Default Title';
     return {
       ...product,
@@ -67,11 +73,12 @@ productRouter.get('/', async (req, res) => {
 
     const sort = req.query.sort as string;
     const page = typeof req.query.page === 'string' ? parseInt(req.query.page) : 1;
-    const categoryPage = typeof req.query.categoryPage === 'string' ? parseInt(req.query.categoryPage) : 1;
+    const categoryPage =
+      typeof req.query.categoryPage === 'string' ? parseInt(req.query.categoryPage) : 1;
 
     if (filterBy && filterBy === 'hit') {
       const result = await Product.find({
-        $and: [{ isHit: true }, { isActive: true }]
+        $and: [{ isHit: true }, { isActive: true }, { amount: { $gt: 0 } }],
       }).limit(6);
 
       const fit = result.map((i) => {
@@ -87,10 +94,10 @@ productRouter.get('/', async (req, res) => {
 
     if (filterBy && filterBy === 'new') {
       const result = await Product.find({
-        $and: [{ isHit: false }, { isActive: true }]
+        $and: [{ isHit: false }, { isActive: true }, { amount: { $gt: 0 } }],
       })
-          .sort({ datetime: 'descending' })
-          .limit(6);
+        .sort({ datetime: 'descending' })
+        .limit(6);
 
       const fit = result.map((i) => {
         const product = i.toObject() as IProductPost;
@@ -105,7 +112,11 @@ productRouter.get('/', async (req, res) => {
 
     if (filterBy && filterBy === 'offers') {
       const result = await Product.find({
-        $and: [{ $expr: { $ne: ['$oldPrice', '$actualPrice'] } }, { isActive: true }]
+        $and: [
+          { $expr: { $ne: ['$oldPrice', '$actualPrice'] } },
+          { isActive: true },
+          { amount: { $gt: 0 } },
+        ],
       }).limit(6);
 
       const fit = result.map((i) => {
@@ -123,14 +134,19 @@ productRouter.get('/', async (req, res) => {
 
     if (categoryIdStr) {
       const query = getProductsQuery(true, categoryIdStr);
-      const productsWithPages = await getProductsWithPages(query, categoryPage, perPage, lang, sort);
+      const productsWithPages = await getProductsWithPages(
+        query,
+        categoryPage,
+        perPage,
+        lang,
+        sort
+      );
       return res.send(productsWithPages);
     }
 
     const query = getProductsQuery(true);
     const productsWithPages = await getProductsWithPages(query, page, perPage, lang, sort);
     return res.send(productsWithPages);
-
   } catch (error) {
     console.error('Error fetching products:', error);
     res.status(500).send('Internal Server Error');
@@ -148,18 +164,29 @@ productRouter.get('/search', async (req, res) => {
 
     if (search) {
       const searchField = `translations.${lang}.title`;
-      const query = { [searchField]: regex };
+      const query = {
+        isActive: true,
+        amount: { $gt: 0 },
+        [searchField]: regex,
+      };
 
       const productsTotal = await Product.countDocuments(query);
       const totalPages = Math.ceil(productsTotal / productPerPage);
 
       const products = await Product.find(query)
-          .skip((page - 1) * productPerPage)
-          .limit(productPerPage)
-          .lean();
+        .skip((page - 1) * productPerPage)
+        .limit(productPerPage)
+        .lean();
 
-      const fit = products.map(product => {
-        const translations = product.translations as Record<string, { title: string; description: string } | undefined>;
+      const fit = products.map((product) => {
+        const translations = product.translations as Record<
+          string,
+          | {
+              title: string;
+              description: string;
+            }
+          | undefined
+        >;
         const title = translations[lang]?.title ?? 'Default Title';
         return {
           ...product,
@@ -242,6 +269,7 @@ productRouter.get('/:id/relatedProducts', async (req, res) => {
     const relatedProducts = await Product.find({
       category: product.category as string,
       isActive: true,
+      amount: { $gt: 0 },
       _id: { $ne: productId },
     })
       .limit(4)

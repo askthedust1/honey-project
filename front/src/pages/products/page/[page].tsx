@@ -1,5 +1,10 @@
 import React from 'react';
-import ProductsAll from '@/features/products/ProductsAll';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import { useAppSelector } from '@/store/hook';
+import Head from 'next/head';
+import axiosApi from '@/axiosApi';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { wrapper } from '@/store/store';
 import {
   fetchProducts,
@@ -7,16 +12,11 @@ import {
   fetchProductsPromotion,
   fetchProductsSearch,
 } from '@/features/products/productsThunk';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
-import { MyPage } from '@/components/common/types';
-import axiosApi from '@/axiosApi';
-import Pagination from '@/components/UI/pagination/Pagination';
-import { useAppSelector } from '@/store/hook';
 import { selectTotalPages } from '@/features/products/productsSlice';
-import Head from 'next/head';
-import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
+import { MyPage } from '@/components/common/types';
+import Pagination from '@/components/UI/pagination/Pagination';
+import ProductsAll from '@/components/ProductsAll/ProductsAll';
 
 const ProductPage: MyPage = () => {
   const router = useRouter();
@@ -90,12 +90,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
         };
         await store.dispatch(fetchProductsSearch({ query: iQueryObject, locale: lang }));
       }
-
-      // !promotion
-      //   ? await store.dispatch(fetchProducts({ query: currentPage as string, locale: lang }))
-      //   : await store.dispatch(
-      //       fetchProductsPromotion({ query: currentPage as string, locale: lang }),
-      //     );
 
       return {
         props: {

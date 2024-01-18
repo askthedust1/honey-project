@@ -124,6 +124,9 @@
           }
           &:hover {
             background: #c75a00;
+            @include mix.sm {
+              background: #ff8f31;
+            }
           }
           &:active {
             background: red;

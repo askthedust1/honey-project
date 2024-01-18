@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import logo from '@/assets/images/logo.svg';
-import cls from '../../../styles/_sideBarAdmin.module.scss';
+import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { useRouter } from 'next/navigation';
 import { logout } from '@/features/users/usersThunk';
 import { selectRole } from '@/features/users/usersSlice';
-import { selectAdminNewTransactions } from '@/features/adminNewMessages/adminNewTransactionSlice';
 import { fetchAdminHewTransaction } from '@/features/adminNewMessages/adminNewTransactionThunk';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import { selectAdminNewTransactions } from '@/features/adminNewMessages/adminNewTransactionSlice';
 import {
   changeCurrentPage,
+  changeName,
+  changePhone,
   resetCurrentStatus,
   resetTotalPages,
 } from '@/features/orderAdmin/ordersAdminSlice';
+import logo from '@/assets/images/logo.svg';
+import cls from '../../../styles/_sideBarAdmin.module.scss';
 
 const SidebarAdmin = () => {
   const dispatch = useAppDispatch();
@@ -54,6 +56,8 @@ const SidebarAdmin = () => {
     dispatch(changeCurrentPage(1));
     dispatch(resetTotalPages());
     dispatch(resetCurrentStatus());
+    dispatch(changeName(null));
+    dispatch(changePhone(null));
   };
 
   return (
@@ -122,21 +126,11 @@ const SidebarAdmin = () => {
               Заказы
             </Link>
           </li>
-          {/*<li className={cls.client}>*/}
-          {/*  <Link className={cls.list_link} href={'/admin'}>*/}
-          {/*    Клиенты*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
           <li className={cls.analytics}>
             <Link className={cls.list_link} href={'/admin/analytics'}>
               Аналитика
             </Link>
           </li>
-          {/*<li className={cls.report}>*/}
-          {/*  <Link className={cls.list_link} href={'/admin'}>*/}
-          {/*    Отчетность*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
           <li className={cls.newOrder}>
             <Link className={cls.list_link} href={'/admin/newOrders'}>
               Новые заказы

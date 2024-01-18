@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IProductMutationNew, IProductOneView, IProductView, ValidationError } from '@/types';
 import axiosApi from '@/axiosApi';
 import { isAxiosError } from 'axios';
+import { IProductMutationNew, IProductOneView, IProductView, ValidationError } from '@/types';
 
 export const fetchProductsForAdmin = createAsyncThunk<
   IProductView[],

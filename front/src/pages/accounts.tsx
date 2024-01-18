@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react';
-import Login from '@/components/reg&logForms/Login';
-import Register from '@/components/reg&logForms/Register';
-import acc from '@/styles/accounts.module.scss';
-import { wrapper } from '@/store/store';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { MyPage } from '@/components/common/types';
 import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import axiosApi from '@/axiosApi';
+import { wrapper } from '@/store/store';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
+import Register from '@/components/reg&logForms/Register';
+import Login from '@/components/reg&logForms/Login';
+import { MyPage } from '@/components/common/types';
+import acc from '@/styles/_accounts.module.scss';
 
 const Accounts: MyPage = () => {
   const [isLoginActive, setIsLoginActive] = useState(false);

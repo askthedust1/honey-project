@@ -1,3 +1,4 @@
+@use 'mixin' as mix;
 .modal {
   position: fixed;
   top: 0;
@@ -98,6 +99,10 @@
         margin: 18px 10px 5px;
         &:hover {
           background-color: #afafaf;
+          @include mix.sm {
+            background-color: inherit;
+            color: inherit;
+          }
         }
         &:active {
           background-color: red;

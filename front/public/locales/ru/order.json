@@ -8,6 +8,7 @@
   "cashPayment": "Наличными",
   "cardPayment": "Картой",
   "paymentOptions": "Оплата производится переводом на карты Optima или M-Bank",
+  "payment": "Оплата производится Наличными курьеру при доставке",
   "contactInformation": "Контактная информация",
   "clientNameLabel": "Покупатель:",
   "phoneNumberLabel": "Номер телефона:",

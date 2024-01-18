@@ -1,59 +1,81 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { MyPage } from '@/components/common/types';
 import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import cls from '@/styles/_adminOrders.module.scss';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
+import Head from 'next/head';
+import Link from 'next/link';
 import { fetchOrdersAdminAll, patchActiveOrders } from '@/features/orderAdmin/ordersAdminThunk';
 import {
   selectCurrentPage,
   selectCurrentStatus,
+  selectDataLoaded,
+  selectNameValue,
   selectOrdersAdminAll,
+  selectPhoneValue,
 } from '@/features/orderAdmin/ordersAdminSlice';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
-import Head from 'next/head';
-import Link from 'next/link';
+import Preloader from '@/components/UI/preloader/preloader';
+
+interface IRequestData {
+  page: string;
+  id?: string | null;
+  name?: string;
+  phone?: string;
+}
 
 const Orders: MyPage = () => {
   const dispatch = useAppDispatch();
   const ordersAllState = useAppSelector(selectOrdersAdminAll);
   const currentPageState = useAppSelector(selectCurrentPage);
-  const [selectedStatus, setSelectedStatus] = useState('');
-  const [search, setSearch] = useState<string>('');
-  const [searchPhone, setSearchPhone] = useState<string>('');
   const statusStore = useAppSelector(selectCurrentStatus);
+  const dataLoadedValue = useAppSelector(selectDataLoaded);
+  const nameValueState = useAppSelector(selectNameValue);
+  const phoneValueState = useAppSelector(selectPhoneValue);
+
+  const fetchData = useCallback(async () => {
+    try {
+      const currentPage = currentPageState?.toString();
+
+      if (!ordersAllState && !phoneValueState && !nameValueState) {
+        await dispatch(fetchOrdersAdminAll({ page: currentPage }));
+      }
+    } catch (error) {
+      //nothing
+    }
+  }, [dispatch, ordersAllState]);
 
   useEffect(() => {
-    const currentPage = currentPageState?.toString();
+    const fetchDataAsync = async () => {
+      try {
+        await fetchData();
+      } catch (error) {
+        // nothing
+      }
+    };
 
-    if (statusStore != null && !search.length && !searchPhone.length) {
-      dispatch(fetchOrdersAdminAll({ page: currentPage, id: statusStore }));
-    } else if (search.length > 0 && !statusStore) {
-      dispatch(fetchOrdersAdminAll({ page: currentPage, name: search }));
-    } else if (search.length > 0 && statusStore != null) {
-      dispatch(fetchOrdersAdminAll({ page: currentPage, name: search, id: statusStore }));
-    } else if (searchPhone.length > 0 && !statusStore) {
-      dispatch(fetchOrdersAdminAll({ page: currentPage, phone: searchPhone }));
-    } else if (searchPhone.length > 0 && statusStore != null) {
-      dispatch(fetchOrdersAdminAll({ page: currentPage, phone: searchPhone, id: statusStore }));
-    } else {
-      dispatch(fetchOrdersAdminAll({ page: currentPage }));
-    }
-  }, [dispatch, currentPageState, search, searchPhone, statusStore]);
+    void fetchDataAsync();
+  }, [fetchData]);
 
   const onStatusActive = async (id: string) => {
     if (currentPageState !== undefined && currentPageState !== null) {
       const currentPage = currentPageState.toString();
       await dispatch(patchActiveOrders(id));
 
-      if (selectedStatus) {
-        dispatch(fetchOrdersAdminAll({ id: selectedStatus, page: currentPage }));
-      } else if (search.length > 0) {
-        dispatch(fetchOrdersAdminAll({ page: currentPage, name: search }));
-      } else {
-        dispatch(fetchOrdersAdminAll({ page: currentPage }));
+      try {
+        const requestData: IRequestData = {
+          page: currentPage || '',
+          id: statusStore || '',
+          name: nameValueState || '',
+          phone: phoneValueState || '',
+        };
+
+        dispatch(fetchOrdersAdminAll(requestData));
+      } catch (error) {
+        // nothing
       }
     } else {
-      // console.error('currentPageState is undefined or null');
+      // nothing
     }
   };
 
@@ -62,19 +84,20 @@ const Orders: MyPage = () => {
       <Head>
         <title>Заказы</title>
       </Head>
+
       <div className={cls.container}>
         <div className={cls.ordersBlock}>
-          <h1 className={cls.adminOrdersMainTitle}>Заказы</h1>
+          <div>
+            <h1 className={cls.adminOrdersMainTitle}>Заказы</h1>
+            <div className={cls.preloaderTitle}>{dataLoadedValue ? <Preloader /> : <></>}</div>
+          </div>
 
           <AdminNav
             navProducts={false}
             navBestsellers={false}
             navCategories={false}
             navOrders={true}
-            getStatus={(e: string): void => setSelectedStatus(e)}
             orderPage={currentPageState}
-            getDisplayName={(e: string): void => setSearch(e)}
-            getPhone={(e: string): void => setSearchPhone(e)}
           />
 
           <div className={cls.adminOrdersTable}>
@@ -86,6 +109,7 @@ const Orders: MyPage = () => {
                   <th>Телефон</th>
                   <th>Адрес</th>
                   <th>Сумма</th>
+                  <th>Оплата</th>
                   <th>Статус</th>
                   <th>Действие</th>
                 </tr>
@@ -101,6 +125,7 @@ const Orders: MyPage = () => {
                     </td>
                     <td>{item.address}</td>
                     <td>{item.totalPrice}</td>
+                    <td>{item.payment}</td>
                     <td>
                       {item.status ? (
                         <button className={cls.btnActive} onClick={() => onStatusActive(item._id)}>

@@ -1,11 +1,11 @@
 import React from 'react';
-import cls from '@/styles/_categoriesList.module.scss';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 import { useAppSelector } from '@/store/hook';
 import { selectCategories } from '@/features/categories/categoriesSlice';
 import { apiUrl } from '@/constants';
-import Link from 'next/link';
-import { useTranslation } from 'next-i18next';
-import Image from 'next/image';
+import cls from '@/styles/_categoriesList.module.scss';
 
 const CatalogCategories = () => {
   const categories = useAppSelector(selectCategories);

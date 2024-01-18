@@ -144,6 +144,9 @@
 
   &:hover {
     text-decoration: none;
+    @include sm {
+      text-decoration: inherit;
+    }
   }
 
   &_link {
@@ -172,7 +175,7 @@
   margin-bottom: 30px;
 }
 .socialBtns {
-  margin: 20px 0 0;
+  margin: 20px 0;
   display: flex;
   button {
     margin-right: 10px;

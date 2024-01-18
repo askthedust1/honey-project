@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import { MyPage } from '@/components/common/types';
-import cls from '../../../styles/_adminOneProduct.module.scss';
-import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
 import { useParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { fetchOneProductForAdmin } from '@/features/productAdmin/productsAdminThunk';
-import { selectOneProductForAdmin } from '@/features/productAdmin/productsAdminSlice';
-import { apiUrl } from '@/constants';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import { fetchOneProductForAdmin } from '@/features/productAdmin/productsAdminThunk';
+import { selectOneProductForAdmin } from '@/features/productAdmin/productsAdminSlice';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import { MyPage } from '@/components/common/types';
+import { apiUrl } from '@/constants';
+import cls from '../../../styles/_adminOneProduct.module.scss';
 
 const ProductInfo: MyPage = () => {
   const { id } = useParams() || {};

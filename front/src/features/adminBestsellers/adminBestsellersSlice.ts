@@ -1,4 +1,3 @@
-import { IProductView } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { RootState } from '@/store/store';
@@ -7,6 +6,7 @@ import {
   fetchBestsellersProducts,
   patchHitProduct,
 } from '@/features/adminBestsellers/adminBestsellersThunk';
+import { IProductView } from '@/types';
 
 interface BestsellersState {
   products: IProductView[];
@@ -69,7 +69,3 @@ export const bestsellersSlice = createSlice({
 
 export const selectAllBestsellersForAdmin = (state: RootState) => state.bestsellersAdmin.products;
 export const selectAllBestsellers = (state: RootState) => state.bestsellersAdmin.bestsellersAdmin;
-export const selectAllProductsLoading = (state: RootState) =>
-  state.bestsellersAdmin.fetchHitsLoading;
-export const selectBestsellersLoading = (state: RootState) => state.bestsellersAdmin.fetchLoading;
-export const selectActiveHitLoading = (state: RootState) => state.bestsellersAdmin.patchHitLoading;

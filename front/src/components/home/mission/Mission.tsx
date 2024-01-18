@@ -5,7 +5,7 @@ import YoutubePreviewPlayer from '@/components/home/mission/YoutubePreviewPlayer
 
 const Mission = () => {
   const { t } = useTranslation('mission');
-  const missionVideoUrl = '9tkz3z5-XJQ?si=oF5yJ7rZJb3phGuA';
+  const missionVideoUrl = '9tkz3z5-XJQ';
 
   return (
     <div className={cls.mission}>

@@ -1,19 +1,19 @@
+import React, { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import Head from 'next/head';
+import Image from 'next/image';
 import {
   fetchAdminCategories,
   fetchOneCategoryForAdmin,
   patchCategory,
 } from '@/features/adminCategories/adminCategoriesThunk';
-import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { selectAdminCategories } from '@/features/adminCategories/adminCategoriesSlice';
-import cls from '../../styles/_categories.module.scss';
-import { apiUrl } from '@/constants';
-import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
-import React, { useEffect, useState } from 'react';
-import { MyPage } from '@/components/common/types';
-import ModalEditCategories from '@/components/UI/modalEditCategories/ModalEditCategories';
 import AdminNav from '@/components/admin/adminNav/AdminNav';
-import Head from 'next/head';
-import Image from 'next/image';
+import ProtectedRoute from '@/components/UI/protectedRoute/ProtectedRoute';
+import ModalEditCategories from '@/components/UI/modalEditCategories/ModalEditCategories';
+import { MyPage } from '@/components/common/types';
+import { apiUrl } from '@/constants';
+import cls from '../../styles/_categories.module.scss';
 
 const CategoriesAdminPage: MyPage = () => {
   const dispatch = useAppDispatch();

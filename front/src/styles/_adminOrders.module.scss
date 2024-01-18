@@ -14,6 +14,12 @@
     .adminOrdersMainTitle {
       margin: 20px 0 0 30px;
       font-weight: 500;
+      display: inline-block;
+    }
+
+    .preloaderTitle {
+      margin-left: 20px;
+      display: inline-block;
     }
 
     .adminOrdersNav {
@@ -38,7 +44,6 @@
         background-color: #fff;
         width: 250px;
         height: 40px;
-        //margin: 0 21px 0 0;
       }
 
       select:focus-visible {

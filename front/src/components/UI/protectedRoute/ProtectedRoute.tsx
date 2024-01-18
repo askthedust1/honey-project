@@ -1,10 +1,10 @@
 import React, { ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { selectRole, selectRoleLoading } from '@/features/users/usersSlice';
-import NotFound404 from '../notFound404/NotFound404';
 import { roleCheck } from '@/features/users/usersThunk';
+import { selectRole, selectRoleLoading } from '@/features/users/usersSlice';
 import Loading from '@/components/UI/loading/loading';
+import NotFound404 from '../notFound404/NotFound404';
 
 interface Props {
   children: ReactNode;

@@ -1,21 +1,21 @@
 import React from 'react';
-import ProductsAll from '@/features/products/ProductsAll';
+import { useAppSelector } from '@/store/hook';
+import { useRouter } from 'next/router';
+import axiosApi from '@/axiosApi';
+import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { wrapper } from '@/store/store';
 import {
   fetchProductsByCategory,
   fetchProductsByCategoryFiler,
 } from '@/features/products/productsThunk';
-import { useAppSelector } from '@/store/hook';
 import { selectTotalPages } from '@/features/products/productsSlice';
-import { IQueryObjectCategory, IQueryObjectCategoryFilter } from '@/types';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import Pagination from '@/components/UI/pagination/Pagination';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
-import axiosApi from '@/axiosApi';
+import Pagination from '@/components/UI/pagination/Pagination';
 import { selectCategories } from '@/features/categories/categoriesSlice';
+import ProductsAll from '@/components/ProductsAll/ProductsAll';
 import { MyPage } from '@/components/common/types';
-import Head from 'next/head';
+import { IQueryObjectCategory, IQueryObjectCategoryFilter } from '@/types';
 
 const ProductByCategoryPage: MyPage = () => {
   const router = useRouter();

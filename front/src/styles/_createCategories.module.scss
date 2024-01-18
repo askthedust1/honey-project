@@ -1,3 +1,5 @@
+@use 'mixin' as mix;
+
 .createCategory {
   background-color: #fcf8f5;
   padding: 0 28px 60px;
@@ -37,6 +39,9 @@
 
     button:hover {
       transform: scale(1.1);
+      @include mix.sm {
+        transform: none;
+      }
     }
   }
 
@@ -110,6 +115,10 @@
     &:hover {
       box-shadow: 0 0 3px 3px #5a3733;
       color: #5a3733;
+      @include mix.sm {
+        box-shadow: none;
+        color: inherit;
+      }
     }
 
     span {

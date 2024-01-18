@@ -1,13 +1,13 @@
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-import { RegisterMutation } from '@/types';
-import { register } from '@/features/users/usersThunk';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { selectRegisterError, selectRegisterLoading } from '@/features/users/usersSlice';
-import acc from '@/styles/form.module.scss';
-import { selectCart } from '@/features/cart/cartSlice';
 import { useTranslation } from 'next-i18next';
+import { register } from '@/features/users/usersThunk';
+import { selectRegisterError, selectRegisterLoading } from '@/features/users/usersSlice';
+import { selectCart } from '@/features/cart/cartSlice';
 import ButtonUi from '@/components/UI/ButtonUI/ButtonUI';
+import { RegisterMutation } from '@/types';
+import acc from '@/styles/_form.module.scss';
 
 interface Props {
   containerRef?: React.RefObject<HTMLDivElement>;
@@ -61,8 +61,13 @@ const Register: React.FC<Props> = ({ containerRef }) => {
       <div className={acc.content}>
         <form className={acc.form} onSubmit={submitFormHandler}>
           <div className={acc.formGroup}>
-            <label htmlFor="username">Имя*</label>
-            <input onChange={inputChangeHandler} type="text" name="displayName" placeholder="Имя" />
+            <label htmlFor="username">{t('name')}*</label>
+            <input
+              onChange={inputChangeHandler}
+              type="text"
+              name="displayName"
+              placeholder={t('name')}
+            />
             {error && <span className={acc.error}>{getFieldError('displayName')}</span>}
           </div>
           <div className={acc.formGroup}>
@@ -71,7 +76,7 @@ const Register: React.FC<Props> = ({ containerRef }) => {
               onChange={inputChangeHandler}
               type="password"
               name="password"
-              placeholder="Пароль"
+              placeholder={t('password')}
             />
             {error && <span className={acc.error}>{getFieldError('password')}</span>}
           </div>
@@ -81,13 +86,18 @@ const Register: React.FC<Props> = ({ containerRef }) => {
               onChange={inputChangeHandler}
               type="password"
               name="passwordConfirm"
-              placeholder="Повторите пароль"
+              placeholder={t('passwordConfirm')}
             />
             {error && <span className={acc.error}>{error.error}</span>}
           </div>
           <div className={acc.formGroup}>
             <label htmlFor="email">Email*</label>
-            <input onChange={inputChangeHandler} type="text" name="email" placeholder="Email" />
+            <input
+              onChange={inputChangeHandler}
+              type="text"
+              name="email"
+              placeholder="example@gmail.com"
+            />
             {error && <span className={acc.error}>{getFieldError('email')}</span>}
           </div>
           <div className={acc.formGroup}>
@@ -96,7 +106,7 @@ const Register: React.FC<Props> = ({ containerRef }) => {
               onChange={inputChangeHandler}
               type="text"
               name="phone"
-              placeholder="Номер телефона"
+              placeholder="0555555555"
             />
             {error && <span className={acc.error}>{getFieldError('phone')}</span>}
           </div>

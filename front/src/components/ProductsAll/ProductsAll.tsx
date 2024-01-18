@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAppSelector } from '@/store/hook';
 import { selectAllProducts } from '@/features/products/productsSlice';
-import ProductItem from '@/features/products/components/ProductItem';
+import ProductItem from '@/components/ProductsAll/ProductItem';
 import { AnimationState, IProduct } from '@/types';
 import { useTranslation } from 'next-i18next';
 import cls from '../../styles/_products.module.scss';
@@ -94,7 +94,16 @@ const ProductsAll: React.FC<Props> = ({ pageName, id }) => {
             </div>
           </div>
           {products.length === 0 ? (
-            <div style={{ width: '100%', textAlign: 'center', marginTop: '20px' }}>Товаров нет</div>
+            <div
+              style={{
+                width: '100%',
+                textAlign: 'center',
+                marginTop: '20px',
+                marginBottom: '100px',
+              }}
+            >
+              Товаров нет
+            </div>
           ) : (
             <motion.div
               className={cls.list}

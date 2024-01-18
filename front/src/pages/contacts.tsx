@@ -1,17 +1,17 @@
 import React from 'react';
-import cls from '../styles/_contacts.module.scss';
-import { wrapper } from '@/store/store';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import shop from '@/assets/images/shop_honey.jpeg';
-import Link from 'next/link';
-import { MyPage } from '@/components/common/types';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import axiosApi from '@/axiosApi';
+import { wrapper } from '@/store/store';
 import { fetchCategories } from '@/features/categories/categoriesThunk';
+import { MyPage } from '@/components/common/types';
 import GoogleMap from '@/components/GoogleMap/GoogleMap';
 import { googleMapEmbed } from '@/constants';
+import shop from '@/assets/images/shop_honey.jpeg';
+import cls from '../styles/_contacts.module.scss';
 
 const Contacts: MyPage = () => {
   const { t } = useTranslation('common');

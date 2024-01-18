@@ -43,7 +43,7 @@ transactionsRouter.get('/new/history', auth, async (req, res) => {
         path: 'product',
         model: 'Product',
         populate: {
-          path: 'translations.ru', // Замените 'ru' на нужный язык
+          path: 'translations.ru',
           model: 'Product',
           select: 'title',
         },
@@ -151,6 +151,7 @@ transactionsRouter.post('/', auth, async (req, res, next) => {
       totalPrice: totalPrice,
       address: req.body.address,
       dateTime: req.body.dateTime,
+      payment: req.body.payment,
       status: false,
     };
 

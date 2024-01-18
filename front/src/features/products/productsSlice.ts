@@ -8,10 +8,10 @@ import {
   fetchProductsPromotion,
   fetchProductsSearch,
 } from './productsThunk';
-import { IProduct, IProductView } from '@/types';
 import { getProduct } from '@/features/products/productsThunk';
 import { RootState } from '@/store/store';
 import { HYDRATE } from 'next-redux-wrapper';
+import { IProduct, IProductView } from '@/types';
 
 interface ProductsState {
   items: IProduct[];
@@ -161,7 +161,4 @@ export const selectOneProduct = (state: RootState) => state.products.oneProduct;
 export const selectRelatedProducts = (state: RootState) => state.products.relatedProducts;
 export const selectBestsellers = (state: RootState) => state.products.bestsellers;
 export const selectActiveBestsellers = (state: RootState) => state.products.activeBestseller;
-export const selectAllProductsLoading = (state: RootState) => state.products.fetchLoading;
-export const selectFetchOneLoad = (state: RootState) => state.products.fetchOneLoading;
-export const selectFetchOBestLoad = (state: RootState) => state.products.fetchBestsellersLoading;
 export const { setActiveBestseller } = productsSlice.actions;

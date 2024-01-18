@@ -197,18 +197,15 @@
     height: 48px;
   }
   .playButton::before {
-    border-width: 0 12px 12px 0;
-    padding: 12px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 15px solid #d3a863;
   }
-}
-
-@media (max-width: 480px) {
-  .playButton {
-    width: 32px;
-    height: 32px;
-  }
-  .playButton::before {
-    border-width: 0 8px 8px 0;
-    padding: 8px;
+  .playButton:hover {
+    &:before {
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 15px solid white;
+    }
   }
 }
