@@ -3,9 +3,11 @@ import cls from '@/styles/_preloader.module.scss';
 
 const Preloader = () => {
   return (
-    <tbody className={cls.loader_wrapper}>
-      <tr className={cls.loader}></tr>
-    </tbody>
+    <div className={cls.loader_wrapper}>
+      <div className={`${cls.loader} ${cls.loader_dot1}`}></div>
+      <div className={`${cls.loader} ${cls.loader_dot2}`}></div>
+      <div className={`${cls.loader} ${cls.loader_dot3}`}></div>
+    </div>
   );
 };
 

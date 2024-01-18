@@ -8,12 +8,11 @@ const orderAdminRouter = express.Router();
 
 orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
   try {
-    let page: number;
     if (req.query.statusId && req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
-      let page;
+
       const perPage = 10;
-      page = parseInt(req.query.camePage as string);
+      const page = parseInt(req.query.camePage as string);
 
       const ordersTotal = await Transaction.find({ status: req.query.statusId }).populate({
         path: 'user',
@@ -51,9 +50,9 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.statusId && req.query.camePage && req.query.searchNum) {
       const nSearch = req.query.searchNum as string;
-      let page;
+
       const perPage = 10;
-      page = parseInt(req.query.camePage as string);
+      const page = parseInt(req.query.camePage as string);
 
       const ordersTotal = await Transaction.find({ status: req.query.statusId }).populate({
         path: 'user',
@@ -90,9 +89,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && req.query.search) {
-      let page;
       const perPage = 10;
-      page = parseInt(req.query.camePage as string);
+      const page = parseInt(req.query.camePage as string);
 
       const userQuery = { displayName: { $regex: new RegExp(req.query.search as string, 'i') } };
       const userResults = await User.find(userQuery).select('_id');
@@ -128,9 +126,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && req.query.searchNum) {
-      let page;
       const perPage = 10;
-      page = parseInt(req.query.camePage as string);
+      const page = parseInt(req.query.camePage as string);
 
       const userQuery = { phone: { $regex: new RegExp(req.query.searchNum as string, 'i') } };
       const userResults = await User.find(userQuery).select('_id');
@@ -166,9 +163,8 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.statusId && req.query.camePage) {
-      let page;
       const perPage = 10;
-      page = parseInt(req.query.camePage as string);
+      const page = parseInt(req.query.camePage as string);
 
       const ordersTotal = await Transaction.find({
         status: req.query.statusId as string,
@@ -195,9 +191,9 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
 
     if (req.query.camePage && req.query.search) {
       const qSearch = req.query.search as string;
-      let page;
+
       const perPage = 10;
-      page = parseInt(req.query.camePage as string);
+      const page = parseInt(req.query.camePage as string);
 
       const ordersTotal = await Transaction.find().populate({
         path: 'user',
@@ -234,8 +230,7 @@ orderAdminRouter.get('/', auth, permit('admin'), async (req, res) => {
     }
 
     if (req.query.camePage && !req.query.search) {
-      let page;
-      page = parseInt(req.query.camePage as string);
+      const page = parseInt(req.query.camePage as string);
       const perPage = 10;
       const totalOrders = await Transaction.countDocuments();
       const totalPages = Math.ceil(totalOrders / perPage);

@@ -1,3 +1,4 @@
+
 .loader_wrapper {
   margin-top: 5px;
   display: flex;
@@ -7,21 +8,40 @@
 }
 
 .loader {
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #5a3733;
-  margin-left: 4px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  animation: spin 1s linear infinite;
-  opacity: 0.5;
+  margin: 0 5px;
+  background-color: #5a3733;
+  opacity: 0.3;
 }
 
-@keyframes spin {
+.loader_dot1 {
+  animation: dotAnimation 1s infinite 0.1s;
+}
+
+.loader_dot2 {
+  animation: dotAnimation 1s infinite 0.33s;
+}
+
+.loader_dot3 {
+  animation: dotAnimation 1s infinite 0.66s;
+}
+
+@keyframes dotAnimation {
   0% {
-    transform: rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  75% {
+    opacity: 0.3;
   }
   100% {
-    transform: rotate(360deg);
+    opacity: 0.3;
   }
 }

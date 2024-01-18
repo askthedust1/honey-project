@@ -84,9 +84,13 @@ const Orders: MyPage = () => {
       <Head>
         <title>Заказы</title>
       </Head>
+
       <div className={cls.container}>
         <div className={cls.ordersBlock}>
-          <h1 className={cls.adminOrdersMainTitle}>Заказы</h1>
+          <div>
+            <h1 className={cls.adminOrdersMainTitle}>Заказы</h1>
+            <div className={cls.preloaderTitle}>{dataLoadedValue ? <Preloader /> : <></>}</div>
+          </div>
 
           <AdminNav
             navProducts={false}
@@ -110,48 +114,41 @@ const Orders: MyPage = () => {
                   <th>Действие</th>
                 </tr>
               </thead>
-              {dataLoadedValue ? (
-                <Preloader />
-              ) : (
-                <tbody className={cls.tableBodyBlock}>
-                  {ordersAllState?.map((item) => (
-                    <tr key={item._id}>
-                      <td>{item.indexNumber}</td>
-                      <td>{item.user.displayName}</td>
-                      <td>
-                        <span className={cls.innerPhoneLeft}>{item.user.phone.slice(0, 4)}</span>
-                        <span>{item.user.phone.slice(4)}</span>
-                      </td>
-                      <td>{item.address}</td>
-                      <td>{item.totalPrice}</td>
-                      <td>{item.payment}</td>
-                      <td>
-                        {item.status ? (
-                          <button
-                            className={cls.btnActive}
-                            onClick={() => onStatusActive(item._id)}
-                          >
-                            Подтвержден
-                          </button>
-                        ) : (
-                          <button
-                            className={cls.btnInactive}
-                            onClick={() => onStatusActive(item._id)}
-                          >
-                            Не подтвержден
-                          </button>
-                        )}
-                      </td>
+              <tbody className={cls.tableBodyBlock}>
+                {ordersAllState?.map((item) => (
+                  <tr key={item._id}>
+                    <td>{item.indexNumber}</td>
+                    <td>{item.user.displayName}</td>
+                    <td>
+                      <span className={cls.innerPhoneLeft}>{item.user.phone.slice(0, 4)}</span>
+                      <span>{item.user.phone.slice(4)}</span>
+                    </td>
+                    <td>{item.address}</td>
+                    <td>{item.totalPrice}</td>
+                    <td>{item.payment}</td>
+                    <td>
+                      {item.status ? (
+                        <button className={cls.btnActive} onClick={() => onStatusActive(item._id)}>
+                          Подтвержден
+                        </button>
+                      ) : (
+                        <button
+                          className={cls.btnInactive}
+                          onClick={() => onStatusActive(item._id)}
+                        >
+                          Не подтвержден
+                        </button>
+                      )}
+                    </td>
 
-                      <td>
-                        <Link href={`/admin/orders/` + item._id}>
-                          <button className={cls.viewMoreBtn}></button>
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              )}
+                    <td>
+                      <Link href={`/admin/orders/` + item._id}>
+                        <button className={cls.viewMoreBtn}></button>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </div>
