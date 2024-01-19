@@ -4,7 +4,7 @@ import cls from '../../styles/_wa.module.scss';
 const WhatsApp = () => {
   return (
     <a
-      href="https://wa.me/+996555557577"
+      href="https://wa.me/+996705888001"
       className={cls.whatsapp_float}
       target="_blank"
       rel="noopener noreferrer"

@@ -82,7 +82,7 @@ const History: MyPage = () => {
                     </td>
                     <td>{order.status ? t('statusYes') : t('statusNo')}</td>
                   </tr>
-                ))}
+                )).reverse()}
               </tbody>
             </table>
           </div>
@@ -131,7 +131,7 @@ const History: MyPage = () => {
                   ))}
                 </div>
               </div>
-            ))}
+            )).reverse()}
           </div>
         </>
       )}
