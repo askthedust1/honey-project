@@ -50,88 +50,92 @@ const History: MyPage = () => {
                 </tr>
               </thead>
               <tbody className={cls.historyTable_body}>
-                {orders.map((order) => (
-                  <tr key={order.indexNumber}>
-                    <td>{order.indexNumber}</td>
-                    <td>{order.address}</td>
-                    <td>
-                      {new Date(order.dateTime).toLocaleString('en-US', {
-                        day: 'numeric',
-                        month: 'numeric',
-                        year: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: false,
-                        timeZone: 'UTC',
-                      })}
-                    </td>
-                    <td className={cls.prod}>
-                      {order.kits.map((i) => (
-                        <ul key={i.product._id} className={cls.list}>
-                          <li>
-                            {i.product.title} -{' '}
-                            <span>
-                              {i.amount} {t('piece')}
-                            </span>
-                          </li>
-                        </ul>
-                      ))}
-                    </td>
-                    <td>
-                      {order.totalPrice} {t('som')}
-                    </td>
-                    <td>{order.status ? t('statusYes') : t('statusNo')}</td>
-                  </tr>
-                )).reverse()}
+                {orders
+                  .map((order) => (
+                    <tr key={order.indexNumber}>
+                      <td>{order.indexNumber}</td>
+                      <td>{order.address}</td>
+                      <td>
+                        {new Date(order.dateTime).toLocaleString('en-US', {
+                          day: 'numeric',
+                          month: 'numeric',
+                          year: 'numeric',
+                          hour: 'numeric',
+                          minute: 'numeric',
+                          hour12: false,
+                          timeZone: 'UTC',
+                        })}
+                      </td>
+                      <td className={cls.prod}>
+                        {order.kits.map((i) => (
+                          <ul key={i.product._id} className={cls.list}>
+                            <li>
+                              {i.product.title} -{' '}
+                              <span>
+                                {i.amount} {t('piece')}
+                              </span>
+                            </li>
+                          </ul>
+                        ))}
+                      </td>
+                      <td>
+                        {order.totalPrice} {t('som')}
+                      </td>
+                      <td>{order.status ? t('statusYes') : t('statusNo')}</td>
+                    </tr>
+                  ))
+                  .reverse()}
               </tbody>
             </table>
           </div>
           <div className={cls.ordersCards}>
-            {orders.map((order) => (
-              <div className={cls.ordersCards_card} key={order.indexNumber}>
-                <p>
-                  <span className={cls.ordersCards_card_marker}>{t('numberOrder')}:</span>{' '}
-                  {order.indexNumber}
-                </p>
-                <p>
-                  <span className={cls.ordersCards_card_marker}>{t('address')}:</span>{' '}
-                  {order.address}
-                </p>
-                <p>
-                  <span className={cls.ordersCards_card_marker}>{t('date')}:</span>{' '}
-                  {new Date(order.dateTime).toLocaleString('en-US', {
-                    day: 'numeric',
-                    month: 'numeric',
-                    year: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                    timeZone: 'UTC',
-                  })}
-                </p>
-                <p>
-                  <span className={cls.ordersCards_card_marker}>{t('total')}:</span>{' '}
-                  {order.totalPrice} {t('som')}
-                </p>
-                <p>
-                  <span className={cls.ordersCards_card_marker}>{t('status')}:</span>{' '}
-                  {order.status ? t('statusYes') : t('statusNo')}
-                </p>
-                <div className={cls.ordersCards_card_order}>
-                  <span className={cls.ordersCards_card_marker}>{t('orderList')}:</span>
-                  {order.kits.map((i) => (
-                    <ul key={i.product._id} className={cls.list}>
-                      <li>
-                        {i.product.title} -{' '}
-                        <span>
-                          {i.amount} {t('piece')}
-                        </span>
-                      </li>
-                    </ul>
-                  ))}
+            {orders
+              .map((order) => (
+                <div className={cls.ordersCards_card} key={order.indexNumber}>
+                  <p>
+                    <span className={cls.ordersCards_card_marker}>{t('numberOrder')}:</span>{' '}
+                    {order.indexNumber}
+                  </p>
+                  <p>
+                    <span className={cls.ordersCards_card_marker}>{t('address')}:</span>{' '}
+                    {order.address}
+                  </p>
+                  <p>
+                    <span className={cls.ordersCards_card_marker}>{t('date')}:</span>{' '}
+                    {new Date(order.dateTime).toLocaleString('en-US', {
+                      day: 'numeric',
+                      month: 'numeric',
+                      year: 'numeric',
+                      hour: 'numeric',
+                      minute: 'numeric',
+                      hour12: false,
+                      timeZone: 'UTC',
+                    })}
+                  </p>
+                  <p>
+                    <span className={cls.ordersCards_card_marker}>{t('total')}:</span>{' '}
+                    {order.totalPrice} {t('som')}
+                  </p>
+                  <p>
+                    <span className={cls.ordersCards_card_marker}>{t('status')}:</span>{' '}
+                    {order.status ? t('statusYes') : t('statusNo')}
+                  </p>
+                  <div className={cls.ordersCards_card_order}>
+                    <span className={cls.ordersCards_card_marker}>{t('orderList')}:</span>
+                    {order.kits.map((i) => (
+                      <ul key={i.product._id} className={cls.list}>
+                        <li>
+                          {i.product.title} -{' '}
+                          <span>
+                            {i.amount} {t('piece')}
+                          </span>
+                        </li>
+                      </ul>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )).reverse()}
+              ))
+              .reverse()}
           </div>
         </>
       )}
