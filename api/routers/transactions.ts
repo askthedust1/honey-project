@@ -37,7 +37,9 @@ transactionsRouter.get('/new/history', auth, async (req, res) => {
   const user = (req as RequestWithUser).user;
   const lang = req.headers['accept-language'] || 'ru';
   try {
-    const transactions = await Transaction.find({ user: user._id }).populate({
+    const transactions = await Transaction.find({ user: user._id })
+      .limit(20)
+      .populate({
       path: 'kits',
       populate: {
         path: 'product',

@@ -17,7 +17,7 @@ const Footer = () => {
       <span className={cls.flower_left}></span>
       <div className={cls.logo_block}>
         <Link href={'/'} className={cls.footer_inner_logo}>
-          <Image src={Logo.src} alt="Footer-logo" width={146} height={57} />
+          <Image priority src={Logo.src} alt="Footer-logo" width={146} height={57} />
         </Link>
       </div>
       <div className={cls.footer_inner}>

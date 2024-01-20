@@ -111,7 +111,7 @@ const Header = () => {
             <LanguageSwitcher />
           </div>
           <div className={cls.contact}>
-            <a href="tel:+99655555555">+996 555 555 555</a>
+            <a href="tel:+996705888001">+996 705 888 001</a>
           </div>
         </div>
       </div>
